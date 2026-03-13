@@ -1,136 +1,80 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import Logo from './Logo.astro';
 
-// Recibimos el link alternativo y el idioma actual del Layout
 const { language, alternateLink } = Astro.props;
 
-// Diccionario básico para elementos de la interfaz
 const t = {
-	es: { home: 'Inicio', blog: 'Blog', about: 'Sobre nosotros', join: 'Únete a la lista' },
-	en: { home: 'Home', blog: 'Blog', about: 'About', join: 'Join the list' }
+  es: { blog: 'BLOG', about: 'ABOUT', join: 'Únete a la lista de espera' },
+  en: { blog: 'BLOG', about: 'ABOUT', join: 'Join the waiting list' }
 };
-
 const nav = t[language as 'es' | 'en'] || t.es;
 ---
 
-<header>
-	<nav>
-		<div class="nav-left">
-			<a href={`/${language}/blog/`} class="logo">
-				SL<span>O</span>WORK
-			</a>
-		</div>
+<header class="absolute top-0 left-0 w-full z-50 bg-transparent py-8">
+  <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    
+    <div class="flex-shrink-0">
+      <Logo language={language} />
+    </div>
 
-		<div class="internal-links">
-			<HeaderLink href={`/${language}/blog/`}>{nav.blog}</HeaderLink>
-			<HeaderLink href="/about">{nav.about}</HeaderLink>
-		</div>
+    <div class="flex items-center gap-4 md:gap-8">
+      
+      <div class="relative">
+        <button 
+          id="menu-button" 
+          class="flex items-center gap-2 text-primary hover:opacity-70 transition-opacity font-bold text-sm tracking-widest p-2"
+          aria-label="Abrir menú"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+          <span class="hidden sm:inline">MENÚ</span>
+        </button>
 
-		<div class="nav-right">
-			<div class="lang-selector">
-				<a href={alternateLink} class={language === 'es' ? 'active' : ''}>ES</a>
-				<span>|</span>
-				<a href={alternateLink} class={language === 'en' ? 'active' : ''}>EN</a>
-			</div>
-			
-			<a  target="_blank" href="https://www.slowork.app/es" class="cta-button">
-				{nav.join}
-			</a>
-		</div>
-	</nav>
+        <div id="menu-dropdown" class="hidden absolute right-0 mt-4 w-48 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-primary/5 py-4 z-50">
+          <a href={`/${language}/blog/`} class="block px-6 py-3 text-sm font-bold text-primary hover:bg-secondary/20 transition-colors">{nav.blog}</a>
+          <a href="/about" class="block px-6 py-3 text-sm font-bold text-primary hover:bg-secondary/20 transition-colors">{nav.about}</a>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs font-bold border-l border-primary/10 pl-4 md:pl-6 text-primary">
+        <a href={alternateLink} class={language === 'es' ? 'opacity-100' : 'opacity-40'}>ES</a>
+        <span class="opacity-20">|</span>
+        <a href={alternateLink} class={language === 'en' ? 'opacity-100' : 'opacity-40'}>EN</a>
+      </div>
+
+      <a href="https://slowork.com" 
+         class="bg-secondary text-primary px-5 py-2.5 rounded-full font-bold text-[13px] shadow-md transition-transform hover:scale-105 active:scale-95 whitespace-nowrap">
+        {nav.join}
+      </a>
+    </div>
+  </nav>
 </header>
 
+<script>
+  const menuButton = document.getElementById('menu-button');
+  const menuDropdown = document.getElementById('menu-dropdown');
+
+  // Abrir/Cerrar menú al hacer click
+  menuButton?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menuDropdown?.classList.toggle('hidden');
+  });
+
+  // Cerrar si se hace click fuera del menú
+  document.addEventListener('click', () => {
+    menuDropdown?.classList.add('hidden');
+  });
+</script>
+
 <style>
-	header {
-		margin: 0;
-		padding: 0.5rem 2rem;
-		background: #0f1a16; /* Verde muy oscuro de la imagen */
-		position: sticky;
-		top: 0;
-		z-index: 100;
-	}
+  /* Animación suave para el menú */
+  #menu-dropdown:not(.hidden) {
+    animation: fadeInDown 0.2s ease-out;
+  }
 
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		max-width: 1200px;
-		margin: 0 auto;
-	}
-
-	/* Logo Estilo SloWork */
-	.logo {
-		color: white;
-		text-decoration: none;
-		font-weight: 800;
-		font-size: 1.5rem;
-		letter-spacing: 2px;
-	}
-	.logo span {
-		color: #e6d445; /* Amarillo de la landing */
-	}
-
-	.internal-links {
-		display: flex;
-		gap: 1.5rem;
-	}
-
-	.internal-links a {
-		color: rgba(255, 255, 255, 0.8);
-		text-decoration: none;
-		font-size: 0.9rem;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		transition: color 0.3s ease;
-	}
-
-	.internal-links a:hover, .internal-links a.active {
-		color: #e6d445;
-	}
-
-	.nav-right {
-		display: flex;
-		align-items: center;
-		gap: 2rem;
-	}
-
-	/* Selector de Idioma */
-	.lang-selector {
-		display: flex;
-		gap: 0.5rem;
-		color: white;
-		font-size: 0.8rem;
-		font-weight: bold;
-	}
-	.lang-selector a {
-		color: rgba(255, 255, 255, 0.5);
-		text-decoration: none;
-	}
-	.lang-selector a.active {
-		color: #e6d445;
-	}
-
-	/* Botón Amarillo "Únete" */
-	.cta-button {
-		background: #e6d445;
-		color: #0f1a16;
-		padding: 0.6rem 1.2rem;
-		border-radius: 50px;
-		text-decoration: none;
-		font-weight: bold;
-		font-size: 0.85rem;
-		transition: transform 0.2s ease, background 0.2s ease;
-	}
-
-	.cta-button:hover {
-		transform: scale(1.05);
-		background: #f3e03b;
-	}
-
-	@media (max-width: 720px) {
-		.internal-links, .cta-button {
-			display: none;
-		}
-	}
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>

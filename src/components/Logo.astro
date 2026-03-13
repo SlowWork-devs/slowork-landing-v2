@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '../assets/logo-slowork.png';
+---
+<a href="/" class="block">
+  <Image 
+    src={logoImg} 
+    alt="SloWork Logo" 
+    width={200} 
+    class="h-10 w-auto object-contain"
+    loading="eager"
+  />
+</a>
