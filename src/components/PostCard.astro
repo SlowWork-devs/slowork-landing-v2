@@ -10,7 +10,7 @@ const slug = post.id.split('/').pop()?.replace(/\.(md|mdx)$/, '');
 const postUrl = `/${language}/blog/${slug}/`;
 ---
 
-<a href={postUrl} class="post-card">
+<a href={postUrl} class="post-card animate-fade-in-up">
 	<div class="image-container">
 		{localImage ? (
 			<Image width={720} height={400} src={localImage} alt={title} />

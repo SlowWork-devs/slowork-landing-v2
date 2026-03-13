@@ -1,71 +1,101 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets'; // Importamos el componente de optimización
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets"; // Importamos el componente de optimización
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 
 // Definimos Props de forma más estricta pero flexible
-type Props = Partial<CollectionEntry<'blog'>['data']>;
+type Props = Partial<CollectionEntry<"blog">["data"]>;
 
-const { 
-  title, 
-  excerpt, 
-  date, 
-  image, 
-  localImage, 
-  language = 'es', // Valor por defecto
-  translationSlug 
+const {
+  title,
+  excerpt,
+  date,
+  image,
+  localImage,
+  language = "es", // Valor por defecto
+  translationSlug,
 } = Astro.props;
 
 // Lógica de SEO Internacional (hreflang)
-const alternateLang = language === 'es' ? 'en' : 'es';
+const alternateLang = language === "es" ? "en" : "es";
 // Si tenemos un translationSlug, construimos la URL alterna, si no, mandamos al listado general
-const alternateLink = translationSlug 
-  ? `/${alternateLang}/blog/${translationSlug}` 
+const alternateLink = translationSlug
+  ? `/${alternateLang}/blog/${translationSlug}/`
   : `/${alternateLang}/blog/`;
 ---
 
 <!doctype html>
 <html lang={language}>
-	<head>
-		<BaseHead title={title || ''} description={excerpt || ''} />
-		
-		<link rel="alternate" hreflang={language} href={Astro.url.href} />
-		<link rel="alternate" hreflang={alternateLang} href={new URL(alternateLink, Astro.url.origin).href} />
-		
-		<style>
-			/* Mantén tus estilos aquí o impórtalos */
-			.hero-image img { display: block; margin: 0 auto; border-radius: 12px; box-shadow: var(--box-shadow); }
-			.prose { width: 720px; max-width: calc(100% - 2em); margin: auto; padding: 1em; color: rgb(var(--gray-dark)); }
-		</style>
-	</head>
+  <head>
+    <BaseHead title={title || ""} description={excerpt || ""} />
 
-	<body>
-		<Header language={language} alternateLink={alternateLink} />
-		<main>
-			<article>
-				<div class="hero-image">
-					{/* Priorizamos localImage (optimizada) sobre la URL externa de ImageKit */}
-					{localImage ? (
-						<Image width={1020} height={510} src={localImage} alt={title || ''} />
-					) : (
-						image && <img width={1020} height={510} src={image} alt={title || ''} />
-					)}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							{date && <FormattedDate date={date} />}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+    <link rel="alternate" hreflang={language} href={Astro.url.href} />
+    <link
+      rel="alternate"
+      hreflang={alternateLang}
+      href={new URL(alternateLink, Astro.url.origin).href}
+    />
+
+    <style>
+      /* Mantén tus estilos aquí o impórtalos */
+      .hero-image img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: var(--box-shadow);
+      }
+      .prose {
+        width: 720px;
+        max-width: calc(100% - 2em);
+        margin: auto;
+        padding: 1em;
+        color: rgb(var(--gray-dark));
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header language={language} alternateLink={alternateLink} />
+    <main>
+      <article>
+        <div class="hero-image">
+          {
+            /* Priorizamos localImage (optimizada) sobre la URL externa de ImageKit */
+          }
+          {
+            localImage ? (
+              <Image
+                width={1020}
+                height={510}
+                src={localImage}
+                alt={title || ""}
+              />
+            ) : (
+              image && (
+                <img width={1020} height={510} src={image} alt={title || ""} />
+              )
+            )
+          }
+        </div>
+        <div class="prose">
+          <div class="title">
+            <div class="date">
+              {date && <FormattedDate date={date} />}
+            </div>
+            <h1>{title}</h1>
+            <hr />
+          </div>
+          <div
+            class="prose prose-lg prose-headings:font-heading prose-img:mx-auto"
+          >
+            <slot />
+          </div>
+        </div>
+      </article>
+    </main>
+    <Footer language={language} />
+  </body>
 </html>
