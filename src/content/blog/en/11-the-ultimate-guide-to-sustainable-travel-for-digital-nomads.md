@@ -7,13 +7,12 @@ image: "https://ik.imagekit.io/vdkr6rffv/sustainable%20travel%20guide.png?update
 excerpt: "Learn how to reduce your footprint as a digital nomad with eco-friendly stays, low-impact transport, and conscious habits to travel sustainably without compromise."
 keywords: "sustainable travel, eco-friendly nomad, low-impact tourism, responsible travel tips"
 language: "en"
+translationSlug: "guia-definitiva-viajes-sostenibles-nomadas"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/sustainable%20travel%20guide.png?updatedAt=1754488261473)
 
 ---
-
-# **The ultimate guide to sustainable travel for digital nomads**
 
 As digital nomads, we celebrate the freedom to live and work anywhere, but at what cost to the environment?
 

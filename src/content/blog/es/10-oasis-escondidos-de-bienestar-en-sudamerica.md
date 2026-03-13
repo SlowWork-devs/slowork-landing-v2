@@ -7,13 +7,12 @@ image: "https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Hav
 excerpt: "Explora 10 destinos de bienestar ocultos en Sudamérica donde los nómadas digitales responsables combinan trabajo remoto ético, slow travel y sostenibilidad para lograr equilibrio y enfoque profundo."
 keywords: "impacto de los nómadas digitales, gentrificación y trabajo remoto, trabajo remoto ético, slow travel y sostenibilidad, nómadas digitales responsables"
 language: "es"
+translationSlug: "hidden-wellness-havens-south-america"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Havens%20south%20america.png?updatedAt=1754247762135)
 
 ---
-
-# **Refugios de bienestar ocultos en Sudamérica para trabajar en remoto**
 
 ***Trabaja. Sana. Repite.***  
 El trabajo remoto está evolucionando, y también los espacios que lo hacen posible. Para los nómadas digitales responsables, conscientes de su **impacto en las comunidades locales** y comprometidos con el **trabajo remoto ético**, Sudamérica ofrece refugios únicos que combinan naturaleza, equilibrio y productividad. 

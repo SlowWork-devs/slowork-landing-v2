@@ -7,6 +7,7 @@ image: "https://dkhbyo7gs39kb.cloudfront.net/blog-post/Gentifrication.png"
 excerpt: "Digital nomadism is growing fast but without responsible practices, it can unintentionally fuel gentrification and harm local communities. "
 keywords: "remote villages Europe, digital nomads, slow travel, work-life balance, rural remote work"
 language: "en"
+translationSlug: "nomadas-digitales-parte-del-problema"
 ---
 
 ![image](https://dkhbyo7gs39kb.cloudfront.net/blog-post/Gentifrication.png)
@@ -21,7 +22,7 @@ language: "en"
 
 ---
 
-# **The new wave of gentrification**
+## **The new wave of gentrification**
 
 Gentrification isn’t new. But what is new is how the digital economy accelerates it. The ability to work from anywhere means that affluent professionals can relocate to lower-cost cities, often outbidding locals in the housing market. The result? Entire districts are transformed within months.
 
@@ -33,7 +34,7 @@ According to a [2022 report by the Urban Displacement Project](https://www.urban
 
 ---
 
-# **Why locals are pushing back**
+## **Why locals are pushing back**
 
 The backlash is emotional, and it’s growing. In cities like Barcelona, Lisbon, and Mexico City, demonstrations against gentrification have become common. The sentiment is clear: visitors are welcome, but exploitation is not.
 
@@ -45,7 +46,7 @@ The message is simple: being well-intentioned is not enough. It's time to change
 
 ---
 
-# **Digital nomads need to reflect: privilege and responsibility**
+## **Digital nomads need to reflect: privilege and responsibility**
 
 Remote work is a privilege, one not equally distributed. Most digital nomads come from high-income countries, benefit from strong passports, and enjoy earning in currencies far stronger than local economies.
 
@@ -61,7 +62,7 @@ These questions don’t have perfect answers, but they matter. Because with free
 
 ---
 
-# **A better way: the Slowork model**
+## **A better way: the Slowork model**
 
 At [Slowork](https://slowork.app), we believe remote work can be regenerative — not extractive. Our mission is to reimagine remote lifestyles in a way that prioritizes community, sustainability, and mutual respect.
 
@@ -75,7 +76,7 @@ Slowork isn’t just a platform. It’s a growing movement of remote professiona
 
 ---
 
-# **Conclusion: from extraction to connection**
+## **Conclusion: from extraction to connection**
 
 Digital nomads have the potential to be more than tourists. We can be stewards of positive change, connectors across cultures, and contributors to sustainable local economies.
 

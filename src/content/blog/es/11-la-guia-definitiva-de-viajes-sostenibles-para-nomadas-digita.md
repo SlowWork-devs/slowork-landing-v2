@@ -7,13 +7,12 @@ image: "https://ik.imagekit.io/vdkr6rffv/sustainable%20travel%20guide.png?update
 excerpt: "Aprende a reducir tu huella como nómada digital con hábitos conscientes: alojamientos ecológicos, transporte de bajo impacto y consumo responsable para viajar de forma sostenible."
 keywords: "viajes sostenibles para nómadas digitales, slow travel, turismo responsable, impacto ambiental nómadas digitales, alojamientos ecológicos, trabajo remoto sostenible"
 language: "es"
+translationSlug: "ultimate-guide-sustainable-travel-nomads"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/sustainable%20travel%20guide.png?updatedAt=1754488261473)
 
 ---
-
-# **La guía definitiva de viajes sostenibles para nómadas digitales**
 
 Como nómadas digitales, celebramos la libertad de vivir y trabajar en cualquier lugar, pero ¿a qué costo para el medio ambiente?
 

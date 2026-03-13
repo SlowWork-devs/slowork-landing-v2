@@ -7,13 +7,13 @@ image: "https://ik.imagekit.io/vdkr6rffv/What%20is%20a%20Digital%20Nomad.png"
 excerpt: "Discover what a digital nomad is, how they work, and why it's becoming a popular lifestyle choice."
 keywords: "digital nomad, digital nomad lifestyle, remote work travel"
 language: "en"
+translationSlug: "que-es-nomada-digital-guia-estilo-vida"
 ---
 
 ![What is a Digital Nomad?](https://ik.imagekit.io/vdkr6rffv/What%20is%20a%20Digital%20Nomad.png)
 
 ---
 
-# What is a Digital Nomad? The complete guide (2026)
 
 ## What is a Digital Nomad?
 

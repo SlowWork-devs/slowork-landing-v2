@@ -7,6 +7,7 @@ image: "https://dkhbyo7gs39kb.cloudfront.net/blog-post/Gentifrication.png"
 excerpt: "El nomadismo digital está creciendo rápidamente, pero sin prácticas responsables, puede alimentar involuntariamente la gentrificación y dañar a las comunidades locales."
 keywords: "pueblos remotos Europa, nómadas digitales, viaje lento, equilibrio entre trabajo y vida, trabajo remoto rural"
 language: "es"
+translationSlug: "digital-nomads-part-of-the-problem"
 ---
 
 ![image](https://dkhbyo7gs39kb.cloudfront.net/blog-post/Gentifrication.png)
@@ -21,7 +22,7 @@ language: "es"
 
 ---
 
-# **La nueva ola de gentrificación**
+## **La nueva ola de gentrificación**
 
 La gentrificación no es nueva. Pero lo que es nuevo es cómo la economía digital la acelera. La capacidad de trabajar desde cualquier lugar significa que los profesionales adinerados pueden mudarse a ciudades de menor costo, a menudo superando a los locales en el mercado de la vivienda. ¿El resultado? Distritos enteros se transforman en cuestión de meses.
 
@@ -33,7 +34,7 @@ Según un [informe de 2022 del Urban Displacement Project](https://www.urbandisp
 
 ---
 
-# **Por qué los locales están resistiendo**
+## **Por qué los locales están resistiendo**
 
 La reacción es emocional y está creciendo. En ciudades como Barcelona, Lisboa y Ciudad de México, las manifestaciones contra la gentrificación se han vuelto comunes. El sentimiento es claro: los visitantes son bienvenidos, pero la explotación no.
 
@@ -45,7 +46,7 @@ El mensaje es simple: tener buenas intenciones no es suficiente. Es hora de camb
 
 ---
 
-# **Los nómadas digitales necesitan reflexionar: privilegio y responsabilidad**
+## **Los nómadas digitales necesitan reflexionar: privilegio y responsabilidad**
 
 El trabajo remoto es un privilegio, uno que no está distribuido de manera equitativa. La mayoría de los nómadas digitales provienen de países de altos ingresos, se benefician de pasaportes fuertes y disfrutan de ganar en monedas mucho más fuertes que las economías locales.
 
@@ -61,7 +62,7 @@ Estas preguntas no tienen respuestas perfectas, pero importan. Porque con la lib
 
 ---
 
-# **Una mejor manera: el modelo Slowork**
+## **Una mejor manera: el modelo Slowork**
 
 En [Slowork](https://slowork.app), creemos que el trabajo remoto puede ser regenerativo, no extractivo. Nuestra misión es reimaginar los estilos de vida remotos de una manera que priorice la comunidad, la sostenibilidad y el respeto mutuo.
 
@@ -75,7 +76,7 @@ Slowork no es solo una plataforma. Es un movimiento en crecimiento de profesiona
 
 ---
 
-# **Conclusión: de la extracción a la conexión**
+## **Conclusión: de la extracción a la conexión**
 
 Los nómadas digitales tienen el potencial de ser más que turistas. Podemos ser administradores del cambio positivo, conectores entre culturas y contribuyentes a economías locales sostenibles.
 

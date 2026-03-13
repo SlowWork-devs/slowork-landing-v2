@@ -7,13 +7,13 @@ image: "https://ik.imagekit.io/vdkr6rffv/Remote%20work%20visa%20Thailand.png?upd
 excerpt: "¿Quieres trabajar remoto desde Tailandia en 2025? Esta guía completa te explica cómo solicitar la nueva visa digital nomad (DTV), sus requisitos y ventajas."
 keywords: "visado digital nomad Tailandia 2025, DTV Tailandia, trabajar remoto desde Tailandia, requisitos visa nómada Tailandia, visa Tailandia para freelancers"
 language: "es"
+translationSlug: "digital-nomad-visa-thailand-2025"
 ---
 
 ![Visado Digital Nomad en Tailandia](https://ik.imagekit.io/vdkr6rffv/Remote%20work%20visa%20Thailand.png?updatedAt=1755949739368)
 
 ---
 
-# **Cómo obtener el visado digital nomad en Tailandia en 2025: guía completa**
 
 Tailandia siempre ha sido un imán para trabajadores remotos. Bajo coste de vida, comida espectacular, una escena cultural vibrante y algunas de las mejores playas del mundo la convierten en una de las favoritas entre nómadas digitales. Pero hasta hace poco, quedarse legalmente a largo plazo era complicado.
 
