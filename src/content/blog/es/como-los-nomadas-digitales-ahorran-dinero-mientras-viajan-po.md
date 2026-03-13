@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/save%20money%20while%20traveling.png?up
 excerpt: "Viajar y trabajar a distancia no tiene por qué vaciar tu cuenta. Descubre cómo los nómadas digitales inteligentes optimizan su presupuesto sin sacrificar calidad de vida."
 keywords: "ahorrar viajando, presupuesto nómada digital, viajes baratos, slow travel, trabajo remoto sostenible"
 language: "es"
-translationSlug: "digital-nomads-save-money-traveling"
+translationSlug: "how-digital-nomads-save-money-while-traveling-the-world"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/save%20money%20while%20traveling.png?updatedAt=1755702137734)

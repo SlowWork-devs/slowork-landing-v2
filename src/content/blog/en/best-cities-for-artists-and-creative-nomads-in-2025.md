@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Creatives%20destinations.png?updatedAt=
 excerpt: "Discover the best cities for artists and creative nomads in 2025. Explore where inspiration meets community, with top artistic hubs and cultural spaces worldwide."
 keywords: "digital nomad creatives, artist remote work cities, creative coworking, artistic hubs, nomad destinations for artists"
 language: "en"
-translationSlug: "mejores-ciudades-artistas-nomadas-creativos-2025"
+translationSlug: "mejores-ciudades-para-artistas-y-nomadas-creativos-en-2025"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/Creatives%20destinations.png?updatedAt=1752685209251)

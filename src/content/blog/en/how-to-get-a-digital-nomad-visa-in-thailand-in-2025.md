@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Remote%20work%20visa%20Thailand.png?upd
 excerpt: "Thailand now offers a 5-year digital nomad visa (DTV) that finally makes long-term remote work in paradise a legal reality. Here’s everything you need to apply."
 keywords: "digital nomad visa, best countries remote visa, how to apply nomad visa"
 language: "en"
-translationSlug: "visado-digital-nomad-tailandia-2025"
+translationSlug: "como-obtener-el-visado-digital-nomad-en-tailandia-en-2025"
 ---
 
 ![Thailand Nomad Visa](https://ik.imagekit.io/vdkr6rffv/Remote%20work%20visa%20Thailand.png?updatedAt=1755949739368)

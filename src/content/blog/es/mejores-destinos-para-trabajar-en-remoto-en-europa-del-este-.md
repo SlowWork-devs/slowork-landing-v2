@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Eastern%20Europe%20destinations.png?upd
 excerpt: "Europa del Este se posiciona como nuevo hotspot para nómadas digitales. Descubre las mejores ciudades para trabajar en remoto en 2025: asequibles, con buen Wi-Fi y comunidades vibrantes."
 keywords: "trabajo remoto Europa del Este, nómadas digitales Balcanes y Bálticos, mejores ciudades para nómadas digitales 2025, coworking Europa del Este, ciudades slow travel Europa"
 language: "es"
-translationSlug: "best-remote-work-destinations-eastern-europe-2025"
+translationSlug: "best-remote-work-destinations-in-eastern-europe-2025-guide"
 ---
 
 ![Europa del Este para nómadas digitales](https://ik.imagekit.io/vdkr6rffv/Eastern%20Europe%20destinations.png?updatedAt=1756700368174)

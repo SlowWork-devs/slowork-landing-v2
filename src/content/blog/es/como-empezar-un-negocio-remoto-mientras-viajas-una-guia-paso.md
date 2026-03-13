@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Remote%20business.png.png?updatedAt=175
 excerpt: "Empezar un negocio remoto mientras viajas puede sonar como un sueño, pero hoy es más posible que nunca. Esta guía explora cómo dar ese salto mientras abrazas la libertad del estilo de vida nómada."
 keywords: "trabajo remoto, nómada digital, viajes de bienestar, equilibrio vida-trabajo, slow travel, Sudamérica, retiros de bienestar para trabajadores remotos, lugares ocultos para trabajar remoto, destinos nómadas digitales Sudamérica, mejores lugares para trabajar y relajarse, escapadas en la naturaleza para freelancers, slow living para nómadas digitales, pueblos remotos Sudamérica, viajes de sanación para trabajadores remotos"
 language: "es"
-translationSlug: "how-to-start-remote-business-while-traveling"
+translationSlug: "how-to-start-a-remote-business-while-traveling-a-step-by-ste"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/Remote%20business.png.png?updatedAt=1752191233424)

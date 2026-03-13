@@ -4,57 +4,116 @@
 
 @theme {
   --color-primary: #013333;
-  --color-secondary: #E0BB44;
-  --color-light-green: #DDEEE5;
-  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-secondary: #e0bb44;
+  --color-light-green: #ddeee5;
+  --font-sans: "Poppins", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Poppins", sans-serif;
 }
 
 @layer base {
-	.prose {
-	  /* Limitamos el ancho para que el ojo no se canse (aprox 65-75 caracteres) */
-	  max-width: 72ch !important;
-	  margin: 0 auto;
-	  /* Suavizamos el texto */
-	  @apply text-primary/90 antialiased;
-	}
-  
-	/* Ajustes específicos para legibilidad */
-	.prose p {
-	  line-height: 1.8; /* Espaciado entre líneas generoso */
-	  margin-bottom: 1.75em;
-	  font-size: 1.125rem; /* 18px aprox, ideal para lectura larga */
-	}
-  
-	.prose h2, .prose h3 {
-	  @apply font-heading font-bold text-primary mt-12 mb-6;
-	  letter-spacing: -0.02em;
-	}
-  
-	.prose h2 { font-size: 1.875rem; border-bottom: 1px solid var(--color-light-green); padding-bottom: 0.5rem; }
-	.prose h3 { font-size: 1.5rem; }
-  
-	/* Estilo para las listas */
-	.prose ul, .prose ol {
-	  @apply my-6 pl-6;
-	}
-	.prose li {
-	  @apply mb-3;
-	}
-  
-	/* El toque SloWork: Citas (Blockquotes) */
-	.prose blockquote {
-	  @apply border-l-4 border-secondary bg-light-green/20 py-4 px-6 italic rounded-r-lg;
-	  font-size: 1.25rem;
-	  color: var(--color-primary);
-	}
-  
-	/* Imágenes dentro del post */
-	.prose img {
-	  @apply rounded-2xl shadow-lg my-10 border border-light-green/30;
-	}
-  
-	/* Enlaces dentro del texto */
-	.prose a {
-	  @apply text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4 hover:text-secondary transition-colors;
-	}
+  html,
+  body {
+    font-family: "Poppins", sans-serif;
   }
+  .prose {
+    /* Limitamos el ancho para que el ojo no se canse (aprox 65-75 caracteres) */
+    max-width: 72ch !important;
+    margin: 0 auto;
+    /* Suavizamos el texto */
+    @apply text-primary/90 antialiased;
+  }
+
+  /* Ajustes específicos para legibilidad */
+  .prose p {
+    line-height: 1.8; /* Espaciado entre líneas generoso */
+    margin-bottom: 1.75em;
+    font-size: 1.125rem; /* 18px aprox, ideal para lectura larga */
+  }
+
+  .prose h2,
+  .prose h3 {
+    @apply font-heading font-bold text-primary mt-12 mb-6;
+    letter-spacing: -0.02em;
+  }
+
+  .prose h2 {
+    font-size: 1.875rem;
+    border-bottom: 1px solid var(--color-light-green);
+    padding-bottom: 0.5rem;
+  }
+  .prose h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Estilo para las listas */
+  .prose ul,
+  .prose ol {
+    @apply my-6 pl-6;
+  }
+  .prose li {
+    @apply mb-3;
+  }
+
+  /* El toque SloWork: Citas (Blockquotes) */
+  .prose blockquote {
+    @apply border-l-4 border-secondary bg-light-green/20 py-4 px-6 italic rounded-r-lg;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+  }
+
+  /* Imágenes dentro del post */
+  .prose img {
+    @apply rounded-2xl shadow-lg my-10 border border-light-green/30;
+  }
+
+  /* Enlaces dentro del texto */
+  .prose a {
+    @apply text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4 hover:text-secondary transition-colors;
+  }
+
+  /* --- ESTILO DE TABLAS PREMIUM --- */
+  .prose table {
+    @apply w-full border-collapse my-10 shadow-sm rounded-xl overflow-hidden border border-light-green/50;
+    display: table; /* Asegura que se comporte como tabla */
+  }
+
+  .prose thead {
+    @apply bg-primary text-white font-heading;
+  }
+
+  .prose th {
+    @apply py-4 px-5 text-left font-semibold uppercase tracking-wider text-xs sm:text-sm;
+    color: #ffffff !important; /* Forzamos blanco en el header */
+  }
+
+  .prose tr {
+    @apply border-b border-light-green/30 transition-colors;
+  }
+
+  .prose tr:nth-child(even) {
+    @apply bg-light-green/10; /* Filas alternas con tu verde clarito */
+  }
+
+  .prose tr:hover {
+    @apply bg-light-green/20; /* Efecto hover sutil */
+  }
+
+  .prose td {
+    @apply py-4 px-5 text-sm sm:text-base;
+  }
+
+  /* Hacer que la tabla sea scrollable en móviles sin romper el diseño */
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .prose table {
+      display: table;
+      white-space: normal;
+    }
+  }
+}

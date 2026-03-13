@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/save%20money%20while%20traveling.png?up
 excerpt: "Traveling as a digital nomad doesn't have to break the bank. Here's how to manage your budget smartly and live well while exploring the world."
 keywords: "budget travel, save money nomad, remote work on a budget, low-cost destinations"
 language: "en"
-translationSlug: "nomadas-digitales-ahorran-dinero-viajando"
+translationSlug: "como-los-nomadas-digitales-ahorran-dinero-mientras-viajan-po"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/save%20money%20while%20traveling.png?updatedAt=1755702137734)

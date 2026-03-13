@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Rem
 excerpt: "Descubre 10 pueblos europeos perfectos para nómadas digitales que buscan paz, productividad y un mejor equilibrio vida-trabajo en entornos hermosos y tranquilos."
 keywords: "pueblos remotos Europa, nómadas digitales, slow travel, equilibrio vida-trabajo, trabajo remoto rural"
 language: "es"
-translationSlug: "10-remote-villages-europe-digital-nomads"
+translationSlug: "10-remote-villages-in-europe-for-digital-nomads"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Remote%20villages%20Europe.png?updatedAt=1752680484550)

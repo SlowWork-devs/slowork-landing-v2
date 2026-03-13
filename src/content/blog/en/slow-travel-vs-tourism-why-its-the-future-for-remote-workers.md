@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Slow%20travel%20vs.%20tourism.png.png?u
 excerpt: "A deep dive into the slow travel movement and why it leads to better productivity, well-being, and sustainability."
 keywords: "slow travel, digital nomad lifestyle, sustainable travel, remote work destinations"
 language: "en"
-translationSlug: "slow-travel-turismo-futuro-trabajadores-remotos"
+translationSlug: "slow-travel-vs-turismo-por-que-es-el-futuro-para-los-trabaja"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/Slow%20travel%20vs.%20tourism.png.png?updatedAt=1751908831780)

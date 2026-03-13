@@ -7,7 +7,7 @@ image: "https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751303991/Team_retre
 excerpt: "Descubre por qué los retiros de equipo son clave para fortalecer equipos remotos, aumentar la productividad y lograr un equilibrio más saludable entre trabajo y vida en la cultura laboral flexible actual."
 keywords: "retiros de equipo, equipos remotos, equilibrio trabajo-vida, retiros corporativos, cohesión de equipo"
 language: "es"
-translationSlug: "team-retreats-future-work-life-balance"
+translationSlug: "team-retreats-the-future-of-work-life-balance"
 ---
 
 ![image](https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751303991/Team_retreats.png_yspq8h.png)

@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Network%20digital%20nomad.png?updatedAt
 excerpt: "Discover practical networking strategies for digital nomads to find remote work and build a thriving community."
 keywords: "digital nomad networking, remote work opportunities, nomad community, coworking, coliving, Slowork"
 language: "en"
-translationSlug: "como-hacer-networking-nomada-digital"
+translationSlug: "como-hacer-networking-como-nomada-digital-y-encontrar-oportu"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/Network%20digital%20nomad.png?updatedAt=1752685113003)

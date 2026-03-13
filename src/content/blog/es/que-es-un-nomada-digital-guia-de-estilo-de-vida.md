@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/What%20is%20a%20Digital%20Nomad.png"
 excerpt: "Descubre qué es un nómada digital, cómo trabaja y por qué se está convirtiendo en una opción de estilo de vida cada vez más popular."
 keywords: "nómada digital, estilo de vida nómada digital, trabajo remoto y viajes"
 language: "es"
-translationSlug: "what-is-digital-nomad-lifestyle-guide"
+translationSlug: "what-is-a-digital-nomad-lifestyle-guide"
 ---
 
 ![¿Qué es un nómada digital?](https://ik.imagekit.io/vdkr6rffv/What%20is%20a%20Digital%20Nomad.png)

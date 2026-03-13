@@ -7,7 +7,7 @@ image: "https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Hav
 excerpt: "Explore 10 hidden wellness havens in South America where responsible digital nomads combine ethical remote work, slow travel, and sustainability for balance and deep focus."
 keywords: "digital nomad impact, gentrification and remote work, ethical remote work, slow travel and sustainability, responsible digital nomads"
 language: "en"
-translationSlug: "oasis-escondidos-bienestar-sudamerica"
+translationSlug: "oasis-escondidos-de-bienestar-en-sudamerica"
 ---
 
 ![image](https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Havens%20south%20america.png?updatedAt=1754247762135)

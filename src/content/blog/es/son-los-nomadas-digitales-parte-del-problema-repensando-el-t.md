@@ -7,7 +7,7 @@ image: "https://dkhbyo7gs39kb.cloudfront.net/blog-post/Gentifrication.png"
 excerpt: "El nomadismo digital está creciendo rápidamente, pero sin prácticas responsables, puede alimentar involuntariamente la gentrificación y dañar a las comunidades locales."
 keywords: "pueblos remotos Europa, nómadas digitales, viaje lento, equilibrio entre trabajo y vida, trabajo remoto rural"
 language: "es"
-translationSlug: "digital-nomads-part-of-the-problem"
+translationSlug: "are-digital-nomads-part-of-the-problem-rethinking-remote-wor"
 ---
 
 ![image](https://dkhbyo7gs39kb.cloudfront.net/blog-post/Gentifrication.png)

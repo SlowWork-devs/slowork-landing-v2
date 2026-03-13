@@ -7,7 +7,7 @@ image: "https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751303991/Team_retre
 excerpt: "Discover why team retreats are key to remote team bonding, better productivity, and a healthier work-life balance in today’s flexible work culture."
 keywords: "team retreats, remote teams, work-life balance, corporate retreats, team cohesion"
 language: "en"
-translationSlug: "retiros-equipo-futuro-equilibrio-trabajo-vida"
+translationSlug: "retiros-de-equipo-el-futuro-del-equilibrio-entre-trabajo-y-v"
 ---
 
 ![image](https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751303991/Team_retreats.png_yspq8h.png)
