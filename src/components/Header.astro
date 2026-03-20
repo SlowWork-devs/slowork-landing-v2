@@ -4,77 +4,118 @@ import Logo from './Logo.astro';
 const { language, alternateLink } = Astro.props;
 
 const t = {
-  es: { blog: 'BLOG', about: 'ABOUT', join: 'Únete a la lista de espera' },
-  en: { blog: 'BLOG', about: 'ABOUT', join: 'Join the waiting list' }
+  es: { blog: 'BLOG', about: 'ABOUT', join: 'Únete a la lista de espera', menu: 'Abrir menú', close: 'Cerrar menú' },
+  en: { blog: 'BLOG', about: 'ABOUT', join: 'Join the waiting list', menu: 'Open menu', close: 'Close menu' }
 };
 const nav = t[language as 'es' | 'en'] || t.es;
 ---
 
-<header class="absolute top-0 left-0 w-full z-50 bg-transparent py-8">
-  <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-    
-    <div class="shrink-0">
+<header class="absolute top-0 left-0 w-full z-50 bg-transparent py-4 md:py-8">
+  <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center gap-4 min-h-12">
+    <!-- Logo: siempre a la izquierda -->
+    <div class="shrink-0 flex items-center">
       <Logo language={language} />
     </div>
 
-    <div class="flex items-center gap-4 md:gap-8">
-      
+    <!-- Móvil: solo hamburguesa a la derecha | Desktop: menú + idioma + Join -->
+    <div class="flex items-center shrink-0 gap-2 md:gap-6">
       <div class="relative">
         <button 
           id="menu-button" 
-          class="flex items-center gap-2 text-primary hover:opacity-70 transition-opacity font-bold text-sm tracking-widest p-2"
-          aria-label="Abrir menú"
+          class="flex items-center justify-center text-primary hover:opacity-80 transition-opacity font-bold text-sm tracking-widest min-w-12 min-h-12 p-3 -m-2 rounded-lg touch-manipulation"
+          aria-label={nav.menu}
+          aria-expanded="false"
+          aria-controls="menu-dropdown"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
           </svg>
-          <span class="hidden sm:inline">MENÚ</span>
+          <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          <span class="hidden md:inline ml-1">MENÚ</span>
         </button>
 
-        <div id="menu-dropdown" class="hidden absolute right-0 mt-4 w-48 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-primary/5 py-4 z-50">
-          <a href={`/${language}/blog/`} class="block px-6 py-3 text-sm font-bold text-primary hover:bg-secondary/20 transition-colors">{nav.blog}</a>
-          <a href="/about" class="block px-6 py-3 text-sm font-bold text-primary hover:bg-secondary/20 transition-colors">{nav.about}</a>
+        <div id="menu-overlay" class="hidden fixed inset-0 z-40 bg-primary/30 backdrop-blur-sm md:hidden" aria-hidden="true"></div>
+        <div 
+          id="menu-dropdown" 
+          class="hidden fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl z-50 flex flex-col pt-24 pb-8 px-6 md:absolute md:inset-auto md:right-0 md:top-full md:mt-4 md:w-48 md:max-w-none md:pt-0 md:pb-0 md:px-0 md:rounded-2xl md:border md:border-primary/10 md:py-4 md:shadow-xl"
+          role="menu"
+          aria-orientation="vertical"
+        >
+          <a href={`/${language}/blog/`} class="block px-6 py-3.5 min-h-12 text-base font-bold text-primary hover:bg-secondary/20 transition-colors rounded-lg touch-manipulation md:py-2.5 md:text-sm md:min-h-11" role="menuitem">{nav.blog}</a>
+          <a href="/about" class="hidden md:block px-6 py-3.5 min-h-12 text-base font-bold text-primary hover:bg-secondary/20 transition-colors rounded-lg touch-manipulation md:py-2.5 md:text-sm md:min-h-11" role="menuitem">{nav.about}</a>
+          <a href="https://www.slowork.app/" class="md:hidden mt-4 block w-full text-center bg-secondary text-primary min-h-12 flex items-center justify-center px-6 py-4 rounded-full font-bold text-base shadow-md touch-manipulation">
+            {nav.join}
+          </a>
         </div>
       </div>
 
-      <div class="flex items-center gap-3 text-xs font-bold border-l border-primary/10 pl-4 md:pl-6 text-primary">
-        <a href={alternateLink} class={language === 'es' ? 'opacity-100' : 'opacity-40'}>ES</a>
-        <span class="opacity-20">|</span>
-        <a href={alternateLink} class={language === 'en' ? 'opacity-100' : 'opacity-40'}>EN</a>
+      <!-- Idioma: oculto en móvil -->
+      <div class="hidden md:flex items-center gap-1 text-xs font-bold border-l border-primary/20 pl-4 text-primary">
+        <a href={alternateLink} class="min-w-10 min-h-10 flex items-center justify-center rounded-lg hover:bg-primary/5 transition-colors" aria-current={language === 'es' ? 'page' : undefined}>ES</a>
+        <span class="opacity-30">|</span>
+        <a href={alternateLink} class="min-w-10 min-h-10 flex items-center justify-center rounded-lg hover:bg-primary/5 transition-colors" aria-current={language === 'en' ? 'page' : undefined}>EN</a>
       </div>
 
-      <a href="https://www.slowork.app/" 
-         class="bg-secondary text-primary px-5 py-2.5 rounded-full font-bold text-[13px] shadow-md transition-transform hover:scale-105 active:scale-95 whitespace-nowrap">
+      <!-- Join: oculto en móvil (está en el drawer) -->
+      <a 
+        href="https://www.slowork.app/" 
+        class="hidden md:flex bg-secondary text-primary min-h-12 items-center justify-center px-6 py-3 rounded-full font-bold text-sm shadow-md hover:opacity-95 active:scale-[0.98] whitespace-nowrap touch-manipulation"
+      >
         {nav.join}
       </a>
     </div>
   </nav>
 </header>
 
-<script>
+<script define:vars={{ menuLabel: nav.menu, closeLabel: nav.close }}>
   const menuButton = document.getElementById('menu-button');
   const menuDropdown = document.getElementById('menu-dropdown');
+  const menuOverlay = document.getElementById('menu-overlay');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
 
-  // Abrir/Cerrar menú al hacer click
+  const isOpen = () => !menuDropdown?.classList.contains('hidden');
+
+  const openMenu = () => {
+    menuDropdown?.classList.remove('hidden');
+    menuOverlay?.classList.remove('hidden');
+    menuIcon?.classList.add('hidden');
+    closeIcon?.classList.remove('hidden');
+    menuButton?.setAttribute('aria-expanded', 'true');
+    menuButton?.setAttribute('aria-label', closeLabel);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    menuDropdown?.classList.add('hidden');
+    menuOverlay?.classList.add('hidden');
+    menuIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', menuLabel);
+    document.body.style.overflow = '';
+  };
+
+  const toggleMenu = () => {
+    isOpen() ? closeMenu() : openMenu();
+  };
+
   menuButton?.addEventListener('click', (e) => {
     e.stopPropagation();
-    menuDropdown?.classList.toggle('hidden');
+    toggleMenu();
   });
 
-  // Cerrar si se hace click fuera del menú
-  document.addEventListener('click', () => {
-    menuDropdown?.classList.add('hidden');
+  menuOverlay?.addEventListener('click', closeMenu);
+
+  document.addEventListener('click', (e) => {
+    if (isOpen() && !menuDropdown?.contains(e.target) && !menuButton?.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) closeMenu();
   });
 </script>
-
-<style>
-  /* Animación suave para el menú */
-  #menu-dropdown:not(.hidden) {
-    animation: fadeInDown 0.2s ease-out;
-  }
-
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
