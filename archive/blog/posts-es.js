@@ -1,15 +1,15 @@
-//-----------------------------POST20725---------------------------------------//
+//-----------------------------POST210725---------------------------------------//
 
-import Aljezur from '../../assets/blog_assets/Aljezur.png';
-import Bansko from '../../assets/blog_assets/Bansko.png';
-import CeskyKrumlov from '../../assets/blog_assets/Cesky.png';
-import Colletta from '../../assets/blog_assets/Colletta.png';
-import Hallstatt from '../../assets/blog_assets/Hallstatt.png';
-import Lofoten from '../../assets/blog_assets/Lofoten.png';
-import Piodao from '../../assets/blog_assets/Piodao.png';
-import Ronda from '../../assets/blog_assets/Ronda.png';
-import Telc from '../../assets/blog_assets/Telc.png';
-import Valldemossa from '../../assets/blog_assets/Valldemossa.png';
+import Aljezur from '../../assets/blog_assets_/Aljezur.png';
+import Bansko from '../../assets/blog_assets_210725/Bansko.png';
+import CeskyKrumlov from '../../assets/blog_assets_210725/Cesky.png';
+import Colletta from '../../assets/blog_assets_210725/Colletta.png';
+import Hallstatt from '../../assets/blog_assets_210725/Hallstatt.png';
+import Lofoten from '../../assets/blog_assets_210725/Lofoten.png';
+import Piodao from '../../assets/blog_assets_210725/Piodao.png';
+import Ronda from '../../assets/blog_assets_210725/Ronda.png';
+import Telc from '../../assets/blog_assets_210725/Telc.png';
+import Valldemossa from '../../assets/blog_assets_210725/Valldemossa.png';
 
 
 //------------------------------POST040825--------------------------------//
