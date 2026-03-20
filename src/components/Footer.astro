@@ -30,7 +30,7 @@ const langPath = (path: string) => `/${language}${path}`;
 ---
 
 <footer class="bg-primary/30 text-white py-8 font-body w-full mt-auto">
-	<div class="container mx-auto px-4">
+	<div class="max-w-7xl mx-auto px-6">
 		<div class="flex flex-col items-center justify-center text-center">
 			
 			<div class="text-xs sm:text-sm md:text-base leading-loose opacity-90">
@@ -38,21 +38,20 @@ const langPath = (path: string) => `/${language}${path}`;
 				
 				<span class="mx-2 text-secondary hidden sm:inline">|</span>
 				
-				<div class="flex flex-wrap justify-center gap-2 sm:inline-block">
-					<a href={langPath('/privacy-policy')} class="hover:text-secondary transition-colors">{t.privacy}</a>
+				<div class="flex flex-wrap justify-center gap-1 sm:inline-block">
+					<a href={langPath('/privacy-policy')} class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors touch-manipulation">{t.privacy}</a>
 					<span class="mx-1 hidden sm:inline">|</span>
 					
-					{/* Opción A: Link directo / Opción B: Disparar modal si lo migras */}
-					<button id="contact-trigger" class="hover:text-secondary transition-colors cursor-pointer bg-transparent border-none p-0 font-inherit text-inherit">
+					<button id="contact-trigger" class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors cursor-pointer bg-transparent border-none font-inherit text-inherit touch-manipulation">
 						{t.contact}
 					</button>
 					
 					<span class="mx-1 hidden sm:inline">|</span>
-					<a href={langPath('/cookies-policy')} class="hover:text-secondary transition-colors">{t.cookies}</a>
+					<a href={langPath('/cookies-policy')} class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors touch-manipulation">{t.cookies}</a>
 					<span class="mx-1 hidden sm:inline">|</span>
-					<a href={langPath('/legal-notice')} class="hover:text-secondary transition-colors">{t.legal}</a>
+					<a href={langPath('/legal-notice')} class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors touch-manipulation">{t.legal}</a>
 					<span class="mx-1 hidden sm:inline">|</span>
-					<a href={langPath('/terms-and-conditions')} class="hover:text-secondary transition-colors">{t.terms}</a>
+					<a href={langPath('/terms-and-conditions')} class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors touch-manipulation">{t.terms}</a>
 				</div>
 			</div>
 
