@@ -3,14 +3,15 @@ id: 8
 title: "10 remote villages in Europe for digital nomads"
 date: 2025-07-21
 time: "12:00:00"
-image: "https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Remote%20villages%20Europe.png?updatedAt=1752680484550"
+image: ""
+localImage: "../../../assets/blog_covers/Remote-villages-Europe-2025.webp"
 excerpt: "Discover 10 remote European villages perfect for digital nomads seeking peace, productivity, and work-life balance in beautiful, quiet settings."
 keywords: "remote villages Europe, digital nomads, slow travel, work-life balance, rural remote work"
 language: "en"
 translationSlug: "10-pueblos-remotos-en-europa-para-nomadas-digitales"
 ---
 
-![image](https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Remote%20villages%20Europe.png?updatedAt=1752680484550)
+![10 remote villages in Europe for digital nomads - peaceful European countryside ideal for remote work](../../../assets/blog_covers/Remote-villages-Europe-2025.webp)
 
 ---
 

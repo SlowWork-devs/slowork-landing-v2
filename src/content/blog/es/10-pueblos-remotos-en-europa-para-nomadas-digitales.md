@@ -3,14 +3,15 @@ id: 8
 title: "10 pueblos remotos en Europa para nómadas digitales"
 date: 2025-07-21
 time: "12:00:00"
-image: "https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Remote%20villages%20Europe.png?updatedAt=1752680484550"
+image: ""
+localImage: "../../../assets/blog_covers/Remote-villages-Europe-2025.webp"
 excerpt: "Descubre 10 pueblos europeos perfectos para nómadas digitales que buscan paz, productividad y un mejor equilibrio vida-trabajo en entornos hermosos y tranquilos."
 keywords: "pueblos remotos Europa, nómadas digitales, slow travel, equilibrio vida-trabajo, trabajo remoto rural"
 language: "es"
 translationSlug: "10-remote-villages-in-europe-for-digital-nomads"
 ---
 
-![image](https://ik.imagekit.io/vdkr6rffv/Blog%20-%20Cover%20images.zip%20-%20Remote%20villages%20Europe.png?updatedAt=1752680484550)
+![10 pueblos remotos en Europa para nómadas digitales - campiña europea ideal para trabajo remoto](../../../assets/blog_covers/Remote-villages-Europe-2025.webp)
 
 ---
 
