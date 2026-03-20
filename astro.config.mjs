@@ -6,6 +6,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
+import rehypeWrapTables from './src/plugins/rehype-wrap-tables.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
   integrations: [
     mdx({
       rehypePlugins: [
+        rehypeWrapTables,
         [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
       ],
     }),
@@ -20,6 +22,7 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [
+      rehypeWrapTables,
       [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
     ],
   },
