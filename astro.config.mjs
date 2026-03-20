@@ -10,7 +10,7 @@ import rehypeWrapTables from './src/plugins/rehype-wrap-tables.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://slowork-blog.vercel.app',
   integrations: [
     mdx({
       rehypePlugins: [
@@ -18,7 +18,15 @@ export default defineConfig({
         [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
       ],
     }),
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: {
+          es: 'es',
+          en: 'en',
+        },
+      },
+    }),
   ],
   markdown: {
     rehypePlugins: [
