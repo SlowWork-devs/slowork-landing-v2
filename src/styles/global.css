@@ -98,6 +98,42 @@
   .prose td {
     @apply py-5 px-4 sm:px-6 text-sm md:text-base;
   }
+
+  /* --- Listas (ul, ol) --- */
+  .prose ul,
+  .prose ol {
+    @apply list-none my-10 bg-light-green/20 rounded-2xl p-6 sm:p-8 border border-primary/5 shadow-sm;
+  }
+
+  .prose li {
+    @apply relative pl-8 mb-3 font-medium leading-[1.8] text-[1.05rem] text-primary/90 transition-colors;
+  }
+
+  .prose li:last-child {
+    @apply mb-0;
+  }
+
+  /* Custom marker (Dot) para ul */
+  .prose ul > li::before {
+    content: "";
+    @apply absolute left-1 top-[0.65em] w-2.5 h-2.5 bg-secondary rounded-full shadow-sm;
+  }
+
+  /* Custom marker (Numbers) para ol */
+  .prose ol {
+    counter-reset: prose-ol-counter;
+  }
+  
+  .prose ol > li::before {
+    counter-increment: prose-ol-counter;
+    content: counter(prose-ol-counter) ".";
+    @apply absolute left-0 top-[-0.1em] text-secondary font-bold text-lg;
+  }
+
+  /* Hover sutil en los items para mayor interactividad editorial */
+  .prose li:hover {
+    @apply text-primary;
+  }
 }
 
 @layer components {
