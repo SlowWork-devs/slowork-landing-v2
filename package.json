@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": "22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
@@ -15,11 +15,17 @@
     "@astrojs/mdx": "^5.0.0",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/vercel": "^10.0.2",
     "@fontsource/poppins": "^5.2.7",
+    "@prisma/client": "^7.5.0",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^6.0.4",
+    "nodemailer": "^8.0.4",
     "rehype-external-links": "^3.0.0",
     "sharp": "^0.34.3",
     "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "prisma": "^7.5.0"
   }
 }

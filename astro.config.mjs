@@ -4,13 +4,16 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel';
 
 import tailwindcss from '@tailwindcss/vite';
 import rehypeWrapTables from './src/plugins/rehype-wrap-tables.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://slowork-blog.vercel.app',
+  output: 'server',
+  adapter: vercel(),
+  site: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://www.slowork.app',
   integrations: [
     mdx({
       rehypePlugins: [
