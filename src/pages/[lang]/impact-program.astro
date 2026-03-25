@@ -1,0 +1,85 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { SITE_TITLE } from '../../consts';
+
+const lang = Astro.params.lang;
+if (lang !== 'es' && lang !== 'en') {
+  return Astro.redirect('/en/', 302);
+}
+
+const alternateLang = lang === 'es' ? 'en' : 'es';
+const alternateLink = `/${alternateLang}/impact-program/`;
+const title = lang === 'es' ? `Programa de impacto | ${SITE_TITLE}` : `Impact program | ${SITE_TITLE}`;
+const description =
+  lang === 'es'
+    ? 'Únete al programa de impacto de Slowork.'
+    : 'Join the Slowork impact program.';
+---
+
+<MainLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonical={`/${lang}/impact-program/`}
+  headerAlternateLink={alternateLink}
+  alternates={[
+    { hreflang: lang, href: Astro.url.href },
+    { hreflang: alternateLang, href: new URL(alternateLink, Astro.url.origin).href },
+  ]}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: lang === 'es' ? 'Programa de impacto' : 'Impact program',
+    description,
+    url: `https://www.slowork.app/${lang}/impact-program/`,
+  }}
+>
+  <main class="w-full">
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/70 to-bg-landing"></div>
+      <div class="relative max-w-7xl mx-auto px-6 pt-36 pb-20 text-white">
+        <h1 class="font-heading font-extrabold text-4xl sm:text-6xl tracking-tight text-secondary">
+          {lang === 'es' ? 'Programa de impacto' : 'Impact program'}
+        </h1>
+        <p class="mt-6 max-w-2xl text-white/90 text-lg leading-relaxed">
+          {lang === 'es'
+            ? 'Apoyamos experiencias y proyectos que impulsan bienestar, comunidad y sostenibilidad.'
+            : 'We support experiences and projects that drive wellbeing, community, and sustainability.'}
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href={`/${lang}/`}
+            class="inline-flex items-center justify-center min-h-12 px-6 py-3 rounded-full bg-secondary text-primary font-bold shadow-md hover:opacity-95 active:scale-[0.98]"
+          >
+            {lang === 'es' ? 'Volver a Home' : 'Back to Home'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-bg-landing py-16">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="font-heading font-bold text-primary text-3xl"> {lang === 'es' ? 'Qué hacemos' : 'What we do'} </h2>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white/70 rounded-2xl p-6 border border-primary/5 shadow-sm">
+            <h3 class="font-heading font-bold text-primary text-xl">{lang === 'es' ? 'Conectar' : 'Connect'}</h3>
+            <p class="mt-3 text-primary/80 leading-relaxed">
+              {lang === 'es'
+                ? 'Personas remotas con espacios eco-conscientes.'
+                : 'Remote people with eco-conscious spaces.'}
+            </p>
+          </div>
+          <div class="bg-white/70 rounded-2xl p-6 border border-primary/5 shadow-sm">
+            <h3 class="font-heading font-bold text-primary text-xl">{lang === 'es' ? 'Impactar' : 'Impact'}</h3>
+            <p class="mt-3 text-primary/80 leading-relaxed">
+              {lang === 'es'
+                ? 'Viajes y estancias que aporten a comunidades locales.'
+                : 'Travel and stays that contribute to local communities.'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>
+

@@ -1,0 +1,39 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { SITE_TITLE } from '../../consts';
+
+const lang = Astro.params.lang;
+if (lang !== 'es' && lang !== 'en') return Astro.redirect('/en/', 302);
+
+const alternateLang = lang === 'es' ? 'en' : 'es';
+const alternateLink = `/${alternateLang}/legal-notice/`;
+
+const title = `${lang === 'es' ? 'Aviso Legal' : 'Legal Notice'} | ${SITE_TITLE}`;
+const description = lang === 'es' ? 'Aviso legal de Slowork.' : 'Slowork legal notice.';
+---
+
+<MainLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonical={`/${lang}/legal-notice/`}
+  headerAlternateLink={alternateLink}
+  alternates={[
+    { hreflang: lang, href: Astro.url.href },
+    { hreflang: alternateLang, href: new URL(alternateLink, Astro.url.origin).href },
+  ]}
+>
+  <main class="w-full max-w-5xl mx-auto px-6 pt-32 pb-16 md:py-24">
+    <h1 class="font-heading font-bold text-primary text-4xl sm:text-5xl tracking-tight">
+      {lang === 'es' ? 'Aviso Legal' : 'Legal Notice'}
+    </h1>
+    <div class="mt-8 bg-white/70 rounded-2xl p-6 sm:p-10 border border-primary/5 shadow-sm">
+      <p class="text-primary/80 leading-relaxed">
+        {lang === 'es'
+          ? 'Información legal básica sobre el uso del sitio Slowork.'
+          : 'Basic legal information about using the Slowork site.'}
+      </p>
+    </div>
+  </main>
+</MainLayout>
+

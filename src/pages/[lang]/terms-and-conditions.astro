@@ -1,0 +1,45 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { SITE_TITLE } from '../../consts';
+
+const lang = Astro.params.lang;
+if (lang !== 'es' && lang !== 'en') return Astro.redirect('/en/', 302);
+
+const alternateLang = lang === 'es' ? 'en' : 'es';
+const alternateLink = `/${alternateLang}/terms-and-conditions/`;
+
+const title = `${lang === 'es' ? 'Términos y Condiciones' : 'Terms & Conditions'} | ${SITE_TITLE}`;
+const description =
+  lang === 'es' ? 'Términos y condiciones de uso de Slowork.' : 'Slowork terms and conditions.';
+---
+
+<MainLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonical={`/${lang}/terms-and-conditions/`}
+  headerAlternateLink={alternateLink}
+  alternates={[
+    { hreflang: lang, href: Astro.url.href },
+    { hreflang: alternateLang, href: new URL(alternateLink, Astro.url.origin).href },
+  ]}
+>
+  <main class="w-full max-w-5xl mx-auto px-6 pt-32 pb-16 md:py-24">
+    <h1 class="font-heading font-bold text-primary text-4xl sm:text-5xl tracking-tight">
+      {lang === 'es' ? 'Términos y Condiciones' : 'Terms & Conditions'}
+    </h1>
+    <div class="mt-8 bg-white/70 rounded-2xl p-6 sm:p-10 border border-primary/5 shadow-sm">
+      <p class="text-primary/80 leading-relaxed">
+        {lang === 'es'
+          ? 'Al unirte a la waitlist aceptas que podamos contactarte con novedades de Slowork.'
+          : 'By joining the waitlist you agree that we can contact you with Slowork updates.'}
+      </p>
+      <p class="mt-4 text-primary/80 leading-relaxed">
+        {lang === 'es'
+          ? 'Puedes solicitar la baja en cualquier momento.'
+          : 'You can unsubscribe at any time.'}
+      </p>
+    </div>
+  </main>
+</MainLayout>
+

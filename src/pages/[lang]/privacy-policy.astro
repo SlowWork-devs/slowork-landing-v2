@@ -1,0 +1,57 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { SITE_TITLE } from '../../consts';
+
+const lang = Astro.params.lang;
+if (lang !== 'es' && lang !== 'en') return Astro.redirect('/en/', 302);
+
+const alternateLang = lang === 'es' ? 'en' : 'es';
+const alternateLink = `/${alternateLang}/privacy-policy/`;
+
+const title = `${lang === 'es' ? 'Política de Privacidad' : 'Privacy Policy'} | ${SITE_TITLE}`;
+const description = lang === 'es' ? 'Política de privacidad de Slowork.' : 'Slowork privacy policy.';
+---
+
+<MainLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonical={`/${lang}/privacy-policy/`}
+  headerAlternateLink={alternateLink}
+  alternates={[
+    { hreflang: lang, href: Astro.url.href },
+    { hreflang: alternateLang, href: new URL(alternateLink, Astro.url.origin).href },
+  ]}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: lang === 'es' ? 'Política de Privacidad' : 'Privacy Policy',
+    description,
+    url: `https://www.slowork.app/${lang}/privacy-policy/`,
+  }}
+>
+  <main class="w-full max-w-5xl mx-auto px-6 pt-32 pb-16 md:py-24">
+    <h1 class="font-heading font-bold text-primary text-4xl sm:text-5xl tracking-tight">
+      {lang === 'es' ? 'Política de Privacidad' : 'Privacy Policy'}
+    </h1>
+    <div class="mt-8 bg-white/70 rounded-2xl p-6 sm:p-10 border border-primary/5 shadow-sm">
+      <p class="text-primary/80 leading-relaxed">
+        {lang === 'es'
+          ? 'Esta página resume cómo tratamos tus datos cuando te registras en la waitlist.'
+          : 'This page summarizes how we process your data when you join the waitlist.'}
+      </p>
+      <h2 class="mt-8 font-heading font-bold text-primary text-2xl">{lang === 'es' ? 'Datos' : 'Data'}</h2>
+      <ul class="mt-3 space-y-2 text-primary/80">
+        <li>• {lang === 'es' ? 'Nombre, email, teléfono (si aplica).' : 'Name, email, phone (if provided).'}</li>
+        <li>• {lang === 'es' ? 'Datos técnicos: IP y user-agent.' : 'Technical: IP and user-agent.'}</li>
+      </ul>
+      <h2 class="mt-8 font-heading font-bold text-primary text-2xl">{lang === 'es' ? 'Finalidad' : 'Purpose'}</h2>
+      <p class="mt-3 text-primary/80 leading-relaxed">
+        {lang === 'es'
+          ? 'Confirmar tu registro y enviarte actualizaciones de producto.'
+          : 'Confirm your registration and send product updates.'}
+      </p>
+    </div>
+  </main>
+</MainLayout>
+
