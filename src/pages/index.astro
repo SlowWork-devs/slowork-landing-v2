@@ -1,21 +1,9 @@
 ---
 // src/pages/index.astro
 ---
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="refresh" content="0;url=/es/blog/" />
-    <script is:inline>
-        // Lógica de detección de idioma del navegador
-        const language = navigator.language.split('-')[0];
-        if (language === 'en') {
-            window.location.pathname = '/en/blog/';
-        } else {
-            window.location.pathname = '/es/blog/';
-        }
-    </script>
-</head>
-<body>
-    <p>Redirecting to / Redirigiendo a <a href="/es/blog/">SloWork Blog</a>...</p>
-</body>
-</html>
+---
+const raw = Astro.request.headers.get('accept-language') ?? '';
+const acceptsEn = raw.toLowerCase().includes('en');
+const lang = acceptsEn ? 'en' : 'es';
+return Astro.redirect(`/${lang}/`, 302);
+---

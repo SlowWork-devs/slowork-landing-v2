@@ -1,0 +1,55 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { isSupportedLang } from '../../lib/seo';
+
+const langParam = Astro.params.lang;
+
+if (!isSupportedLang(langParam)) {
+  const raw = Astro.request.headers.get('accept-language') ?? '';
+  const acceptsEs = raw.toLowerCase().includes('es');
+  const detected = acceptsEs ? 'es' : 'en';
+  return Astro.redirect(`/${detected}/`, 302);
+}
+
+const lang = langParam;
+const altLang = lang === 'es' ? 'en' : 'es';
+const path = Astro.url.pathname;
+const altPath = path.replace(`/${lang}/`, `/${altLang}/`);
+---
+
+<MainLayout
+  lang={lang}
+  title={lang === 'es' ? 'Página no encontrada | Slowork' : 'Page not found | Slowork'}
+  description={lang === 'es' ? 'La página solicitada no existe.' : 'The requested page does not exist.'}
+  headerAlternateLink={altPath}
+  alternates={[
+    { hreflang: lang, href: Astro.url.href },
+    { hreflang: altLang, href: new URL(altPath, Astro.url.origin).href },
+  ]}
+>
+  <main class="w-full max-w-5xl mx-auto px-6 pt-32 pb-16 md:py-24">
+    <h1 class="font-heading font-bold text-primary text-4xl sm:text-5xl tracking-tight">
+      {lang === 'es' ? '404 — Página no encontrada' : '404 — Page not found'}
+    </h1>
+    <p class="mt-6 text-primary/80 text-lg leading-relaxed">
+      {lang === 'es'
+        ? 'La ruta solicitada no existe. Puedes volver a la home o ir al blog.'
+        : 'This route does not exist. You can go back home or visit the blog.'}
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a
+        href={`/${lang}/`}
+        class="inline-flex items-center justify-center min-h-12 px-6 py-3 rounded-full bg-primary text-white font-bold shadow-md hover:opacity-95 active:scale-[0.98]"
+      >
+        {lang === 'es' ? 'Ir a Home' : 'Go to Home'}
+      </a>
+      <a
+        href={`/${lang}/blog/`}
+        class="inline-flex items-center justify-center min-h-12 px-6 py-3 rounded-full bg-secondary text-primary font-bold shadow-md hover:opacity-95 active:scale-[0.98]"
+      >
+        {lang === 'es' ? 'Ir al Blog' : 'Go to Blog'}
+      </a>
+    </div>
+  </main>
+</MainLayout>
+
