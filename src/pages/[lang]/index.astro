@@ -1,6 +1,15 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import { SITE_TITLE } from '../../consts';
+import { heroCombinations } from '../../lib/homeContent';
+import HomeHero from '../../components/home/HomeHero.astro';
+import HomeValueProposition from '../../components/home/HomeValueProposition.astro';
+import HomeFeatures from '../../components/home/HomeFeatures.astro';
+import HomeGlobeSection from '../../components/home/HomeGlobeSection.astro';
+import HomeJourney from '../../components/home/HomeJourney.astro';
+import HomeWhoFor from '../../components/home/HomeWhoFor.astro';
+import HomeFinalCta from '../../components/home/HomeFinalCta.astro';
+import HomeStickyWaitlist from '../../components/home/HomeStickyWaitlist.astro';
+import HomeWaitlistModal from '../../components/home/HomeWaitlistModal.astro';
 
 const lang = Astro.params.lang;
 if (lang !== 'es' && lang !== 'en') {
@@ -10,32 +19,12 @@ if (lang !== 'es' && lang !== 'en') {
 const alternateLang = lang === 'es' ? 'en' : 'es';
 const alternateLink = `/${alternateLang}/`;
 
-const title = lang === 'es' ? 'Slowork - Tu Comunidad de Trabajo Remoto' : 'Slowork - Your Remote Work Community';
+const title =
+  lang === 'es' ? 'Slowork - Tu Comunidad de Trabajo Remoto' : 'Slowork - Your Remote Work Community';
 const description =
   lang === 'es'
     ? 'Descubre espacios sostenibles, conecta con nómadas digitales y redefine tu forma de trabajar.'
     : 'Discover sustainable spaces, connect with digital nomads, and redefine how you work.';
-
-const carouselImages = [
-  { src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568473/girlJungle_hwbzjf.jpg', alt: 'Remote work in nature' },
-  { src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568474/hostUbi1_kxizuw.jpg', alt: 'Slowork Host Location' },
-  { src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568472/community1_umgqje.jpg', alt: 'Slowork Host Community' },
-];
-
-const heroCombinations =
-  lang === 'es'
-    ? [
-        { first: 'cómo', phrase: 'encontrar tu ritmo' },
-        { first: 'por qué', phrase: 'elegir libertad' },
-        { first: 'con quién', phrase: 'compartir el viaje' },
-        { first: 'cuándo', phrase: 'trabajar en la naturaleza' },
-      ]
-    : [
-        { first: 'how', phrase: 'find your rhythm' },
-        { first: 'why', phrase: 'choose freedom' },
-        { first: 'with who', phrase: 'share the journey' },
-        { first: 'when', phrase: 'work in nature' },
-      ];
 ---
 
 <MainLayout
@@ -57,350 +46,105 @@ const heroCombinations =
   }}
 >
   <main class="w-full">
-    <!-- HERO (video + animated headline) -->
-    <section class="relative w-full min-h-[95vh] overflow-hidden">
-      <video
-        class="absolute inset-0 w-full h-full object-cover"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto"
-        poster="https://dkhbyo7gs39kb.cloudfront.net/blog-post/bg-video-poster.jpg"
-      >
-        <source src="https://dkhbyo7gs39kb.cloudfront.net/blog-post/bg-video.mp4" type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 bg-primary/55"></div>
-
-      <div class="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-16">
-        <div class="max-w-3xl">
-          <p class="text-secondary font-bold tracking-widest text-sm">
-            {lang === 'es' ? 'REDEFINE TU VIDA REMOTA' : 'REDEFINE REMOTE LIFE'}
-          </p>
-
-          <h1 class="mt-6 text-secondary font-heading font-bold leading-tight text-[clamp(2rem,4vw+1rem,4rem)]">
-            <span class="block">{lang === 'es' ? 'Es hora de redefinir' : "It's time to redefine"}</span>
-            <span class="block">
-              <span id="hero-first" class="inline-block text-white"></span>
-              <span class="text-secondary">{lang === 'es' ? ' tu forma de trabajar' : ' you'}</span>
-            </span>
-          </h1>
-          <h2 class="mt-4 text-white/90 text-[clamp(1.1rem,1.5vw+1rem,2rem)] leading-relaxed">
-            <span id="hero-phrase"></span>
-          </h2>
-
-          <p class="mt-10 text-white/90 text-base sm:text-lg leading-relaxed max-w-2xl">
-            {lang === 'es'
-              ? 'Slowork conecta trabajo remoto, naturaleza y comunidad. Menos prisa. Más propósito.'
-              : 'Slowork connects remote work, nature, and community. Less rush. More purpose.'}
-          </p>
-
-          <div class="mt-10 flex flex-wrap gap-4">
-            <button
-              id="open-waitlist"
-              class="inline-flex items-center justify-center min-h-12 px-6 py-3 rounded-full bg-secondary text-primary font-bold shadow-md hover:opacity-95 active:scale-[0.98] touch-manipulation"
-            >
-              {lang === 'es' ? 'Únete a la waitlist' : 'Join the waitlist'}
-            </button>
-            <a
-              href={`/${lang}/blog/`}
-              class="inline-flex items-center justify-center min-h-12 px-6 py-3 rounded-full bg-white/10 text-white font-bold border border-white/20 backdrop-blur hover:bg-white/15"
-            >
-              {lang === 'es' ? 'Explorar el blog' : 'Explore the blog'}
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 1 (carousel + story) -->
-    <section class="relative -mt-10 rounded-t-[35px] bg-bg-landing pt-14 pb-20">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-center text-3xl sm:text-4xl md:text-6xl font-heading font-bold text-primary">
-          {lang === 'es' ? 'Work differently. Live freely.' : 'Work differently. Live freely.'}
-        </h2>
-        <p class="mt-6 text-center text-primary/80 text-lg sm:text-xl max-w-3xl mx-auto">
-          {lang === 'es'
-            ? 'No es solo una app. Es un movimiento.'
-            : "It's not just an app. It's a movement."}
-        </p>
-
-        <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div class="bg-white/70 rounded-3xl p-6 sm:p-8 shadow-lg border border-primary/5">
-            <h3 class="text-2xl sm:text-3xl font-heading font-bold text-primary text-center">
-              {lang === 'es' ? 'Estamos construyendo el futuro del trabajo remoto' : 'We’re building the future of remote work'}
-            </h3>
-            <p class="mt-6 text-primary/80 leading-relaxed text-base sm:text-lg text-center">
-              {lang === 'es'
-                ? 'Productividad con naturaleza, conexión humana y vida consciente.'
-                : 'Productivity with nature, human connection, and conscious living.'}
-            </p>
-          </div>
-
-          <div class="relative w-full max-w-md mx-auto">
-            <div
-              id="image-carousel"
-              class="relative overflow-hidden rounded-[11rem] aspect-square shadow-lg border border-primary/10 select-none"
-            >
-              {carouselImages.map((img, idx) => (
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  data-carousel-img
-                  data-idx={idx}
-                  class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${idx === 0 ? 'opacity-100' : 'opacity-0'}`}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  fetchpriority={idx === 0 ? 'high' : 'auto'}
-                  draggable="false"
-                />
-              ))}
-              <button
-                type="button"
-                id="carousel-prev"
-                class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full grid place-items-center"
-                aria-label="Previous"
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                id="carousel-next"
-                class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full grid place-items-center"
-                aria-label="Next"
-              >
-                ›
-              </button>
-            </div>
-            <div class="flex justify-center mt-4 gap-2">
-              {carouselImages.map((_, idx) => (
-                <button
-                  type="button"
-                  class={`w-2.5 h-2.5 rounded-full ${idx === 0 ? 'bg-primary' : 'bg-primary/30'}`}
-                  data-carousel-dot
-                  data-idx={idx}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GLOBE (CSS world) -->
-    <section class="bg-gradient-to-t from-bg-landing via-primary to-bg-landing py-20">
-      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="flex justify-center">
-          <div class="world w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] xl:w-[520px] xl:h-[520px]"></div>
-        </div>
-        <div class="bg-white/10 backdrop-blur rounded-2xl border border-white/15 p-8 text-white">
-          <h2 class="text-3xl sm:text-4xl font-heading font-bold">
-            {lang === 'es' ? 'Explora destinos con propósito' : 'Explore destinations with purpose'}
-          </h2>
-          <p class="mt-4 text-white/90 leading-relaxed">
-            {lang === 'es'
-              ? 'Una red global de lugares y personas alineadas con una vida remota sostenible.'
-              : 'A global network of places and people aligned with sustainable remote living.'}
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="bg-gradient-to-bl from-bg-landing to-secondary/70 py-16">
-      <div class="max-w-5xl mx-auto px-6 text-center">
-        <h2 class="text-3xl sm:text-5xl font-heading font-bold text-primary">
-          {lang === 'es' ? 'Únete al movimiento' : 'Join the movement'}
-        </h2>
-        <p class="mt-4 text-primary/80 text-lg sm:text-xl max-w-2xl mx-auto">
-          {lang === 'es'
-            ? 'Sé de las primeras personas en acceder a Slowork.'
-            : 'Be among the first to access Slowork.'}
-        </p>
-        <div class="mt-8 flex justify-center">
-          <button
-            id="open-waitlist-2"
-            class="inline-flex items-center justify-center min-h-12 px-7 py-3 rounded-full bg-primary text-white font-bold shadow-md hover:opacity-95 active:scale-[0.98]"
-          >
-            {lang === 'es' ? 'Unirme a la waitlist' : 'Join the waitlist'}
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- WAITLIST MODAL -->
-    <div id="modal-overlay" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"></div>
-    <div
-      id="waitlist-modal"
-      class="hidden fixed inset-0 z-[110] grid place-items-center p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Waitlist"
-    >
-      <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-primary/10">
-        <div class="flex items-center justify-between p-5 border-b border-primary/10">
-          <h3 class="font-heading font-bold text-primary text-xl">
-            {lang === 'es' ? 'Únete a la waitlist' : 'Join the waitlist'}
-          </h3>
-          <button id="close-waitlist" class="min-w-11 min-h-11 grid place-items-center text-primary/70 hover:text-primary">
-            ✕
-          </button>
-        </div>
-        <div class="p-6">
-          <form id="waitlist-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label class="block">
-              <span class="text-sm font-bold text-primary">{lang === 'es' ? 'Nombre' : 'First name'}</span>
-              <input name="firstName" required class="mt-2 w-full rounded-xl border border-primary/20 px-4 py-3" />
-            </label>
-            <label class="block">
-              <span class="text-sm font-bold text-primary">Email</span>
-              <input name="email" type="email" required class="mt-2 w-full rounded-xl border border-primary/20 px-4 py-3" />
-            </label>
-            <label class="block md:col-span-2">
-              <span class="text-sm font-bold text-primary">{lang === 'es' ? 'Teléfono' : 'Phone'}</span>
-              <input name="phone" required class="mt-2 w-full rounded-xl border border-primary/20 px-4 py-3" />
-            </label>
-
-            <div class="md:col-span-2">
-              <div class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY}></div>
-              <p class="mt-2 text-xs text-primary/60">
-                {lang === 'es'
-                  ? 'Al enviar aceptas recibir actualizaciones de Slowork.'
-                  : 'By submitting you agree to receive Slowork updates.'}
-              </p>
-            </div>
-
-            <div class="md:col-span-2 flex items-center gap-3">
-              <button
-                type="submit"
-                class="inline-flex items-center justify-center min-h-12 px-6 py-3 rounded-full bg-primary text-white font-bold shadow-md hover:opacity-95 active:scale-[0.98]"
-              >
-                {lang === 'es' ? 'Enviar' : 'Submit'}
-              </button>
-              <p id="waitlist-message" class="text-sm text-primary/80"></p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    <HomeHero lang={lang} />
+    <HomeValueProposition lang={lang} />
+    <HomeFeatures lang={lang} />
+    <HomeGlobeSection lang={lang} />
+    <HomeJourney lang={lang} />
+    <HomeWhoFor lang={lang} />
+    <HomeFinalCta lang={lang} />
   </main>
 
-  <script is:inline define:vars={{ heroCombinations, lang }}>
-    const combos = heroCombinations;
-    const firstEl = document.getElementById('hero-first');
-    const phraseEl = document.getElementById('hero-phrase');
-    let heroIdx = 0;
+  <HomeStickyWaitlist lang={lang} />
+  <HomeWaitlistModal lang={lang} />
 
-    function renderHero() {
-      const c = combos[heroIdx % combos.length];
-      if (firstEl) firstEl.textContent = c.first;
-      if (phraseEl) phraseEl.textContent = c.phrase;
-      heroIdx += 1;
-    }
-    renderHero();
-    setInterval(renderHero, 2800);
+  <script is:inline define:vars={{ heroCombinations: heroCombinations(lang), lang }}>
+    (() => {
+      const combos = heroCombinations;
+      const firstEl = document.getElementById('hero-first');
+      const phraseEl = document.getElementById('hero-phrase');
+      let heroIdx = 0;
+      const tickHero = () => {
+        const c = combos[heroIdx % combos.length];
+        if (firstEl) firstEl.textContent = c.first;
+        if (phraseEl) phraseEl.textContent = c.phrase;
+        heroIdx += 1;
+      };
+      tickHero();
+      setInterval(tickHero, 2800);
 
-    // Carousel
-    const imgs = Array.from(document.querySelectorAll('[data-carousel-img]'));
-    const dots = Array.from(document.querySelectorAll('[data-carousel-dot]'));
-    let idx = 0;
-    const setIdx = (n) => {
-      idx = (n + imgs.length) % imgs.length;
-      imgs.forEach((img, i) => img.classList.toggle('opacity-100', i === idx));
-      imgs.forEach((img, i) => img.classList.toggle('opacity-0', i !== idx));
-      dots.forEach((d, i) => d.classList.toggle('bg-primary', i === idx));
-      dots.forEach((d, i) => d.classList.toggle('bg-primary/30', i !== idx));
-    };
-    document.getElementById('carousel-prev')?.addEventListener('click', () => setIdx(idx - 1));
-    document.getElementById('carousel-next')?.addEventListener('click', () => setIdx(idx + 1));
-    dots.forEach((d) => d.addEventListener('click', () => setIdx(Number(d.dataset.idx || '0'))));
-    setInterval(() => setIdx(idx + 1), 4500);
-
-    // Modal
-    const overlay = document.getElementById('modal-overlay');
-    const modal = document.getElementById('waitlist-modal');
-    const openBtns = [document.getElementById('open-waitlist'), document.getElementById('open-waitlist-2')].filter(Boolean);
-    const closeBtn = document.getElementById('close-waitlist');
-    const openModal = () => {
-      overlay?.classList.remove('hidden');
-      modal?.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    };
-    const closeModal = () => {
-      overlay?.classList.add('hidden');
-      modal?.classList.add('hidden');
-      document.body.style.overflow = '';
-    };
-    openBtns.forEach((b) => b.addEventListener('click', openModal));
-    overlay?.addEventListener('click', closeModal);
-    closeBtn?.addEventListener('click', closeModal);
-
-    // Waitlist submit
-    const form = document.getElementById('waitlist-form');
-    const msg = document.getElementById('waitlist-message');
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      msg.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
-
-      // reCAPTCHA v2 token
-      const token = window.grecaptcha?.getResponse?.() || '';
-      if (!token) {
-        msg.textContent = lang === 'es' ? 'Completa el reCAPTCHA.' : 'Please complete reCAPTCHA.';
-        return;
-      }
-
-      const fd = new FormData(form);
-      const payload = Object.fromEntries(fd.entries());
-
-      const verify = await fetch('/api/verify-recaptcha', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ token }),
+      const overlay = document.getElementById('modal-overlay');
+      const modal = document.getElementById('waitlist-modal');
+      const openModal = () => {
+        overlay?.classList.remove('hidden');
+        modal?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeModal = () => {
+        overlay?.classList.add('hidden');
+        modal?.classList.add('hidden');
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('[data-open-waitlist]').forEach((btn) => {
+        btn.addEventListener('click', openModal);
       });
-      if (!verify.ok) {
-        msg.textContent = lang === 'es' ? 'reCAPTCHA inválido.' : 'Invalid reCAPTCHA.';
-        return;
-      }
+      overlay?.addEventListener('click', closeModal);
+      document.getElementById('close-waitlist')?.addEventListener('click', closeModal);
 
-      const res = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(payload),
+      const form = document.getElementById('waitlist-form');
+      const msg = document.getElementById('waitlist-message');
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (msg) msg.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+        const token = window.grecaptcha?.getResponse?.() || '';
+        if (!token) {
+          if (msg) msg.textContent = lang === 'es' ? 'Completa el reCAPTCHA.' : 'Please complete reCAPTCHA.';
+          return;
+        }
+        const fd = new FormData(form);
+        const payload = Object.fromEntries(fd.entries());
+        const verify = await fetch('/api/verify-recaptcha', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ token }),
+        });
+        if (!verify.ok) {
+          if (msg) msg.textContent = lang === 'es' ? 'reCAPTCHA inválido.' : 'Invalid reCAPTCHA.';
+          return;
+        }
+        const res = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok) {
+          if (msg)
+            msg.textContent = data?.message || (lang === 'es' ? 'Error al registrar.' : 'Registration error.');
+          return;
+        }
+        fetch('/api/welcome', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ name: payload.firstName, email: payload.email, lang }),
+        }).catch(() => {});
+        if (msg) msg.textContent = lang === 'es' ? '¡Listo! Revisa tu email.' : 'Done! Check your email.';
+        form.reset();
+        window.grecaptcha?.reset?.();
+        closeModal();
       });
 
-      const data = await res.json().catch(() => null);
-      if (!res.ok) {
-        msg.textContent = data?.message || (lang === 'es' ? 'Error al registrar.' : 'Registration error.');
-        return;
-      }
-
-      fetch('/api/welcome', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ name: payload.firstName, email: payload.email, lang }),
-      }).catch(() => {});
-
-      msg.textContent = lang === 'es' ? '¡Listo! Revisa tu email.' : 'Done! Check your email.';
-      form.reset();
-      window.grecaptcha?.reset?.();
-    });
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add('is-visible');
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -10% 0px' },
+      );
+      document.querySelectorAll('[data-home-reveal]').forEach((el) => io.observe(el));
+    })();
   </script>
 
   <script is:inline src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-  <style>
-    .world {
-      border-radius: 9999px;
-      background: url('https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751567494/WhatsApp_Image_2025-07-03_at_20.31.10_lli9oa.jpg');
-      background-size: cover;
-      box-shadow: inset 35px 0 50px #000, inset -10px -20px 20px rgba(3, 32, 56, 0.7);
-      animation: world 15s linear infinite;
-    }
-
-    @keyframes world {
-      0% { background-position-x: 0; }
-      100% { background-position-x: -800px; }
-    }
-  </style>
 </MainLayout>
-

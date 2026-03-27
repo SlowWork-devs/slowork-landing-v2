@@ -1,0 +1,403 @@
+import type { SupportedLang } from './seo';
+
+export const HOME_MEDIA = {
+  videoPoster: 'https://dkhbyo7gs39kb.cloudfront.net/blog-post/bg-video-poster.jpg',
+  videoSrc: 'https://dkhbyo7gs39kb.cloudfront.net/blog-post/bg-video.mp4',
+  logoSrc: 'https://dkhbyo7gs39kb.cloudfront.net/blog-post/Slowork3.png',
+  globeTexture: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751567494/WhatsApp_Image_2025-07-03_at_20.31.10_lli9oa.jpg',
+} as const;
+
+export type CarouselSlide = {
+  src: string;
+  alt: Record<SupportedLang, string>;
+};
+
+export const HOME_CAROUSEL: CarouselSlide[] = [
+  {
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568473/girlJungle_hwbzjf.jpg',
+    alt: { en: 'Remote work in nature', es: 'Trabajo remoto en la naturaleza' },
+  },
+  {
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568474/hostUbi1_kxizuw.jpg',
+    alt: { en: 'Slowork host location', es: 'Ubicación Slowork Host' },
+  },
+  {
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568472/community1_umgqje.jpg',
+    alt: { en: 'Slowork host community', es: 'Comunidad Slowork Host' },
+  },
+];
+
+export type HomeFeature = {
+  icon: string;
+  title: Record<SupportedLang, string>;
+  description: Record<SupportedLang, string>;
+};
+
+export const HOME_FEATURES: HomeFeature[] = [
+  {
+    icon: 'leaf',
+    title: { en: 'Work from nature', es: 'Trabaja desde la naturaleza' },
+    description: {
+      en: 'Set up your office in the jungle, by the sea or in the mountains.',
+      es: 'Instala tu oficina en la jungla, junto al mar o en las montañas.',
+    },
+  },
+  {
+    icon: 'heart',
+    title: { en: 'Live well', es: 'Vive bien' },
+    description: {
+      en: 'Prioritize your wellbeing with yoga, good food, and balance.',
+      es: 'Prioriza tu bienestar con yoga, buena comida y equilibrio.',
+    },
+  },
+  {
+    icon: 'users',
+    title: { en: 'Connect deeply', es: 'Conecta profundamente' },
+    description: {
+      en: 'Meet real people, join local circles, build authentic friendships.',
+      es: 'Conoce gente real, únete a círculos locales, crea amistades auténticas.',
+    },
+  },
+  {
+    icon: 'home',
+    title: { en: 'Stay consciously', es: 'Vive conscientemente' },
+    description: {
+      en: 'Discover handpicked coliving & coworking spaces curated for nomads.',
+      es: 'Descubre espacios de coliving y coworking seleccionados para nómadas.',
+    },
+  },
+  {
+    icon: 'route',
+    title: { en: 'Plan your next route', es: 'Planifica tu próxima ruta' },
+    description: {
+      en: 'Organize your travel journey in one place and track your slow travels.',
+      es: 'Organiza tu viaje en un solo lugar y lleva un seguimiento de tus viajes lentos.',
+    },
+  },
+  {
+    icon: 'globe',
+    title: { en: 'Share your path', es: 'Comparte tu camino' },
+    description: {
+      en: 'Post your route and connect with others on the same trail.',
+      es: 'Publica tu ruta y conéctate con otros en la misma travesía.',
+    },
+  },
+  {
+    icon: 'camera',
+    title: { en: 'Create and share content', es: 'Crea y comparte contenido' },
+    description: {
+      en: 'Post your stories, reels or blogs and earn credits for your stays.',
+      es: 'Publica tus historias, reels o blogs y gana créditos para tus estancias.',
+    },
+  },
+  {
+    icon: 'briefcase',
+    title: { en: 'Show your projects', es: 'Muestra tus proyectos' },
+    description: {
+      en: "Publish what you're working on and find collaborators in the community.",
+      es: 'Publica en qué estás trabajando y encuentra colaboradores en la comunidad.',
+    },
+  },
+  {
+    icon: 'compass',
+    title: { en: 'Connect with local people', es: 'Conéctate con la gente local' },
+    description: {
+      en:
+        'Meet the hosts and changemakers shaping each community. Slowork connects you directly with local partners, so you integrate with the territory, not just pass through.',
+      es:
+        'Conoce a los anfitriones y agentes de cambio de cada comunidad. Slowork te conecta directamente con socios locales, para que te integres con el territorio, no solo pases por él.',
+    },
+  },
+];
+
+export type JourneyStep =
+  | {
+      id: string;
+      kind: 'split';
+      side: 'left' | 'right';
+      icon: string;
+      iconWrapClass: string;
+      title: Record<SupportedLang, string>;
+      description: Record<SupportedLang, string>;
+      delayClass?: string;
+    }
+  | {
+      id: string;
+      kind: 'center';
+      icon: 'logo';
+      iconWrapClass: string;
+      title: Record<SupportedLang, string>;
+      description: Record<SupportedLang, string>;
+      delayClass?: string;
+    };
+
+export const HOME_JOURNEY: JourneyStep[] = [
+  {
+    id: 'step1',
+    kind: 'split',
+    side: 'left',
+    icon: 'search',
+    iconWrapClass: 'bg-light-green text-primary',
+    title: { en: 'Find your next destination', es: 'Encuentra tu próximo destino' },
+    description: {
+      en: 'Search and discover eco-conscious coliving & coworking spaces designed for remote living.',
+      es: 'Explora espacios de coliving y coworking sostenibles, diseñados para vivir y trabajar en remoto.',
+    },
+  },
+  {
+    id: 'step2',
+    kind: 'split',
+    side: 'right',
+    icon: 'bed',
+    iconWrapClass: 'bg-soft-blue text-white',
+    title: { en: 'Book your stay & connect', es: 'Reserva tu espacio y conéctate' },
+    description: {
+      en: 'Reserve your space, get to know your Slowork hosts and meet other nomads before you arrive.',
+      es: 'Elige tu estancia, conoce a tus anfitriones Slowork y empieza a conectar con otros nómadas antes de llegar.',
+    },
+    delayClass: 'delay-[200ms]',
+  },
+  {
+    id: 'step3',
+    kind: 'split',
+    side: 'left',
+    icon: 'users',
+    iconWrapClass: 'bg-secondary text-primary',
+    title: {
+      en: 'Meet other Sloworkers & collaborators',
+      es: 'Conoce a otros Sloworkers y colaboradores',
+    },
+    description: {
+      en: 'Join a like-minded community. Find clients, propose projects, and grow through real collaboration.',
+      es: 'Únete a una comunidad con tus mismos valores. Encuentra clientes, ofrece proyectos y crece a través de colaboraciones reales.',
+    },
+    delayClass: 'delay-[300ms]',
+  },
+  {
+    id: 'step4',
+    kind: 'split',
+    side: 'right',
+    icon: 'spa',
+    iconWrapClass: 'bg-gradient-to-br from-primary to-soft-blue text-white',
+    title: { en: 'Join local experiences & wellness', es: 'Participa en experiencias locales y bienestar' },
+    description: {
+      en: 'Participate in events, retreats, workshops and moments of presence with local communities.',
+      es: 'Únete a eventos, retiros, talleres y momentos de conexión con las comunidades locales.',
+    },
+    delayClass: 'delay-[300ms]',
+  },
+  {
+    id: 'step5',
+    kind: 'center',
+    icon: 'logo',
+    iconWrapClass: 'bg-gradient-to-b from-secondary to-soft-blue text-primary',
+    title: { en: 'Track your journey & earn credits', es: 'Registra tu viaje y gana créditos' },
+    description: {
+      en: 'Log your trips and activities, and earn Slowork credits for future stays by sharing content about your experience.',
+      es: 'Guarda tus rutas y actividades, y obtén créditos Slowork para futuras estancias compartiendo contenido sobre tu experiencia.',
+    },
+    delayClass: 'delay-[300ms]',
+  },
+];
+
+export type WhoCard = {
+  id: string;
+  src: string;
+  alt: Record<SupportedLang, string>;
+  title: Record<SupportedLang, string>;
+  description: Record<SupportedLang, string>;
+  side: 'left' | 'right';
+  delayClass?: string;
+};
+
+export const HOME_WHO_CARDS: WhoCard[] = [
+  {
+    id: 'who1',
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568252/worker1_rzseep.jpg',
+    alt: { en: 'Mindful seeker', es: 'Buscador consciente' },
+    title: { en: 'The Mindful Seeker', es: 'El Buscador Consciente' },
+    description: {
+      en: 'Looking for more than Wi-Fi. Seeking inner peace, outer beauty, and slow connection.',
+      es: 'Buscas un estilo de vida equilibrado, donde el trabajo y la naturaleza se complementen.',
+    },
+    side: 'left',
+  },
+  {
+    id: 'who2',
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568254/worker2_kdby8f.jpg',
+    alt: { en: 'Digital nomad', es: 'Nómada digital' },
+    title: { en: 'The Digital Nomad', es: 'El Nómada Digital' },
+    description: {
+      en: 'Starting my remote journey. Craving clarity, community and adventure.',
+      es: 'Comenzando mi viaje remoto. En busca de claridad, comunidad y aventura.',
+    },
+    side: 'right',
+    delayClass: 'delay-[200ms]',
+  },
+  {
+    id: 'who3',
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568255/worker3_ajfch6.jpg',
+    alt: { en: 'Freedom adventurer', es: 'Aventurero libre' },
+    title: { en: 'The Free Adventurer', es: 'El Aventurero Libre' },
+    description: {
+      en: 'My office has no walls. I follow the waves, the Wi-Fi, and what feels right.',
+      es: 'Mi oficina no tiene paredes. Sigo las olas, el Wi-Fi y lo que me hace sentir bien.',
+    },
+    side: 'left',
+    delayClass: 'delay-[200ms]',
+  },
+  {
+    id: 'who4',
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568254/worker4_klsqgg.jpg',
+    alt: { en: 'Remote architect', es: 'Arquitecto remoto' },
+    title: { en: 'The Remote Architect', es: 'El Arquitecto Remoto' },
+    description: {
+      en: 'Building something that matters, while living how I want. Focused, free, connected.',
+      es: 'Construyo algo que importa, mientras vivo a mi manera. Enfocado, libre y conectado.',
+    },
+    side: 'right',
+    delayClass: 'delay-[200ms]',
+  },
+  {
+    id: 'who5',
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568255/worker5_k4ocyk.jpg',
+    alt: { en: 'Lifelong learner', es: 'Eterno aprendiz' },
+    title: { en: 'The Lifelong Learner', es: 'El eterno aprendiz' },
+    description: {
+      en: 'Always growing. Learning from the world, from people, from the silence.',
+      es: 'Siempre creciendo. Aprendiendo del mundo, de las personas y del silencio.',
+    },
+    side: 'left',
+    delayClass: 'delay-[200ms]',
+  },
+  {
+    id: 'who6',
+    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568254/worker6_ewqt4n.jpg',
+    alt: { en: 'Slow traveller', es: 'Viajero slow' },
+    title: { en: 'The Slow Traveller', es: 'El Viajero Slow' },
+    description: {
+      en: "I don't count countries. I collect moments, connections and stories.",
+      es: 'No cuento países. Colecciono momentos, conexiones e historias.',
+    },
+    side: 'right',
+    delayClass: 'delay-[300ms]',
+  },
+];
+
+export type GlobeCard = {
+  title: Record<SupportedLang, string>;
+  description: Record<SupportedLang, string>;
+};
+
+export const HOME_GLOBE_CARDS: GlobeCard[] = [
+  {
+    title: { en: 'Host', es: 'Host' },
+    description: { en: 'More than 500 hosts around the world', es: 'Más de 500 hosts en el mundo' },
+  },
+  {
+    title: { en: 'Coworking', es: 'Coworking' },
+    description: { en: 'More than 60 coworking spaces', es: 'Más de 60 espacios de coworking' },
+  },
+  {
+    title: { en: 'Creators', es: 'Creadores' },
+    description: { en: 'More than 40 content creators', es: 'Más de 40 creadores de contenido' },
+  },
+  {
+    title: { en: 'Communities', es: 'Comunidad' },
+    description: { en: 'Partnering with local communities', es: 'Alianzas con comunidades locales' },
+  },
+];
+
+export function heroCombinations(lang: SupportedLang) {
+  return lang === 'es'
+    ? [
+        { first: 'cómo', phrase: 'encontrar tu ritmo' },
+        { first: 'por qué', phrase: 'elegir libertad' },
+        { first: 'con quién', phrase: 'compartir el viaje' },
+        { first: 'cuándo', phrase: 'trabajar en la naturaleza' },
+      ]
+    : [
+        { first: 'how', phrase: 'find your rhythm' },
+        { first: 'why', phrase: 'choose freedom' },
+        { first: 'with who', phrase: 'share the journey' },
+        { first: 'when', phrase: 'work in nature' },
+      ];
+}
+
+export function homeHeroCopy(lang: SupportedLang) {
+  return {
+    line1: lang === 'es' ? 'Es hora de redefinir' : "It's time to redefine",
+    line1b: lang === 'es' ? ' tu forma de trabajar' : ' you',
+    desc1:
+      lang === 'es'
+        ? 'Trabajar viajando no es prisa ni agotamiento.'
+        : 'Remote work is not about hustle or burnout.',
+    desc2:
+      lang === 'es'
+        ? 'Es equilibrio, naturaleza, conexión y libertad.'
+        : 'It’s about balance, nature, connection, and freedom.',
+    italic: lang === 'es' ? 'Acceso anticipado y recompensas' : 'Get early access and exclusive benefits',
+    ctaWaitlist: lang === 'es' ? 'Únete a la waitlist' : 'Join the waitlist',
+    ctaBlog: lang === 'es' ? 'Explorar el blog' : 'Explore the blog',
+  };
+}
+
+export function homeValueCopy(lang: SupportedLang) {
+  return {
+    title: lang === 'es' ? 'Trabaja diferente. Vive libre.' : 'Work differently. Live freely.',
+    subtitle: lang === 'es' ? 'Slowork no es solo una app, es un movimiento.' : "Slowork is not just an app. It's a movement.",
+    cardLead1: lang === 'es' ? 'Estamos' : "We're",
+    cardLead2: lang === 'es' ? 'construyendo el futuro' : 'building the future',
+    cardLead3: lang === 'es' ? ' del trabajo remoto' : ' of remote work',
+    phrase1:
+      lang === 'es'
+        ? 'Donde la productividad se encuentra con la naturaleza, la conexión real y un estilo de vida consciente.'
+        : 'The one that blends productivity with nature, deep human connection, and conscious living.',
+    phrase2a:
+      lang === 'es' ? 'Del corazón de la naturaleza al ritmo del océano, ' : 'From coliving in the jungle to coworking by the ocean, ',
+    phrase2b:
+      lang === 'es'
+        ? 'Slowork te conecta con lugares, personas y propósitos.'
+        : 'Slowork connects you with places, people, and purpose.',
+  };
+}
+
+export function homeFeaturesTitle(lang: SupportedLang) {
+  return lang === 'es'
+    ? { a: 'Todo lo necesario ', b: 'para vivir y trabajar ', c: 'en equilibrio' }
+    : { a: 'Everything you need for ', b: 'conscious ', c: ' remote work' };
+}
+
+export function homeGlobeCopy(lang: SupportedLang) {
+  return {
+    title: lang === 'es' ? 'Este es el mundo que estamos creando' : 'This is the world we’re building',
+    subtitle: lang === 'es' ? '¿Quieres ser parte de esto?' : 'Want to be part of it?',
+    asideTitle: lang === 'es' ? 'Explora destinos con propósito' : 'Explore destinations with purpose',
+    asideBody:
+      lang === 'es'
+        ? 'Una red global de lugares y personas alineadas con una vida remota sostenible.'
+        : 'A global network of places and people aligned with sustainable remote living.',
+  };
+}
+
+/** ES: "Tu viaje Slowork" with accent on second part; EN: "Your " + "Slowork Journey" */
+export function homeJourneyTitleParts(lang: SupportedLang) {
+  if (lang === 'es') {
+    return { before: 'Tu ', highlight: 'viaje Slowork', after: '' };
+  }
+  return { before: 'Your ', highlight: 'Slowork Journey', after: '' };
+}
+
+export function homeWhoTitleParts(lang: SupportedLang) {
+  return lang === 'es'
+    ? { before: '¿Esto ', highlight: 'es para ti?', after: '' }
+    : { before: 'Is this ', highlight: 'for you?', after: '' };
+}
+
+export function homeFinalCtaCopy(lang: SupportedLang) {
+  return {
+    title: lang === 'es' ? 'Ya eres un sloworker' : "You're one of us already",
+    subtitle: lang === 'es' ? 'Únete a la lista de espera hoy' : 'Get on the Waitlist today',
+    waitlist: lang === 'es' ? 'Unirme a la waitlist' : 'Join the waitlist',
+  };
+}

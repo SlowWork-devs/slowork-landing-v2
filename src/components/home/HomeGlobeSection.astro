@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import type { SupportedLang } from '../../lib/seo';
+import { HOME_GLOBE_CARDS, HOME_MEDIA, homeGlobeCopy } from '../../lib/homeContent';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const copy = homeGlobeCopy(lang);
+---
+
+<section class="relative -mt-12 overflow-hidden rounded-t-[40px] bg-gradient-to-t from-bg-landing via-primary to-bg-landing py-16 md:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="mt-8 text-center font-heading text-3xl font-bold text-secondary md:text-5xl">
+      {copy.title}
+    </h2>
+    <h3 class="mt-6 text-center font-heading text-2xl font-bold text-secondary/95 md:text-3xl">
+      {copy.subtitle}
+    </h3>
+
+    <div class="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <div class="flex justify-center">
+        <div
+          class="globe-frame relative h-[260px] w-[260px] overflow-hidden rounded-full shadow-[inset_28px_0_40px_rgba(0,0,0,0.55),inset_-12px_-20px_24px_rgba(3,32,56,0.65)] sm:h-[360px] sm:w-[360px] xl:h-[480px] xl:w-[480px]"
+        >
+          <Image
+            src={HOME_MEDIA.globeTexture}
+            alt={lang === 'es' ? 'Planeta tierra estilizado' : 'Stylized Earth view'}
+            width={800}
+            height={800}
+            class="globe-spin h-full w-full scale-110 object-cover object-center"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+      <div class="space-y-6">
+        <div class="rounded-2xl border border-white/20 bg-white/10 p-8 text-white backdrop-blur">
+          <h2 class="font-heading text-2xl font-bold sm:text-3xl md:text-4xl">{copy.asideTitle}</h2>
+          <p class="mt-4 leading-relaxed text-white/90">{copy.asideBody}</p>
+        </div>
+        <ul class="grid gap-4 sm:grid-cols-2">
+          {
+            HOME_GLOBE_CARDS.map((c) => (
+              <li class="rounded-xl border border-white/15 bg-white/5 px-4 py-4 text-white backdrop-blur">
+                <p class="font-heading font-bold text-secondary">{c.title[lang]}</p>
+                <p class="mt-1 text-sm leading-relaxed text-white/85">{c.description[lang]}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes globe-pan {
+    0% {
+      object-position: 0% center;
+    }
+    100% {
+      object-position: 100% center;
+    }
+  }
+  .globe-spin {
+    animation: globe-pan 18s linear infinite;
+  }
+</style>

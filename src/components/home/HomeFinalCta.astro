@@ -1,0 +1,33 @@
+---
+import type { SupportedLang } from '../../lib/seo';
+import { homeFinalCtaCopy } from '../../lib/homeContent';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const copy = homeFinalCtaCopy(lang);
+---
+
+<section
+  class="relative -mt-12 overflow-hidden rounded-t-[40px] bg-gradient-to-bl from-bg-landing to-secondary/80 py-14 md:py-20"
+>
+  <div class="mx-auto max-w-4xl px-4 text-center">
+    <h2 class="font-heading text-3xl font-bold text-primary md:text-5xl">
+      {copy.title}
+    </h2>
+    <p class="mt-6 font-heading text-xl font-semibold text-soft-blue md:text-3xl">
+      {copy.subtitle}
+    </p>
+    <div class="mt-10 flex justify-center">
+      <button
+        type="button"
+        data-open-waitlist
+        class="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-8 py-3.5 font-bold text-white shadow-xl transition hover:opacity-95 active:scale-[0.98] md:min-h-14 md:px-10 md:text-lg"
+      >
+        {copy.waitlist}
+      </button>
+    </div>
+  </div>
+</section>

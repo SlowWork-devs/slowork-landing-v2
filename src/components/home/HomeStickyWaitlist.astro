@@ -1,0 +1,24 @@
+---
+import type { SupportedLang } from '../../lib/seo';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const label = lang === 'es' ? 'Lista de espera' : 'Waitlist';
+---
+
+<div
+  class="fixed bottom-6 right-4 z-[60] md:bottom-8 md:right-6 lg:bottom-10 lg:right-8"
+  aria-hidden="false"
+>
+  <button
+    type="button"
+    data-open-waitlist
+    class="flex min-h-12 items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-secondary shadow-xl ring-2 ring-secondary/30 transition hover:opacity-95 active:scale-[0.98]"
+  >
+    <span class="text-lg leading-none">✦</span>
+    {label}
+  </button>
+</div>

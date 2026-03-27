@@ -1,0 +1,106 @@
+---
+import type { SupportedLang } from '../../lib/seo';
+import { HOME_JOURNEY, homeJourneyTitleParts } from '../../lib/homeContent';
+import HomeIcon from './HomeIcon.astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const titleParts = homeJourneyTitleParts(lang);
+---
+
+<section class="relative -mt-8 overflow-hidden rounded-t-[5rem] bg-gradient-to-t from-bg-landing via-primary/85 to-bg-landing py-16 pb-24">
+  <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <h2
+      class="mb-12 text-center font-heading text-2xl font-bold text-secondary sm:mb-16 sm:text-3xl md:text-4xl lg:text-5xl"
+    >
+      {titleParts.before}<span class="text-soft-blue">{titleParts.highlight}</span>{titleParts.after}
+    </h2>
+
+    <div class="relative flex flex-col items-center">
+      <div
+        class="absolute left-1/2 hidden h-full w-1 -translate-x-1/2 bg-gradient-to-b from-primary to-soft-blue md:block"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="relative z-10 w-full space-y-12 sm:space-y-10 md:space-y-8">
+        {
+          HOME_JOURNEY.map((step) =>
+            step.kind === 'center' ? (
+              <div
+                class:list={['home-reveal journey-from-bottom', step.delayClass ?? '']}
+                data-home-reveal
+              >
+                <div class="flex max-w-md flex-col items-center text-center sm:max-w-lg mx-auto">
+                  <div
+                    class:list={[
+                      'mb-4 flex h-20 w-20 items-center justify-center rounded-full shadow-xl sm:mb-6 sm:h-24 sm:w-24',
+                      step.iconWrapClass,
+                    ]}
+                  >
+                    <img src="/favicon.svg" alt="Slowork" width={40} height={40} class="h-10 w-10 sm:h-12 sm:w-12" />
+                  </div>
+                  <div class="w-full rounded-2xl border border-white/15 bg-white/95 p-6 shadow-xl backdrop-blur sm:p-8">
+                    <h3 class="mb-3 font-heading text-xl font-bold text-primary sm:text-2xl">{step.title[lang]}</h3>
+                    <p class="text-sm leading-relaxed text-primary/80 sm:text-base">{step.description[lang]}</p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div
+                class:list={[
+                  'home-reveal flex flex-col items-center gap-4 md:flex-row md:gap-0',
+                  step.side === 'left' ? 'journey-from-left' : 'journey-from-right',
+                  step.delayClass ?? '',
+                ]}
+                data-home-reveal
+              >
+                <div
+                  class:list={[
+                    'flex-1 md:pr-8',
+                    step.side === 'left'
+                      ? 'order-2 w-full text-center md:order-1 md:text-right'
+                      : 'hidden md:block md:order-1',
+                  ]}
+                >
+                  {step.side === 'left' && (
+                    <div class="mx-auto max-w-sm rounded-2xl border border-white/15 bg-white/90 p-5 shadow-lg backdrop-blur md:ml-auto md:mr-0 md:max-w-md">
+                      <h3 class="mb-2 font-heading text-lg font-bold text-primary md:text-xl">{step.title[lang]}</h3>
+                      <p class="text-sm leading-relaxed text-primary/80 md:text-base">{step.description[lang]}</p>
+                    </div>
+                  )}
+                </div>
+                <div
+                  class:list={[
+                    'order-1 flex h-16 w-16 shrink-0 items-center justify-center rounded-full shadow-lg sm:h-20 sm:w-20 md:order-2 z-10',
+                    step.iconWrapClass,
+                  ]}
+                >
+                  <HomeIcon name={step.icon} class="h-8 w-8 sm:h-10 sm:w-10" />
+                </div>
+                <div
+                  class:list={[
+                    'flex-1 md:pl-8',
+                    step.side === 'right'
+                      ? 'order-3 w-full text-center md:text-left'
+                      : 'hidden md:block md:order-3',
+                  ]}
+                >
+                  {step.side === 'right' && (
+                    <div class="mx-auto max-w-sm rounded-2xl border border-white/15 bg-white/90 p-5 shadow-lg backdrop-blur md:ml-0 md:mr-auto md:max-w-md">
+                      <h3 class="mb-2 font-heading text-lg font-bold text-primary md:text-xl">{step.title[lang]}</h3>
+                      <p class="text-sm leading-relaxed text-primary/80 md:text-base">{step.description[lang]}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ),
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

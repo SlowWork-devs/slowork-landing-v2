@@ -1,0 +1,78 @@
+---
+import type { SupportedLang } from '../../lib/seo';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const siteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? '';
+---
+
+<div id="modal-overlay" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"></div>
+<div
+  id="waitlist-modal"
+  class="hidden fixed inset-0 z-[110] grid place-items-center p-6"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Waitlist"
+>
+  <div class="w-full max-w-2xl overflow-hidden rounded-2xl border border-primary/10 bg-white shadow-2xl">
+    <div class="flex items-center justify-between border-b border-primary/10 p-5">
+      <h3 class="font-heading text-xl font-bold text-primary">
+        {lang === 'es' ? 'Únete a la waitlist' : 'Join the waitlist'}
+      </h3>
+      <button
+        type="button"
+        id="close-waitlist"
+        class="grid min-h-11 min-w-11 place-items-center text-primary/70 hover:text-primary"
+        aria-label={lang === 'es' ? 'Cerrar' : 'Close'}
+      >
+        ✕
+      </button>
+    </div>
+    <div class="p-6">
+      <form id="waitlist-form" class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-bold text-primary">{lang === 'es' ? 'Nombre' : 'First name'}</span>
+          <input name="firstName" required class="mt-2 w-full rounded-xl border border-primary/20 px-4 py-3" />
+        </label>
+        <label class="block">
+          <span class="text-sm font-bold text-primary">Email</span>
+          <input name="email" type="email" required class="mt-2 w-full rounded-xl border border-primary/20 px-4 py-3" />
+        </label>
+        <label class="block md:col-span-2">
+          <span class="text-sm font-bold text-primary">{lang === 'es' ? 'Teléfono' : 'Phone'}</span>
+          <input name="phone" required class="mt-2 w-full rounded-xl border border-primary/20 px-4 py-3" />
+        </label>
+
+        <div class="md:col-span-2">
+          {siteKey ? (
+            <div class="g-recaptcha" data-sitekey={siteKey} />
+          ) : (
+            <p class="text-sm text-amber-800">
+              {lang === 'es'
+                ? 'Falta PUBLIC_RECAPTCHA_SITE_KEY en el entorno.'
+                : 'Missing PUBLIC_RECAPTCHA_SITE_KEY in environment.'}
+            </p>
+          )}
+          <p class="mt-2 text-xs text-primary/60">
+            {lang === 'es'
+              ? 'Al enviar aceptas recibir actualizaciones de Slowork.'
+              : 'By submitting you agree to receive Slowork updates.'}
+          </p>
+        </div>
+
+        <div class="flex flex-col items-stretch gap-3 md:col-span-2 md:flex-row md:items-center">
+          <button
+            type="submit"
+            class="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-6 py-3 font-bold text-white shadow-md hover:opacity-95 active:scale-[0.98]"
+          >
+            {lang === 'es' ? 'Enviar' : 'Submit'}
+          </button>
+          <p id="waitlist-message" class="text-sm text-primary/80"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

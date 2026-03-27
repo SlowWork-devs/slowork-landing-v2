@@ -1,0 +1,183 @@
+---
+import { Image } from 'astro:assets';
+import type { SupportedLang } from '../../lib/seo';
+import { HOME_CAROUSEL, homeValueCopy } from '../../lib/homeContent';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const copy = homeValueCopy(lang);
+---
+
+<section
+  class="relative -mt-10 min-h-screen w-full rounded-t-[35px] bg-gradient-to-bl from-bg-landing via-light-green/30 to-bg-landing pb-20 pt-14"
+>
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="text-center font-heading text-3xl font-bold text-primary sm:text-4xl md:text-6xl">
+      {copy.title}
+    </h2>
+    <p class="mx-auto mt-6 max-w-3xl text-center text-lg text-primary/85 sm:text-xl">
+      {copy.subtitle}
+    </p>
+
+    <div class="my-12 flex flex-col-reverse items-center justify-center gap-10 lg:flex-row lg:gap-16">
+      <div
+        class="w-full max-w-xl rounded-3xl border border-primary/10 bg-white/80 p-6 shadow-lg shadow-primary/15 transition-transform duration-300 hover:scale-[1.02] sm:p-8 lg:p-10"
+      >
+        <h3
+          class="my-6 text-center font-heading text-2xl font-semibold leading-tight text-primary sm:text-3xl lg:text-4xl"
+        >
+          {copy.cardLead1}
+          <span class="font-bold text-soft-blue">{copy.cardLead2}</span>{copy.cardLead3}
+        </h3>
+        <p class="mb-6 text-center text-base leading-relaxed text-primary/85 sm:text-lg lg:text-xl">
+          {copy.phrase1}
+        </p>
+        <p class="text-center text-base leading-relaxed text-primary/85 sm:text-lg lg:text-xl">
+          {copy.phrase2a}<strong>{copy.phrase2b}</strong>
+        </p>
+      </div>
+
+      <div class="group relative mx-auto w-full max-w-sm shrink-0 lg:max-w-none lg:w-[30vw]">
+        <div
+          id="image-carousel"
+          class="relative aspect-square cursor-grab select-none overflow-hidden rounded-[11rem] border border-primary/10 shadow-xl shadow-primary/25 active:cursor-grabbing"
+        >
+          {
+            HOME_CAROUSEL.map((img, idx) => (
+              <div
+                class:list={[
+                  'carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out',
+                  idx === 0 ? 'opacity-100 z-[1]' : 'opacity-0 z-0',
+                ]}
+                data-carousel-idx={idx}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt[lang]}
+                  width={960}
+                  height={960}
+                  class="h-full w-full object-cover"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={idx === 0 ? 'high' : 'auto'}
+                  decoding="async"
+                />
+              </div>
+            ))
+          }
+          <button
+            type="button"
+            id="carousel-prev"
+            class="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/50 p-2 text-white opacity-0 transition-opacity hover:bg-black/70 group-hover:opacity-100 sm:grid sm:place-items-center"
+            aria-label={lang === 'es' ? 'Anterior' : 'Previous'}
+          >
+            <span class="text-lg leading-none" aria-hidden="true">‹</span>
+          </button>
+          <button
+            type="button"
+            id="carousel-next"
+            class="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/50 p-2 text-white opacity-0 transition-opacity hover:bg-black/70 group-hover:opacity-100 sm:grid sm:place-items-center"
+            aria-label={lang === 'es' ? 'Siguiente' : 'Next'}
+          >
+            <span class="text-lg leading-none" aria-hidden="true">›</span>
+          </button>
+        </div>
+        <div id="carousel-dots" class="mt-4 flex justify-center gap-2">
+          {
+            HOME_CAROUSEL.map((_, idx) => (
+              <button
+                type="button"
+                class:list={['carousel-dot h-2.5 w-2.5 rounded-full transition-all', idx === 0 ? 'bg-primary scale-110' : 'bg-primary/35 hover:bg-primary/55']}
+                data-carousel-dot
+                data-idx={idx}
+                aria-label={lang === 'es' ? `Ir a imagen ${idx + 1}` : `Go to slide ${idx + 1}`}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const track = document.getElementById('image-carousel');
+    if (!track) return;
+
+    const slides = () => Array.from(track.querySelectorAll('[data-carousel-idx]'));
+    const dots = () => Array.from(document.querySelectorAll('.carousel-dot'));
+
+    let idx = 0;
+    let dragging = false;
+    let startX = 0;
+
+    const apply = () => {
+      const s = slides();
+      if (!s.length) return;
+      const n = s.length;
+      idx = ((idx % n) + n) % n;
+      s.forEach((el, i) => {
+        const on = i === idx;
+        el.classList.toggle('opacity-100', on);
+        el.classList.toggle('z-[1]', on);
+        el.classList.toggle('opacity-0', !on);
+        el.classList.toggle('z-0', !on);
+      });
+      dots().forEach((d, i) => {
+        const on = i === idx;
+        d.classList.toggle('bg-primary', on);
+        d.classList.toggle('scale-110', on);
+        d.classList.toggle('bg-primary/35', !on);
+        d.classList.toggle('hover:bg-primary/55', !on);
+      });
+    };
+
+    document.getElementById('carousel-prev')?.addEventListener('click', () => {
+      idx -= 1;
+      apply();
+    });
+    document.getElementById('carousel-next')?.addEventListener('click', () => {
+      idx += 1;
+      apply();
+    });
+    dots().forEach((d) =>
+      d.addEventListener('click', () => {
+        idx = Number(d.getAttribute('data-idx') || 0);
+        apply();
+      }),
+    );
+
+    track.addEventListener('mousedown', (e) => {
+      dragging = true;
+      startX = e.clientX;
+    });
+    window.addEventListener('mouseup', (e) => {
+      if (!dragging) return;
+      dragging = false;
+      const d = startX - e.clientX;
+      if (Math.abs(d) > 50) {
+        if (d > 0) idx += 1;
+        else idx -= 1;
+        apply();
+      }
+    });
+
+    let auto = window.setInterval(() => {
+      idx += 1;
+      apply();
+    }, 4500);
+    track.addEventListener('mouseenter', () => clearInterval(auto));
+    track.addEventListener('mouseleave', () => {
+      clearInterval(auto);
+      auto = window.setInterval(() => {
+        idx += 1;
+        apply();
+      }, 4500);
+    });
+
+    apply();
+  })();
+</script>

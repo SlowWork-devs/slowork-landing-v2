@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import type { SupportedLang } from '../../lib/seo';
+import { HOME_WHO_CARDS, homeWhoTitleParts } from '../../lib/homeContent';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const title = homeWhoTitleParts(lang);
+---
+
+<section
+  class="relative -mt-6 rounded-t-[20px] bg-gradient-to-b from-bg-landing via-light-green/40 to-primary py-16 pb-24"
+>
+  <div class="mx-auto max-w-7xl px-4 md:px-8">
+    <h2 class="mb-14 pt-6 text-center font-heading text-3xl font-bold text-secondary md:mb-20 md:text-5xl">
+      {title.before}<span class="text-soft-blue">{title.highlight}</span>{title.after}
+    </h2>
+
+    <div class="rounded-2xl border border-primary/10 bg-light-green/25 p-4 md:p-10">
+      <div class="relative mx-auto max-w-6xl">
+        <div
+          class="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-primary/35 md:block"
+          aria-hidden="true"
+        />
+        <div
+          class="pointer-events-none absolute left-0 top-[13%] hidden h-px w-1/2 bg-primary/25 md:block"
+          aria-hidden="true"
+        />
+        <div
+          class="pointer-events-none absolute left-0 top-1/2 hidden h-px w-1/2 -translate-y-1/2 bg-primary/25 md:block"
+          aria-hidden="true"
+        />
+        <div
+          class="pointer-events-none absolute bottom-[13%] left-0 hidden h-px w-1/2 bg-primary/25 md:block"
+          aria-hidden="true"
+        />
+        <div
+          class="pointer-events-none absolute right-0 top-[13%] hidden h-px w-1/2 bg-primary/25 md:block"
+          aria-hidden="true"
+        />
+        <div
+          class="pointer-events-none absolute right-0 top-1/2 hidden h-px w-1/2 -translate-y-1/2 bg-primary/25 md:block"
+          aria-hidden="true"
+        />
+        <div
+          class="pointer-events-none absolute bottom-[13%] right-0 hidden h-px w-1/2 bg-primary/25 md:block"
+          aria-hidden="true"
+        />
+
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
+          {
+            HOME_WHO_CARDS.map((card) => (
+              <div
+                class:list={[
+                  'home-reveal group relative aspect-square overflow-hidden rounded-2xl',
+                  card.side === 'left' ? 'who-from-left' : 'who-from-right',
+                  card.delayClass ?? '',
+                ]}
+                data-home-reveal
+              >
+                <Image
+                  src={card.src}
+                  alt={card.alt[lang]}
+                  width={800}
+                  height={800}
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
+                <div class="absolute inset-x-0 bottom-0 p-6 text-white">
+                  <h3 class="mb-3 text-center font-heading text-xl font-bold text-secondary transition-transform group-hover:scale-105">
+                    {card.title[lang]}
+                  </h3>
+                  <p class="text-center text-base leading-relaxed text-secondary/95 opacity-95 transition-opacity group-hover:opacity-100">
+                    {card.description[lang]}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

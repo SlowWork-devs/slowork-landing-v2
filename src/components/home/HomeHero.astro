@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import type { SupportedLang } from '../../lib/seo';
+import { HOME_MEDIA, homeHeroCopy } from '../../lib/homeContent';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const copy = homeHeroCopy(lang);
+const blogHref = `/${lang}/blog/`;
+---
+
+<section class="relative w-full min-h-[95vh] overflow-hidden">
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+    poster={HOME_MEDIA.videoPoster}
+  >
+    <source src={HOME_MEDIA.videoSrc} type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 bg-primary/45"></div>
+
+  <div class="relative z-10 flex min-h-[95vh] flex-col items-center justify-center px-6 pb-16 pt-32 text-center text-white md:pt-28">
+    <Image
+      src={HOME_MEDIA.logoSrc}
+      alt="Slowork"
+      width={900}
+      height={280}
+      loading="eager"
+      fetchpriority="high"
+      class="mx-auto mb-10 h-auto w-[min(100%,280px)] sm:w-[min(100%,350px)] lg:w-[min(100%,450px)]"
+      decoding="async"
+    />
+
+    <h1
+      class="mt-2 max-w-4xl font-heading text-[clamp(1.35rem,4vw+0.5rem,3.75rem)] font-bold leading-tight text-secondary md:mb-2"
+    >
+      <span class="block">{copy.line1}</span>
+      <span class="mt-1 flex flex-wrap items-center justify-center gap-x-2 md:gap-x-4">
+        <span
+          id="hero-first"
+          class="inline-block min-h-[1.2em] font-bold text-white transition-all duration-500"
+        ></span>
+        <span class="text-secondary">{copy.line1b}</span>
+      </span>
+    </h1>
+    <h2
+      class="mt-3 flex min-h-[2.5rem] items-center justify-center px-2 text-[clamp(1rem,2.5vw+0.5rem,2.75rem)] font-light text-secondary md:min-h-[4rem]"
+    >
+      <span id="hero-phrase" class="inline-block"></span>
+    </h2>
+
+    <p class="mt-6 max-w-2xl text-base text-secondary md:text-2xl">{copy.desc1}</p>
+    <p class="mt-2 max-w-2xl px-2 text-base text-secondary md:mt-4 md:text-2xl">{copy.desc2}</p>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <button
+        type="button"
+        data-open-waitlist
+        class="inline-flex min-h-12 items-center justify-center rounded-full bg-secondary px-7 py-3 text-center font-bold text-primary shadow-lg transition hover:opacity-95 active:scale-[0.98] touch-manipulation"
+      >
+        {copy.ctaWaitlist}
+      </button>
+      <a
+        href={blogHref}
+        class="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 bg-white/10 px-7 py-3 font-bold text-white backdrop-blur transition hover:bg-white/15"
+      >
+        {copy.ctaBlog}
+      </a>
+    </div>
+    <p class="mt-4 max-w-2xl px-4 text-sm italic text-secondary md:text-sm">{copy.italic}</p>
+  </div>
+</section>

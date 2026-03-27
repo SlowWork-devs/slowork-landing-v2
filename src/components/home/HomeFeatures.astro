@@ -1,0 +1,162 @@
+---
+import type { SupportedLang } from '../../lib/seo';
+import { HOME_FEATURES, homeFeaturesTitle } from '../../lib/homeContent';
+import HomeIcon from './HomeIcon.astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const ft = homeFeaturesTitle(lang);
+---
+
+<section
+  class="mt-16 rounded-t-[35px] bg-linear-to-t from-bg-landing from-0% via-primary/90 via-45% to-bg-landing to-100% py-16"
+>
+  <div class="w-full px-4">
+    <h2 class="mb-14 text-center font-heading text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+      {ft.a}
+      <span class="text-soft-blue">
+        {ft.b}
+        <span class="text-secondary">{ft.c}</span>
+      </span>
+    </h2>
+
+    <div class="relative mx-auto w-full max-w-7xl">
+      <button
+        type="button"
+        id="feature-prev"
+        class="absolute left-0 top-1/2 z-20 grid -translate-y-1/2 place-items-center rounded-full bg-soft-blue p-2.5 text-white shadow-lg transition hover:opacity-90 md:left-2 md:p-4"
+        aria-label={lang === 'es' ? 'Anterior' : 'Previous'}
+      >
+        <span class="text-xl" aria-hidden="true">‹</span>
+      </button>
+      <button
+        type="button"
+        id="feature-next"
+        class="absolute right-0 top-1/2 z-20 grid -translate-y-1/2 place-items-center rounded-full bg-soft-blue p-2.5 text-white shadow-lg transition hover:opacity-90 md:right-2 md:p-4"
+        aria-label={lang === 'es' ? 'Siguiente' : 'Next'}
+      >
+        <span class="text-xl" aria-hidden="true">›</span>
+      </button>
+
+      <div class="px-1 md:px-14">
+        <div
+          id="features-track-wrap"
+          class="cursor-grab overflow-hidden active:cursor-grabbing"
+        >
+          <div id="features-track" class="flex gap-4 transition-transform duration-500 ease-out will-change-transform">
+            {
+              HOME_FEATURES.map((feature) => (
+                <div class="feature-card w-full shrink-0 md:w-[calc(33.333%-0.67rem)]">
+                  <div class="flex h-[320px] flex-col justify-center rounded-2xl border border-white/15 bg-white/95 p-5 shadow-lg backdrop-blur-sm transition hover:shadow-xl md:h-[340px] md:p-6">
+                    <div class="mb-4 flex justify-center text-primary md:text-4xl [&_svg]:md:h-12 [&_svg]:md:w-12">
+                      <HomeIcon name={feature.icon} class="h-9 w-9 md:h-11 md:w-11" />
+                    </div>
+                    <h3 class="mb-2 px-2 text-center font-heading text-base font-bold text-primary md:text-lg">
+                      {feature.title[lang]}
+                    </h3>
+                    <p class="px-3 text-center text-sm leading-relaxed text-primary/80 md:px-5 md:text-sm">
+                      {feature.description[lang]}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div id="feature-dots" class="mt-8 flex flex-wrap justify-center gap-2"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('features-track');
+  const wrap = document.getElementById('features-track-wrap');
+  const dotsEl = document.getElementById('feature-dots');
+  const prev = document.getElementById('feature-prev');
+  const next = document.getElementById('feature-next');
+  if (track && wrap && dotsEl && prev && next) {
+    const elTrack = track;
+    const elDots = dotsEl;
+    const cards = () => elTrack.querySelectorAll('.feature-card').length;
+    const cardsVisible = () => (window.matchMedia('(min-width: 768px)').matches ? 3 : 1);
+    let idx = 0;
+    let drag = false;
+    let startX = 0;
+
+    function maxIdx() {
+      return Math.max(0, cards() - cardsVisible());
+    }
+
+    function renderDots() {
+      const n = maxIdx() + 1;
+      elDots.innerHTML = '';
+      for (let i = 0; i < n; i++) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = `feature-dot h-2.5 w-2.5 rounded-full transition-all md:h-3 md:w-3 ${i === idx ? 'scale-110 bg-secondary' : 'bg-white/40 hover:bg-white/60'}`;
+        b.dataset.idx = String(i);
+        b.addEventListener('click', () => {
+          idx = i;
+          apply();
+        });
+        elDots.appendChild(b);
+      }
+    }
+
+    function apply() {
+      idx = Math.min(Math.max(0, idx), maxIdx());
+      const first = elTrack.querySelector('.feature-card');
+      if (first instanceof HTMLElement) {
+        const gap = parseFloat(getComputedStyle(elTrack).columnGap || getComputedStyle(elTrack).gap) || 16;
+        const w = first.offsetWidth;
+        elTrack.style.transform = `translateX(-${idx * (w + gap)}px)`;
+      }
+      renderDots();
+    }
+
+    function nextSlide() {
+      idx = idx >= maxIdx() ? 0 : idx + 1;
+      apply();
+    }
+
+    function prevSlide() {
+      idx = idx <= 0 ? maxIdx() : idx - 1;
+      apply();
+    }
+
+    prev.addEventListener('click', prevSlide);
+    next.addEventListener('click', nextSlide);
+    window.addEventListener('resize', () => {
+      idx = Math.min(idx, maxIdx());
+      apply();
+    });
+
+    wrap.addEventListener('mousedown', (e) => {
+      drag = true;
+      startX = e.clientX;
+    });
+    window.addEventListener('mouseup', (e) => {
+      if (!drag) return;
+      drag = false;
+      const d = startX - e.clientX;
+      if (Math.abs(d) > 50) d > 0 ? nextSlide() : prevSlide();
+    });
+    wrap.addEventListener('mouseleave', () => {
+      drag = false;
+    });
+
+    let auto = window.setInterval(nextSlide, 3500);
+    wrap.addEventListener('mouseenter', () => clearInterval(auto));
+    wrap.addEventListener('mouseleave', () => {
+      clearInterval(auto);
+      auto = window.setInterval(nextSlide, 3500);
+    });
+
+    apply();
+  }
+</script>
