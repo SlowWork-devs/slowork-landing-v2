@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import type { WelcomeEmailInput } from '../models/welcome-email';
+import type { WelcomeEmailInput } from '@/models/welcome-email';
 
 function buildWelcomeHtml(args: { name: string; lang: 'es' | 'en' }): string {
   const { name, lang } = args;

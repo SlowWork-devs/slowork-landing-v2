@@ -1,9 +1,9 @@
 ---
-import Logo from './Logo.astro';
+import Logo from '@/components/Logo.astro';
 import { Image } from 'astro:assets';
-import menuBg from '../assets/menu-background.webp';
-import { getHeaderNav } from '../lib/headerNavCopy';
-import type { SupportedLang } from '../lib/seo';
+import menuBg from '@/assets/menu-background.webp';
+import { getHeaderNav } from '@/lib/headerNavCopy';
+import type { SupportedLang } from '@/lib/seo';
 
 const { language, alternateLink } = Astro.props;
 const nav = getHeaderNav(language as SupportedLang);

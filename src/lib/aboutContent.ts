@@ -1,5 +1,5 @@
-import type { AboutPageContent } from '../models/about';
-import type { SupportedLang } from './seo';
+import type { AboutPageContent } from '@/models/about';
+import type { SupportedLang } from '@/lib/seo';
 
 const es: AboutPageContent = {
   helmet: {

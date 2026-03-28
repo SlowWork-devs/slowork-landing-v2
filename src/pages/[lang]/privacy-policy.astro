@@ -1,9 +1,9 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
-import PrivacyPolicyArticle from '../../components/legal/PrivacyPolicyArticle.astro';
-import { buildI18nAlternates } from '../../lib/hreflang';
-import { getLegalBundle } from '../../lib/legalBundle';
-import type { SupportedLang } from '../../lib/seo';
+import MainLayout from '@/layouts/MainLayout.astro';
+import PrivacyPolicyArticle from '@/components/legal/PrivacyPolicyArticle.astro';
+import { buildI18nAlternates } from '@/lib/hreflang';
+import { getLegalBundle } from '@/lib/legalBundle';
+import type { SupportedLang } from '@/lib/seo';
 
 const lang = Astro.params.lang as SupportedLang;
 if (lang !== 'es' && lang !== 'en') return Astro.redirect('/en/', 302);

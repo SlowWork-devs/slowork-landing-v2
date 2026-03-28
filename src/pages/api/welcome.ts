@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
-import { welcomeEmailBodySchema } from '../../models/welcome-email';
-import { jsonResponse } from '../../lib/http';
-import { sendWelcomeEmail } from '../../services/welcome-email.service';
+import { welcomeEmailBodySchema } from '@/models/welcome-email';
+import { jsonResponse } from '@/lib/http';
+import { sendWelcomeEmail } from '@/services/welcome-email.service';
 
 export const prerender = false;
 

@@ -1,4 +1,4 @@
-import type { SupportedLang } from './seo';
+import type { SupportedLang } from '@/lib/seo';
 
 export type HreflangAlternate = {
   hreflang: string;

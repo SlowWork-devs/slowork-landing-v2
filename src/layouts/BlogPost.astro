@@ -1,11 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { Image, getImage } from "astro:assets";
-import MainLayout from "./MainLayout.astro";
-import FormattedDate from "../components/FormattedDate.astro";
-import BlogArticleBackButton from "../components/ui/BlogArticleBackButton.astro";
-import ScrollToTopButton from "../components/ui/ScrollToTopButton.astro";
-import type { SupportedLang } from "../lib/seo";
+import MainLayout from "@/layouts/MainLayout.astro";
+import FormattedDate from "@/components/FormattedDate.astro";
+import BlogArticleBackButton from "@/components/ui/BlogArticleBackButton.astro";
+import ScrollToTopButton from "@/components/ui/ScrollToTopButton.astro";
+import type { SupportedLang } from "@/lib/seo";
 
 type Props = Partial<CollectionEntry<"blog">["data"]>;
 

@@ -5,12 +5,12 @@ import type { ImageMetadata } from 'astro';
 import '../styles/global.css';
 import poppinsBold from '@fontsource/poppins/files/poppins-latin-700-normal.woff2?url';
 
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import HomeWaitlistModal from '../components/home/HomeWaitlistModal.astro';
-import SocialShareBar from '../components/ui/SocialShareBar.astro';
-import FallbackImage from '../assets/blog-placeholder-1.png';
-import { SITE_TITLE } from '../consts';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import HomeWaitlistModal from '@/components/home/HomeWaitlistModal.astro';
+import SocialShareBar from '@/components/ui/SocialShareBar.astro';
+import FallbackImage from '@/assets/blog-placeholder-1.png';
+import { SITE_TITLE } from '@/consts';
 
 type Alternate = {
   hreflang: string;

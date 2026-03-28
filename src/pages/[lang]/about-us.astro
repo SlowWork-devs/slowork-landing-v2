@@ -1,9 +1,9 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
-import AboutUsSection from '../../components/sections/AboutUs.astro';
-import { getAboutContent } from '../../lib/aboutContent';
-import { buildI18nAlternates } from '../../lib/hreflang';
-import type { SupportedLang } from '../../lib/seo';
+import MainLayout from '@/layouts/MainLayout.astro';
+import AboutUsSection from '@/components/sections/AboutUs.astro';
+import { getAboutContent } from '@/lib/aboutContent';
+import { buildI18nAlternates } from '@/lib/hreflang';
+import type { SupportedLang } from '@/lib/seo';
 
 const lang = Astro.params.lang as SupportedLang;
 if (lang !== 'es' && lang !== 'en') return Astro.redirect('/en/', 302);

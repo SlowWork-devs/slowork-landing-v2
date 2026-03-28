@@ -3,7 +3,7 @@ import { defineMiddleware } from 'astro:middleware';
 import {
   buildLanguageSetCookieHeader,
   resolveLocaleForRoot,
-} from './models/i18n';
+} from '@/models/i18n';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const pathname = context.url.pathname;

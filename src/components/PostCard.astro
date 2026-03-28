@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import FormattedDate from './FormattedDate.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
 
 const { post, eager = false } = Astro.props;
 const { title, date, image, localImage, excerpt, language } = post.data;

@@ -1,14 +1,14 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
-import HomeHero from '../../components/home/HomeHero.astro';
-import HomeValueProposition from '../../components/home/HomeValueProposition.astro';
-import HomeFeatures from '../../components/home/HomeFeatures.astro';
-import HomeGlobeSection from '../../components/home/HomeGlobeSection.astro';
-import HomeJourney from '../../components/home/HomeJourney.astro';
-import HomeWhoFor from '../../components/home/HomeWhoFor.astro';
-import HomeFinalCta from '../../components/home/HomeFinalCta.astro';
-import HomeStickyWaitlist from '../../components/home/HomeStickyWaitlist.astro';
-import { buildI18nAlternates } from '../../lib/hreflang';
+import MainLayout from '@/layouts/MainLayout.astro';
+import HomeHero from '@/components/home/HomeHero.astro';
+import HomeValueProposition from '@/components/home/HomeValueProposition.astro';
+import HomeFeatures from '@/components/home/HomeFeatures.astro';
+import HomeGlobeSection from '@/components/home/HomeGlobeSection.astro';
+import HomeJourney from '@/components/home/HomeJourney.astro';
+import HomeWhoFor from '@/components/home/HomeWhoFor.astro';
+import HomeFinalCta from '@/components/home/HomeFinalCta.astro';
+import HomeStickyWaitlist from '@/components/home/HomeStickyWaitlist.astro';
+import { buildI18nAlternates } from '@/lib/hreflang';
 
 const lang = Astro.params.lang;
 if (lang !== 'es' && lang !== 'en') {

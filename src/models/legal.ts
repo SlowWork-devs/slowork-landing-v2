@@ -1,4 +1,4 @@
-import type esLegal from '../data/legal/es.json';
+import type esLegal from '@/data/legal/es.json';
 
 /** Bundle i18n legal + impact (misma forma en es/en). */
 export type LegalLocaleBundle = typeof esLegal;

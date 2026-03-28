@@ -1,5 +1,5 @@
-import type { HeaderNavTranslations } from '../models/headerNav';
-import type { SupportedLang } from './seo';
+import type { HeaderNavTranslations } from '@/models/headerNav';
+import type { SupportedLang } from '@/lib/seo';
 
 const es: HeaderNavTranslations = {
   blog: 'BLOG',

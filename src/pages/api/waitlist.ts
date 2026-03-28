@@ -4,10 +4,10 @@ import {
   logWaitlistError,
   logWaitlistOps,
   logWaitlistVerbose,
-} from '../../lib/waitlist-telemetry';
-import { jsonResponse } from '../../lib/http';
-import { waitlistCreateBodySchema } from '../../models/waitlist';
-import { registerWaitlistEntry } from '../../services/waitlist.service';
+} from '@/lib/waitlist-telemetry';
+import { jsonResponse } from '@/lib/http';
+import { waitlistCreateBodySchema } from '@/models/waitlist';
+import { registerWaitlistEntry } from '@/services/waitlist.service';
 
 export const prerender = false;
 

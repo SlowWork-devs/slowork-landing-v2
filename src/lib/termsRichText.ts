@@ -1,4 +1,4 @@
-import type { SupportedLang } from './seo';
+import type { SupportedLang } from '@/lib/seo';
 
 /**
  * Sustituye marcadores `<1>...</1>` del copy legacy (react-i18next) por enlaces HTML seguros.

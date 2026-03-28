@@ -1,5 +1,5 @@
-import type { BlogUiCopy } from '../models/blog';
-import type { SupportedLang } from './seo';
+import type { BlogUiCopy } from '@/models/blog';
+import type { SupportedLang } from '@/lib/seo';
 
 const es: BlogUiCopy = {
   backToBlog: 'Volver al Blog',

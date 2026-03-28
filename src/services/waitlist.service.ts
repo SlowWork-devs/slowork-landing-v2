@@ -1,9 +1,9 @@
-import { prisma } from '../lib/prisma';
+import { prisma } from '@/lib/prisma';
 import {
   logWaitlistDbPhase,
   type WaitlistDbPhase,
-} from '../lib/waitlist-telemetry';
-import type { WaitlistCreateInput } from '../models/waitlist';
+} from '@/lib/waitlist-telemetry';
+import type { WaitlistCreateInput } from '@/models/waitlist';
 
 const selectSafe = {
   id: true,
