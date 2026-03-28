@@ -1,0 +1,183 @@
+---
+import { Image } from 'astro:assets';
+import carouselHost from '../../assets/images/carousel-host.jpg';
+import carouselJungle from '../../assets/images/carousel-jungle.jpg';
+import type { SupportedLang } from '../../lib/seo';
+import type { ImpactProgramContent } from '../../models/legal';
+
+interface Props {
+  impact: ImpactProgramContent;
+  lang: SupportedLang;
+}
+
+const { impact, lang } = Astro.props;
+const homeHref = `/${lang}/`;
+---
+
+<section class="relative w-full overflow-hidden">
+  <div class="relative min-h-[85vh] w-full md:min-h-[90vh]">
+    <Image
+      src={carouselJungle}
+      alt=""
+      width={1920}
+      height={1080}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-primary/85 via-primary/70 to-primary/55"></div>
+    <div
+      class="relative z-10 flex min-h-[85vh] flex-col items-center justify-center px-6 pb-20 pt-28 text-center text-white md:min-h-[90vh] md:pt-32"
+    >
+      <h1
+        class="max-w-5xl font-heading text-[clamp(2rem,5vw+0.5rem,4rem)] font-extrabold leading-tight tracking-wide text-secondary"
+      >
+        {impact.hero.title}
+      </h1>
+      <p class="mt-8 max-w-2xl text-lg text-white/90 sm:text-xl md:text-2xl">{impact.hero.subtitle}</p>
+    </div>
+  </div>
+</section>
+
+<section
+  class="w-full border-t border-secondary/40 bg-gradient-to-br from-light-green/40 to-bg-landing px-6 py-16 sm:py-20 md:py-24"
+>
+  <div class="mx-auto max-w-7xl">
+    <h2
+      class="text-center font-heading text-3xl font-bold text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+    >
+      {impact.story.title}
+    </h2>
+    <p
+      class="mx-auto mt-8 max-w-3xl text-center text-lg italic leading-relaxed text-primary/90 sm:text-xl md:text-2xl"
+    >
+      {impact.story.paragraph1}
+    </p>
+    <p class="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-primary/85 sm:text-lg md:text-xl">
+      {impact.story.paragraph2}
+    </p>
+  </div>
+</section>
+
+<section
+  class="w-full border-t border-secondary/40 bg-gradient-to-br from-bg-landing to-light-green/30 px-6 py-16 sm:py-20 md:py-24"
+>
+  <div class="mx-auto max-w-7xl">
+    <h2
+      class="text-center font-heading text-3xl font-bold text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+    >
+      {impact.mission.title}
+    </h2>
+    <p
+      class="mx-auto mt-8 max-w-3xl text-center text-lg italic leading-relaxed text-primary/90 sm:text-xl md:text-2xl"
+    >
+      {impact.mission.paragraph1}
+    </p>
+    <p class="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-primary/85 sm:text-lg md:text-xl">
+      {impact.mission.paragraph2}
+    </p>
+    <blockquote
+      class="mx-auto mt-10 max-w-3xl rounded-2xl border-l-4 border-primary bg-white/80 p-8 text-center text-lg font-medium leading-relaxed text-primary/90 shadow-md sm:p-10 sm:text-xl"
+    >
+      {impact.mission.paragraph3}
+    </blockquote>
+  </div>
+</section>
+
+<section class="w-full border-t border-secondary/40 bg-white/70 px-6 py-16 sm:py-20 md:py-24">
+  <div class="mx-auto max-w-7xl">
+    <h2
+      class="text-center font-heading text-3xl font-bold text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+    >
+      {impact.howItWorks.title}
+    </h2>
+    <ul class="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:gap-6">
+      {impact.howItWorks.items.map((item) => (
+        <li class="flex gap-4 rounded-2xl border border-primary/10 bg-white/90 p-6 text-primary/90 shadow-sm sm:p-7">
+          <span
+            class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary/25 font-heading text-lg font-bold text-primary"
+            aria-hidden="true"
+          >
+            →
+          </span>
+          <span class="text-base leading-relaxed sm:text-lg">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section
+  class="w-full border-t border-secondary/40 bg-gradient-to-br from-light-green/25 to-bg-landing px-6 py-16 sm:py-20 md:py-24"
+>
+  <div class="mx-auto max-w-7xl text-center">
+    <h2 class="font-heading text-3xl font-bold text-primary sm:text-4xl md:text-5xl lg:text-6xl">
+      {impact.whatWeSupport.title}
+    </h2>
+    <p class="mx-auto mt-6 max-w-3xl text-lg text-primary/85 sm:text-xl md:text-2xl">
+      {impact.whatWeSupport.subtitle}
+    </p>
+    <ul class="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      {impact.whatWeSupport.items.map((item) => (
+        <li class="rounded-2xl border border-primary/10 bg-white/90 p-7 text-center shadow-sm">
+          <span
+            class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-secondary/30 font-heading text-lg font-bold text-primary"
+            aria-hidden="true"
+          >
+            ✓
+          </span>
+          <p class="font-medium leading-snug text-primary sm:text-lg">{item}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="w-full border-t border-secondary/40 bg-bg-landing px-6 py-16 sm:py-20 md:py-24">
+  <div class="mx-auto max-w-7xl">
+    <h2
+      class="text-center font-heading text-3xl font-bold text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+    >
+      {impact.whyItMatters.title}
+    </h2>
+    <blockquote
+      class="mx-auto mt-10 max-w-3xl rounded-2xl border-l-4 border-primary bg-white/85 p-8 text-center text-lg italic leading-relaxed text-primary/90 shadow-md sm:p-10 sm:text-xl md:text-2xl"
+    >
+      {impact.whyItMatters.paragraph}
+    </blockquote>
+  </div>
+</section>
+
+<section class="relative w-full overflow-hidden border-t border-secondary/40">
+  <div class="relative min-h-[22rem] w-full sm:min-h-[26rem]">
+    <Image
+      src={carouselHost}
+      alt=""
+      width={1920}
+      height={900}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-primary/70"></div>
+    <div class="relative z-10 flex min-h-[22rem] flex-col items-center justify-center px-6 py-16 text-center text-white sm:min-h-[26rem] sm:py-20 md:py-24">
+      <h2 class="max-w-4xl font-heading text-3xl font-extrabold text-secondary sm:text-4xl md:text-5xl">
+        {impact.cta.title}
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-base text-white/90 sm:text-lg md:text-xl">{impact.cta.subtitle}</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a
+          href={homeHref}
+          class="inline-flex min-h-12 items-center justify-center rounded-full bg-secondary px-8 py-3 font-heading text-sm font-bold text-primary shadow-lg transition hover:opacity-95 sm:text-base"
+        >
+          {lang === 'es' ? 'Volver a inicio' : 'Back to home'}
+        </a>
+        <a
+          href={`${homeHref}#waitlist-cta`}
+          class="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-secondary/80 bg-white/10 px-8 py-3 font-heading text-sm font-bold text-secondary backdrop-blur transition hover:bg-white/15 sm:text-base"
+        >
+          {lang === 'es' ? 'Unirme a la waitlist' : 'Join the waitlist'}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

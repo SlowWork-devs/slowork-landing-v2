@@ -1,6 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import ImpactProgramArticle from '../../components/legal/ImpactProgramArticle.astro';
+import ImpactProgramSection from '../../components/sections/ImpactProgram.astro';
 import { buildI18nAlternates } from '../../lib/hreflang';
 import { getLegalBundle } from '../../lib/legalBundle';
 import type { SupportedLang } from '../../lib/seo';
@@ -31,7 +31,7 @@ const description = impact.helmet.description;
     url: new URL(`/${lang}/impact-program/`, Astro.url.origin).href,
   }}
 >
-  <main class="mx-auto w-full max-w-6xl px-4 pb-16 pt-28 sm:px-6 md:py-24">
-    <ImpactProgramArticle impact={impact} lang={lang} />
+  <main class="w-full">
+    <ImpactProgramSection impact={impact} lang={lang} />
   </main>
 </MainLayout>
