@@ -1,28 +1,46 @@
+import type { ImageMetadata } from 'astro';
+
+import carouselCommunity from '../assets/images/carousel-community.jpg';
+import carouselHost from '../assets/images/carousel-host.jpg';
+import carouselJungle from '../assets/images/carousel-jungle.jpg';
+import globeTextureImg from '../assets/images/globe-texture.jpg';
+import homeBgVideoPoster from '../assets/images/home-bg-video-poster.jpg';
+import homeBgVideoUrl from '../assets/images/home-bg-video.mp4?url';
+import sloworkLogo from '../assets/images/slowork-logo.png';
+import whoWorker1 from '../assets/images/who-worker1.jpg';
+import whoWorker2 from '../assets/images/who-worker2.jpg';
+import whoWorker3 from '../assets/images/who-worker3.jpg';
+import whoWorker4 from '../assets/images/who-worker4.jpg';
+import whoWorker5 from '../assets/images/who-worker5.jpg';
+import whoWorker6 from '../assets/images/who-worker6.jpg';
+
 import type { SupportedLang } from './seo';
 
+/** Vídeo local + poster y texturas de marca (sin CDN en runtime). */
 export const HOME_MEDIA = {
-  videoPoster: 'https://dkhbyo7gs39kb.cloudfront.net/blog-post/bg-video-poster.jpg',
-  videoSrc: 'https://dkhbyo7gs39kb.cloudfront.net/blog-post/bg-video.mp4',
-  logoSrc: 'https://dkhbyo7gs39kb.cloudfront.net/blog-post/Slowork3.png',
-  globeTexture: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751567494/WhatsApp_Image_2025-07-03_at_20.31.10_lli9oa.jpg',
+  /** Metadatos para `<Image />` o `poster` vía `.src` */
+  videoPoster: homeBgVideoPoster,
+  videoSrc: homeBgVideoUrl,
+  logo: sloworkLogo,
+  globeTexture: globeTextureImg,
 } as const;
 
 export type CarouselSlide = {
-  src: string;
+  src: ImageMetadata;
   alt: Record<SupportedLang, string>;
 };
 
 export const HOME_CAROUSEL: CarouselSlide[] = [
   {
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568473/girlJungle_hwbzjf.jpg',
+    src: carouselJungle,
     alt: { en: 'Remote work in nature', es: 'Trabajo remoto en la naturaleza' },
   },
   {
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568474/hostUbi1_kxizuw.jpg',
+    src: carouselHost,
     alt: { en: 'Slowork host location', es: 'Ubicación Slowork Host' },
   },
   {
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568472/community1_umgqje.jpg',
+    src: carouselCommunity,
     alt: { en: 'Slowork host community', es: 'Comunidad Slowork Host' },
   },
 ];
@@ -202,7 +220,7 @@ export const HOME_JOURNEY: JourneyStep[] = [
 
 export type WhoCard = {
   id: string;
-  src: string;
+  src: ImageMetadata;
   alt: Record<SupportedLang, string>;
   title: Record<SupportedLang, string>;
   description: Record<SupportedLang, string>;
@@ -213,7 +231,7 @@ export type WhoCard = {
 export const HOME_WHO_CARDS: WhoCard[] = [
   {
     id: 'who1',
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568252/worker1_rzseep.jpg',
+    src: whoWorker1,
     alt: { en: 'Mindful seeker', es: 'Buscador consciente' },
     title: { en: 'The Mindful Seeker', es: 'El Buscador Consciente' },
     description: {
@@ -224,7 +242,7 @@ export const HOME_WHO_CARDS: WhoCard[] = [
   },
   {
     id: 'who2',
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568254/worker2_kdby8f.jpg',
+    src: whoWorker2,
     alt: { en: 'Digital nomad', es: 'Nómada digital' },
     title: { en: 'The Digital Nomad', es: 'El Nómada Digital' },
     description: {
@@ -236,7 +254,7 @@ export const HOME_WHO_CARDS: WhoCard[] = [
   },
   {
     id: 'who3',
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568255/worker3_ajfch6.jpg',
+    src: whoWorker3,
     alt: { en: 'Freedom adventurer', es: 'Aventurero libre' },
     title: { en: 'The Free Adventurer', es: 'El Aventurero Libre' },
     description: {
@@ -248,7 +266,7 @@ export const HOME_WHO_CARDS: WhoCard[] = [
   },
   {
     id: 'who4',
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568254/worker4_klsqgg.jpg',
+    src: whoWorker4,
     alt: { en: 'Remote architect', es: 'Arquitecto remoto' },
     title: { en: 'The Remote Architect', es: 'El Arquitecto Remoto' },
     description: {
@@ -260,7 +278,7 @@ export const HOME_WHO_CARDS: WhoCard[] = [
   },
   {
     id: 'who5',
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568255/worker5_k4ocyk.jpg',
+    src: whoWorker5,
     alt: { en: 'Lifelong learner', es: 'Eterno aprendiz' },
     title: { en: 'The Lifelong Learner', es: 'El eterno aprendiz' },
     description: {
@@ -272,7 +290,7 @@ export const HOME_WHO_CARDS: WhoCard[] = [
   },
   {
     id: 'who6',
-    src: 'https://res.cloudinary.com/dzoo3bb0p/image/upload/v1751568254/worker6_ewqt4n.jpg',
+    src: whoWorker6,
     alt: { en: 'Slow traveller', es: 'Viajero slow' },
     title: { en: 'The Slow Traveller', es: 'El Viajero Slow' },
     description: {
