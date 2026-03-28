@@ -10,14 +10,14 @@ import HomeWhoFor from '../../components/home/HomeWhoFor.astro';
 import HomeFinalCta from '../../components/home/HomeFinalCta.astro';
 import HomeStickyWaitlist from '../../components/home/HomeStickyWaitlist.astro';
 import HomeWaitlistModal from '../../components/home/HomeWaitlistModal.astro';
+import { buildI18nAlternates } from '../../lib/hreflang';
 
 const lang = Astro.params.lang;
 if (lang !== 'es' && lang !== 'en') {
   return Astro.redirect('/en/', 302);
 }
 
-const alternateLang = lang === 'es' ? 'en' : 'es';
-const alternateLink = `/${alternateLang}/`;
+const { alternates, headerAlternateLink } = buildI18nAlternates(Astro.url.origin, '/', lang);
 
 const title =
   lang === 'es' ? 'Slowork - Tu Comunidad de Trabajo Remoto' : 'Slowork - Your Remote Work Community';
@@ -32,11 +32,8 @@ const description =
   title={title}
   description={description}
   canonical={`/${lang}/`}
-  headerAlternateLink={alternateLink}
-  alternates={[
-    { hreflang: lang, href: Astro.url.href },
-    { hreflang: alternateLang, href: new URL(alternateLink, Astro.url.origin).href },
-  ]}
+  headerAlternateLink={headerAlternateLink}
+  alternates={alternates}
   jsonLd={{
     '@context': 'https://schema.org',
     '@type': 'WebSite',

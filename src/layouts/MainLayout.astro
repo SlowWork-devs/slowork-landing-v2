@@ -22,6 +22,7 @@ interface Props {
   canonical?: string;
   image?: ImageMetadata;
   ogType?: string;
+  /** Incluir `es`, `en` y `x-default` (español como predeterminado); ver `buildI18nAlternates`. */
   alternates?: Alternate[];
   jsonLd?: unknown;
   headerAlternateLink?: string;
@@ -61,7 +62,7 @@ const ogImageURL = new URL(image.src, Astro.url);
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
     <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site ?? Astro.url.origin)} />
 
     <meta name="generator" content={Astro.generator} />

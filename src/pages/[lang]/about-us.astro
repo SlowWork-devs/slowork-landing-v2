@@ -1,12 +1,12 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import { SITE_TITLE } from '../../consts';
+import { buildI18nAlternates } from '../../lib/hreflang';
 
 const lang = Astro.params.lang;
 if (lang !== 'es' && lang !== 'en') return Astro.redirect('/en/', 302);
 
-const alternateLang = lang === 'es' ? 'en' : 'es';
-const alternateLink = `/${alternateLang}/about-us/`;
+const { alternates, headerAlternateLink } = buildI18nAlternates(Astro.url.origin, '/about-us/', lang);
 
 const title = `${lang === 'es' ? 'Sobre nosotros' : 'About us'} | ${SITE_TITLE}`;
 const description = lang === 'es' ? 'Conoce la historia de Slowork.' : 'Learn the story behind Slowork.';
@@ -17,11 +17,8 @@ const description = lang === 'es' ? 'Conoce la historia de Slowork.' : 'Learn th
   title={title}
   description={description}
   canonical={`/${lang}/about-us/`}
-  headerAlternateLink={alternateLink}
-  alternates={[
-    { hreflang: lang, href: Astro.url.href },
-    { hreflang: alternateLang, href: new URL(alternateLink, Astro.url.origin).href },
-  ]}
+  headerAlternateLink={headerAlternateLink}
+  alternates={alternates}
   jsonLd={{
     '@context': 'https://schema.org',
     '@type': 'AboutPage',

@@ -23,14 +23,17 @@ const posts = (await getCollection('blog', ({ data }) => data.language === lang)
 
 const alternateLang = lang === 'es' ? 'en' : 'es';
 const alternateLink = `/${alternateLang}/blog/`;
+const esBlogIndex = new URL('/es/blog/', Astro.url.origin).href;
+const enBlogIndex = new URL('/en/blog/', Astro.url.origin).href;
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
 		<BaseHead title={`${SITE_TITLE} | Blog`} description={SITE_DESCRIPTION} />
-		<link rel="alternate" hreflang={lang} href={Astro.url.href} />
-		<link rel="alternate" hreflang={alternateLang} href={new URL(alternateLink, Astro.url.origin).href} />
+		<link rel="alternate" hreflang="es" href={esBlogIndex} />
+		<link rel="alternate" hreflang="en" href={enBlogIndex} />
+		<link rel="alternate" hreflang="x-default" href={esBlogIndex} />
 	</head>
 	<body class="min-w-0 overflow-x-hidden">
 		<Header language={lang} alternateLink={alternateLink} />

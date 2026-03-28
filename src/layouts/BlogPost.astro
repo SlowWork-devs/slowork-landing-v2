@@ -21,6 +21,23 @@ const alternateLink = translationSlug
   ? `/${alternateLang}/blog/${translationSlug}/`
   : `/${alternateLang}/blog/`;
 
+const esBlogPath =
+  language === "es"
+    ? Astro.url.pathname
+    : translationSlug
+      ? `/es/blog/${translationSlug}/`
+      : "/es/blog/";
+const enBlogPath =
+  language === "en"
+    ? Astro.url.pathname
+    : translationSlug
+      ? `/en/blog/${translationSlug}/`
+      : "/en/blog/";
+const esBlogHref = new URL(esBlogPath, Astro.url.origin).href;
+const enBlogHref = new URL(enBlogPath, Astro.url.origin).href;
+const xDefaultBlogHref =
+  language === "es" ? esBlogHref : translationSlug ? esBlogHref : enBlogHref;
+
 const optimizedHeroImage = localImage 
   ? await getImage({ src: localImage, width: 1020, height: 510, format: 'webp' }) 
   : null;
@@ -32,8 +49,9 @@ const optimizedHeroImage = localImage
   description={excerpt || ""}
   headerAlternateLink={alternateLink}
   alternates={[
-    { hreflang: language, href: Astro.url.href },
-    { hreflang: alternateLang, href: new URL(alternateLink, Astro.url.origin).href },
+    { hreflang: "es", href: esBlogHref },
+    { hreflang: "en", href: enBlogHref },
+    { hreflang: "x-default", href: xDefaultBlogHref },
   ]}
 >
   <Fragment slot="head">
