@@ -1,6 +1,6 @@
 ---
-import type { SupportedLang } from '../../lib/seo';
-import { waitlistFormCopy } from '../../lib/homeContent';
+import type { SupportedLang } from '@/lib/seo';
+import { waitlistFormCopy } from '@/lib/homeContent';
 
 interface Props {
   lang: SupportedLang;
@@ -29,10 +29,12 @@ const formPanelClass =
     ? 'relative z-10 flex flex-col justify-center bg-light-green p-6 sm:p-8 lg:rounded-r-lg'
     : 'relative z-10 flex flex-col justify-center';
 
+/** Fondo del overlay de éxito: mismo tono que el panel del formulario (full) o blanco (modal). */
+const successOverlayBg = layout === 'full' ? 'bg-light-green' : 'bg-white';
+
 const floatInput = `peer block w-full rounded-lg border-2 border-primary/80 bg-white/95 px-3 pb-2.5 pt-5 text-base text-primary shadow-sm transition placeholder:text-transparent focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${ringOffset}`;
-const floatLabel =
-  'pointer-events-none absolute left-3 top-1/2 z-10 origin-left -translate-y-1/2 text-base text-primary/55 transition-all duration-200 ease-out peer-focus:top-2 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary/55';
-const floatLabelIcon = `${floatLabel} left-10`;
+const floatLabel = 'waitlist-float-label';
+const floatLabelIcon = 'waitlist-float-label waitlist-float-label--icon';
 const errText =
   'mt-1.5 min-h-[1.125rem] text-xs font-medium text-red-600 opacity-0 transition-opacity duration-200 ease-out data-[visible=true]:opacity-100';
 ---
@@ -43,6 +45,7 @@ const errText =
   data-waitlist-sending={c.sending}
   data-waitlist-success={c.success}
   data-waitlist-error={c.error}
+  data-waitlist-send-failed={c.sendFailed}
   data-waitlist-button={c.button}
   data-waitlist-validation={JSON.stringify(c.validation)}
   data-success-inside-before={c.successInsideBefore}
@@ -67,22 +70,22 @@ const errText =
     }
 
     <div class={formPanelClass}>
-      <div class="relative z-10 min-h-[min(60vh,520px)] w-full">
+      <div class="relative isolate z-0 min-h-[min(60vh,520px)] w-full">
         <div
-          class="transition-opacity duration-300 ease-out data-[state=hidden]:pointer-events-none data-[state=hidden]:invisible data-[state=hidden]:opacity-0"
+          class="relative z-10 transition-opacity duration-300 ease-out data-[state=hidden]:pointer-events-none data-[state=hidden]:invisible data-[state=hidden]:opacity-0"
           data-waitlist-form-panel
           data-state="visible"
         >
-          <form class="flex h-full flex-col gap-8" data-waitlist-form novalidate>
+          <form class="flex h-full flex-col gap-10" data-waitlist-form novalidate>
             <h2 class="text-center font-heading text-2xl font-bold text-primary">
               {c.formTitle}
             </h2>
 
-            <section class="space-y-5" aria-labelledby={`wl-sec-personal-${suffix}`}>
+            <section class="space-y-6" aria-labelledby={`wl-sec-personal-${suffix}`}>
               <h3 id={`wl-sec-personal-${suffix}`} class="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">
                 {c.sectionPersonal}
               </h3>
-              <div class="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-2">
+              <div class="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2">
                 <div class="flex flex-col">
                   <div class="relative">
                     <input
@@ -134,7 +137,7 @@ const errText =
                   />
                 </div>
               </div>
-              <div class="flex flex-col">
+              <div class="mb-6 flex flex-col">
                 <div class="relative">
                   <input
                     id={`wl-ph-${suffix}`}
@@ -161,11 +164,11 @@ const errText =
               </div>
             </section>
 
-            <section class="space-y-5" aria-labelledby={`wl-sec-social-${suffix}`}>
+            <section class="space-y-6" aria-labelledby={`wl-sec-social-${suffix}`}>
               <h3 id={`wl-sec-social-${suffix}`} class="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">
                 {c.sectionSocial}
               </h3>
-              <div class="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-2">
+              <div class="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2">
                 <div class="flex flex-col">
                   <div class="group/fi relative">
                     <span
@@ -242,66 +245,68 @@ const errText =
               </div>
             </section>
 
-            <section class="space-y-5" aria-labelledby={`wl-sec-pref-${suffix}`}>
+            <section class="space-y-6" aria-labelledby={`wl-sec-pref-${suffix}`}>
               <h3 id={`wl-sec-pref-${suffix}`} class="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">
                 {c.sectionPreferences}
               </h3>
-              <div class="flex flex-col">
-                <div class="relative">
-                  <select
-                    id={`wl-pref-${suffix}`}
-                    name="preferredContact"
-                    required
-                    data-waitlist-field="preferredContact"
-                    class={`${floatInput} appearance-none pt-6 pr-10 ${ringOffset}`}
-                    style={selectChevronStyle}
-                    aria-invalid="false"
-                  >
-                    <option value="">{c.selectDefault}</option>
-                    <option value="Sloworker">{c.optSloworker}</option>
-                    <option value="Host">{c.optHost}</option>
-                    <option value="Bussines">{c.optBusiness}</option>
-                  </select>
-                  <label for={`wl-pref-${suffix}`} class="pointer-events-none absolute left-3 top-2 z-10 text-xs font-medium text-primary/70">
-                    {c.preferredContact}
-                    <span class="text-red-500">*</span>
-                  </label>
-                </div>
-                <p
-                  id={`wl-err-preferredContact-${suffix}`}
-                  role="alert"
-                  class={errText}
-                  data-waitlist-err="preferredContact"
-                  data-visible="false"
-                />
-              </div>
-              <div class="flex flex-col">
-                <div class="relative">
-                  <textarea
-                    id={`wl-com-${suffix}`}
-                    name="communityInterest"
-                    rows={3}
-                    placeholder=" "
-                    data-waitlist-field="communityInterest"
-                    class={`${floatInput} min-h-24 resize-y`}
-                    aria-invalid="false"
+              <div class="flex flex-col space-y-6">
+                <div class="flex flex-col">
+                  <div class="relative">
+                    <select
+                      id={`wl-pref-${suffix}`}
+                      name="preferredContact"
+                      required
+                      data-waitlist-field="preferredContact"
+                      class={`${floatInput} appearance-none pt-6 pr-10 ${ringOffset}`}
+                      style={selectChevronStyle}
+                      aria-invalid="false"
+                    >
+                      <option value="">{c.selectDefault}</option>
+                      <option value="Sloworker">{c.optSloworker}</option>
+                      <option value="Host">{c.optHost}</option>
+                      <option value="Bussines">{c.optBusiness}</option>
+                    </select>
+                    <label for={`wl-pref-${suffix}`} class="pointer-events-none absolute left-3 top-2 z-10 text-xs font-medium text-primary/70">
+                      {c.preferredContact}
+                      <span class="text-red-500">*</span>
+                    </label>
+                  </div>
+                  <p
+                    id={`wl-err-preferredContact-${suffix}`}
+                    role="alert"
+                    class={errText}
+                    data-waitlist-err="preferredContact"
+                    data-visible="false"
                   />
-                  <label for={`wl-com-${suffix}`} class={floatLabel}>
-                    {c.communityInterest}
-                    <span class="text-red-500">*</span>
-                  </label>
                 </div>
-                <p
-                  id={`wl-err-communityInterest-${suffix}`}
-                  role="alert"
-                  class={errText}
-                  data-waitlist-err="communityInterest"
-                  data-visible="false"
-                />
+                <div class="flex flex-col">
+                  <div class="relative">
+                    <textarea
+                      id={`wl-com-${suffix}`}
+                      name="communityInterest"
+                      rows={3}
+                      placeholder=" "
+                      data-waitlist-field="communityInterest"
+                      class={`${floatInput} min-h-24 resize-y`}
+                      aria-invalid="false"
+                    />
+                    <label for={`wl-com-${suffix}`} class={floatLabel}>
+                      {c.communityInterest}
+                      <span class="text-red-500">*</span>
+                    </label>
+                  </div>
+                  <p
+                    id={`wl-err-communityInterest-${suffix}`}
+                    role="alert"
+                    class={errText}
+                    data-waitlist-err="communityInterest"
+                    data-visible="false"
+                  />
+                </div>
               </div>
             </section>
 
-            <div class="flex flex-col gap-2">
+            <div class="mb-6 flex flex-col gap-2">
               <div class="flex items-start gap-3">
                 <input
                   id={`waitlist-terms-${layout}-${lang}`}
@@ -367,13 +372,13 @@ const errText =
         </div>
 
         <div
-          class="absolute inset-0 flex flex-col items-center justify-center gap-6 px-2 text-center opacity-0 pointer-events-none transition-opacity duration-300 ease-out data-[state=visible]:pointer-events-auto data-[state=visible]:opacity-100"
+          class={`absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 px-4 py-6 text-center opacity-0 pointer-events-none transition-opacity duration-300 ease-out data-[state=visible]:pointer-events-auto data-[state=visible]:opacity-100 ${successOverlayBg}`}
           data-waitlist-success-panel
           data-state="hidden"
           aria-hidden="true"
         >
           <div
-            class="w-full max-w-md rounded-2xl border border-primary/15 bg-white/95 px-6 py-8 shadow-lg"
+            class="w-full max-w-md rounded-2xl border border-primary/15 bg-white px-6 py-8 shadow-xl"
             role="status"
             aria-live="polite"
           >
@@ -407,8 +412,8 @@ const errText =
     createWaitlistFormSchema,
     createWaitlistFormFieldSchemas,
     WAITLIST_FORM_FIELD_NAMES,
-  } from '../../models/waitlist';
-  import type { WaitlistFormFieldName } from '../../models/waitlist';
+  } from '@/models/waitlist';
+  import type { WaitlistFormFieldName } from '@/models/waitlist';
 
   type ValidationMsgs = {
     emailRequired: string;
@@ -433,7 +438,8 @@ const errText =
 
   const parseErrorMessage = async (res: Response): Promise<string | null> => {
     const body = (await res.json().catch(() => null)) as { message?: string } | null;
-    return body?.message ?? null;
+    const msg = body?.message?.trim();
+    return msg && msg.length > 0 ? msg : null;
   };
 
   const isWaitlistFieldName = (v: string): v is WaitlistFormFieldName =>
@@ -466,6 +472,7 @@ const errText =
 
     const sending = root.dataset.waitlistSending ?? '';
     const errorMsg = root.dataset.waitlistError ?? '';
+    const sendFailedMsg = root.dataset.waitlistSendFailed ?? errorMsg;
     const defaultBtn = root.dataset.waitlistButton ?? '';
     const lang = root.dataset.lang === 'es' ? 'es' : 'en';
 
@@ -628,15 +635,15 @@ const errText =
       statusEl.textContent = '';
       setSubmitVisual('sending');
 
-      const res = await fetch('/api/waitlist', {
+      const res = await fetch('/api/waitlist/', {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(apiReady.data),
       }).catch(() => null);
 
       if (res === null) {
         statusEl.dataset.status = 'error';
-        statusEl.textContent = errorMsg;
+        statusEl.textContent = sendFailedMsg;
         setSubmitVisual('idle');
         return;
       }
@@ -644,14 +651,14 @@ const errText =
       if (!res.ok) {
         const serverMessage = await parseErrorMessage(res);
         statusEl.dataset.status = 'error';
-        statusEl.textContent = serverMessage ?? errorMsg;
+        statusEl.textContent = serverMessage ?? sendFailedMsg;
         setSubmitVisual('idle');
         return;
       }
 
-      void fetch('/api/welcome', {
+      void fetch('/api/welcome/', {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: parsed.data.firstName,
           email: parsed.data.email,
