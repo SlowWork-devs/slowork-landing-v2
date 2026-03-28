@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.0",
+    "@astrojs/partytown": "^2.1.6",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/vercel": "^10.0.2",
     "@fontsource/poppins": "^5.2.7",

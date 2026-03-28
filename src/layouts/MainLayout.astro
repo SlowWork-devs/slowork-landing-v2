@@ -49,6 +49,9 @@ const canonicalURL = canonical
   : new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 
 const ogImageURL = new URL(image.src, Astro.url);
+
+const gaId = import.meta.env.PUBLIC_GA_ID?.trim() ?? '';
+const gaEnabled = gaId.length > 0;
 ---
 
 <!doctype html>
@@ -93,6 +96,23 @@ const ogImageURL = new URL(image.src, Astro.url);
 
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    {gaEnabled && (
+      <>
+        <script
+          type="text/partytown"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+        />
+        <script type="text/partytown" define:vars={{ gaId }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function gtag() {
+            dataLayer.push(arguments);
+          };
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
     )}
 
     <slot name="head" />
