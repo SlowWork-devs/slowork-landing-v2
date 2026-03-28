@@ -84,77 +84,83 @@ const ft = homeFeaturesTitle(lang);
     const elDots = dotsEl;
     const cards = () => elTrack.querySelectorAll('.feature-card').length;
     const cardsVisible = () => (window.matchMedia('(min-width: 768px)').matches ? 3 : 1);
-    let idx = 0;
-    let drag = false;
-    let startX = 0;
+    const state = { idx: 0, drag: false, startX: 0 };
+    const timers: { auto: number | undefined } = { auto: undefined };
 
-    function maxIdx() {
-      return Math.max(0, cards() - cardsVisible());
-    }
+    const maxIdx = () => Math.max(0, cards() - cardsVisible());
 
-    function renderDots() {
+    const renderDots = () => {
       const n = maxIdx() + 1;
       elDots.innerHTML = '';
-      for (let i = 0; i < n; i++) {
+      Array.from({ length: n }, (_, i) => i).forEach((i) => {
         const b = document.createElement('button');
         b.type = 'button';
-        b.className = `feature-dot h-2.5 w-2.5 rounded-full transition-all md:h-3 md:w-3 ${i === idx ? 'scale-110 bg-secondary' : 'bg-white/40 hover:bg-white/60'}`;
+        b.className = `feature-dot h-2.5 w-2.5 rounded-full transition-all md:h-3 md:w-3 ${i === state.idx ? 'scale-110 bg-secondary' : 'bg-white/40 hover:bg-white/60'}`;
         b.dataset.idx = String(i);
         b.addEventListener('click', () => {
-          idx = i;
+          state.idx = i;
           apply();
         });
         elDots.appendChild(b);
-      }
-    }
+      });
+    };
 
-    function apply() {
-      idx = Math.min(Math.max(0, idx), maxIdx());
+    const apply = () => {
+      state.idx = Math.min(Math.max(0, state.idx), maxIdx());
       const first = elTrack.querySelector('.feature-card');
       if (first instanceof HTMLElement) {
         const gap = parseFloat(getComputedStyle(elTrack).columnGap || getComputedStyle(elTrack).gap) || 16;
         const w = first.offsetWidth;
-        elTrack.style.transform = `translateX(-${idx * (w + gap)}px)`;
+        elTrack.style.transform = `translateX(-${state.idx * (w + gap)}px)`;
       }
       renderDots();
-    }
+    };
 
-    function nextSlide() {
-      idx = idx >= maxIdx() ? 0 : idx + 1;
+    const nextSlide = () => {
+      state.idx = state.idx >= maxIdx() ? 0 : state.idx + 1;
       apply();
-    }
+    };
 
-    function prevSlide() {
-      idx = idx <= 0 ? maxIdx() : idx - 1;
+    const prevSlide = () => {
+      state.idx = state.idx <= 0 ? maxIdx() : state.idx - 1;
       apply();
-    }
+    };
+
+    const startAuto = () => {
+      timers.auto = window.setInterval(nextSlide, 3500);
+    };
+
+    const stopAuto = () => {
+      if (timers.auto !== undefined) clearInterval(timers.auto);
+      timers.auto = undefined;
+    };
 
     prev.addEventListener('click', prevSlide);
     next.addEventListener('click', nextSlide);
     window.addEventListener('resize', () => {
-      idx = Math.min(idx, maxIdx());
+      state.idx = Math.min(state.idx, maxIdx());
       apply();
     });
 
     wrap.addEventListener('mousedown', (e) => {
-      drag = true;
-      startX = e.clientX;
+      state.drag = true;
+      state.startX = e.clientX;
     });
     window.addEventListener('mouseup', (e) => {
-      if (!drag) return;
-      drag = false;
-      const d = startX - e.clientX;
-      if (Math.abs(d) > 50) d > 0 ? nextSlide() : prevSlide();
+      if (!state.drag) return;
+      state.drag = false;
+      const d = state.startX - e.clientX;
+      if (Math.abs(d) > 50) (d > 0 ? nextSlide : prevSlide)();
     });
     wrap.addEventListener('mouseleave', () => {
-      drag = false;
+      state.drag = false;
     });
 
-    let auto = window.setInterval(nextSlide, 3500);
-    wrap.addEventListener('mouseenter', () => clearInterval(auto));
+    startAuto();
+    wrap.addEventListener('mouseenter', stopAuto);
     wrap.addEventListener('mouseleave', () => {
-      clearInterval(auto);
-      auto = window.setInterval(nextSlide, 3500);
+      stopAuto();
+      startAuto();
     });
 
     apply();

@@ -110,24 +110,23 @@ const copy = homeValueCopy(lang);
     const slides = () => Array.from(track.querySelectorAll('[data-carousel-idx]'));
     const dots = () => Array.from(document.querySelectorAll('.carousel-dot'));
 
-    let idx = 0;
-    let dragging = false;
-    let startX = 0;
+    const state = { idx: 0, dragging: false, startX: 0 };
+    const timers: { auto: number | undefined } = { auto: undefined };
 
     const apply = () => {
       const s = slides();
       if (!s.length) return;
       const n = s.length;
-      idx = ((idx % n) + n) % n;
+      state.idx = ((state.idx % n) + n) % n;
       s.forEach((el, i) => {
-        const on = i === idx;
+        const on = i === state.idx;
         el.classList.toggle('opacity-100', on);
         el.classList.toggle('z-[1]', on);
         el.classList.toggle('opacity-0', !on);
         el.classList.toggle('z-0', !on);
       });
       dots().forEach((d, i) => {
-        const on = i === idx;
+        const on = i === state.idx;
         d.classList.toggle('bg-primary', on);
         d.classList.toggle('scale-110', on);
         d.classList.toggle('bg-primary/35', !on);
@@ -135,47 +134,52 @@ const copy = homeValueCopy(lang);
       });
     };
 
+    const startAuto = () => {
+      timers.auto = window.setInterval(() => {
+        state.idx += 1;
+        apply();
+      }, 4500);
+    };
+
+    const stopAuto = () => {
+      if (timers.auto !== undefined) clearInterval(timers.auto);
+      timers.auto = undefined;
+    };
+
     document.getElementById('carousel-prev')?.addEventListener('click', () => {
-      idx -= 1;
+      state.idx -= 1;
       apply();
     });
     document.getElementById('carousel-next')?.addEventListener('click', () => {
-      idx += 1;
+      state.idx += 1;
       apply();
     });
     dots().forEach((d) =>
       d.addEventListener('click', () => {
-        idx = Number(d.getAttribute('data-idx') || 0);
+        state.idx = Number((d as HTMLElement).dataset.idx ?? d.getAttribute('data-idx') ?? 0);
         apply();
       }),
     );
 
     track.addEventListener('mousedown', (e) => {
-      dragging = true;
-      startX = e.clientX;
+      state.dragging = true;
+      state.startX = e.clientX;
     });
     window.addEventListener('mouseup', (e) => {
-      if (!dragging) return;
-      dragging = false;
-      const d = startX - e.clientX;
+      if (!state.dragging) return;
+      state.dragging = false;
+      const d = state.startX - e.clientX;
       if (Math.abs(d) > 50) {
-        if (d > 0) idx += 1;
-        else idx -= 1;
+        state.idx += d > 0 ? 1 : -1;
         apply();
       }
     });
 
-    let auto = window.setInterval(() => {
-      idx += 1;
-      apply();
-    }, 4500);
-    track.addEventListener('mouseenter', () => clearInterval(auto));
+    startAuto();
+    track.addEventListener('mouseenter', stopAuto);
     track.addEventListener('mouseleave', () => {
-      clearInterval(auto);
-      auto = window.setInterval(() => {
-        idx += 1;
-        apply();
-      }, 4500);
+      stopAuto();
+      startAuto();
     });
 
     apply();
