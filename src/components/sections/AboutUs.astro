@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import aboutPhoto from '../../assets/images/slowork-aboutus.jpeg';
-import type { AboutPageContent } from '../../models/about';
+import aboutPhoto from '@/assets/images/slowork-aboutus.jpeg';
+import type { AboutPageContent } from '@/models/about';
 
 interface Props {
   content: AboutPageContent;
@@ -11,62 +11,57 @@ const { content } = Astro.props;
 ---
 
 <section
-  class="w-full bg-gradient-to-br from-bg-landing via-light-green/25 to-bg-landing px-6 pb-16 pt-28 md:pb-24 md:pt-32"
+  class="w-full bg-gradient-to-br from-bg-landing via-light-green/25 to-bg-landing pb-16 pt-28 md:pb-24 md:pt-32"
   aria-labelledby="about-heading"
 >
-  <div class="mx-auto flex max-w-7xl flex-col gap-12 lg:grid lg:grid-cols-2 lg:gap-16">
-    <header
-      class="home-reveal order-1 space-y-6 lg:col-start-2 lg:row-start-1"
-      data-home-reveal
-    >
-      <h1
-        id="about-heading"
-        class="font-heading text-4xl font-bold tracking-tight text-primary md:text-5xl lg:text-6xl"
-      >
-        {content.title}
-      </h1>
-      <p class="flex flex-wrap gap-x-2 gap-y-1 font-heading text-2xl font-bold text-primary md:text-3xl lg:text-4xl">
-        {content.taglineWords.map((word) => (
-          <span>{word}</span>
-        ))}
-      </p>
-      <p class="text-lg italic leading-relaxed text-primary/85 md:text-xl">
-        {content.leadIn}
-      </p>
-    </header>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <figure class="home-reveal order-2 w-full lg:order-1" data-home-reveal>
+        <Image
+          src={aboutPhoto}
+          alt={content.imageAlt}
+          width={960}
+          height={1200}
+          loading="lazy"
+          class="h-auto w-full rounded-3xl border border-primary/10 object-cover shadow-xl shadow-primary/15"
+          decoding="async"
+        />
+      </figure>
 
-    <figure
-      class="home-reveal order-2 overflow-hidden lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:self-start"
-      data-home-reveal
-    >
-      <Image
-        src={aboutPhoto}
-        alt={content.imageAlt}
-        width={960}
-        height={1200}
-        loading="lazy"
-        class="h-auto w-full rounded-3xl border border-primary/10 object-cover shadow-xl shadow-primary/15"
-        decoding="async"
-      />
-    </figure>
+      <div class="home-reveal order-1 space-y-8 px-6 lg:order-2 lg:px-0" data-home-reveal>
+        <header class="space-y-6">
+          <h1
+            id="about-heading"
+            class="font-heading text-4xl font-bold tracking-tight text-primary md:text-5xl lg:text-6xl"
+          >
+            {content.title}
+          </h1>
+          <p class="flex flex-wrap gap-x-2 gap-y-1 font-heading text-2xl font-bold text-primary md:text-3xl lg:text-4xl">
+            {content.taglineWords.map((word) => (
+              <span>{word}</span>
+            ))}
+          </p>
+          <p class="text-lg italic leading-relaxed text-primary/85 md:text-xl">
+            {content.leadIn}
+          </p>
+        </header>
 
-    <div
-      class="home-reveal order-3 space-y-6 text-primary/90 lg:col-start-2 lg:row-start-2"
-      data-home-reveal
-    >
-      <p class="text-lg leading-relaxed">{content.paragraph1}</p>
-      <p class="text-lg leading-relaxed">{content.paragraph2}</p>
-      <p class="text-lg leading-relaxed">{content.paragraph3}</p>
-      <p class="text-lg leading-relaxed">{content.paragraph4}</p>
-      <p class="text-center text-xl font-medium leading-relaxed text-primary md:text-2xl">
-        {content.paragraph5}
-      </p>
-      <p class="text-center font-heading text-2xl font-semibold text-primary md:text-3xl">
-        {content.paragraph6}
-      </p>
-      <p class="text-center text-lg italic leading-relaxed text-primary/75">
-        &ldquo;{content.quote}&rdquo;
-      </p>
+        <div class="space-y-6 text-primary/90">
+          <p class="text-lg leading-relaxed">{content.paragraph1}</p>
+          <p class="text-lg leading-relaxed">{content.paragraph2}</p>
+          <p class="text-lg leading-relaxed">{content.paragraph3}</p>
+          <p class="text-lg leading-relaxed">{content.paragraph4}</p>
+          <p class="text-center text-xl font-medium leading-relaxed text-primary md:text-2xl">
+            {content.paragraph5}
+          </p>
+          <p class="text-center font-heading text-2xl font-semibold text-primary md:text-3xl">
+            {content.paragraph6}
+          </p>
+          <p class="text-center text-lg italic leading-relaxed text-primary/75">
+            &ldquo;{content.quote}&rdquo;
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

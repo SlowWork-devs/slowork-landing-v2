@@ -7,6 +7,9 @@
 
 @import "tailwindcss";
 
+/** Escaneo explícito: Astro + TS + MDX bajo `src/` (Tailwind 4 + Vite). */
+@source "../**/*.{astro,html,js,ts,tsx,md,mdx}";
+
 @theme {
   /* --- Colores SloWork --- */
   --color-primary: #013333;
@@ -34,6 +37,9 @@
     @apply text-primary antialiased;
     margin: 0;
     padding: 0;
+    /* iOS / notch: evita que el contenido quede bajo el borde físico sin romper heroes full-bleed */
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
   }
 
   /* --- Configuración de Lectura (Prose) --- */
@@ -274,5 +280,42 @@
 
   body[data-menu-open="true"] #mobile-drawer {
     pointer-events: auto;
+  }
+
+  /**
+   * Waitlist: etiquetas flotantes. `peer-placeholder-shown` con el mismo peso que
+   * `peer-focus` dejaba la etiqueta centrada al enfocar un campo vacío. Flotamos con
+   * :focus o :not(:placeholder-shown) (inputs / textarea con placeholder=" ").
+   */
+  .waitlist-form-root label.waitlist-float-label {
+    pointer-events: none;
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    z-index: 10;
+    transform-origin: left center;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+    transition-property: top, transform, font-size, color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .waitlist-form-root label.waitlist-float-label--icon {
+    left: 2.5rem;
+  }
+
+  .waitlist-form-root .peer:focus ~ label.waitlist-float-label,
+  .waitlist-form-root .peer:focus ~ label.waitlist-float-label--icon,
+  .waitlist-form-root .peer:not(:placeholder-shown) ~ label.waitlist-float-label,
+  .waitlist-form-root .peer:not(:placeholder-shown) ~ label.waitlist-float-label--icon {
+    top: 0.5rem;
+    transform: translateY(0);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    color: var(--color-primary);
   }
 }
