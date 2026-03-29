@@ -7,18 +7,39 @@ interface Props {
 
 const { lang } = Astro.props;
 const label = lang === 'es' ? 'Únete a la lista' : 'Join the waitlist!';
+const labelShort = lang === 'es' ? 'Lista' : 'Waitlist';
 ---
 
 <div
-  class="fixed bottom-6 right-4 z-[60] md:bottom-8 md:right-6 lg:bottom-10 lg:right-8"
+  class="fixed bottom-6 right-4 z-60 md:bottom-8 md:right-6 lg:bottom-10 lg:right-8"
   aria-hidden="false"
 >
   <button
     type="button"
     data-open-waitlist
-    class="waitlist-landing-hook btn btn-waitlist-floating flex gap-2"
+    class="waitlist-landing-hook btn btn-waitlist-floating flex max-md:h-14 max-md:min-h-14 max-md:items-center max-md:justify-center max-md:gap-1.5 max-md:px-3.5 max-md:py-0 max-md:text-xs md:gap-2 md:px-5 md:py-3"
   >
-    <span class="text-lg leading-none">╰(*°▽°*)╯</span>
-    {label}
+    <!-- Móvil: icono lista/espera + etiqueta corta; nombre accesible completo -->
+    <span class="flex items-center gap-1.5 md:hidden">
+      <svg
+        class="size-6 shrink-0"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+      </svg>
+      <span class="sr-only">{label}</span>
+      <span class="font-bold leading-tight" aria-hidden="true">{labelShort}</span>
+    </span>
+    <!-- Tablet/desktop: kaomoji + copy completo -->
+    <span class="hidden items-center gap-2 md:flex">
+      <span class="text-lg leading-none" aria-hidden="true">╰(*°▽°*)╯</span>
+      {label}
+    </span>
   </button>
 </div>
