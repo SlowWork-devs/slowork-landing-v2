@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { SupportedLang } from '@/lib/seo';
-import { HOME_JOURNEY, HOME_MEDIA, homeJourneyTitleParts, homeFinalCtaCopy } from '@/lib/homeContent';
+import { HOME_JOURNEY, HOME_MEDIA, homeJourneyTitleParts } from '@/lib/homeContent';
 import HomeIcon from '@/components/home/HomeIcon.astro';
 
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const titleParts = homeJourneyTitleParts(lang);
-const ctaCopy = homeFinalCtaCopy(lang);
 ---
 
 <section class="journey-section relative -mt-8 overflow-hidden rounded-t-[5rem] bg-linear-to-t from-bg-landing via-primary/85 to-bg-landing py-16 pb-24">
@@ -116,23 +115,6 @@ const ctaCopy = homeFinalCtaCopy(lang);
             ),
           )
         }
-      </div>
-
-      <!-- CTA waitlist al final de la línea del viaje -->
-      <div
-        class="home-reveal journey-from-bottom relative z-10 mt-14 flex flex-col items-center gap-4"
-        data-home-reveal
-        data-reveal-delay="200"
-      >
-        <div class="h-10 w-px bg-linear-to-b from-soft-blue to-secondary opacity-70" aria-hidden="true"></div>
-        <button
-          type="button"
-          data-open-waitlist
-          class="waitlist-landing-hook inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-secondary px-8 py-3.5 text-lg font-bold text-primary shadow-xl transition hover:opacity-95 active:scale-[0.98] touch-manipulation"
-        >
-          {ctaCopy.waitlist}
-        </button>
-        <p class="text-sm text-white/65">{ctaCopy.subtitle}</p>
       </div>
     </div>
   </div>

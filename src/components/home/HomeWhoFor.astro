@@ -11,10 +11,12 @@ const { lang } = Astro.props;
 const title = homeWhoTitleParts(lang);
 ---
 
-<section
-  class="relative -mt-6 rounded-t-[20px] bg-gradient-to-b from-bg-landing via-light-green/40 to-primary py-16 pb-24"
->
-  <div class="mx-auto max-w-7xl px-4 md:px-8">
+<section class="relative z-10 -mt-6 overflow-hidden rounded-t-[20px] py-16 pb-24">
+  <div
+    class="who-for-media-fade absolute inset-0 z-0 bg-gradient-to-b from-bg-landing via-light-green/40 to-primary"
+    aria-hidden="true"
+  ></div>
+  <div class="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
     <h2 class="mb-14 pt-6 text-center font-heading text-3xl font-bold text-secondary md:mb-20 md:text-5xl">
       {title.before}<span class="text-soft-blue">{title.highlight}</span>{title.after}
     </h2>
@@ -87,3 +89,14 @@ const title = homeWhoTitleParts(lang);
     </div>
   </div>
 </section>
+
+<style>
+  .who-for-media-fade {
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+  }
+</style>

@@ -1,4 +1,5 @@
 ---
+import Button from '@/components/ui/Button.astro';
 import type { SupportedLang } from '@/lib/seo';
 import { homeFinalCtaCopy } from '@/lib/homeContent';
 
@@ -12,7 +13,7 @@ const copy = homeFinalCtaCopy(lang);
 
 <section
   id="waitlist-cta"
-  class="relative -mt-12 overflow-hidden rounded-t-[40px] bg-gradient-to-bl from-bg-landing to-secondary/80 py-14 md:py-20"
+  class="home-final-cta-bleed relative z-0 -mt-20 max-sm:-mt-16 rounded-t-[40px] border-t border-white/20 py-14 md:py-20"
 >
   <div
     class="home-reveal reveal-depth mx-auto max-w-4xl px-4 text-center"
@@ -21,17 +22,29 @@ const copy = homeFinalCtaCopy(lang);
     <h2 class="font-heading text-3xl font-bold text-primary md:text-5xl">
       {copy.title}
     </h2>
-    <p class="mt-6 font-heading text-xl font-semibold text-soft-blue md:text-3xl">
-      {copy.subtitle}
-    </p>
     <div class="mt-10 flex justify-center">
-      <button
+      <Button
+        variant="primary"
         type="button"
-        data-open-waitlist
-        class="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-8 py-3.5 font-bold text-white shadow-xl transition hover:opacity-95 active:scale-[0.98] md:min-h-14 md:px-10 md:text-lg"
+        openWaitlist
+        class="px-8 py-3.5 shadow-xl md:min-h-14 md:px-10 md:text-lg"
       >
         {copy.waitlist}
-      </button>
+      </Button>
     </div>
   </div>
 </section>
+
+<style>
+  /* Cristal + tinte oklab (primary / landing / secondary) alineado con la sección anterior. */
+  .home-final-cta-bleed {
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    background-image: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-primary) 14%, white 86% / 0.78) 0%,
+      color-mix(in oklab, var(--color-bg-landing) 62%, var(--color-secondary) 38% / 0.9) 46%,
+      color-mix(in oklab, var(--color-bg-landing) 40%, var(--color-secondary) 60%) 100%
+    );
+  }
+</style>
