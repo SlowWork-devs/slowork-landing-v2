@@ -1,0 +1,55 @@
+---
+export type ButtonVariant = 'primary' | 'secondary' | 'glass';
+
+export interface Props {
+  variant?: ButtonVariant;
+  /** Si está definido, se renderiza como enlace */
+  href?: string;
+  /** Muestra flecha con animación en hover */
+  showArrow?: boolean;
+  class?: string;
+  type?: 'button' | 'submit';
+  /** Atributo para abrir el modal global de waitlist (MainLayout) */
+  openWaitlist?: boolean;
+}
+
+const {
+  variant = 'primary',
+  href,
+  showArrow = false,
+  class: userClass = '',
+  type = 'button',
+  openWaitlist = false,
+} = Astro.props;
+
+const variantClass =
+  variant === 'primary' ? 'btn-primary' : variant === 'secondary' ? 'btn-secondary' : 'btn-glass';
+
+const classes = ['btn', variantClass, userClass].filter(Boolean).join(' ');
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+      {showArrow ? (
+        <span class="btn-icon-arrow" aria-hidden="true">
+          →
+        </span>
+      ) : null}
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={classes}
+      data-open-waitlist={openWaitlist ? true : undefined}
+    >
+      <slot />
+      {showArrow ? (
+        <span class="btn-icon-arrow" aria-hidden="true">
+          →
+        </span>
+      ) : null}
+    </button>
+  )
+}

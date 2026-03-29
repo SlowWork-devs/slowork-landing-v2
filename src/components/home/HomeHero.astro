@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Button from '@/components/ui/Button.astro';
 import type { SupportedLang } from '@/lib/seo';
 import { HOME_MEDIA, homeHeroCopy } from '@/lib/homeContent';
 
@@ -63,19 +64,17 @@ const blogHref = `/${lang}/blog/`;
     <p class="mt-2 max-w-2xl px-2 text-base text-secondary md:mt-4 md:text-2xl">{copy.desc2}</p>
 
     <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-      <button
+      <Button
+        variant="primary"
         type="button"
-        data-open-waitlist
-        class="waitlist-landing-hook inline-flex min-h-12 items-center justify-center rounded-full bg-secondary px-7 py-3 text-center font-bold text-primary shadow-lg transition hover:opacity-95 active:scale-[0.98] touch-manipulation"
+        openWaitlist
+        class="waitlist-landing-hook text-center"
       >
         {copy.ctaWaitlist}
-      </button>
-      <a
-        href={blogHref}
-        class="inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 bg-white/10 px-7 py-3 font-bold text-white backdrop-blur transition hover:bg-white/15"
-      >
+      </Button>
+      <Button variant="glass" href={blogHref} class="text-center font-bold">
         {copy.ctaBlog}
-      </a>
+      </Button>
     </div>
     <p class="mt-4 max-w-2xl px-4 text-sm italic text-white/80 md:text-sm">{copy.italic}</p>
   </div>

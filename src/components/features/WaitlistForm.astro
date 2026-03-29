@@ -489,6 +489,8 @@ const errText =
       submitBtn.disabled = state === 'sending';
       submitLabel.textContent = state === 'sending' ? sending : defaultBtn;
       spinner?.classList.toggle('hidden', state !== 'sending');
+      if (state === 'sending') document.body.dataset.waitlistFormStatus = 'sending';
+      else delete document.body.dataset.waitlistFormStatus;
     };
 
     const setFieldA11y = (el: HTMLElement, invalid: boolean, errId: string | null) => {
