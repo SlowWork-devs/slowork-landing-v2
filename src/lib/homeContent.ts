@@ -7,6 +7,7 @@ import globeTextureImg from '@/assets/images/globe-texture.jpg';
 import homeBgVideoPoster from '@/assets/images/home-bg-video-poster.jpg';
 import homeBgVideoUrl from '@/assets/images/home-bg-video.mp4?url';
 import sloworkLogo from '@/assets/images/slowork-logo.png';
+import logoCarousel from '@/assets/logo-carousel.png';
 import whoWorker1 from '@/assets/images/who-worker1.jpg';
 import whoWorker2 from '@/assets/images/who-worker2.jpg';
 import whoWorker3 from '@/assets/images/who-worker3.jpg';
@@ -22,6 +23,8 @@ export const HOME_MEDIA = {
   videoPoster: homeBgVideoPoster,
   videoSrc: homeBgVideoUrl,
   logo: sloworkLogo,
+  /** Marca completa en hito central del journey (home). */
+  logoCarousel,
   globeTexture: globeTextureImg,
 } as const;
 

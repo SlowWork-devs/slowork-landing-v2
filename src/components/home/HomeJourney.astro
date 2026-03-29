@@ -47,16 +47,17 @@ const ctaCopy = homeFinalCtaCopy(lang);
                 <div class="flex max-w-md flex-col items-center text-center sm:max-w-lg mx-auto">
                   <div
                     class:list={[
-                      'journey-step-icon mb-4 flex h-20 w-20 items-center justify-center rounded-full shadow-xl sm:mb-6 sm:h-24 sm:w-24',
+                      'journey-step-icon mb-4 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full shadow-xl sm:mb-6 sm:h-40 sm:w-40',
                       step.iconWrapClass,
                     ]}
                   >
                     <Image
-                      src={HOME_MEDIA.logo}
-                      alt="Slowork"
-                      width={200}
-                      height={50}
-                      class="h-10 w-auto max-w-[120px] object-contain sm:h-12"
+                      src={HOME_MEDIA.logoCarousel}
+                      alt={lang === 'es' ? 'Marca Slowork' : 'Slowork brand'}
+                      width={880}
+                      height={1206}
+                      class="h-full w-full object-contain object-center"
+                      sizes="(min-width: 640px) 160px, 128px"
                     />
                   </div>
                   <div class="w-full rounded-2xl border border-white/15 bg-white/95 p-6 shadow-xl backdrop-blur sm:p-8">
