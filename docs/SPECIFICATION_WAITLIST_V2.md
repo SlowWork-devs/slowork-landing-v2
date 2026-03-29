@@ -2,7 +2,7 @@
 
 Documento de especificación del producto **landing-waitlist-v2**: unifica la visión del **blog SloWork en Astro** (`blog-slowork`) con la **migración de la landing histórica** (CRA + Express en `sloworkLanding`) hacia una sola propuesta Astro, waitlist incluida. Sirve como referencia para equipos, despliegue y evolución del repositorio.
 
-**Versión del documento:** 1.2 (marzo 2026)  
+**Versión del documento:** 1.3 (marzo 2026)  
 **Repositorio de implementación actual:** `blog-slowork`  
 **Nombre de producto / release:** **landing-waitlist-v2**  
 **Memoria de decisiones:** parte del contenido de la §5 proviene de **Engram** (proyectos `slowork-unified` y `blog-slowork`).
@@ -121,6 +121,84 @@ Referencia: `.env.example` en la raíz del repo.
 - **`GODADDY_EMAIL`**, **`GODADDY_PASS`**: SMTP (nombres históricos; host efectivo en servicio de email).
 - **`PUBLIC_GA_ID`**: opcional, GA4 (`G-…`) vía Partytown en `MainLayout`.
 - **`VERCEL_URL`**: usado en config Astro para URLs en previews; producción apunta a `https://www.slowork.app` cuando no hay preview.
+
+### 4.5 Árbol del repositorio (`blog-slowork`)
+
+Vista orientativa de carpetas y ficheros relevantes. **No** incluye `node_modules/`, `dist/`, `.vercel/`, `.astro/` ni el volumen completo de `src/assets/` ni de `src/content/blog/**/*.md`.
+
+```
+blog-slowork/
+├── astro.config.mjs
+├── prisma.config.ts
+├── package.json
+├── tsconfig.json
+├── .env.example
+├── README.md
+├── prisma/
+│   └── schema.prisma
+├── public/
+│   └── …
+├── docs/
+│   ├── SPECIFICATION_WAITLIST_V2.md
+│   └── RESUMEN-PARA-INTEGRACION-LANDING.md
+├── scripts/
+├── archive/
+│   └── blog/
+├── src/
+│   ├── middleware.ts
+│   ├── content.config.ts
+│   ├── consts.ts
+│   ├── assets/
+│   │   ├── images/              # hero, impact, carrusel, marca
+│   │   ├── blog_covers/         # portadas WebP (colección blog)
+│   │   ├── blog_assets_*/       # ilustraciones embebidas en posts
+│   │   └── …
+│   ├── content/
+│   │   └── blog/
+│   │       ├── es/              # *.md | *.mdx
+│   │       └── en/
+│   ├── data/
+│   │   └── legal/
+│   │       ├── es.json
+│   │       └── en.json
+│   ├── layouts/
+│   │   ├── MainLayout.astro
+│   │   └── BlogPost.astro
+│   ├── models/
+│   ├── services/
+│   ├── lib/
+│   ├── plugins/
+│   │   └── rehype-wrap-tables.mjs
+│   ├── styles/
+│   │   └── global.css
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── robots.txt.ts
+│   │   ├── sitemap.xml.ts
+│   │   ├── rss.xml.js
+│   │   ├── api/
+│   │   │   ├── waitlist.ts
+│   │   │   └── welcome.ts
+│   │   └── [lang]/
+│   │       ├── index.astro
+│   │       ├── about-us.astro
+│   │       ├── impact-program.astro
+│   │       ├── privacy-policy.astro
+│   │       ├── cookies-policy.astro
+│   │       ├── legal-notice.astro
+│   │       ├── terms-and-conditions.astro
+│   │       ├── [...missing].astro
+│   │       └── blog/
+│   │           ├── index.astro
+│   │           └── [slug].astro
+│   └── components/
+│       ├── home/
+│       ├── sections/
+│       ├── legal/
+│       ├── features/
+│       └── ui/
+└── .vscode/
+```
 
 ---
 
