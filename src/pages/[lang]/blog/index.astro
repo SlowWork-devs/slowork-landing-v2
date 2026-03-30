@@ -5,22 +5,22 @@ export async function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
 }
 
-import { getCollection } from 'astro:content';
 import { ClientRouter } from 'astro:transitions';
 import BaseHead from '@/components/BaseHead.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import PostCard from '@/components/PostCard.astro';
+import BlogCard from '@/components/BlogCard.astro';
 import { SITE_TITLE } from '@/consts';
+import { getBlogs } from '@/lib/api-service';
 
 const lang = Astro.params.lang;
 if (lang !== 'es' && lang !== 'en') {
   return Astro.redirect('/en/', 302);
 }
 
-const posts = (await getCollection('blog', ({ data }) => data.language === lang)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const page = Number(Astro.url.searchParams.get('page') ?? '1') || 1;
+const limit = Number(Astro.url.searchParams.get('limit') ?? '12') || 12;
+const { items: posts } = await getBlogs({ page, limit, lang });
 
 const alternateLang = lang === 'es' ? 'en' : 'es';
 const alternateLink = `/${alternateLang}/blog/`;
@@ -60,9 +60,9 @@ const blogMetaDescription =
 
 			<section class="w-full min-w-0">
 				<ul class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 list-none p-0">
-					{posts.map((post, index) => (
+					{posts.map((post) => (
 						<li class="h-full min-w-0 w-full">
-							<PostCard post={post} eager={index === 0} />
+							<BlogCard post={post} lang={lang} />
 						</li>
 					))}
 				</ul>

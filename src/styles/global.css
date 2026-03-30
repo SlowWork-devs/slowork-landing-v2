@@ -6,6 +6,7 @@
 @import "@fontsource/poppins/800.css";
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /** Escaneo explícito: Astro + TS + MDX bajo `src/` (Tailwind 4 + Vite). */
 @source "../**/*.{astro,html,js,ts,tsx,md,mdx}";
@@ -120,7 +121,7 @@
 
   /* Imágenes: aspect-ratio y object-fit para evitar deformaciones */
   .prose img {
-    @apply rounded-[2rem] shadow-xl my-12 border-4 border-white/50 w-full max-w-full h-auto object-cover;
+    @apply rounded-4xl shadow-xl my-12 border-4 border-white/50 w-full max-w-full h-auto object-cover;
   }
 
   /* Tablas: el wrapper .table-wrapper (rehype) tiene overflow-x-auto */
