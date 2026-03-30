@@ -658,16 +658,6 @@ const errText =
         return;
       }
 
-      void fetch('/api/welcome/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: parsed.data.firstName,
-          email: parsed.data.email,
-          lang,
-        }),
-      }).catch(() => {});
-
       const firstName = parsed.data.firstName;
       form.reset();
       clearAllFieldErrors();

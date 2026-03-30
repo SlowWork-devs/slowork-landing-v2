@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
 
 function buildDatabaseUrlFromParts(): string | null {
   const host = process.env.DB_HOST_LANDING;
@@ -24,9 +25,25 @@ if (!process.env.DATABASE_URL) {
   if (url) process.env.DATABASE_URL = url;
 }
 
+const databaseUrl =
+  process.env.DATABASE_URL ??
+  (typeof import.meta !== 'undefined' &&
+  typeof import.meta.env !== 'undefined' &&
+  typeof import.meta.env.DATABASE_URL === 'string'
+    ? import.meta.env.DATABASE_URL
+    : undefined);
+if (!databaseUrl) {
+  throw new Error(
+    'DATABASE_URL is required for Prisma. Set DATABASE_URL or DB_*_LANDING parts in the environment.',
+  );
+}
+
+const adapter = new PrismaPg({ connectionString: databaseUrl });
+
 export const prisma =
   globalThis.__prisma__ ??
   new PrismaClient({
+    adapter,
     log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
   });
 
