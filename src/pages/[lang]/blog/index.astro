@@ -61,7 +61,7 @@ const blogMetaDescription =
 			<section class="w-full min-w-0">
 				<ul class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 list-none p-0">
 					{posts.map((post) => (
-						<li class="h-full min-w-0 w-full">
+						<li class="flex h-full min-h-0 min-w-0 w-full flex-col">
 							<BlogCard post={post} lang={lang} />
 						</li>
 					))}
