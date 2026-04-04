@@ -20,6 +20,8 @@ export interface BlogPost {
   category_id: number;
   category?: BlogCategory;
   creation_date: string;
+  /** Fecha editorial; si falta, la UI usa `creation_date`. */
+  date_published?: string | null;
 }
 
 export interface BlogResponse {

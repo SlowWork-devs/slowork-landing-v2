@@ -25,7 +25,8 @@ const cloudFrontImage =
       })()
     : null;
 
-const formattedDate = formatBlogCreationDate(post.creation_date, lang);
+const displayDate = post.date_published || post.creation_date;
+const formattedDate = formatBlogCreationDate(displayDate, lang);
 ---
 
 <a

@@ -40,6 +40,7 @@ const localizeBlogPost = (post: BlogPost, lang: ApiLang): LocalizedBlogPost => {
     category_id: post.category_id ?? 0,
     category: post.category,
     creation_date: post.creation_date,
+    date_published: post.date_published ?? null,
   };
 };
 
@@ -83,6 +84,7 @@ const BLOG_FIELDS = `
   image_url
   category_id
   creation_date
+  date_published
   category {
     id
     name_es

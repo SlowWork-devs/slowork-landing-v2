@@ -71,10 +71,9 @@ const apiExcerptPlain =
 const apiMetaDescription =
   apiExcerptPlain.length > 0 ? apiExcerptPlain : SITE_DESCRIPTION;
 
-const apiFormattedDate =
-  apiPost ? formatBlogCreationDate(apiPost.creation_date, lang) : '';
-const apiCreationDatetimeIso =
-  apiPost ? new Date(apiPost.creation_date).toISOString() : '';
+const apiDisplayDate = apiPost ? apiPost.date_published || apiPost.creation_date : '';
+const apiFormattedDate = apiPost ? formatBlogCreationDate(apiDisplayDate, lang) : '';
+const apiCreationDatetimeIso = apiPost ? new Date(apiDisplayDate).toISOString() : '';
 
 const apiSocialImage =
   apiPost?.image_url && /^https?:\/\//i.test(apiPost.image_url) ? apiPost.image_url : undefined;
