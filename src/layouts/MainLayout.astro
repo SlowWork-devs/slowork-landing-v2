@@ -22,6 +22,10 @@ interface Props {
   description?: string;
   canonical?: string;
   image?: ImageMetadata;
+  /** URL absoluta (p. ej. CloudFront) para og:image / twitter cuando no hay asset local. */
+  socialImage?: string;
+  /** Meta keywords (opcional; uso editorial / otros buscadores). */
+  keywords?: string[];
   ogType?: string;
   /** Incluir `es`, `en` y `x-default` (español como predeterminado); ver `buildI18nAlternates`. */
   alternates?: Alternate[];
@@ -37,6 +41,8 @@ const {
   description = SITE_DESCRIPTION,
   canonical,
   image = FallbackImage,
+  socialImage,
+  keywords = [],
   ogType = 'website',
   alternates = [],
   jsonLd,
@@ -49,7 +55,10 @@ const canonicalURL = canonical
   ? new URL(canonical, Astro.site ?? Astro.url.origin)
   : new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 
-const ogImageURL = new URL(image.src, Astro.url);
+const ogImageHref =
+  socialImage && /^https?:\/\//i.test(socialImage)
+    ? socialImage
+    : new URL(image.src, Astro.url).href;
 
 const gaId = import.meta.env.PUBLIC_GA_ID?.trim() ?? '';
 const gaEnabled = gaId.length > 0;
@@ -83,6 +92,7 @@ const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
     <title>{title}</title>
     <meta name="title" content={title} />
     {description && <meta name="description" content={description} />}
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE_TITLE} />
@@ -90,13 +100,13 @@ const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
-    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image" content={ogImageHref} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     {description && <meta property="twitter:description" content={description} />}
-    <meta property="twitter:image" content={ogImageURL} />
+    <meta property="twitter:image" content={ogImageHref} />
 
     {alternates.map((alt) => (
       <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />

@@ -1,38 +1,161 @@
 ---
+export const prerender = false;
+
 import { getCollection, render } from 'astro:content';
 import BlogPost from '@/layouts/BlogPost.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { getBlogById, getBlogBySlug, type ApiLang } from '@/lib/api-service';
+import { Image } from 'astro:assets';
+import FormattedDate from '@/components/FormattedDate.astro';
+import BlogArticleBackButton from '@/components/ui/BlogArticleBackButton.astro';
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton.astro';
+import type { SupportedLang } from '@/lib/seo';
+import { BLOG_IMAGE_CLOUDFRONT_HOST, SITE_DESCRIPTION } from '@/consts';
 
-export const prerender = true;
+const langParam = Astro.params.lang;
+const slugParam = Astro.params.slug ?? '';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-
-  return posts.flatMap((post) => {
-    const lang = post.data.language ?? post.id.split('/')[0];
-    if (lang !== 'es' && lang !== 'en') return [];
-
-    const slug = post.id.split('/').pop()?.replace(/\.(md|mdx)$/, '');
-    if (!slug) return [];
-
-    return [
-      {
-        params: { lang, slug },
-        props: { post },
-      },
-    ];
-  });
-}
-
-const lang = Astro.params.lang;
-if (lang !== 'es' && lang !== 'en') {
+if (langParam !== 'es' && langParam !== 'en') {
   return Astro.redirect('/en/', 302);
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const lang = langParam as ApiLang;
+const allPosts = await getCollection('blog');
+
+const mdEntry = allPosts.find((entry) => {
+  const segments = entry.id.split('/');
+  const fileSlug = segments[segments.length - 1]?.replace(/\.(md|mdx)$/, '') ?? '';
+  const entryLang = entry.data.language ?? segments[0];
+  return entryLang === lang && fileSlug === slugParam;
+});
+
+type RenderContent = Awaited<ReturnType<typeof render>>['Content'];
+let MdContent: RenderContent | null = null;
+
+if (mdEntry) {
+  const rendered = await render(mdEntry);
+  MdContent = rendered.Content;
+}
+
+let apiPost: Awaited<ReturnType<typeof getBlogById>> | null = null;
+
+if (!mdEntry) {
+  try {
+    apiPost = /^\d+$/.test(slugParam)
+      ? await getBlogById({ id: Number.parseInt(slugParam, 10), lang })
+      : await getBlogBySlug({ slug: slugParam, lang });
+  } catch {
+    return new Response(null, { status: 404, statusText: 'Not Found' });
+  }
+}
+
+if (!mdEntry && apiPost === null) {
+  return new Response(null, { status: 404, statusText: 'Not Found' });
+}
+
+const blogLang: SupportedLang = lang === 'en' ? 'en' : 'es';
+
+const apiAlternateLink = apiPost ? `/${lang === 'es' ? 'en' : 'es'}/blog/${apiPost.slug}/` : '';
+const apiEsPath =
+  lang === 'es' ? Astro.url.pathname : apiPost ? `/es/blog/${apiPost.slug}/` : '/es/blog/';
+const apiEnPath =
+  lang === 'en' ? Astro.url.pathname : apiPost ? `/en/blog/${apiPost.slug}/` : '/en/blog/';
+const apiEsHref = new URL(apiEsPath, Astro.url.origin).href;
+const apiEnHref = new URL(apiEnPath, Astro.url.origin).href;
+const apiXDefaultHref = lang === 'es' ? apiEsHref : apiPost ? apiEsHref : apiEnHref;
+
+const apiMetaDescription =
+  apiPost && apiPost.excerpt.trim().length > 0 ? apiPost.excerpt : SITE_DESCRIPTION;
+
+const apiSocialImage =
+  apiPost?.image_url && /^https?:\/\//i.test(apiPost.image_url) ? apiPost.image_url : undefined;
+const apiCfHero =
+  apiSocialImage &&
+  (() => {
+    try {
+      return new URL(apiSocialImage).hostname === BLOG_IMAGE_CLOUDFRONT_HOST ? apiSocialImage : null;
+    } catch {
+      return null;
+    }
+  })();
 ---
 
-<BlogPost {...post.data}>
-  <Content />
-</BlogPost>
+{
+  mdEntry && MdContent ? (
+    <BlogPost {...mdEntry.data}>
+      <MdContent />
+    </BlogPost>
+  ) : apiPost ? (
+    <MainLayout
+      lang={lang}
+      title={apiPost.title}
+      description={apiMetaDescription}
+      ogType="article"
+      keywords={apiPost.keywords ?? []}
+      socialImage={apiSocialImage}
+      headerAlternateLink={apiAlternateLink}
+      alternates={[
+        { hreflang: 'es', href: apiEsHref },
+        { hreflang: 'en', href: apiEnHref },
+        { hreflang: 'x-default', href: apiXDefaultHref },
+      ]}
+    >
+      {apiSocialImage ? (
+        <link
+          slot="head"
+          rel="preload"
+          as="image"
+          href={apiSocialImage}
+          fetchpriority="high"
+        />
+      ) : null}
 
+      <main class="w-full max-w-7xl mx-auto px-6 pt-32 pb-10 sm:pt-32 sm:pb-14 md:py-24">
+        <article>
+          <div class="w-full overflow-hidden rounded-2xl mb-8 md:mb-12">
+            {apiCfHero ? (
+              <Image
+                src={apiCfHero}
+                alt={apiPost.title}
+                inferSize
+                fetchpriority="high"
+                loading="eager"
+                class="w-full h-auto object-cover aspect-2/1"
+              />
+            ) : apiSocialImage ? (
+              <img
+                src={apiSocialImage}
+                alt={apiPost.title}
+                width={1020}
+                height={510}
+                fetchpriority="high"
+                loading="eager"
+                class="w-full h-auto object-cover aspect-2/1"
+              />
+            ) : null}
+          </div>
+          <div class="prose-container max-w-3xl mx-auto">
+            <div class="mb-12 flex justify-start">
+              <BlogArticleBackButton lang={blogLang} />
+            </div>
+            <header class="mb-8 md:mb-12">
+              <div class="text-sm text-primary/60 mb-2">
+                <FormattedDate date={new Date(apiPost.creation_date)} />
+              </div>
+              <h1 class="font-heading font-bold text-primary text-[clamp(1.5rem,4vw+1rem,2.5rem)] leading-tight tracking-tight">
+                {apiPost.title}
+              </h1>
+              <hr class="border-primary/20 my-6" />
+            </header>
+            <div
+              class="prose prose-lg prose-headings:font-heading prose-p:mb-6 prose-img:rounded-3xl prose-img:mx-auto w-full max-w-none"
+              set:html={apiPost.content}
+            />
+          </div>
+        </article>
+      </main>
+
+      <ScrollToTopButton lang={blogLang} />
+    </MainLayout>
+  ) : null
+}
