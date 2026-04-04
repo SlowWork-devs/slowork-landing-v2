@@ -1,9 +1,20 @@
 /* src/styles/global.css */
 
-@import "@fontsource/poppins/400.css";
-@import "@fontsource/poppins/600.css";
-@import "@fontsource/poppins/700.css";
-@import "@fontsource/poppins/800.css";
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
@@ -12,18 +23,20 @@
 @source "../**/*.{astro,html,js,ts,tsx,md,mdx}";
 
 @theme {
-  /* --- Colores SloWork --- */
+  /* --- Paleta SloWork --- */
   --color-primary: #013333;
   --color-secondary: #e0bb44;
   --color-light-green: #ddeee5;
-
-  /* Color de fondo exacto de tu landing */
   --color-bg-landing: #e2e8e5;
   --color-soft-blue: #779ed3;
 
-  /* --- Tipografía --- */
-  --font-sans: "Poppins", sans-serif;
-  --font-heading: "Poppins", sans-serif;
+  /* Tokens alineados con convención DaisyUI / utilidades */
+  --color-base-100: var(--color-bg-landing);
+  --color-base-content: var(--color-primary);
+
+  /* --- Tipografía Poppins (self-hosted woff2 en /public/fonts) --- */
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Poppins", ui-sans-serif, sans-serif;
 }
 
 @layer base {
@@ -33,14 +46,18 @@
 
   html,
   body {
-    font-family: "Poppins", sans-serif;
-    background-color: var(--color-bg-landing);
-    @apply text-primary antialiased;
+    @apply bg-bg-landing text-primary font-sans antialiased;
     margin: 0;
     padding: 0;
     /* iOS / notch: evita que el contenido quede bajo el borde físico sin romper heroes full-bleed */
     padding-left: max(0px, env(safe-area-inset-left));
     padding-right: max(0px, env(safe-area-inset-right));
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading font-bold;
   }
 
   /* --- Configuración de Lectura (Prose) --- */

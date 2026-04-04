@@ -2,7 +2,7 @@
 
 Documento de especificación del producto **landing-waitlist-v2**: unifica la visión del **blog SloWork en Astro** (`slowork-landing-v2`) con la **migración de la landing histórica** (CRA + Express en `sloworkLanding`) hacia una sola propuesta Astro, waitlist incluida. Sirve como referencia para equipos, despliegue y evolución del repositorio.
 
-**Versión del documento:** 1.3 (marzo 2026)  
+**Versión del documento:** 1.4 (marzo 2026)  
 **Repositorio de implementación actual:** `slowork-landing-v2`  
 **Nombre de producto / release:** **landing-waitlist-v2**  
 **Memoria de decisiones:** parte del contenido de la §5 proviene de **Engram** (proyectos `slowork-unified` y `slowork-landing-v2`).
@@ -20,9 +20,9 @@ En documentación interna y memoria de equipo, la misma línea arquitectónica s
 La **unificación** (landing React + blog en un solo sitio Astro) consiste en:
 
 - Sustituir la SPA React como fuente de verdad de la landing por **rutas y layouts Astro**.
-- **Eliminar el servidor Express** del camino crítico: waitlist y email pasan por **API Routes** de Astro + Prisma/Nodemailer.
+- **Eliminar dependencias directas del front** con el backend legacy: Astro actúa como capa BFF/proxy para el flujo waitlist.
 - Mantener o mejorar **paridad de URLs** y de experiencia (idioma, formularios, legales).
-- Centralizar **waitlist + email de bienvenida** en el mismo proyecto que sirve el front, con validación y capa de datos acotada.
+- Centralizar la orquestación de **waitlist + welcome email** en backend server-side del proyecto Astro.
 
 ---
 
@@ -31,15 +31,15 @@ La **unificación** (landing React + blog en un solo sitio Astro) consiste en:
 | Objetivo | Descripción |
 |----------|-------------|
 | **Un solo dominio y un solo generador de sitio** | Canonical, sitemap y `hreflang` coherentes con `https://www.slowork.app` (u dominio definitivo). |
-| **Waitlist operativa** | Registro en base de datos (PostgreSQL vía Prisma), respuestas HTTP claras, telemetría de errores; email de bienvenida vía SMTP. |
-| **Blog estático en repo** | Content Collections Markdown/MDX; slugs y traducciones vía frontmatter (`id`, `translationSlug`, `language`). |
+| **Waitlist operativa** | Registro en API legacy vía proxy Astro (`/api/waitlist/`), respuestas HTTP claras (incl. 409), y disparo server-side de welcome email. |
+| **Blog integrado por API** | Consumo de posts vía GraphQL (`SLOWORK_API_URL`) con adaptación i18n (`title/content`) en `api-service`. |
 | **i18n predecible** | Rutas bajo `/{lang}/…` con `lang ∈ { es, en }`; cookie `slowork-language` y redirección desde `/`. |
 | **Rendimiento y SEO** | Astro 6, Tailwind 4, imágenes optimizadas donde aplica; sitemap dinámico que incluye landing + posts; JS de cliente mínimo (sin SPA). |
 
 ### 2.1 No objetivos (explícitos)
 
 - Replicar pixel a pixel todo el JS de la home CRA sin revisión (animaciones, carruseles): se prioriza **equivalencia de negocio y marca**, no necesariamente la misma cantidad de cliente.
-- Mantener indefinidamente **dos** fuentes de verdad para el blog (API `api.slowork.app` + Markdown): la especificación asume **Markdown en repo** como SSOT del blog en v2 salvo decisión explícita en contra.
+- Mantener indefinidamente dos flujos de blog paralelos (Markdown y API) sin decidir SSOT operativo para producción.
 
 ---
 
@@ -53,8 +53,8 @@ Implementación de referencia: `src/pages/` en `slowork-landing-v2`.
 |------|----------------|--------|
 | Raíz | `/` | Middleware: 302 a `/es/` o `/en/` según cookie `slowork-language` y `Accept-Language`; `index.astro` como respaldo mínimo. |
 | Home | `/es/`, `/en/` | Contenido tipo landing (hero, secciones, CTA waitlist). |
-| Blog índice | `/es/blog/`, `/en/blog/` | Listados filtrados por `language` en la colección. |
-| Post | `/es/blog/[slug]/`, `/en/blog/[slug]/` | Slug derivado del fichero en la colección. |
+| Blog índice | `/es/blog/`, `/en/blog/` | Listado obtenido desde API GraphQL (`getBlogs`) y renderizado en cards de UI. |
+| Post | `/es/blog/[slug]/`, `/en/blog/[slug]/` | Ruta mantenida; detalle puede convivir con contenido local mientras se completa migración del flujo API. |
 | About | `/es/about-us/`, `/en/about-us/` | Paridad con naming moderno (histórico React: `/about`). |
 | Impact | `/es/impact-program/`, `/en/impact-program/` | |
 | Legales | `/es/privacy-policy/`, … | Cookies, aviso legal, términos; componentes bajo `src/components/legal/`. |
@@ -64,8 +64,8 @@ Implementación de referencia: `src/pages/` en `slowork-landing-v2`.
 
 | Endpoint | Método | Rol |
 |----------|--------|-----|
-| `/api/waitlist/` | `POST` | Alta en waitlist; cuerpo validado con Zod; persistencia Prisma; manejo de duplicados (409). **Cliente:** usar barra final por coherencia con `trailingSlash: 'always'`. |
-| `/api/welcome/` | `POST` | Disparo de email de bienvenida (payload validado). |
+| `/api/waitlist/` | `POST` | Proxy server-side: valida payload con Zod, reenvía a `${SLOWORK_API_URL}/api/waitlist`, mantiene error 409 para email duplicado y, en éxito, dispara `${SLOWORK_API_URL}/api/welcome` con `lang` de cookie `slowork-language`. **Cliente:** usar barra final por coherencia con `trailingSlash: 'always'`. |
+| `/api/welcome/` | `POST` | Endpoint local disponible para envío SMTP directo; en el flujo actual de waitlist no lo invoca el frontend. |
 
 Ambas rutas están definidas como **no prerender** (`prerender = false`).  
 **Retirados del alcance actual** (decisión registrada en Engram): `GET /api/referral-status`, `POST /api/verify-recaptcha` y toda la integración reCAPTCHA v2 asociada.
@@ -90,34 +90,38 @@ Ambas rutas están definidas como **no prerender** (`prerender = false`).
 | Salida | **`output: 'server'`** + adapter **`@astrojs/vercel`** (import canónico en la versión actual del proyecto). |
 | Estilos | **Tailwind CSS v4** (`@tailwindcss/vite`) |
 | Contenido | **Content Collections** + `@astrojs/mdx` |
-| Datos waitlist | **Prisma** + PostgreSQL (`Waitlist` → tabla `waitlists`) |
+| Datos waitlist | Proxy Astro a API legacy (`SLOWORK_API_URL`) |
 | Validación entrada | **Zod** en `src/models/` |
 | Email | **Nodemailer** (servicios en `src/services/`) |
 | Navegación cliente | **View Transitions** (`ClientRouter` en layout) |
+| Integración blog | Cliente GraphQL tipado (`src/lib/api-service.ts`) |
 | Node | **`>=22.12.0`** (`package.json` engines) |
 
 ### 4.2 Organización del código (SloWork manifesto)
 
 - **`src/models/`**: esquemas Zod y tipos (p. ej. `waitlist`, `welcome-email`, `i18n`, `legal`, `about`, `headerNav`).
-- **`src/services/`**: lógica de negocio y side-effects (waitlist, email).
+- **`src/services/`**: lógica de negocio y side-effects (email, integraciones locales vigentes).
 - **`src/pages/api/`**: endpoints HTTP finos que delegan en servicios; respuestas JSON vía **`src/lib/http.ts`** (`jsonResponse`).
 - **`src/components/`**, **`src/layouts/`**: UI.
-- **`src/lib/`**: utilidades (Prisma singleton, SEO, hreflang, bundles legales, copy home/about/nav, telemetría waitlist).
+- **`src/lib/`**: utilidades (API service GraphQL, SEO, hreflang, bundles legales, copy home/about/nav, telemetría waitlist).
 
-### 4.3 Datos: waitlist
+### 4.3 Datos: waitlist (estado actual)
 
-Modelo Prisma (`prisma/schema.prisma`): campos de negocio (`firstName`, `email`, `phone`, `instagram`, `linkedin`, `preferredContact`, `communityInterest`, metadatos de request). **Sin lógica de referidos** en payload, servicio ni esquema: eliminados endpoint de referral, cookies y campo Prisma asociado (la columna en RDS puede persistir hasta migración DBA).
+El endpoint `POST /api/waitlist/` funciona como **proxy/BFF**:
 
-El servicio `registerWaitlistEntry` intenta `create` completo y, si Prisma falla (p. ej. desalineación de columnas), un **segundo intento mínimo** con `email` + metadatos; si ambos fallan → `persist_failed` y la API responde **503**.
+1. valida payload con Zod (`waitlistCreateBodySchema`),
+2. reenvía el alta a `${SLOWORK_API_URL}/api/waitlist`,
+3. si el alta es correcta, dispara `${SLOWORK_API_URL}/api/welcome` con `{ name, email, lang }`,
+4. devuelve `409` con mensaje claro cuando el email ya existe.
 
-**Prisma 7:** la URL del datasource no vive en `schema.prisma`; se configura en **`prisma.config.ts`**. `prisma generate` exige `DATABASE_URL` (placeholder local aceptable si no hay secretos).
+El frontend no llama directamente a `/api/welcome/`: su responsabilidad se limita a `POST /api/waitlist/` y mostrar la SuccessCard.
 
 ### 4.4 Variables de entorno
 
 Referencia: `.env.example` en la raíz del repo.
 
-- **`DATABASE_URL`**: conexión PostgreSQL (preferida para Prisma).
-- **Fallback legacy**: `DB_*_LANDING` admitidos en `src/lib/prisma.ts` para construir URL si hiciera falta.
+- **`SLOWORK_API_URL`**: URL base del backend legacy/API GraphQL y endpoints REST legacy (`/api/waitlist`, `/api/welcome`).
+- **`DATABASE_URL`** y `DB_*_LANDING`: mantener solo si se usa persistencia Prisma en rutas locales adicionales.
 - **`GODADDY_EMAIL`**, **`GODADDY_PASS`**: SMTP (nombres históricos; host efectivo en servicio de email).
 - **`PUBLIC_GA_ID`**: opcional, GA4 (`G-…`) vía Partytown en `MainLayout`.
 - **`VERCEL_URL`**: usado en config Astro para URLs en previews; producción apunta a `https://www.slowork.app` cuando no hay preview.
@@ -167,6 +171,10 @@ slowork-landing-v2/
 │   ├── models/
 │   ├── services/
 │   ├── lib/
+│   │   ├── api-service.ts
+│   │   └── …
+│   ├── types/
+│   │   └── blog.ts
 │   ├── plugins/
 │   │   └── rehype-wrap-tables.mjs
 │   ├── styles/
@@ -177,7 +185,8 @@ slowork-landing-v2/
 │   │   ├── sitemap.xml.ts
 │   │   ├── rss.xml.js
 │   │   ├── api/
-│   │   │   ├── waitlist.ts
+│   │   │   ├── waitlist/
+│   │   │   │   └── index.ts
 │   │   │   └── welcome.ts
 │   │   └── [lang]/
 │   │       ├── index.astro
@@ -192,6 +201,7 @@ slowork-landing-v2/
 │   │           ├── index.astro
 │   │           └── [slug].astro
 │   └── components/
+│       ├── BlogCard.astro
 │       ├── home/
 │       ├── sections/
 │       ├── legal/
@@ -240,7 +250,8 @@ Esta sección consolida decisiones explícitas guardadas en **Engram** para los 
 
 ### 5.5 Waitlist, seguridad y manifiesto
 
-- Refactor alineado al **manifiesto SloWork**: Zod en models, servicios con Prisma/Nodemailer, rutas API como orquestación fina.
+- Refactor alineado al **manifiesto SloWork**: Zod en models y ruta `waitlist` como orquestación fina server-side.
+- Decisión operativa: `POST /api/waitlist/` en Astro es **proxy** a API legacy y además dispara welcome server-side (cookie `slowork-language` para `lang`; fallback `en`).
 - **reCAPTCHA v2 retirado por completo** (widget, script, variables, endpoint verify). **Pendiente acordado:** **reCAPTCHA v3 basado en score** (servidor valida `score` y `action` tras `grecaptcha.execute` en cliente).
 - **Referidos retirados** del flujo público waitlist (ver §4.3).
 
@@ -269,9 +280,9 @@ Esta sección consolida decisiones explícitas guardadas en **Engram** para los 
 ### 5.9 Tooling Vite / TypeScript / Tailwind
 
 - **Alias `@/*` → `./src/*`** en `tsconfig.json`; imports unificados en `src/`.
-- **Cliente waitlist:** `fetch` a **`/api/waitlist/`** y **`/api/welcome/`** con barra final.
+- **Cliente waitlist:** `fetch` solo a **`/api/waitlist/`** con barra final; el welcome se resuelve server-side en el proxy.
 - **UX formulario:** estados `data-status`, `data-busy`; copy `sendFailed`; si `!response.ok` o fallo de red, restaurar botón y mostrar mensaje (priorizar `message` JSON del servidor).
-- **Tailwind 4:** **`@source`** en `global.css` escaneando `src/**/*.{astro,html,js,ts,tsx,md,mdx}`.
+- **Tailwind 4:** **`@source`** en `global.css` escaneando `src/**/*.{astro,html,js,ts,tsx,md,mdx}` + plugin **`@tailwindcss/typography`** para estilos `prose`.
 - **Vite:** `server.watch.usePolling` (Linux/WSL), **`optimizeDeps.exclude: ['zod']`**, **`ssr.noExternal: ['@tailwindcss/vite']`**.
 - **Carruseles** (`HomeFeatures`, `HomeValueProposition`): handles de intervalo tipados como **`number | undefined`** en cliente para no chocar con `NodeJS.Timeout` en tipos mixtos.
 
@@ -281,7 +292,8 @@ Registrados en Engram como convenciones de equipo:
 
 - **Commits** agrupados por responsabilidad (p. ej. `seo(sitemap)` / `seo(robots)` / `seo(meta)`; `perf(fonts)` vs `perf(lcp)`; `style(prose)` vs `content(blog)`).
 - **Rendimiento:** Fontsource Poppins en lugar de Google Fonts en CDN; hero LCP con `loading="eager"`, `fetchpriority="high"`, WebP; PostCard con prioridad de carga donde aplica.
-- **Blog:** portadas **`localImage`** en `src/assets/blog_covers/*.webp`; no duplicar hero como `![...]()` al inicio del `.md`; **un solo H1** por página (título en layout, secciones con `##` en markdown).
+- **Blog:** integración activa con API GraphQL (`getBlogs`, `getBlogById`) en `src/lib/api-service.ts`, tipos en `src/types/blog.ts`, y tarjetas remotas en `src/components/BlogCard.astro`.
+- **Contenido HTML desde API:** renderizado en Astro con `set:html` y clases `prose` para conservar semántica (`<p>`, `<strong>`, etc.) con estilo consistente.
 - **Prose:** enlaces con contraste y estados `:focus-visible`; listas editoriales (marcadores custom, variante list-card).
 - **Responsive / a11y:** grid 1 columna hasta `lg`; Footer/PostCard con contraste AA y anillos `focus-visible`; header móvil drawer minimalista al estilo landing original.
 
@@ -321,8 +333,8 @@ Se entiende por unificación el trabajo de:
 ## 8. Criterios de aceptación (v2)
 
 - Un usuario puede recorrer **home → blog → post** en `es` y `en` con conmutador de idioma coherente (`buildI18nAlternates` / `headerAlternateLink` donde aplique).
-- El formulario de waitlist puede enviarse a **`POST /api/waitlist/`** y persistir en PostgreSQL; duplicados reciben respuesta controlada.
-- Tras alta, el flujo puede llamar a **`POST /api/welcome/`** según el diseño de producto (llamada explícita desde el cliente o orquestación en servidor).
+- El formulario de waitlist envía exclusivamente a **`POST /api/waitlist/`**; duplicados reciben **409** con mensaje controlado.
+- Tras alta, el welcome se ejecuta en backend desde el proxy (sin segunda llamada desde el frontend).
 - Sitemap incluye al menos todas las rutas de landing previstas + posts publicados, con **barra final** en URLs de página.
 - Legales accesibles en `/{lang}/…-policy/` (y análogos) sin depender del servidor React.
 
@@ -332,7 +344,7 @@ Se entiende por unificación el trabajo de:
 
 | Riesgo | Mitigación sugerida |
 |--------|---------------------|
-| Slugs blog ≠ histórico SEO | Mapa de redirecciones; monitorización 404. |
+| Slugs blog y detalle API en transición | Definir política final de slug/ID y redirecciones 301 antes de consolidar detalle remoto. |
 | Spam / abuso waitlist sin CAPTCHA | Rate limiting, honeypot, o **reCAPTCHA v3** (pendiente §5.5). |
 | RSS con enlaces desalineados | Auditar `rss.xml.js` frente a rutas reales. |
 | Dos despliegues en paralelo (CRA + Astro) | Cortar tráfico por rutas o dominio con plan de rollback. |
@@ -365,4 +377,4 @@ Se entiende por unificación el trabajo de:
 
 ---
 
-*Este documento debe actualizarse cuando cambien rutas canónicas, política de blog (MD vs API), o el proveedor de despliegue. Las decisiones reflejadas en Engram deben revalidarse tras refactors grandes.*
+*Este documento debe actualizarse cuando cambien rutas canónicas, contrato del proxy waitlist o la política final de blog (MD vs API GraphQL). Las decisiones reflejadas en Engram deben revalidarse tras refactors grandes.*
