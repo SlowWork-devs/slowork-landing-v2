@@ -161,8 +161,8 @@ export const HOME_JOURNEY: JourneyStep[] = [
     iconWrapClass: 'bg-light-green text-primary',
     title: { en: 'Find your next destination', es: 'Encuentra tu próximo destino' },
     description: {
-      en: 'Search and discover eco-conscious coliving & coworking spaces designed for remote living.',
-      es: 'Explora espacios de coliving y coworking sostenibles, diseñados para vivir y trabajar en remoto.',
+      en: 'Search and discover eco-conscious coliving & coworking spaces designed for remote workers.',
+      es: 'Explora espacios de coliving y coworking sostenibles, diseñados para trabajadores remotos.',
     },
   },
   {
@@ -312,20 +312,20 @@ export type GlobeCard = {
 
 export const HOME_GLOBE_CARDS: GlobeCard[] = [
   {
-    title: { en: 'Host', es: 'Host' },
+    title: { en: 'Live with locals', es: 'Host' },
     description: { en: 'More than 500 hosts around the world', es: 'Más de 500 hosts en el mundo' },
   },
   {
-    title: { en: 'Coworking', es: 'Coworking' },
+    title: { en: 'Cowork', es: 'Cowork' },
     description: { en: 'More than 60 coworking spaces', es: 'Más de 60 espacios de coworking' },
   },
   {
-    title: { en: 'Creators', es: 'Creadores' },
+    title: { en: 'Create', es: 'Crear' },
     description: { en: 'More than 40 content creators', es: 'Más de 40 creadores de contenido' },
   },
   {
-    title: { en: 'Communities', es: 'Comunidad' },
-    description: { en: 'Partnering with local communities', es: 'Alianzas con comunidades locales' },
+    title: { en: 'Community', es: 'Comunidad' },
+    description: { en: 'Find your tribe', es: 'Encuentra tu tribu' },
   },
 ];
 
@@ -406,7 +406,7 @@ export function homeGlobeCopy(lang: SupportedLang) {
   return {
     title: lang === 'es' ? 'Este es el mundo que estamos creando' : 'This is the world we’re building',
     subtitle: lang === 'es' ? '¿Quieres ser parte de esto?' : 'Want to be part of it?',
-    asideTitle: lang === 'es' ? 'Explora destinos con propósito' : 'Explore destinations with purpose',
+    asideTitle: lang === 'es' ? 'Explora destinos' : 'Explore destinations',
     asideBody:
       lang === 'es'
         ? 'Una red global de lugares y personas alineadas con una vida remota sostenible.'
@@ -417,9 +417,9 @@ export function homeGlobeCopy(lang: SupportedLang) {
 /** ES: "Tu viaje Slowork" with accent on second part; EN: "Your " + "Slowork Journey" */
 export function homeJourneyTitleParts(lang: SupportedLang) {
   if (lang === 'es') {
-    return { before: 'Tu ', highlight: 'viaje Slowork', after: '' };
+    return { before: 'Tu ', highlight: 'viaje', after: '' };
   }
-  return { before: 'Your ', highlight: 'Slowork Journey', after: '' };
+  return { before: 'Your ', highlight: 'Journey', after: '' };
 }
 
 export function homeWhoTitleParts(lang: SupportedLang) {
