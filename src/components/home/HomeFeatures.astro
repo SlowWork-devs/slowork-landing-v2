@@ -12,7 +12,7 @@ const ft = homeFeaturesTitle(lang);
 ---
 
 <section
-  class="mt-16 rounded-t-[35px] bg-linear-to-t from-bg-landing from-0% via-primary/90 via-45% to-bg-landing to-100% py-16"
+  class="mt-2 rounded-t-[35px] bg-primary py-16 pb-12 md:mt-16 md:pb-16 md:bg-linear-to-t md:from-primary/95 md:from-0% md:via-primary/90 md:via-55% md:to-bg-landing md:to-100%"
 >
   <div class="w-full px-4">
     <h2
@@ -53,7 +53,7 @@ const ft = homeFeaturesTitle(lang);
             {
               HOME_FEATURES.map((feature) => (
                 <div class="feature-card w-full shrink-0 md:w-[calc(33.333%-0.67rem)]">
-                  <div class="flex h-[320px] flex-col justify-center rounded-2xl border border-white/15 bg-white/95 p-5 shadow-lg backdrop-blur-sm transition hover:shadow-xl md:h-[340px] md:p-6">
+                  <div class="flex h-[320px] flex-col justify-center rounded-2xl border border-white/15 bg-white p-5 shadow-lg transition hover:shadow-xl max-md:border-primary/20 md:h-[340px] md:border-white/15 md:bg-white/95 md:p-6 md:backdrop-blur-sm">
                     <div class="mb-4 flex justify-center text-primary md:text-4xl [&_svg]:md:h-12 [&_svg]:md:w-12">
                       <HomeIcon name={feature.icon} class="h-9 w-9 md:h-11 md:w-11" />
                     </div>
