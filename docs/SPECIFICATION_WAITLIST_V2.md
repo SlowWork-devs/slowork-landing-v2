@@ -2,7 +2,7 @@
 
 Documento de especificación del producto **landing-waitlist-v2**: unifica la visión del **blog SloWork en Astro** (`slowork-landing-v2`) con la **migración de la landing histórica** (CRA + Express en `sloworkLanding`) hacia una sola propuesta Astro, waitlist incluida. Sirve como referencia para equipos, despliegue y evolución del repositorio.
 
-**Versión del documento:** 1.4 (marzo 2026)  
+**Versión del documento:** 1.5 (abril 2026)  
 **Repositorio de implementación actual:** `slowork-landing-v2`  
 **Nombre de producto / release:** **landing-waitlist-v2**  
 **Memoria de decisiones:** parte del contenido de la §5 proviene de **Engram** (proyectos `slowork-unified` y `slowork-landing-v2`).
@@ -96,6 +96,8 @@ Ambas rutas están definidas como **no prerender** (`prerender = false`).
 | Navegación cliente | **View Transitions** (`ClientRouter` en layout) |
 | Integración blog | Cliente GraphQL tipado (`src/lib/api-service.ts`) |
 | Node | **`>=22.12.0`** (`package.json` engines) |
+
+Despliegue SSR, capas (presentación / datos / red) y comparativa frente a un host monolítico: **§4.6**.
 
 ### 4.2 Organización del código (SloWork manifesto)
 
@@ -209,6 +211,50 @@ slowork-landing-v2/
 │       └── ui/
 └── .vscode/
 ```
+
+### 4.6 Modelo de despliegue (SSR desacoplado)
+
+El sitio público sigue un patrón **híbrido**: Astro en **modo servidor** (`output: 'server'`, adapter **`@astrojs/vercel`**) para la capa de presentación, y un **backend con persistencia** alojado fuera del repositorio (habitualmente descrito como stack en **AWS**). Esto **desacopla** el HTML que ve el usuario de dónde viven los datos: el navegador no abre conexiones a la base de datos; habla con endpoints HTTP (incluido GraphQL vía `SLOWORK_API_URL`).
+
+Algunas rutas pueden **prerenderizarse** (`prerender: true`) y otras exigen **SSR** (`prerender: false`) según necesiten datos en tiempo de petición o lógica dinámica; el conjunto sigue siendo un solo despliegue en Vercel. El **blog** mezcla en código **Content Collections** (`src/content/blog/`, `getCollection`) y **consumo remoto** (listado e hidratación de detalle vía `src/lib/api-service.ts`); el detalle operativo está en §3.1 y §5.10.
+
+#### Presentación (Astro en Vercel)
+
+- Cada petición a páginas SSR ejecuta el runtime de Astro en la infraestructura de Vercel, que genera HTML (y el JS mínimo que decida el proyecto).
+- Cuando la vista lo necesita, el servidor consulta la **API** (p. ej. listado de posts por GraphQL, o resolución por slug/id) antes de responder: el contenido relevante puede ir **en el documento inicial**, lo que favorece **SEO** y primera pintada con datos actuales sin esperar a hidratación solo para el primer render.
+- Rutas bajo **`src/pages/api/`** actúan como **BFF/proxy** (p. ej. `POST /api/waitlist/`): validación en borde (Zod), reenvío a la API legacy y orquestación server-side (welcome), sin exponer credenciales ni la URL interna de backend al cliente (§4.3).
+
+#### Datos y backend (API en AWS)
+
+- La **API** concentra reglas de negocio, autenticación aplicable y acceso a **BD** u otros almacenes. La landing en Astro es un cliente más, al igual que el panel de administración o futuros clientes (móvil, integraciones).
+- **CORS**, límites de tasa y políticas de red se aplican en el perímetro del backend; el frontal público no sustituye a esos controles.
+- **Waitlist** y **bienvenida** en el flujo actual: el alta y el disparo de welcome se canalizan vía proxy Astro hacia `${SLOWORK_API_URL}` (§3.2, §4.3), no mediante lógica de BD embebida en componentes.
+
+#### Red, DNS y enrutamiento
+
+- **DNS** gestionado en **Vercel** permite dirigir el **dominio del sitio** (p. ej. `www.slowork.app`) hacia el despliegue Astro y, en paralelo, enviar **subdominios de API** (p. ej. `api.slowork.app`) hacia el origen en **AWS**; el DNS actúa como capa de enrutamiento entre productos. El papel futuro de `api.slowork.app` se discute en §7.
+- La red de **Vercel** reparte el tráfico del front en nodos cercanos al usuario (edge), reduciendo latencia percibida frente a un único origen geográfico fijo.
+
+#### Resumen del stack de despliegue
+
+| Pieza | Función |
+|-------|---------|
+| **Astro** | Framework SSR; componentes y rutas en `src/pages/` |
+| **Vercel** | Hosting del front, ejecución serverless/edge del runtime Astro, CI/CD habitual del proyecto |
+| **AWS** | Alojamiento del backend, persistencia y escalado del servicio de API |
+| **DNS (Vercel)** | Resolución del dominio público y separación tráfico web vs API |
+
+#### Nota sobre migración desde un despliegue monolítico (p. ej. Render)
+
+En escenarios donde el servicio previo **compartía** front y API en una misma instancia o **escalaba a cero**, el primer request tras inactividad podía incurrir en **cold starts** largos y TTFB elevado. Al **separar** front (Vercel) y API (AWS):
+
+| Aspecto | Efecto esperado |
+|---------|------------------|
+| **Latencia del HTML público** | TTFB del sitio principal suele ser más **predecible** al depender del modelo de ejecución de Vercel y no de una única VM inactiva |
+| **Picos de concurrencia** | La carga se reparte entre la capa de presentación y la API; cada tier escala según su plataforma |
+| **Superficie de seguridad** | La BD no es alcanzable desde el navegador; solo la API expone contratos acotados |
+
+La magnitud exacta de mejoras depende del plan contratado, región y configuración de cada proveedor; esta tabla describe **tendencias habituales**, no un SLA numérico.
 
 ---
 
@@ -377,4 +423,4 @@ Se entiende por unificación el trabajo de:
 
 ---
 
-*Este documento debe actualizarse cuando cambien rutas canónicas, contrato del proxy waitlist o la política final de blog (MD vs API GraphQL). Las decisiones reflejadas en Engram deben revalidarse tras refactors grandes.*
+*Este documento debe actualizarse cuando cambien rutas canónicas, contrato del proxy waitlist, la política final de blog (MD vs API GraphQL) o el modelo de despliegue descrito en §4.6. Las decisiones reflejadas en Engram deben revalidarse tras refactors grandes.*
