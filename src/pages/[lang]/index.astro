@@ -1,4 +1,6 @@
 ---
+import { getImage } from 'astro:assets';
+
 import MainLayout from '@/layouts/MainLayout.astro';
 import HomeHero from '@/components/home/HomeHero.astro';
 import HomeValueProposition from '@/components/home/HomeValueProposition.astro';
@@ -10,6 +12,7 @@ import HomeContact from '@/components/home/HomeContact.astro';
 import HomeFinalCta from '@/components/home/HomeFinalCta.astro';
 import HomeStickyWaitlist from '@/components/home/HomeStickyWaitlist.astro';
 import { buildI18nAlternates } from '@/lib/hreflang';
+import { HOME_MEDIA } from '@/lib/homeContent';
 
 const lang = Astro.params.lang;
 if (lang !== 'es' && lang !== 'en') {
@@ -24,6 +27,14 @@ const description =
   lang === 'es'
     ? 'Descubre espacios sostenibles, conecta con nómadas digitales y redefine tu forma de trabajar.'
     : 'Discover sustainable spaces, connect with digital nomads, and redefine how you work.';
+
+/** Misma variante que el `poster` del hero: el buscador del LCP la ve en el HTML sin esperar al vídeo. */
+const heroLcpPoster = await getImage({
+  src: HOME_MEDIA.videoPoster,
+  width: 1920,
+  format: 'webp',
+  quality: 82,
+});
 ---
 
 <MainLayout
@@ -44,6 +55,15 @@ const description =
     publisher: { '@type': 'Organization', name: 'Slowork' },
   }}
 >
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={heroLcpPoster.src}
+    type="image/webp"
+    fetchpriority="high"
+  />
+
   <main class="w-full">
     <HomeHero lang={lang} />
     <HomeValueProposition lang={lang} />

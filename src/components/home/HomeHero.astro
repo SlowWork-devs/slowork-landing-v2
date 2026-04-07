@@ -1,4 +1,6 @@
 ---
+import { getImage } from 'astro:assets';
+
 import Button from '@/components/ui/Button.astro';
 import type { SupportedLang } from '@/lib/seo';
 import { HOME_MEDIA, homeHeroCopy } from '@/lib/homeContent';
@@ -10,6 +12,13 @@ interface Props {
 const { lang } = Astro.props;
 const copy = homeHeroCopy(lang);
 const blogHref = `/${lang}/blog/`;
+
+const heroPoster = await getImage({
+  src: HOME_MEDIA.videoPoster,
+  width: 1920,
+  format: 'webp',
+  quality: 82,
+});
 ---
 
 <section id="hero" class="relative z-10 w-full min-h-[95vh] overflow-hidden">
@@ -17,12 +26,14 @@ const blogHref = `/${lang}/blog/`;
   <div class="hero-media-fade absolute inset-0 z-0">
     <video
       class="absolute inset-0 h-full w-full object-cover"
+      width="1920"
+      height="1080"
       autoplay
       loop
       muted
       playsinline
-      preload="auto"
-      poster={HOME_MEDIA.videoPoster.src}
+      preload="metadata"
+      poster={heroPoster.src}
     >
       <source src={HOME_MEDIA.videoSrc} type="video/mp4" />
     </video>
