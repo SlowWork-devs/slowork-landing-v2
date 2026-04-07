@@ -1,6 +1,6 @@
 # Especificación: landing-waitlist-v2
 
-Documento de especificación del producto **landing-waitlist-v2**: unifica la visión del **blog SloWork en Astro** (`slowork-landing-v2`) con la **migración de la landing histórica** (CRA + Express en `sloworkLanding`) hacia una sola propuesta Astro, waitlist incluida. Sirve como referencia para equipos, despliegue y evolución del repositorio.
+Documento de especificación del producto **landing-waitlist-v2**: unifica la visión del **blog Slowork en Astro** (`slowork-landing-v2`) con la **migración de la landing histórica** (CRA + Express en `sloworkLanding`) hacia una sola propuesta Astro, waitlist incluida. Sirve como referencia para equipos, despliegue y evolución del repositorio.
 
 **Versión del documento:** 1.5 (abril 2026)  
 **Repositorio de implementación actual:** `slowork-landing-v2`  
@@ -11,7 +11,7 @@ Documento de especificación del producto **landing-waitlist-v2**: unifica la vi
 
 ## 1. Resumen ejecutivo
 
-**landing-waitlist-v2** es el nombre del proyecto que representa el sitio público SloWork en **un solo stack Astro** (home, páginas legales, programa impact, about, blog y **lista de espera con persistencia**), desplegable de forma coherente (p. ej. Vercel con adapter serverless), con **i18n** `es` / `en` alineada a la landing anterior y SEO unificado.
+**landing-waitlist-v2** es el nombre del proyecto que representa la **landing principal** y el blog de Slowork en **un solo stack Astro** (home, páginas legales, programa impact, about, blog y **lista de espera con persistencia**), desplegable de forma coherente (p. ej. Vercel con adapter serverless), con **i18n** `es` / `en` alineada a la landing anterior y SEO unificado.
 
 La implementación vive hoy principalmente en **`slowork-landing-v2`**, que ha dejado de ser “solo blog” para incorporar las piezas que antes dependían de **sloworkLanding** (React) y de backends externos o paralelos.
 
@@ -99,7 +99,7 @@ Ambas rutas están definidas como **no prerender** (`prerender = false`).
 
 Despliegue SSR, capas (presentación / datos / red) y comparativa frente a un host monolítico: **§4.6**.
 
-### 4.2 Organización del código (SloWork manifesto)
+### 4.2 Organización del código (manifiesto Slowork)
 
 - **`src/models/`**: esquemas Zod y tipos (p. ej. `waitlist`, `welcome-email`, `i18n`, `legal`, `about`, `headerNav`).
 - **`src/services/`**: lógica de negocio y side-effects (email, integraciones locales vigentes).
@@ -296,7 +296,7 @@ Esta sección consolida decisiones explícitas guardadas en **Engram** para los 
 
 ### 5.5 Waitlist, seguridad y manifiesto
 
-- Refactor alineado al **manifiesto SloWork**: Zod en models y ruta `waitlist` como orquestación fina server-side.
+- Refactor alineado al **manifiesto Slowork**: Zod en models y ruta `waitlist` como orquestación fina server-side.
 - Decisión operativa: `POST /api/waitlist/` en Astro es **proxy** a API legacy y además dispara welcome server-side (cookie `slowork-language` para `lang`; fallback `en`).
 - **reCAPTCHA v2 retirado por completo** (widget, script, variables, endpoint verify). **Pendiente acordado:** **reCAPTCHA v3 basado en score** (servidor valida `score` y `action` tras `grecaptcha.execute` en cliente).
 - **Referidos retirados** del flujo público waitlist (ver §4.3).
@@ -311,7 +311,7 @@ Esta sección consolida decisiones explícitas guardadas en **Engram** para los 
 
 - **Header** fijo: en home, estado inicial tipo vidrio sobre hero; tras scroll (>50 px) clase **`.header-scrolled`**. Atributo/cookie **`data-is-home`** para no aplicar comportamiento de home en páginas internas. Logo con filtro CSS para contraste sobre vídeo cuando el header es claro sobre fondo oscuro.
 - **Hero**: copy y combinaciones alineadas a la landing histórica; primera línea con acento **`text-soft-blue`** (token **`--color-soft-blue`**, p. ej. `#779ed3`); rotador CSS con clases **`.rotator-text`**, **`.word-exit`**, **`.word-enter`** (sin máquina de escribir); intervalos desincronizados entre primera palabra y frase.
-- **Redes**: fuente única **`src/lib/socialLinks.ts`** (`SLOWORK_SOCIAL_LINKS`), enlaces a **perfiles** SloWork (no “share intent”), barra en **`SocialShareBar.astro`** dentro de `MainLayout`.
+- **Redes**: fuente única **`src/lib/socialLinks.ts`** (`SLOWORK_SOCIAL_LINKS`), enlaces a **perfiles** Slowork (no “share intent”), barra en **`SocialShareBar.astro`** dentro de `MainLayout`.
 - **Impact** como sección de marketing: **`src/components/sections/ImpactProgram.astro`**; página dedicada con layout estándar. Decisión de asset: **`src/assets/images/slowork-impact.avif`** como imagen de hero y CTA final (formato AVIF, `<Image />`, eager en hero, lazy en CTA).
 - **About**: **`sections/AboutUs.astro`**, modelo y copy dedicados; reveal con **`.home-reveal`** e **IntersectionObserver** (desconectar al re-enlazar en navegación).
 - **Navegación**: **`src/models/headerNav.ts`** + **`src/lib/headerNavCopy.ts`**; rutas con **trailing slash** (`/${lang}/about-us/`, `/${lang}/impact-program/`).

@@ -1,4 +1,4 @@
-# SloWork Blog (`slowork-landing-v2`) — Resumen técnico para integración con la landing
+# Slowork Blog (`slowork-landing-v2`) — Resumen técnico para integración con la landing
 
 Documento de referencia del proyecto **Astro** del blog, pensado para **fusionarlo con la futura landing unificada** (por ejemplo sustituyendo o coexistiendo con el blog React de `sloworkLanding`). Incluye rutas, contenido, estilos, gaps respecto a producción actual y checklist de integración.
 
@@ -168,7 +168,7 @@ Hay **20 artículos por idioma** (40 ficheros `.md`) en `src/content/blog/en/` y
 - Estilos editoriales extensos para **`.prose`** (enlaces accesibles, blockquotes, tablas, listas con marcadores personalizados, imágenes redondeadas).
 - **`.header-scrolled`**: clase preparada para header al hacer scroll (no está cableada en `Header.astro` en la revisión actual).
 
-**Alineación con la landing React**: la paleta y Poppins coinciden con la identidad SloWork / `sloworkLanding` (T tailwind primary/secondary similares).
+**Alineación con la landing React**: la paleta y Poppins coinciden con la identidad Slowork / `sloworkLanding` (T tailwind primary/secondary similares).
 
 ---
 
