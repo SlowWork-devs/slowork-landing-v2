@@ -375,6 +375,40 @@
   .prose.legal-doc .legal-doc-table-wrap td {
     @apply p-3 text-sm text-primary/90;
   }
+
+  /**
+   * Modal de términos (waitlist): mismo tratamiento legislativo plano — tipografía uniforme, color casi negro.
+   */
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc {
+    @apply text-neutral-900;
+  }
+
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc p,
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc li {
+    @apply text-neutral-900;
+  }
+
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc h2,
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc h3 {
+    @apply font-normal text-base text-neutral-900;
+  }
+
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc a {
+    @apply font-normal text-neutral-900 underline decoration-neutral-500;
+  }
+
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc a:visited {
+    @apply text-neutral-900 decoration-neutral-500;
+  }
+
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc a:hover {
+    @apply text-neutral-900 decoration-neutral-800;
+  }
+
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc ul > li::marker,
+  .terms-policy-dialog .legal-doc-dialog-content .prose.legal-doc ol > li::marker {
+    @apply text-neutral-700;
+  }
 }
 
 @layer components {

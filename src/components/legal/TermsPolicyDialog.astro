@@ -23,20 +23,20 @@ const dialogId = `waitlist-terms-dialog-${suffix}`;
   aria-labelledby={`${dialogId}-heading`}
 >
   <div
-    class="flex max-h-[min(90dvh,52rem)] w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-primary/15 bg-light-green shadow-2xl"
+    class="flex max-h-[min(90dvh,52rem)] w-full min-w-0 flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-lg"
   >
     <header
-      class="flex shrink-0 items-center justify-between gap-3 border-b border-primary/10 px-4 py-3 sm:px-5"
+      class="flex shrink-0 items-center justify-between gap-3 border-b border-neutral-200 px-4 py-3 sm:px-5"
     >
       <h2
         id={`${dialogId}-heading`}
-        class="min-w-0 pr-2 font-heading text-base font-bold leading-snug text-primary sm:text-lg"
+        class="min-w-0 pr-2 font-sans text-base font-normal leading-snug text-neutral-900 sm:text-base"
       >
         {terms.title}
       </h2>
       <button
         type="button"
-        class="btn btn-circle btn-ghost btn-sm shrink-0 text-primary"
+        class="btn btn-circle btn-ghost btn-sm shrink-0 text-neutral-800"
         data-close-waitlist-terms-dialog
         aria-label={closeLabel}
       >
@@ -44,21 +44,19 @@ const dialogId = `waitlist-terms-dialog-${suffix}`;
       </button>
     </header>
     <div
-      class="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain px-4 py-4 sm:px-6 sm:py-5"
+      class="legal-doc-dialog-content min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain bg-white px-4 py-4 sm:px-6 sm:py-5"
     >
-      <div class="rounded-xl bg-bg-landing/90 px-3 py-4 sm:px-5 sm:py-6">
-        <p class="mb-6 text-center text-sm text-primary/75">{terms.date}</p>
-        <TermsPolicyArticle terms={terms} lang={lang} showDocumentTitle={false} />
-      </div>
+      <p class="mb-6 text-left text-sm font-normal leading-relaxed text-neutral-800">{terms.date}</p>
+      <TermsPolicyArticle terms={terms} lang={lang} showDocumentTitle={false} />
     </div>
     <footer
-      class="flex shrink-0 flex-col-reverse gap-2 border-t border-primary/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-5"
+      class="flex shrink-0 flex-col-reverse gap-2 border-t border-neutral-200 bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-5"
     >
       <a
         href={fullPageHref}
         target="_blank"
         rel="noopener noreferrer"
-        class="link text-center text-sm font-semibold text-soft-blue underline decoration-2 underline-offset-2 hover:text-primary sm:text-left"
+        class="text-center text-sm font-normal text-neutral-900 underline decoration-neutral-400 underline-offset-2 hover:decoration-neutral-600 sm:text-left"
       >
         {fullPageLabel}
       </a>
