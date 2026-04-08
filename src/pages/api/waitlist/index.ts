@@ -40,10 +40,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     const targetUrl = `${baseUrl.replace(/\/+$/, '')}/api/waitlist`;
 
+    const payload = JSON.stringify(parsed.data);
+
     const upstreamRes = await fetch(targetUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(parsed.data),
+      body: payload,
     }).catch(() => null);
 
     if (upstreamRes === null) {
@@ -63,19 +65,25 @@ export const POST: APIRoute = async ({ request }) => {
     if (!upstreamRes.ok) {
       const fallbackMessage = 'Error al registrar en la lista de espera';
       const contentType = upstreamRes.headers.get('content-type') ?? '';
-      const message = await (contentType.includes('application/json')
-        ? upstreamRes
-            .json()
-            .then((d: unknown) =>
-              d !== null &&
-              typeof d === 'object' &&
-              'message' in d &&
-              typeof (d as { message?: unknown }).message === 'string'
-                ? (d as { message: string }).message
-                : fallbackMessage,
-            )
-            .catch(() => fallbackMessage)
-        : upstreamRes.text().then(() => fallbackMessage).catch(() => fallbackMessage));
+      const errorDetail = await upstreamRes.text().catch(() => '');
+
+      console.log('PAYLOAD HACIA AWS:', JSON.stringify(parsed.data));
+      console.log('ERROR REAL DE AWS:', errorDetail);
+
+      const message = (() => {
+        if (!contentType.includes('application/json')) return fallbackMessage;
+        try {
+          const d: unknown = JSON.parse(errorDetail);
+          return d !== null &&
+            typeof d === 'object' &&
+            'message' in d &&
+            typeof (d as { message?: unknown }).message === 'string'
+            ? (d as { message: string }).message
+            : fallbackMessage;
+        } catch {
+          return fallbackMessage;
+        }
+      })();
 
       return jsonResponse({ success: false, message }, { status: upstreamRes.status });
     }
