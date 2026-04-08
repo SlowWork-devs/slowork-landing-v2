@@ -18,17 +18,41 @@
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+/** DaisyUI `light`: paleta marca + estados `--color-error` / `--color-success` (input-error, input-success, validator, etc.). */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  color-scheme: light;
+  --color-primary: #013333;
+  --color-primary-content: #e0bb44;
+  --color-secondary: #e0bb44;
+  --color-secondary-content: #013333;
+  --color-base-100: #e2e8e5;
+  --color-base-200: #ddeee5;
+  --color-base-300: color-mix(in srgb, #013333 14%, #e2e8e5);
+  --color-base-content: #013333;
+  --color-error: #e63946;
+  --color-success: #2a9d8f;
+}
 
 /** Escaneo explícito: Astro + TS + MDX bajo `src/` (Tailwind 4 + Vite). */
 @source "../**/*.{astro,html,js,ts,tsx,md,mdx}";
 
 @theme {
-  /* --- Paleta Slowork --- */
+  /* --- Paleta Slowork (única fuente de color de marca; el resto = opacidad o color-mix sobre estos tokens) --- */
   --color-primary: #013333;
   --color-secondary: #e0bb44;
   --color-light-green: #ddeee5;
   --color-bg-landing: #e2e8e5;
   --color-soft-blue: #779ed3;
+
+  /* Estados semánticos (DaisyUI: input-error / input-success → --input-color vía --color-error | --color-success) */
+  --color-error: #e63946;
+  --color-success: #2a9d8f;
 
   /* Tokens alineados con convención DaisyUI / utilidades */
   --color-base-100: var(--color-bg-landing);
@@ -67,6 +91,34 @@
     /* Quiet time */
     100% { transform: translateY(0) scaleX(1) scaleY(1); }
   }
+}
+
+/**
+ * DaisyUI `.input`: transición suave al cambiar borde/sombra (p. ej. input-bordered + input-error / input-success).
+ */
+@layer components {
+  .input {
+    transition:
+      border-color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+}
+
+@import "intl-tel-input/build/css/intlTelInput.css";
+
+/**
+ * intl-tel-input: la librería define `--iti-*` en `:root`; estas líneas van después del @import
+ * para alinear bordes, iconos y hover con la paleta Slowork (sin CDN).
+ */
+:root {
+  --iti-border-color: var(--color-primary);
+  --iti-icon-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-soft-blue));
+  --iti-hover-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/** Contenedor a ancho completo en formularios (la librería usa `inline-block` por defecto). */
+.iti {
+  width: 100%;
 }
 
 @layer base {
@@ -124,7 +176,7 @@
 
   /* Enlaces en el cuerpo del artículo: reconocibles sin depender solo del color (WCAG) */
   .prose a {
-    @apply font-medium text-[#0b5f5f] underline decoration-secondary decoration-2 underline-offset-[0.18em] wrap-break-word;
+    @apply font-medium text-soft-blue underline decoration-secondary decoration-2 underline-offset-[0.18em] wrap-break-word;
     text-decoration-skip-ink: auto;
     transition:
       color 0.15s ease,
@@ -134,7 +186,7 @@
   }
 
   .prose a:visited {
-    @apply text-[#085050] decoration-secondary/70;
+    @apply text-primary decoration-secondary/70;
   }
 
   .prose a:hover {
@@ -169,13 +221,13 @@
   }
 
   .prose blockquote {
-    @apply border-l-4 border-secondary bg-white/40 py-6 px-8 italic rounded-r-2xl my-10 shadow-sm;
+    @apply border-l-4 border-secondary bg-light-green/50 py-6 px-8 italic rounded-r-2xl my-10 shadow-sm;
     color: var(--color-primary);
   }
 
   /* Imágenes: aspect-ratio y object-fit para evitar deformaciones */
   .prose img {
-    @apply rounded-4xl shadow-xl my-12 border-4 border-white/50 w-full max-w-full h-auto object-cover;
+    @apply rounded-4xl shadow-xl my-12 border-4 border-light-green w-full max-w-full h-auto object-cover;
   }
 
   /* Tablas: el wrapper .table-wrapper (rehype) tiene overflow-x-auto */
@@ -184,16 +236,15 @@
   }
 
   .prose table {
-    @apply w-full min-w-[320px] border-collapse shadow-md rounded-2xl overflow-hidden bg-white/50;
+    @apply w-full min-w-[320px] border-collapse shadow-md rounded-2xl overflow-hidden bg-light-green/35;
   }
 
   .prose thead {
-    @apply bg-primary text-white;
+    @apply bg-primary text-secondary;
   }
 
   .prose th {
-    @apply py-5 px-4 sm:px-6 text-left font-bold uppercase tracking-widest text-xs;
-    color: #ffffff !important;
+    @apply py-5 px-4 sm:px-6 text-left font-bold uppercase tracking-widest text-xs text-secondary;
   }
 
   .prose tr {
@@ -201,7 +252,7 @@
   }
 
   .prose tr:nth-child(even) {
-    @apply bg-white/30;
+    @apply bg-light-green/25;
   }
 
   .prose tr:hover {
@@ -255,23 +306,23 @@
   .prose.legal-doc {
     max-width: none !important;
     margin: 0;
-    @apply text-neutral-800;
+    @apply text-primary/90;
   }
 
   .prose.legal-doc p {
-    @apply mb-4 text-left text-base leading-relaxed font-normal text-neutral-800;
+    @apply mb-4 text-left text-base leading-relaxed font-normal text-primary/90;
   }
 
   .prose.legal-doc > h1 {
-    @apply mt-0 mb-1 border-0 pb-0 text-center text-xl font-bold uppercase tracking-wide text-neutral-900 sm:text-2xl;
+    @apply mt-0 mb-1 border-0 pb-0 text-center text-xl font-bold uppercase tracking-wide text-primary sm:text-2xl;
   }
 
   .prose.legal-doc > p:first-of-type {
-    @apply mb-8 mt-0 text-center text-sm font-normal text-neutral-600;
+    @apply mb-8 mt-0 text-center text-sm font-normal text-primary/65;
   }
 
   .prose.legal-doc h2 {
-    @apply mb-3 mt-10 border-0 pb-0 text-left text-base font-bold uppercase tracking-wide text-neutral-900;
+    @apply mb-3 mt-10 border-0 pb-0 text-left text-base font-bold uppercase tracking-wide text-primary;
   }
 
   .prose.legal-doc h2:first-of-type {
@@ -279,11 +330,11 @@
   }
 
   .prose.legal-doc h3 {
-    @apply mt-6 mb-2 border-0 pb-0 text-left text-base font-bold normal-case tracking-normal text-neutral-900;
+    @apply mt-6 mb-2 border-0 pb-0 text-left text-base font-bold normal-case tracking-normal text-primary;
   }
 
   .prose.legal-doc a {
-    @apply font-normal text-neutral-900 underline decoration-neutral-500 underline-offset-[0.2em];
+    @apply font-normal text-primary underline decoration-soft-blue/70 underline-offset-[0.2em];
     text-decoration-skip-ink: auto;
     text-decoration-thickness: 1px;
     transition:
@@ -292,15 +343,15 @@
   }
 
   .prose.legal-doc a:visited {
-    @apply text-neutral-900 decoration-neutral-500;
+    @apply text-primary decoration-soft-blue/55;
   }
 
   .prose.legal-doc a:hover {
-    @apply text-neutral-950 decoration-neutral-900;
+    @apply text-soft-blue decoration-primary;
   }
 
   .prose.legal-doc a:focus-visible {
-    @apply rounded-sm outline-2 outline-offset-2 outline-neutral-800;
+    @apply rounded-sm outline-2 outline-offset-2 outline-secondary;
     outline-style: solid;
   }
 
@@ -314,16 +365,16 @@
   }
 
   .prose.legal-doc li {
-    @apply relative mb-2 pl-5 text-[1rem] font-normal leading-relaxed text-neutral-800 transition-none;
+    @apply relative mb-2 pl-5 text-[1rem] font-normal leading-relaxed text-primary/90 transition-none;
   }
 
   .prose.legal-doc li:hover {
-    @apply text-neutral-800;
+    @apply text-primary/90;
   }
 
   .prose.legal-doc ul > li::before {
     content: "–";
-    @apply absolute left-0 top-0 font-normal text-neutral-800;
+    @apply absolute left-0 top-0 font-normal text-primary/90;
     background: none;
     box-shadow: none;
     border-radius: 0;
@@ -342,7 +393,7 @@
   .prose.legal-doc ol > li::before {
     counter-increment: legal-doc-ol;
     content: counter(legal-doc-ol) ".";
-    @apply absolute left-0 top-0 text-base font-normal text-neutral-800;
+    @apply absolute left-0 top-0 text-base font-normal text-primary/90;
     background: none;
     box-shadow: none;
   }
@@ -354,7 +405,7 @@
   }
 
   .prose.legal-doc blockquote {
-    @apply my-6 rounded-none border-l-2 border-neutral-300 bg-transparent py-2 pl-4 not-italic shadow-none text-neutral-800;
+    @apply my-6 rounded-none border-l-2 border-primary/25 bg-transparent py-2 pl-4 not-italic shadow-none text-primary/90;
   }
 
   .prose.legal-doc img {
@@ -362,20 +413,20 @@
   }
 
   .prose.legal-doc .legal-doc-table-wrap table {
-    @apply w-full min-w-[280px] border-collapse border border-neutral-300 bg-white text-left text-sm text-neutral-800 shadow-none;
+    @apply w-full min-w-[280px] border-collapse border border-primary/20 bg-bg-landing text-left text-sm text-primary/90 shadow-none;
   }
 
   .prose.legal-doc .legal-doc-table-wrap thead {
-    @apply bg-neutral-100 text-neutral-900;
+    @apply bg-light-green text-primary;
   }
 
   .prose.legal-doc .legal-doc-table-wrap th {
-    @apply border-b border-neutral-300 p-3 text-left text-xs font-bold uppercase tracking-wide text-neutral-900;
+    @apply border-b border-primary/20 p-3 text-left text-xs font-bold uppercase tracking-wide text-primary;
     color: inherit !important;
   }
 
   .prose.legal-doc .legal-doc-table-wrap tbody tr {
-    @apply border-b border-neutral-200 transition-none;
+    @apply border-b border-primary/15 transition-none;
   }
 
   .prose.legal-doc .legal-doc-table-wrap tbody tr:nth-child(even) {
@@ -387,7 +438,7 @@
   }
 
   .prose.legal-doc .legal-doc-table-wrap td {
-    @apply p-3 text-sm text-neutral-800;
+    @apply p-3 text-sm text-primary/90;
   }
 }
 
@@ -460,7 +511,7 @@
   }
 
   .btn:focus-visible {
-    @apply ring-2 ring-soft-blue ring-offset-2 ring-offset-white;
+    @apply ring-2 ring-soft-blue ring-offset-2 ring-offset-bg-landing;
   }
 
   .btn-glass:focus-visible {
@@ -480,7 +531,7 @@
   }
 
   .btn-primary {
-    @apply min-h-12 bg-primary px-7 py-3 text-white;
+    @apply min-h-12 bg-primary px-7 py-3 text-secondary;
     box-shadow:
       inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
       0 4px 16px -8px color-mix(in srgb, var(--color-primary) 45%, transparent);
@@ -508,12 +559,12 @@
   }
 
   .btn-glass {
-    @apply min-h-12 border border-white/25 border-t-white/20 bg-white/10 px-7 py-3 text-white backdrop-blur-md;
+    @apply min-h-12 border border-secondary/35 border-t-secondary/25 bg-primary/20 px-7 py-3 text-secondary backdrop-blur-md;
   }
 
   @media (hover: hover) {
     .btn-glass:hover {
-      @apply border-white/35 border-t-white/40 bg-white/20 backdrop-blur-xl;
+      @apply border-secondary/50 border-t-secondary/40 bg-primary/28 backdrop-blur-xl;
       filter: none;
       box-shadow: 0 14px 36px -16px color-mix(in srgb, var(--color-primary) 25%, transparent);
     }
@@ -714,17 +765,17 @@
   }
 
   .header-scrolled {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: color-mix(in srgb, var(--color-bg-landing) 88%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding-top: 1rem;
     padding-bottom: 1rem;
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-    border-bottom: 1px solid rgba(1, 51, 51, 0.08);
+    box-shadow: 0 4px 20px -2px color-mix(in srgb, var(--color-primary) 6%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
   }
 
   /* Logo filter based on header state */
-  #main-header.text-white .logo-image {
+  #main-header.text-bg-landing .logo-image {
     filter: brightness(0) invert(1);
   }
 
@@ -763,43 +814,6 @@
     pointer-events: auto;
   }
 
-  /**
-   * Waitlist: etiquetas flotantes. `peer-placeholder-shown` con el mismo peso que
-   * `peer-focus` dejaba la etiqueta centrada al enfocar un campo vacío. Flotamos con
-   * :focus o :not(:placeholder-shown) (inputs / textarea con placeholder=" ").
-   */
-  .waitlist-form-root label.waitlist-float-label {
-    pointer-events: none;
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    z-index: 10;
-    transform-origin: left center;
-    transform: translateY(-50%);
-    font-size: 1rem;
-    line-height: 1.5rem;
-    color: color-mix(in srgb, var(--color-primary) 55%, transparent);
-    transition-property: top, transform, font-size, color;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .waitlist-form-root label.waitlist-float-label--icon {
-    left: 2.5rem;
-  }
-
-  .waitlist-form-root .peer:focus ~ label.waitlist-float-label,
-  .waitlist-form-root .peer:focus ~ label.waitlist-float-label--icon,
-  .waitlist-form-root .peer:not(:placeholder-shown) ~ label.waitlist-float-label,
-  .waitlist-form-root .peer:not(:placeholder-shown) ~ label.waitlist-float-label--icon {
-    top: 0.5rem;
-    transform: translateY(0);
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 500;
-    color: var(--color-primary);
-  }
-
   /** Contacto home: etiquetas flotantes sobre cristal (texto claro / acento secondary al foco). */
   .contact-form-root label.contact-float-label {
     pointer-events: none;
@@ -811,7 +825,7 @@
     transform: translateY(-50%);
     font-size: 1rem;
     line-height: 1.5rem;
-    color: color-mix(in srgb, white 58%, transparent);
+    color: color-mix(in srgb, var(--color-bg-landing) 72%, var(--color-secondary) 28%);
     transition-property: top, transform, font-size, color;
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
