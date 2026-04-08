@@ -5,10 +5,7 @@ export async function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
 }
 
-import { ClientRouter } from 'astro:transitions';
-import BaseHead from '@/components/BaseHead.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
 import BlogCard from '@/components/BlogCard.astro';
 import { SITE_TITLE } from '@/consts';
 import { getBlogs } from '@/lib/api-service';
@@ -28,48 +25,43 @@ const esBlogIndex = new URL('/es/blog/', Astro.url.origin).href;
 const enBlogIndex = new URL('/en/blog/', Astro.url.origin).href;
 
 const blogMetaDescription =
-	lang === 'es'
-		? `${SITE_TITLE} — Sitio oficial. Blog: guías y reflexiones para confirmar que otro estilo de vida es posible.`
-		: `${SITE_TITLE} — Official site. Blog: guides and reflections on another way of life.`;
+  lang === 'es'
+    ? `${SITE_TITLE} — Sitio oficial. Blog: guías y reflexiones para confirmar que otro estilo de vida es posible.`
+    : `${SITE_TITLE} — Official site. Blog: guides and reflections on another way of life.`;
 ---
 
-<!doctype html>
-<html lang={lang}>
-	<head>
-		<BaseHead title={`${SITE_TITLE} | Blog`} description={blogMetaDescription} lang={lang} />
-		<ClientRouter />
-		<link rel="alternate" hreflang="es" href={esBlogIndex} />
-		<link rel="alternate" hreflang="en" href={enBlogIndex} />
-		<link rel="alternate" hreflang="x-default" href={esBlogIndex} />
-	</head>
-	<body id="slowork-layout-root" class="min-w-0 overflow-x-hidden">
-		<Header language={lang} alternateLink={alternateLink} />
+<MainLayout
+  lang={lang}
+  title={`${SITE_TITLE} | Blog`}
+  description={blogMetaDescription}
+  headerAlternateLink={alternateLink}
+  alternates={[
+    { hreflang: 'es', href: esBlogIndex },
+    { hreflang: 'en', href: enBlogIndex },
+    { hreflang: 'x-default', href: esBlogIndex },
+  ]}
+>
+  <main class="w-full max-w-7xl mx-auto px-6 pt-32 pb-10 sm:pt-32 sm:pb-14 md:py-24">
+    <header class="text-center mb-12 sm:mb-16 md:mb-20 animate-fade-in-down">
+      <h1 class="font-heading font-bold text-primary mb-6 text-[clamp(1.75rem,5vw+1rem,3.75rem)] leading-tight tracking-tight">
+        Slowork Blog
+      </h1>
+      <div class="w-24 h-1.5 bg-secondary mx-auto rounded-full mb-6 md:mb-8"></div>
+      <p class="text-primary/80 max-w-2xl mx-auto leading-relaxed text-base sm:text-lg md:text-xl">
+        {lang === 'es'
+          ? 'Rediseña tu mundo. Guías y reflexiones para confirmar que otro estilo de vida es posible.'
+          : 'Redesign your world. Guides and reflections to confirm another way of life is possible.'}
+      </p>
+    </header>
 
-		<main class="w-full max-w-7xl mx-auto px-6 pt-32 pb-10 sm:pt-32 sm:pb-14 md:py-24">
-			<header class="text-center mb-12 sm:mb-16 md:mb-20 animate-fade-in-down">
-				<h1 class="font-heading font-bold text-primary mb-6 text-[clamp(1.75rem,5vw+1rem,3.75rem)] leading-tight tracking-tight">
-					Slowork Blog
-				</h1>
-				<div class="w-24 h-1.5 bg-secondary mx-auto rounded-full mb-6 md:mb-8"></div>
-				<p class="text-primary/80 max-w-2xl mx-auto leading-relaxed text-base sm:text-lg md:text-xl">
-					{lang === 'es'
-						? 'Rediseña tu mundo. Guías y reflexiones para confirmar que otro estilo de vida es posible.'
-						: 'Redesign your world. Guides and reflections to confirm another way of life is possible.'}
-				</p>
-			</header>
-
-			<section class="w-full min-w-0">
-				<ul class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 list-none p-0">
-					{posts.map((post) => (
-						<li class="flex h-full min-h-0 min-w-0 w-full flex-col">
-							<BlogCard post={post} lang={lang} />
-						</li>
-					))}
-				</ul>
-			</section>
-		</main>
-
-		<Footer language={lang} />
-	</body>
-</html>
-
+    <section class="w-full min-w-0">
+      <ul class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 list-none p-0">
+        {posts.map((post) => (
+          <li class="flex h-full min-h-0 min-w-0 w-full flex-col">
+            <BlogCard post={post} lang={lang} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</MainLayout>
