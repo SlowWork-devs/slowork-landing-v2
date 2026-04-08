@@ -1,12 +1,20 @@
 import { z } from 'zod';
 
-/** Espacios fuera; útil con inputs de teléfono o pegados desde UI con separadores. */
-export const normalizeWaitlistPhoneInput = (raw: string): string => raw.trim().replace(/\s/g, '');
+/** Quita todo lo que no sea dígito ni `+` (espacios, guiones, paréntesis, puntos, etc.). */
+const stripNonE164SignificantChars = (s: string): string => s.replace(/[^\d+]/g, '');
 
 /**
- * ITU-T E.164: prefijo `+` y entre 2 y 15 dígitos en total (primer dígito tras + en 1–9).
- * Compatible con salidas típicas de selectores de país / libphonenumber.
+ * Normaliza la entrada del usuario: trim, elimina separadores y ruido, mantiene un único `+`
+ * inicial (ITU-T E.164) y solo dígitos detrás. Sin `+` inicial devuelve solo dígitos (fallará la regex).
  */
+export const normalizeWaitlistPhoneInput = (phone: string): string => {
+  const compact = stripNonE164SignificantChars(phone.trim());
+  return compact.startsWith('+')
+    ? `+${compact.slice(1).replace(/\D/g, '')}`
+    : compact.replace(/\D/g, '');
+};
+
+/** ITU-T E.164: `+` seguido de 1–15 dígitos; el primero tras `+` no puede ser 0. */
 export const WAITLIST_PHONE_E164_REGEX = /^\+[1-9]\d{1,14}$/;
 
 const trimmedNullable = z
@@ -91,15 +99,11 @@ export const createWaitlistFormSchema = (m: WaitlistFormValidationMessages) =>
     phone: z
       .string()
       .transform((s) => normalizeWaitlistPhoneInput(s))
-      .superRefine((val, ctx) => {
-        if (val.length === 0) {
-          ctx.addIssue({ code: 'custom', message: m.phoneRequired });
-          return;
-        }
-        if (!WAITLIST_PHONE_E164_REGEX.test(val)) {
-          ctx.addIssue({ code: 'custom', message: m.phoneInvalid });
-        }
-      }),
+      .refine((val) => val.length > 0, m.phoneRequired)
+      .refine(
+        (val) => val.length === 0 || WAITLIST_PHONE_E164_REGEX.test(val),
+        m.phoneInvalid,
+      ),
     instagram: z
       .string()
       .transform((s) => s.trim())
