@@ -801,4 +801,23 @@
     font-weight: 500;
     color: var(--color-secondary);
   }
+
+  /** Formulario contacto sobre tarjeta clara: etiquetas con contraste legible. */
+  .contact-form-shell .contact-form-root label.contact-float-label {
+    color: color-mix(in srgb, var(--color-primary) 56%, transparent);
+  }
+
+  .contact-form-shell .contact-form-root textarea.peer:focus ~ label.contact-float-label,
+  .contact-form-shell .contact-form-root textarea.peer:not(:placeholder-shown) ~ label.contact-float-label,
+  .contact-form-shell .contact-form-root input.peer:focus ~ label.contact-float-label,
+  .contact-form-shell .contact-form-root input.peer:not(:placeholder-shown) ~ label.contact-float-label {
+    color: var(--color-soft-blue);
+  }
+
+  /** Dock social: se atenúa en viewport cuando la sección contacto evita duplicar iconos. */
+  body[data-contact-section-visible="true"] [data-social-dock] {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
 }

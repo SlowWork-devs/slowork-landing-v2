@@ -19,12 +19,15 @@ const linkClassDrawer =
   'pointer-events-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-bg-landing/15 text-primary/60 ring-1 ring-bg-landing/30 backdrop-blur-[2px] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-bg-landing/28 hover:text-primary hover:ring-bg-landing/45 active:translate-y-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-soft-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bg-landing/55 touch-manipulation';
 
 const linkClassContact =
-  'pointer-events-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-bg-landing/12 text-secondary ring-1 ring-bg-landing/28 backdrop-blur-sm transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-bg-landing/22 hover:text-bg-landing hover:ring-secondary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/80 active:translate-y-0 active:scale-95 touch-manipulation';
+  'pointer-events-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-secondary ring-2 ring-secondary/35 shadow-md transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-primary/90 hover:ring-secondary/55 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-soft-blue focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 active:translate-y-0 active:scale-95 touch-manipulation';
 ---
 
 {
   variant === 'dock' && (
-    <div class="pointer-events-none fixed right-0 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center lg:flex">
+    <div
+      class="pointer-events-none fixed right-0 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center lg:flex"
+      data-social-dock
+    >
       <div class="group relative flex flex-col items-center" aria-label={regionLabel}>
         <div class="pointer-events-none absolute right-full mr-2 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">
           <span class="rounded-md border border-bg-landing/20 bg-primary/75 px-2 py-1 text-xs font-bold whitespace-nowrap text-secondary backdrop-blur-md">
@@ -62,12 +65,14 @@ const linkClassContact =
 {
   variant === 'contact' && (
     <section class="w-full" aria-label={regionLabel}>
-      <p class="mb-3 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-secondary/90">{tagText}</p>
+      <p class="mb-3 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-secondary [text-shadow:0_1px_2px_rgba(1,51,51,0.35)]">
+        {tagText}
+      </p>
       <SocialIconsLinks
         language={language}
         linkClass={linkClassContact}
         containerClass="flex flex-wrap items-center gap-3"
-        iconClass="h-[1.15rem] w-[1.15rem] sm:h-5 sm:w-5"
+        iconClass="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]"
       />
     </section>
   )
