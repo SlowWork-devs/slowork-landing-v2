@@ -25,6 +25,24 @@ const trimmedNullable = z
     return t.length > 0 ? t : null;
   });
 
+/** Trim + cadena vacía si falta o está en blanco (siempre presente en JSON). */
+const trimmedToEmpty = z
+  .union([z.string(), z.null(), z.undefined()])
+  .transform((v): string => {
+    if (v == null) return '';
+    const t = v.trim();
+    return t.length > 0 ? t : '';
+  });
+
+/** Trim + omite la clave cuando el valor está vacío/nulo (JSON.stringify la excluye). */
+const trimmedOrOmit = z
+  .union([z.string(), z.null(), z.undefined()])
+  .transform((v): string | undefined => {
+    if (v == null) return undefined;
+    const t = v.trim();
+    return t.length > 0 ? t : undefined;
+  });
+
 const waitlistPhoneNullable = z
   .union([z.string(), z.null(), z.undefined()])
   .transform((v) => {
@@ -37,12 +55,18 @@ const waitlistPhoneNullable = z
 export const waitlistCreateBodySchema = z
   .object({
     email: z.string().trim().min(1, 'Email requerido'),
-    firstName: trimmedNullable,
+    firstName: z.string().trim().min(1),
     phone: waitlistPhoneNullable,
-    instagram: trimmedNullable,
-    linkedin: trimmedNullable,
-    preferredContact: trimmedNullable,
-    communityInterest: trimmedNullable,
+    instagram: trimmedToEmpty,
+    linkedin: trimmedToEmpty,
+    preferredContact: z
+      .union([z.string(), z.null(), z.undefined()])
+      .transform((v) => {
+        if (v == null) return null;
+        const t = v.trim().toLowerCase();
+        return t.length > 0 ? t : null;
+      }),
+    communityInterest: trimmedOrOmit,
   })
   .superRefine((data, ctx) => {
     if (data.phone !== null && !WAITLIST_PHONE_E164_REGEX.test(data.phone)) {
@@ -73,7 +97,7 @@ export type WaitlistFormValidationMessages = {
   termsRequired: string;
 };
 
-const preferredContactValues = ['Sloworker', 'Host', 'Bussines'] as const;
+const preferredContactValues = ['Sloworker', 'Host', 'Business'] as const;
 
 /** Campos del formulario validados en cliente (onBlur + submit). */
 export const WAITLIST_FORM_FIELD_NAMES = [
