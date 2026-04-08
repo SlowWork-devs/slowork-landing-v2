@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import type { SupportedLang } from '@/lib/seo';
 import { waitlistFormCopy } from '@/lib/homeContent';
+import lifestyleWorkingHero from '@/assets/lifestyle-working.jpg';
 
 interface Props {
   lang: SupportedLang;
@@ -13,30 +15,44 @@ const c = waitlistFormCopy(lang);
 const termsHref = `/${lang}/terms-and-conditions`;
 const homeHref = `/${lang}/`;
 const suffix = `${layout}-${lang}`;
-const ringOffset = layout === 'full' ? 'focus:ring-offset-light-green' : 'focus:ring-offset-white';
+const ringOffset = layout === 'full' ? 'focus:ring-offset-light-green' : 'focus:ring-offset-bg-landing';
 
-/** SVG chevron inline (evita `data:image` en el template, que Astro interpreta como prop). */
-const selectChevronStyle =
-  'background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 24 24%27 stroke=%27%23013333%27%3E%3Cpath stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M19 9l-7 7-7-7%27/%3E%3C/svg%3E"); background-size: 1rem; background-position: right 0.75rem center; background-repeat: no-repeat;';
+/** `full`: id estable para intl-tel-input; `minimal`: evita duplicar id en la misma página (modal + hero). */
+const phoneInputId = layout === 'full' ? 'phone-input' : `phone-input-${suffix}`;
 
 const rootClass =
   layout === 'full'
-    ? 'waitlist-form-root max-w-6xl mx-auto my-8 w-full overflow-hidden rounded-lg border border-secondary bg-light-green/80 font-sans shadow-lg'
-    : 'waitlist-form-root w-full font-sans';
-const gridClass = layout === 'full' ? 'grid min-h-[min(70vh,720px)] grid-cols-1 lg:grid-cols-2' : 'grid grid-cols-1';
-const formPanelClass =
+    ? 'waitlist-form-root card lg:card-side bg-base-100 mx-auto my-8 flex w-full max-w-full min-w-0 min-h-[700px] flex-col overflow-x-hidden overflow-y-visible border border-primary/10 font-sans shadow-xl sm:max-w-6xl lg:flex-row'
+    : 'waitlist-form-root card lg:card-side flex w-full max-w-full min-w-0 min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-visible border-0 bg-transparent font-sans shadow-none lg:flex-row';
+
+const formShellClass =
   layout === 'full'
-    ? 'relative z-10 flex flex-col justify-center bg-light-green p-6 sm:p-8 lg:rounded-r-lg'
-    : 'relative z-10 flex flex-col justify-center';
+    ? 'card-body relative z-10 flex min-h-0 min-w-0 flex-1 flex-col justify-center gap-0 overflow-x-hidden bg-bg-landing p-6 sm:p-8 lg:p-10 lg:w-[65%] lg:max-w-[65%] lg:flex-none lg:min-w-0'
+    : 'card-body relative z-10 flex min-h-0 min-w-0 flex-1 flex-col justify-center gap-0 overflow-x-hidden bg-bg-landing p-4 lg:w-[65%] lg:max-w-[65%] lg:flex-none lg:min-w-0';
 
-/** Fondo del overlay de éxito: mismo tono que el panel del formulario (full) o blanco (modal). */
-const successOverlayBg = layout === 'full' ? 'bg-light-green' : 'bg-white';
+const successOverlayBg = 'bg-bg-landing';
 
-const floatInput = `peer block w-full rounded-lg border-2 border-primary/80 bg-white/95 px-3 pb-2.5 pt-5 text-base text-primary shadow-sm transition placeholder:text-transparent focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${ringOffset}`;
-const floatLabel = 'waitlist-float-label';
-const floatLabelIcon = 'waitlist-float-label waitlist-float-label--icon';
+/** Landing: franja imagen en móvil; desktop 35 % fijo. */
+const heroFigureFullClass =
+  'relative order-1 flex h-48 w-full min-w-0 shrink-0 flex-col overflow-hidden lg:order-none lg:flex lg:h-auto lg:min-h-[700px] lg:w-[35%] lg:max-w-[35%] lg:flex-none lg:self-stretch';
+
+/** Modal: sin imagen bajo lg (prioriza formulario); desde lg proporción 35/65. */
+const heroFigureMinimalClass =
+  'relative order-1 hidden min-w-0 shrink-0 flex-col overflow-hidden lg:order-none lg:flex lg:h-auto lg:min-h-[min(420px,52vh)] lg:w-[35%] lg:max-w-[35%] lg:flex-none lg:self-stretch';
+
+const sectionStackClass = layout === 'minimal' ? 'space-y-4' : 'space-y-6';
+const fieldGridGapClass = layout === 'minimal' ? 'gap-4' : 'gap-x-6 gap-y-6';
+const formStackGapClass = layout === 'minimal' ? 'gap-4' : 'gap-10';
+const termsBlockMbClass = layout === 'minimal' ? 'mb-4' : 'mb-6';
+
+const labelTextClass =
+  'label-text font-bold text-primary/70 uppercase tracking-widest text-xs';
+const inputClass = `input input-bordered input-lg w-full max-w-full bg-white/90 backdrop-blur-sm border-primary/25 text-primary transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 ${ringOffset}`;
+const selectClass = `select select-bordered select-lg w-full max-w-full bg-white/90 backdrop-blur-sm border-primary/25 text-primary transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 ${ringOffset}`;
+const textareaClass = `textarea textarea-bordered textarea-lg w-full max-w-full min-h-28 resize-y bg-white/90 backdrop-blur-sm border-primary/25 text-primary transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 ${ringOffset}`;
+const inputWithIconClass = `${inputClass} pl-10`;
 const errText =
-  'mt-1.5 min-h-[1.125rem] text-xs font-medium text-red-600 opacity-0 transition-opacity duration-200 ease-out data-[visible=true]:opacity-100';
+  'mt-1.5 flex h-[2.75rem] shrink-0 items-start overflow-hidden text-xs font-semibold leading-snug text-soft-blue opacity-0 transition-opacity duration-200 ease-out data-[visible=true]:opacity-100';
 ---
 
 <div
@@ -51,58 +67,63 @@ const errText =
   data-success-inside-before={c.successInsideBefore}
   data-success-inside-after={c.successInsideAfter}
 >
-  <div class={gridClass}>
-    {
-      layout === 'full' && (
-        <div class="flex flex-col justify-center bg-linear-to-bl from-primary to-secondary/70 p-6 sm:p-8 lg:rounded-l-lg">
-          <h2 class="text-center font-heading text-[clamp(1.1rem,2.5vw,2.25rem)] font-bold leading-snug tracking-wide text-white">
-            {c.titlePart1}{' '}
-            <span class="font-extrabold text-secondary">{c.titleHighlight1}</span>
-            <br />
-            {c.titlePart2}{' '}
-            <span class="font-extrabold text-secondary">{c.titleHighlight2}</span> {c.titleEnd}
-          </h2>
-          <h3 class="mt-4 text-center font-heading text-lg font-bold uppercase tracking-widest text-primary [text-shadow:1px_1px_3px_rgba(1,51,51,0.35)] sm:text-2xl">
-            {c.waitingList}
-          </h3>
-        </div>
-      )
-    }
+  <figure class={layout === 'full' ? heroFigureFullClass : heroFigureMinimalClass}>
+    <Image
+      src={lifestyleWorkingHero}
+      alt=""
+      width={1600}
+      height={1200}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="pointer-events-none absolute inset-0 bg-primary/20" aria-hidden="true" />
+    <figcaption class="sr-only">
+      {c.waitingList}: {c.titlePart1} {c.titleHighlight1}
+    </figcaption>
+    <div class="relative z-10 flex h-full w-full min-w-0 flex-col items-center justify-center px-5 py-6 sm:px-8">
+      <h2
+        class="max-w-[20ch] text-center font-heading text-[clamp(1.125rem,3.5vw,2rem)] font-semibold leading-tight tracking-wide text-bg-landing sm:max-w-[24ch] lg:max-w-[18ch]"
+      >
+        {c.titlePart1}{' '}
+        <span class="font-extrabold text-secondary">{c.titleHighlight1}</span>
+      </h2>
+    </div>
+  </figure>
 
-    <div class={formPanelClass}>
-      <div class="relative isolate z-0 min-h-[min(60vh,520px)] w-full">
+  <div class={formShellClass}>
+      <div class="relative isolate z-0 flex min-h-0 w-full min-w-0 flex-1 flex-col">
         <div
           class="relative z-10 transition-opacity duration-300 ease-out data-[state=hidden]:pointer-events-none data-[state=hidden]:invisible data-[state=hidden]:opacity-0"
           data-waitlist-form-panel
           data-state="visible"
         >
-          <form class="flex h-full flex-col gap-10" data-waitlist-form novalidate>
+          <form class:list={['flex h-full min-h-0 w-full min-w-0 flex-col', formStackGapClass]} data-waitlist-form novalidate>
             <h2 class="text-center font-heading text-2xl font-bold text-primary">
               {c.formTitle}
             </h2>
 
-            <section class="space-y-6" aria-labelledby={`wl-sec-personal-${suffix}`}>
+            <section class:list={[sectionStackClass]} aria-labelledby={`wl-sec-personal-${suffix}`}>
               <h3 id={`wl-sec-personal-${suffix}`} class="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">
                 {c.sectionPersonal}
               </h3>
-              <div class="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2">
-                <div class="flex flex-col">
-                  <div class="relative">
-                    <input
-                      id={`wl-fn-${suffix}`}
-                      name="firstName"
-                      type="text"
-                      autocomplete="given-name"
-                      placeholder=" "
-                      data-waitlist-field="firstName"
-                      class={floatInput}
-                      aria-invalid="false"
-                    />
-                    <label for={`wl-fn-${suffix}`} class={floatLabel}>
+              <div class:list={['grid grid-cols-1 lg:grid-cols-3', fieldGridGapClass]}>
+                <div class="form-control w-full min-w-0">
+                  <label class="label cursor-default px-0 pb-1 pt-0" for={`wl-fn-${suffix}`}>
+                    <span class={labelTextClass}>
                       {c.firstName}
-                      <span class="text-red-500">*</span>
-                    </label>
-                  </div>
+                      <span class="text-soft-blue">*</span>
+                    </span>
+                  </label>
+                  <input
+                    id={`wl-fn-${suffix}`}
+                    name="firstName"
+                    type="text"
+                    autocomplete="given-name"
+                    data-waitlist-field="firstName"
+                    class={inputClass}
+                    aria-invalid="false"
+                  />
                   <p
                     id={`wl-err-firstName-${suffix}`}
                     role="alert"
@@ -111,23 +132,22 @@ const errText =
                     data-visible="false"
                   />
                 </div>
-                <div class="flex flex-col">
-                  <div class="relative">
-                    <input
-                      id={`wl-em-${suffix}`}
-                      name="email"
-                      type="email"
-                      autocomplete="email"
-                      placeholder=" "
-                      data-waitlist-field="email"
-                      class={floatInput}
-                      aria-invalid="false"
-                    />
-                    <label for={`wl-em-${suffix}`} class={floatLabel}>
+                <div class="form-control w-full min-w-0">
+                  <label class="label cursor-default px-0 pb-1 pt-0" for={`wl-em-${suffix}`}>
+                    <span class={labelTextClass}>
                       {c.email}
-                      <span class="text-red-500">*</span>
-                    </label>
-                  </div>
+                      <span class="text-soft-blue">*</span>
+                    </span>
+                  </label>
+                  <input
+                    id={`wl-em-${suffix}`}
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    data-waitlist-field="email"
+                    class={inputClass}
+                    aria-invalid="false"
+                  />
                   <p
                     id={`wl-err-email-${suffix}`}
                     role="alert"
@@ -136,41 +156,45 @@ const errText =
                     data-visible="false"
                   />
                 </div>
-              </div>
-              <div class="mb-6 flex flex-col">
-                <div class="relative">
-                  <input
-                    id={`wl-ph-${suffix}`}
-                    name="phone"
-                    type="tel"
-                    autocomplete="tel"
-                    placeholder=" "
-                    data-waitlist-field="phone"
-                    class={floatInput}
-                    aria-invalid="false"
-                  />
-                  <label for={`wl-ph-${suffix}`} class={floatLabel}>
-                    {c.phone}
-                    <span class="text-red-500">*</span>
+                <div class="form-control w-full min-w-0">
+                  <label class="label cursor-default px-0 pb-1 pt-0" for={phoneInputId}>
+                    <span class={labelTextClass}>
+                      {c.phone}
+                      <span class="text-soft-blue">*</span>
+                    </span>
                   </label>
+                  <div class="relative w-full min-w-0">
+                    <input
+                      id={phoneInputId}
+                      name="phone"
+                      type="tel"
+                      autocomplete="tel"
+                      data-waitlist-field="phone"
+                      class={`${inputClass} pl-14!`}
+                      aria-invalid="false"
+                    />
+                  </div>
+                  <p
+                    id={`wl-err-phone-${suffix}`}
+                    role="alert"
+                    class={errText}
+                    data-waitlist-err="phone"
+                    data-visible="false"
+                  />
                 </div>
-                <p
-                  id={`wl-err-phone-${suffix}`}
-                  role="alert"
-                  class={errText}
-                  data-waitlist-err="phone"
-                  data-visible="false"
-                />
               </div>
             </section>
 
-            <section class="space-y-6" aria-labelledby={`wl-sec-social-${suffix}`}>
+            <section class:list={[sectionStackClass]} aria-labelledby={`wl-sec-social-${suffix}`}>
               <h3 id={`wl-sec-social-${suffix}`} class="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">
                 {c.sectionSocial}
               </h3>
-              <div class="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2">
-                <div class="flex flex-col">
-                  <div class="group/fi relative">
+              <div class:list={['grid grid-cols-1 lg:grid-cols-2', fieldGridGapClass]}>
+                <div class="form-control w-full min-w-0">
+                  <label class="label cursor-default px-0 pb-1 pt-0" for={`wl-ig-${suffix}`}>
+                    <span class={labelTextClass}>{c.instagram}</span>
+                  </label>
+                  <div class="group/fi relative w-full min-w-0">
                     <span
                       class="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2 text-primary/35 transition-colors group-focus-within/fi:text-primary/55"
                       aria-hidden="true"
@@ -186,14 +210,10 @@ const errText =
                       name="instagram"
                       type="text"
                       autocomplete="off"
-                      placeholder=" "
                       data-waitlist-field="instagram"
-                      class={`${floatInput} pl-10`}
+                      class={inputWithIconClass}
                       aria-invalid="false"
                     />
-                    <label for={`wl-ig-${suffix}`} class={floatLabelIcon}>
-                      {c.instagram}
-                    </label>
                   </div>
                   <p
                     id={`wl-err-instagram-${suffix}`}
@@ -203,8 +223,11 @@ const errText =
                     data-visible="false"
                   />
                 </div>
-                <div class="flex flex-col">
-                  <div class="group/fi relative">
+                <div class="form-control w-full min-w-0">
+                  <label class="label cursor-default px-0 pb-1 pt-0" for={`wl-li-${suffix}`}>
+                    <span class={labelTextClass}>{c.linkedin}</span>
+                  </label>
+                  <div class="group/fi relative w-full min-w-0">
                     <span
                       class="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2 text-primary/35 transition-colors group-focus-within/fi:text-primary/55"
                       aria-hidden="true"
@@ -225,14 +248,10 @@ const errText =
                       type="text"
                       inputmode="url"
                       autocomplete="url"
-                      placeholder=" "
                       data-waitlist-field="linkedin"
-                      class={`${floatInput} pl-10`}
+                      class={inputWithIconClass}
                       aria-invalid="false"
                     />
-                    <label for={`wl-li-${suffix}`} class={floatLabelIcon}>
-                      {c.linkedin}
-                    </label>
                   </div>
                   <p
                     id={`wl-err-linkedin-${suffix}`}
@@ -245,32 +264,31 @@ const errText =
               </div>
             </section>
 
-            <section class="space-y-6" aria-labelledby={`wl-sec-pref-${suffix}`}>
+            <section class:list={[sectionStackClass]} aria-labelledby={`wl-sec-pref-${suffix}`}>
               <h3 id={`wl-sec-pref-${suffix}`} class="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">
                 {c.sectionPreferences}
               </h3>
-              <div class="flex flex-col space-y-6">
-                <div class="flex flex-col">
-                  <div class="relative">
-                    <select
-                      id={`wl-pref-${suffix}`}
-                      name="preferredContact"
-                      required
-                      data-waitlist-field="preferredContact"
-                      class={`${floatInput} appearance-none pt-6 pr-10 ${ringOffset}`}
-                      style={selectChevronStyle}
-                      aria-invalid="false"
-                    >
-                      <option value="">{c.selectDefault}</option>
-                      <option value="Sloworker">{c.optSloworker}</option>
-                      <option value="Host">{c.optHost}</option>
-                      <option value="Bussines">{c.optBusiness}</option>
-                    </select>
-                    <label for={`wl-pref-${suffix}`} class="pointer-events-none absolute left-3 top-2 z-10 text-xs font-medium text-primary/70">
+              <div class:list={['grid grid-cols-1', fieldGridGapClass]}>
+                <div class="form-control w-full min-w-0">
+                  <label class="label cursor-default px-0 pb-1 pt-0" for={`wl-pref-${suffix}`}>
+                    <span class={labelTextClass}>
                       {c.preferredContact}
-                      <span class="text-red-500">*</span>
-                    </label>
-                  </div>
+                      <span class="text-soft-blue">*</span>
+                    </span>
+                  </label>
+                  <select
+                    id={`wl-pref-${suffix}`}
+                    name="preferredContact"
+                    required
+                    data-waitlist-field="preferredContact"
+                    class={selectClass}
+                    aria-invalid="false"
+                  >
+                    <option value="">{c.selectDefault}</option>
+                    <option value="Sloworker">{c.optSloworker}</option>
+                    <option value="Host">{c.optHost}</option>
+                    <option value="Bussines">{c.optBusiness}</option>
+                  </select>
                   <p
                     id={`wl-err-preferredContact-${suffix}`}
                     role="alert"
@@ -279,22 +297,21 @@ const errText =
                     data-visible="false"
                   />
                 </div>
-                <div class="flex flex-col">
-                  <div class="relative">
-                    <textarea
-                      id={`wl-com-${suffix}`}
-                      name="communityInterest"
-                      rows={3}
-                      placeholder=" "
-                      data-waitlist-field="communityInterest"
-                      class={`${floatInput} min-h-24 resize-y`}
-                      aria-invalid="false"
-                    />
-                    <label for={`wl-com-${suffix}`} class={floatLabel}>
+                <div class="form-control w-full min-w-0">
+                  <label class="label cursor-default px-0 pb-1 pt-0" for={`wl-com-${suffix}`}>
+                    <span class={labelTextClass}>
                       {c.communityInterest}
-                      <span class="text-red-500">*</span>
-                    </label>
-                  </div>
+                      <span class="text-soft-blue">*</span>
+                    </span>
+                  </label>
+                  <textarea
+                    id={`wl-com-${suffix}`}
+                    name="communityInterest"
+                    rows={4}
+                    data-waitlist-field="communityInterest"
+                    class={textareaClass}
+                    aria-invalid="false"
+                  />
                   <p
                     id={`wl-err-communityInterest-${suffix}`}
                     role="alert"
@@ -306,7 +323,7 @@ const errText =
               </div>
             </section>
 
-            <div class="mb-6 flex flex-col gap-2">
+            <div class:list={['flex flex-col gap-2', termsBlockMbClass]}>
               <div class="flex items-start gap-3">
                 <input
                   id={`waitlist-terms-${layout}-${lang}`}
@@ -322,7 +339,7 @@ const errText =
                     {c.termsLink}
                   </a>
                   {c.termsAfter}
-                  <span class="text-red-500">*</span>
+                  <span class="text-soft-blue">*</span>
                 </label>
               </div>
               <p
@@ -340,12 +357,12 @@ const errText =
                 data-waitlist-submit-btn
                 data-busy="false"
                 data-status="idle"
-                class="group/submit relative inline-flex min-h-12 min-w-44 items-center justify-center overflow-hidden rounded-lg bg-primary px-8 py-3 font-semibold text-white shadow-md transition enabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-primary/45 data-[status=sending]:animate-pulse data-[status=sending]:cursor-wait data-[status=sending]:shadow-[0_0_0_3px_rgba(1,51,51,0.18)]"
+                class="btn btn-primary group/submit relative min-h-12 min-w-44 overflow-hidden px-8 font-semibold transition enabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-primary/45 data-[status=sending]:animate-pulse data-[status=sending]:cursor-wait data-[status=sending]:shadow-[0_0_0_3px_rgba(1,51,51,0.18)]"
               >
                 <span class="inline-flex items-center justify-center gap-2.5">
                   <svg
                     data-waitlist-spinner
-                    class="hidden size-4 shrink-0 animate-spin text-white"
+                    class="hidden size-4 shrink-0 animate-spin text-secondary"
                     viewBox="0 0 24 24"
                     fill="none"
                     aria-hidden="true"
@@ -365,7 +382,7 @@ const errText =
                 aria-live="polite"
                 data-waitlist-status
                 data-status="idle"
-                class="min-h-5 text-sm font-semibold text-primary/80 data-[status=error]:text-red-600 data-[status=sending]:text-primary/60 data-[status=success]:sr-only"
+                class="min-h-5 text-sm font-semibold text-primary/80 data-[status=error]:text-soft-blue data-[status=sending]:text-primary/60 data-[status=success]:sr-only"
               />
             </div>
           </form>
@@ -378,7 +395,7 @@ const errText =
           aria-hidden="true"
         >
           <div
-            class="w-full max-w-md rounded-2xl border border-primary/15 bg-white px-6 py-8 shadow-xl"
+            class="w-full max-w-md rounded-2xl border border-primary/15 bg-light-green px-6 py-8 shadow-xl"
             role="status"
             aria-live="polite"
           >
@@ -388,13 +405,13 @@ const errText =
               <button
                 type="button"
                 data-waitlist-success-close
-                class="inline-flex min-h-11 items-center justify-center rounded-lg border-2 border-primary/20 bg-white px-6 font-semibold text-primary transition hover:border-primary/40"
+                class="inline-flex min-h-11 items-center justify-center rounded-lg border-2 border-primary/20 bg-bg-landing px-6 font-semibold text-primary transition hover:border-primary/40"
               >
                 {c.closeSuccess}
               </button>
               <a
                 href={homeHref}
-                class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-6 font-semibold text-white shadow transition hover:opacity-95"
+                class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-6 font-semibold text-secondary shadow transition hover:opacity-95"
               >
                 {c.backHome}
               </a>
@@ -402,7 +419,6 @@ const errText =
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 
@@ -414,6 +430,7 @@ const errText =
     WAITLIST_FORM_FIELD_NAMES,
   } from '@/models/waitlist';
   import type { WaitlistFormFieldName } from '@/models/waitlist';
+  import { PhoneController } from '@/lib/waitlistPhoneController';
 
   type ValidationMsgs = {
     emailRequired: string;
@@ -459,6 +476,7 @@ const errText =
     const submitBtn = root.querySelector<HTMLButtonElement>('[data-waitlist-submit-btn]');
     const submitLabel = root.querySelector<HTMLElement>('[data-waitlist-submit-label]');
     const spinner = root.querySelector<SVGElement>('[data-waitlist-spinner]');
+    const phoneInput = root.querySelector<HTMLInputElement>('[data-waitlist-field="phone"]');
     if (
       !form ||
       !formPanel ||
@@ -467,7 +485,8 @@ const errText =
       !successClose ||
       !statusEl ||
       !submitBtn ||
-      !submitLabel
+      !submitLabel ||
+      !phoneInput
     )
       return;
 
@@ -483,6 +502,8 @@ const errText =
 
     const fieldSchemas = createWaitlistFormFieldSchemas(validationMsgs);
     const formSchema = createWaitlistFormSchema(validationMsgs);
+
+    const phoneController = PhoneController.attach(phoneInput, lang);
 
     const setSubmitVisual = (state: 'idle' | 'sending') => {
       submitBtn.dataset.status = state;
@@ -500,22 +521,97 @@ const errText =
       else el.removeAttribute('aria-describedby');
     };
 
+    const clearControlVisual = (el: HTMLElement) => {
+      el.classList.remove(
+        'input-error',
+        'input-success',
+        'select-error',
+        'select-success',
+        'textarea-error',
+        'textarea-success',
+        'checkbox-error',
+        'checkbox-success',
+        'ring-2',
+        'ring-error',
+        'ring-success',
+        'ring-offset-2',
+      );
+    };
+
+    const applyControlError = (el: HTMLElement) => {
+      if (el instanceof HTMLInputElement && el.type === 'checkbox') {
+        el.classList.add('ring-2', 'ring-error', 'ring-offset-2');
+        return;
+      }
+      if (el instanceof HTMLSelectElement) {
+        el.classList.add('select-error');
+        return;
+      }
+      if (el instanceof HTMLTextAreaElement) {
+        el.classList.add('textarea-error');
+        return;
+      }
+      if (el instanceof HTMLInputElement) {
+        el.classList.add('input-error');
+      }
+    };
+
+    const applyControlSuccess = (el: HTMLElement) => {
+      if (el instanceof HTMLInputElement && el.type === 'checkbox') {
+        el.classList.add('ring-2', 'ring-success', 'ring-offset-2');
+        return;
+      }
+      if (el instanceof HTMLSelectElement) {
+        el.classList.add('select-success');
+        return;
+      }
+      if (el instanceof HTMLTextAreaElement) {
+        el.classList.add('textarea-success');
+        return;
+      }
+      if (el instanceof HTMLInputElement) {
+        el.classList.add('input-success');
+      }
+    };
+
     const showFieldError = (field: WaitlistFormFieldName | 'terms', message: string) => {
       const errEl = root.querySelector<HTMLElement>(`[data-waitlist-err="${field}"]`);
-      const input = root.querySelector<HTMLElement>(`[data-waitlist-field="${field}"]`);
-      if (!errEl || !input) return;
+      const control = root.querySelector<HTMLElement>(`[data-waitlist-field="${field}"]`);
+      if (!errEl || !control) return;
+      clearControlVisual(control);
+      applyControlError(control);
       errEl.textContent = message;
       errEl.dataset.visible = 'true';
-      setFieldA11y(input, true, errEl.id || null);
+      errEl.classList.add('text-error');
+      errEl.classList.remove('text-soft-blue');
+      setFieldA11y(control, true, errEl.id || null);
+    };
+
+    const showFieldSuccess = (field: WaitlistFormFieldName | 'terms') => {
+      const errEl = root.querySelector<HTMLElement>(`[data-waitlist-err="${field}"]`);
+      const control = root.querySelector<HTMLElement>(`[data-waitlist-field="${field}"]`);
+      if (!control) return;
+      clearControlVisual(control);
+      applyControlSuccess(control);
+      if (errEl) {
+        errEl.textContent = '';
+        errEl.dataset.visible = 'false';
+        errEl.classList.remove('text-error');
+        errEl.classList.add('text-soft-blue');
+      }
+      setFieldA11y(control, false, null);
     };
 
     const clearFieldError = (field: WaitlistFormFieldName | 'terms') => {
       const errEl = root.querySelector<HTMLElement>(`[data-waitlist-err="${field}"]`);
-      const input = root.querySelector<HTMLElement>(`[data-waitlist-field="${field}"]`);
-      if (!errEl || !input) return;
+      const control = root.querySelector<HTMLElement>(`[data-waitlist-field="${field}"]`);
+      if (!errEl || !control) return;
+      clearControlVisual(control);
       errEl.textContent = '';
       errEl.dataset.visible = 'false';
-      setFieldA11y(input, false, null);
+      errEl.classList.remove('text-error');
+      errEl.classList.add('text-soft-blue');
+      setFieldA11y(control, false, null);
     };
 
     const clearAllFieldErrors = () => {
@@ -530,10 +626,30 @@ const errText =
       return el?.value ?? '';
     };
 
+    /** Zod sobre `fullNumber` + validación libphonenumber vía PhoneController. */
+    const validatePhoneWithController = (withSuccessFeedback: boolean): boolean => {
+      const zod = fieldSchemas.phone.safeParse(phoneController.fullNumber);
+      if (!zod.success) {
+        showFieldError('phone', zod.error.issues[0]?.message ?? errorMsg);
+        return false;
+      }
+      if (!phoneController.isValid()) {
+        showFieldError('phone', validationMsgs.phoneInvalid);
+        return false;
+      }
+      if (withSuccessFeedback) showFieldSuccess('phone');
+      else clearFieldError('phone');
+      return true;
+    };
+
     const validateFieldOnBlur = (field: WaitlistFormFieldName) => {
+      if (field === 'phone') {
+        validatePhoneWithController(true);
+        return;
+      }
       const raw = readControlValue(field);
       const parsed = fieldSchemas[field].safeParse(raw);
-      if (parsed.success) clearFieldError(field);
+      if (parsed.success) showFieldSuccess(field);
       else showFieldError(field, parsed.error.issues[0]?.message ?? errorMsg);
     };
 
@@ -557,17 +673,19 @@ const errText =
     const termsEl = root.querySelector('[data-waitlist-field="terms"]');
     termsEl?.addEventListener('change', () => {
       const cb = termsEl as HTMLInputElement;
-      if (cb.checked) clearFieldError('terms');
+      if (cb.checked) showFieldSuccess('terms');
+      else clearFieldError('terms');
     });
     termsEl?.addEventListener('blur', () => {
       const cb = termsEl as HTMLInputElement;
       if (!cb.checked) showFieldError('terms', validationMsgs.termsRequired);
-      else clearFieldError('terms');
+      else showFieldSuccess('terms');
     });
 
     const validateAllFields = (): boolean => {
       clearAllFieldErrors();
       const invalidFields = WAITLIST_FORM_FIELD_NAMES.filter((name) => {
+        if (name === 'phone') return !validatePhoneWithController(false);
         const raw = readControlValue(name);
         const parsed = fieldSchemas[name].safeParse(raw);
         if (!parsed.success) {
@@ -593,6 +711,7 @@ const errText =
 
     const resetToFormView = () => {
       form.reset();
+      phoneController.clear();
       clearAllFieldErrors();
       formPanel.dataset.state = 'visible';
       successPanel.dataset.state = 'hidden';
@@ -617,6 +736,8 @@ const errText =
       }
 
       const payloadStrings = payloadFromForm(form);
+      payloadStrings.phone = phoneController.fullNumber;
+
       const parsed = formSchema.safeParse(payloadStrings);
 
       if (!parsed.success) {
@@ -624,6 +745,12 @@ const errText =
           const key = issue.path[0];
           if (typeof key === 'string' && isWaitlistFieldName(key)) showFieldError(key, issue.message);
         });
+        return;
+      }
+
+      if (!phoneController.isValid()) {
+        showFieldError('phone', validationMsgs.phoneInvalid);
+        phoneInput.focus();
         return;
       }
 
@@ -661,6 +788,7 @@ const errText =
 
       const firstName = parsed.data.firstName;
       form.reset();
+      phoneController.clear();
       clearAllFieldErrors();
       showSuccessView(firstName);
     });
