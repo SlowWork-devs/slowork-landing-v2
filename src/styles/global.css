@@ -254,8 +254,7 @@
   }
 
   /**
-   * Documentos legales (privacidad, cookies, aviso legal, términos): tipografía neutra,
-   * sin adornos editoriales del blog (listas con fondo, bordes en h2, etc.).
+   * Documentos legales: tipografía continua, sin tratado editorial (mayúsculas forzadas, viñetas artísticas, tablas decoradas).
    */
   .prose.legal-doc {
     max-width: none;
@@ -268,15 +267,15 @@
   }
 
   .prose.legal-doc > h1 {
-    @apply mt-0 mb-1 border-0 pb-0 text-center text-xl font-bold uppercase tracking-wide text-primary sm:text-2xl;
+    @apply mt-0 mb-4 border-0 pb-0 text-left text-xl font-bold normal-case tracking-normal text-primary sm:text-2xl;
   }
 
   .prose.legal-doc > p:first-of-type {
-    @apply mb-8 mt-0 text-center text-sm font-normal text-primary/65;
+    @apply mb-6 mt-0 text-left text-sm font-normal text-primary/80;
   }
 
   .prose.legal-doc h2 {
-    @apply mb-3 mt-10 border-0 pb-0 text-left text-base font-bold uppercase tracking-wide text-primary;
+    @apply mb-3 mt-8 border-0 pb-0 text-left text-base font-bold normal-case tracking-normal text-primary;
   }
 
   .prose.legal-doc h2:first-of-type {
@@ -288,20 +287,17 @@
   }
 
   .prose.legal-doc a {
-    @apply font-normal text-primary underline decoration-soft-blue/70 underline-offset-[0.2em];
+    @apply font-normal text-primary underline decoration-primary/50 underline-offset-2;
     text-decoration-skip-ink: auto;
     text-decoration-thickness: 1px;
-    transition:
-      color 0.12s ease,
-      text-decoration-color 0.12s ease;
   }
 
   .prose.legal-doc a:visited {
-    @apply text-primary decoration-soft-blue/55;
+    @apply text-primary decoration-primary/45;
   }
 
   .prose.legal-doc a:hover {
-    @apply text-soft-blue decoration-primary;
+    @apply text-primary decoration-primary;
   }
 
   .prose.legal-doc a:focus-visible {
@@ -315,51 +311,36 @@
 
   .prose.legal-doc ul,
   .prose.legal-doc ol {
-    @apply my-4 list-none rounded-none border-0 bg-transparent p-0 shadow-none;
+    @apply my-4 list-outside rounded-none border-0 bg-transparent p-0 shadow-none;
+    padding-left: 1.25rem;
   }
 
-  .prose.legal-doc li {
-    @apply relative mb-2 pl-5 text-[1rem] font-normal leading-relaxed text-primary/90 transition-none;
-  }
-
-  .prose.legal-doc li:hover {
-    @apply text-primary/90;
-  }
-
-  .prose.legal-doc ul > li::before {
-    content: "–";
-    @apply absolute left-0 top-0 font-normal text-primary/90;
-    background: none;
-    box-shadow: none;
-    border-radius: 0;
-    width: auto;
-    height: auto;
+  .prose.legal-doc ul {
+    list-style-type: disc;
   }
 
   .prose.legal-doc ol {
-    counter-reset: legal-doc-ol;
+    list-style-type: decimal;
   }
 
-  .prose.legal-doc ol > li {
-    @apply pl-7;
+  .prose.legal-doc li {
+    @apply mb-2 pl-1 text-[1rem] font-normal leading-relaxed text-primary/90;
+    display: list-item;
   }
 
-  .prose.legal-doc ol > li::before {
-    counter-increment: legal-doc-ol;
-    content: counter(legal-doc-ol) ".";
-    @apply absolute left-0 top-0 text-base font-normal text-primary/90;
-    background: none;
-    box-shadow: none;
+  .prose.legal-doc ul > li::marker,
+  .prose.legal-doc ol > li::marker {
+    @apply text-primary/80;
   }
 
   .prose.legal-doc ul ul,
   .prose.legal-doc ol ul,
   .prose.legal-doc ul ol {
-    @apply my-2 ml-4;
+    @apply my-2 ml-0;
   }
 
   .prose.legal-doc blockquote {
-    @apply my-6 rounded-none border-l-2 border-primary/25 bg-transparent py-2 pl-4 not-italic shadow-none text-primary/90;
+    @apply my-4 rounded-none border-0 bg-transparent py-0 pl-0 not-italic shadow-none text-primary/90;
   }
 
   .prose.legal-doc img {
@@ -367,15 +348,15 @@
   }
 
   .prose.legal-doc .legal-doc-table-wrap table {
-    @apply w-full min-w-[280px] border-collapse border border-primary/20 bg-bg-landing text-left text-sm text-primary/90 shadow-none;
+    @apply w-full min-w-[280px] border-collapse border border-primary/25 bg-transparent text-left text-sm text-primary/90 shadow-none;
   }
 
   .prose.legal-doc .legal-doc-table-wrap thead {
-    @apply bg-light-green text-primary;
+    @apply border-b border-primary/25 bg-transparent text-primary;
   }
 
   .prose.legal-doc .legal-doc-table-wrap th {
-    @apply border-b border-primary/20 p-3 text-left text-xs font-bold uppercase tracking-wide text-primary;
+    @apply border-b border-primary/20 p-3 text-left text-sm font-semibold normal-case tracking-normal text-primary;
     color: inherit !important;
   }
 

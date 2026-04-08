@@ -1,15 +1,13 @@
 ---
 /**
- * Contenedor común para textos legislativos: fondo gris azulado suave y documento en tarjeta blanca centrada.
+ * Contenedor para textos legislativos: flujo continuo, sin tarjeta ni sombras (aspecto de documento normativo).
  */
 ---
 
 <main
   class="legal-doc-page w-full bg-bg-landing px-4 pb-24 pt-28 sm:px-6 md:pb-28 md:pt-32"
 >
-  <div
-    class="legal-doc-shell mx-auto w-full max-w-3xl rounded-lg bg-light-green px-6 py-10 shadow-lg shadow-primary/12 sm:px-10 sm:py-12"
-  >
+  <div class="legal-doc-shell mx-auto w-full max-w-3xl">
     <slot />
   </div>
 </main>
