@@ -1,7 +1,39 @@
 import { marked } from 'marked';
+import type { Tokens } from 'marked';
 import type { BlogPost, BlogResponse } from '@/types/blog';
 
 export type ApiLang = 'es' | 'en';
+
+/**
+ * Misma lógica de escape que `marked` para cuerpos de fence (`Renderer.code` + `escaped: false`).
+ * Evitamos depender de APIs internas del paquete.
+ */
+const escapeHtmlForCodeBlock = (html: string): string => {
+  if (!/[&<>"']/.test(html)) return html;
+  return html
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+};
+
+/** Cuerpo del fence: una newline final, como hace marked por defecto. */
+const normalizedFenceBody = (text: string): string => `${text.replace(/\n$/, '')}\n`;
+
+/**
+ * HTML semántico sin clases de presentación: el tema `prose` controla estilos.
+ * Por defecto marked añade `class="language-*"` en `<pre><code>`; lo omitimos.
+ */
+marked.use({
+  renderer: {
+    code({ text, escaped }: Tokens.Code): string {
+      const body = normalizedFenceBody(text);
+      const inner = escaped ? body : escapeHtmlForCodeBlock(body);
+      return `<pre><code>${inner}</code></pre>\n`;
+    },
+  },
+});
 
 /**
  * Builds the GraphQL HTTP URL from `SLOWORK_API_URL`.
@@ -23,6 +55,7 @@ const resolveSloworkGraphqlUrl = (): string => {
   return buildGraphqlEndpoint(baseUrl);
 };
 
+/** Markdown → HTML sin clases en elementos de flujo; solo etiquetas semánticas. */
 const markdownToHtml = (raw: string | null | undefined): string => {
   const t = (raw ?? '').trim();
   if (!t) return '';
