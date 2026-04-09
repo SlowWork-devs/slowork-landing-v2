@@ -35,5 +35,8 @@
     "@astrojs/check": "^0.9.8",
     "prisma": "^7.7.0",
     "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "vite": "^7.0.0"
   }
 }
