@@ -127,7 +127,7 @@ Hay **20 artículos por idioma** (40 ficheros `.md`) en `src/content/blog/en/` y
 - Charset, viewport, robots, favicon, enlace a sitemap `sitemap-index.xml`, **RSS** (`rss.xml` relativo a `Astro.site`).
 - Preload **Poppins 700** desde `@fontsource` (woff2).
 - **Canonical**: `new URL(Astro.url.pathname, Astro.site)`.
-- Open Graph / Twitter usando `title`, `description`; imagen por defecto `blog-placeholder-1.png` si no se pasa otra.
+- Open Graph / Twitter usando `title`, `description`; imagen por defecto `placeholder.png` si no se pasa otra.
 
 ### `src/components/Header.astro`
 
