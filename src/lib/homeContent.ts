@@ -15,6 +15,7 @@ import whoWorker4 from '@/assets/images/who-worker4.webp';
 import whoWorker5 from '@/assets/images/who-worker5.webp';
 import whoWorker6 from '@/assets/images/who-worker6.webp';
 
+import type { HeaderNavTranslations } from '@/models/headerNav';
 import type { SupportedLang } from '@/lib/seo';
 
 /** Vídeo local + poster y texturas de marca (sin CDN en runtime). */
@@ -328,6 +329,107 @@ export const HOME_GLOBE_CARDS: GlobeCard[] = [
     description: { en: 'Find your tribe', es: 'Encuentra tu tribu' },
   },
 ];
+
+/** Navegación global + metadatos del drawer: extiende el contrato del header actual (`Header.astro`). */
+export type HomeNavCopy = HeaderNavTranslations & {
+  readonly home: string;
+  readonly contact: string;
+  /** Etiqueta corta tipo hub (no es el CTA largo; ver `join`). */
+  readonly waitlist: string;
+  /** Códigos de idioma visibles en el conmutador ES | EN. */
+  readonly langLabelEs: string;
+  readonly langLabelEn: string;
+};
+
+export function homeNavCopy(lang: SupportedLang): HomeNavCopy {
+  const isEs = lang === 'es';
+  const join = isEs ? 'Únete a la waitlist' : 'Join the waitlist';
+  return {
+    home: isEs ? 'Inicio' : 'Home',
+    blog: 'Blog',
+    contact: isEs ? 'Contacto' : 'Contact',
+    waitlist: isEs ? 'Lista de espera' : 'Waitlist',
+    about: isEs ? 'Sobre nosotros' : 'About',
+    impact: isEs ? 'Programa de Impacto' : 'Impact Program',
+    join,
+    menu: isEs ? 'Abrir menú' : 'Open menu',
+    close: isEs ? 'Cerrar menú' : 'Close menu',
+    mobileEarlyAccessWaitlist: join,
+    mobileDrawerAriaLabel: isEs ? 'Menú móvil' : 'Mobile menu',
+    langLabelEs: 'ES',
+    langLabelEn: 'EN',
+  };
+}
+
+/**
+ * Pie legal + placeholders de redes (mismos ids que `SocialIconsLinks.astro`; el footer aún no renderiza la fila social).
+ * `routes`: slugs tras `/${lang}` (convención trailing slash del sitio). No usar `/es/privacy`: la página es `privacy-policy`.
+ */
+export type HomeFooterCopy = {
+  readonly rights: string;
+  readonly privacy: string;
+  readonly terms: string;
+  readonly contact: string;
+  readonly cookies: string;
+  readonly legal: string;
+  /** Nombre accesible del grupo de enlaces (sin cambiar clases ni estructura visual). */
+  readonly legalLinksAriaLabel: string;
+  readonly routes: {
+    readonly privacy: string;
+    readonly terms: string;
+    readonly cookies: string;
+    readonly legalNotice: string;
+  };
+  readonly social: {
+    readonly instagram: string;
+    readonly linkedin: string;
+    readonly whatsapp: string;
+    readonly tiktok: string;
+    readonly youtube: string;
+    readonly x: string;
+    readonly pinterest: string;
+  };
+};
+
+const HOME_FOOTER_LEGAL_ROUTES = {
+  privacy: '/privacy-policy/',
+  terms: '/terms-and-conditions/',
+  cookies: '/cookies-policy/',
+  legalNotice: '/legal-notice/',
+} as const;
+
+export function homeFooterCopy(lang: SupportedLang): HomeFooterCopy {
+  const isEs = lang === 'es';
+  return {
+    rights: isEs ? 'Todos los derechos reservados.' : 'All rights reserved.',
+    privacy: isEs ? 'Política de Privacidad' : 'Privacy Policy',
+    terms: isEs ? 'Términos y Condiciones' : 'Terms & Conditions',
+    contact: isEs ? 'Contacto' : 'Contact',
+    cookies: isEs ? 'Política de Cookies' : 'Cookies Policy',
+    legal: isEs ? 'Aviso Legal' : 'Legal Notice',
+    legalLinksAriaLabel: isEs ? 'Enlaces legales y de contacto' : 'Legal and contact links',
+    routes: HOME_FOOTER_LEGAL_ROUTES,
+    social: isEs
+      ? {
+          instagram: 'Slowork en Instagram',
+          linkedin: 'Slowork en LinkedIn',
+          whatsapp: 'Canal de WhatsApp de Slowork',
+          tiktok: 'Slowork en TikTok',
+          youtube: 'Slowork en YouTube',
+          x: 'Slowork en X',
+          pinterest: 'Slowork en Pinterest',
+        }
+      : {
+          instagram: 'Slowork on Instagram',
+          linkedin: 'Slowork on LinkedIn',
+          whatsapp: 'Slowork WhatsApp channel',
+          tiktok: 'Slowork on TikTok',
+          youtube: 'Slowork on YouTube',
+          x: 'Slowork on X',
+          pinterest: 'Slowork on Pinterest',
+        },
+  };
+}
 
 /** Rotating hero word + phrase — Solo inglés para coherencia global. */
 const HOME_HERO_ROTATOR_COMBINATIONS: Array<{ first: string; phrase: string }> = [

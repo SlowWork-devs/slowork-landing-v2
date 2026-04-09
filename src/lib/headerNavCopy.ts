@@ -1,26 +1,9 @@
 import type { HeaderNavTranslations } from '@/models/headerNav';
 import type { SupportedLang } from '@/lib/seo';
 
-const es: HeaderNavTranslations = {
-  blog: 'BLOG',
-  about: 'ABOUT',
-  impact: 'IMPACT PROGRAM',
-  join: 'Join the waitlist',
-  menu: 'Abrir menú',
-  close: 'Cerrar menú',
-  mobileEarlyAccessWaitlist: 'Únete a la Waitlist',
-};
+import { homeNavCopy } from '@/lib/homeContent';
 
-const en: HeaderNavTranslations = {
-  blog: 'BLOG',
-  about: 'ABOUT',
-  impact: 'IMPACT PROGRAM',
-  join: 'Join the waitlist',
-  menu: 'Open menu',
-  close: 'Close menu',
-  mobileEarlyAccessWaitlist: 'Join the Waitlist',
-};
-
+/** @deprecated Use `homeNavCopy` from `@/lib/homeContent` (SSOT). */
 export function getHeaderNav(lang: SupportedLang): HeaderNavTranslations {
-  return lang === 'es' ? es : en;
+  return homeNavCopy(lang);
 }
