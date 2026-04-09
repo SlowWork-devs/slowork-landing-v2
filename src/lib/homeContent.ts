@@ -329,45 +329,29 @@ export const HOME_GLOBE_CARDS: GlobeCard[] = [
   },
 ];
 
-export function heroCombinations(lang: SupportedLang) {
-  return lang === 'es'
-    ? [
-        { first: 'cómo', phrase: 'encontrar tu ritmo' },
-        { first: 'por qué', phrase: 'elegir libertad' },
-        { first: 'con quién', phrase: 'compartir el viaje' },
-        { first: 'cuándo', phrase: 'trabajar en la naturaleza' },
-      ]
-    : [
-        { first: 'how', phrase: 'find your rhythm' },
-        { first: 'why', phrase: 'choose freedom' },
-        { first: 'with who', phrase: 'share the journey' },
-        { first: 'when', phrase: 'work in nature' },
-      ];
+/** Rotating hero word + phrase — Solo inglés para coherencia global. */
+const HOME_HERO_ROTATOR_COMBINATIONS: Array<{ first: string; phrase: string }> = [
+  { first: 'how',   phrase: 'you balance work and life' },
+  { first: 'where', phrase: 'you find your focus' },
+  { first: 'why',   phrase: 'you choose freedom' },
+  { first: 'who',   phrase: 'you share the journey with' },
+];
+
+export function heroCombinations(_lang: SupportedLang) {
+  // Ignoramos el idioma y devolvemos siempre las combinaciones en inglés
+  return HOME_HERO_ROTATOR_COMBINATIONS;
 }
 
 export function homeHeroCopy(lang: SupportedLang) {
   return {
-    line1: lang === 'es' ? 'Es hora de redefinir' : "It's time to redefine",
-    line1b: lang === 'es' ? 'tu forma de trabajar' : 'you',
-    combinations: lang === 'es'
-      ? [
-          { first: 'con quién', phrase: 'trabajas desde cualquier lugar' },
-          { first: 'cómo', phrase: 'encuentras tu ritmo' },
-          { first: 'por qué', phrase: 'eliges la libertad' },
-          { first: 'dónde', phrase: 'trabajas en la naturaleza' },
-        ]
-      : [
-          { first: 'with who', phrase: 'work from anywhere' },
-          { first: 'how', phrase: 'find your rhythm' },
-          { first: 'why', phrase: 'choose freedom' },
-          { first: 'where', phrase: 'work in nature' },
-        ],
-    desc1:
-      lang === 'es'
+    // Ajustamos la estructura para que lea: "It's time to redefine [first]"
+    line1: "It's time to redefine",
+    line1b: '', 
+    combinations: HOME_HERO_ROTATOR_COMBINATIONS,
+    desc1: lang === 'es'
         ? 'Trabajar viajando no es prisa ni agotamiento.'
         : 'Remote work is not about hustle or burnout.',
-    desc2:
-      lang === 'es'
+    desc2: lang === 'es'
         ? 'Es equilibrio, naturaleza, conexión y libertad.'
         : 'It’s about balance, nature, connection, and freedom.',
     italic: lang === 'es' ? 'Acceso anticipado y recompensas' : 'Get early access and exclusive benefits',
