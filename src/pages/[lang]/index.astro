@@ -19,7 +19,7 @@ if (lang !== 'es' && lang !== 'en') {
   return Astro.redirect('/en/', 302);
 }
 
-const { alternates, headerAlternateLink } = buildI18nAlternates(Astro.url.origin, '/', lang);
+const { alternates } = buildI18nAlternates(Astro.url.origin, '/', lang);
 
 const title =
   lang === 'es' ? 'Slowork - Tu Comunidad de Trabajo Remoto' : 'Slowork - Your Remote Work Community';
@@ -42,7 +42,6 @@ const heroLcpPoster = await getImage({
   title={title}
   description={description}
   canonical={`/${lang}/`}
-  headerAlternateLink={headerAlternateLink}
   alternates={alternates}
   jsonLd={{
     '@context': 'https://schema.org',

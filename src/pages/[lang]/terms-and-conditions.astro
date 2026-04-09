@@ -11,7 +11,7 @@ if (lang !== 'es' && lang !== 'en') return Astro.redirect('/en/', 302);
 
 const bundle = getLegalBundle(lang);
 const terms = bundle.termsAndConditions;
-const { alternates, headerAlternateLink } = buildI18nAlternates(
+const { alternates } = buildI18nAlternates(
   Astro.url.origin,
   '/terms-and-conditions/',
   lang,
@@ -26,7 +26,6 @@ const description = terms.helmet.description;
   title={title}
   description={description}
   canonical={`/${lang}/terms-and-conditions/`}
-  headerAlternateLink={headerAlternateLink}
   alternates={alternates}
   jsonLd={{
     '@context': 'https://schema.org',

@@ -19,8 +19,6 @@ const page = Number(Astro.url.searchParams.get('page') ?? '1') || 1;
 const limit = Number(Astro.url.searchParams.get('limit') ?? '12') || 12;
 const { items: posts } = await getBlogs({ page, limit, lang });
 
-const alternateLang = lang === 'es' ? 'en' : 'es';
-const alternateLink = `/${alternateLang}/blog/`;
 const esBlogIndex = new URL('/es/blog/', Astro.url.origin).href;
 const enBlogIndex = new URL('/en/blog/', Astro.url.origin).href;
 
@@ -34,7 +32,6 @@ const blogMetaDescription =
   lang={lang}
   title={`${SITE_TITLE} | Blog`}
   description={blogMetaDescription}
-  headerAlternateLink={alternateLink}
   alternates={[
     { hreflang: 'es', href: esBlogIndex },
     { hreflang: 'en', href: enBlogIndex },

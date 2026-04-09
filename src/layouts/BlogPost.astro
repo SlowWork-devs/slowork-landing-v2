@@ -19,11 +19,6 @@ const {
   translationSlug,
 } = Astro.props;
 
-const alternateLang = language === "es" ? "en" : "es";
-const alternateLink = translationSlug
-  ? `/${alternateLang}/blog/${translationSlug}/`
-  : `/${alternateLang}/blog/`;
-
 const esBlogPath =
   language === "es"
     ? Astro.url.pathname
@@ -52,7 +47,6 @@ const optimizedHeroImage = localImage
   lang={language}
   title={title || ""}
   description={excerpt || ""}
-  headerAlternateLink={alternateLink}
   alternates={[
     { hreflang: "es", href: esBlogHref },
     { hreflang: "en", href: enBlogHref },

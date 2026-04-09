@@ -21,7 +21,6 @@ const altPath = path.replace(`/${lang}/`, `/${altLang}/`);
   lang={lang}
   title={lang === 'es' ? 'Página no encontrada | Slowork' : 'Page not found | Slowork'}
   description={lang === 'es' ? 'La página solicitada no existe.' : 'The requested page does not exist.'}
-  headerAlternateLink={altPath}
   alternates={[
     { hreflang: lang, href: Astro.url.href },
     { hreflang: altLang, href: new URL(altPath, Astro.url.origin).href },

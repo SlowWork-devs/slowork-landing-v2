@@ -10,6 +10,7 @@ import HomeWaitlistModal from '@/components/home/HomeWaitlistModal.astro';
 import SocialShareBar from '@/components/ui/SocialShareBar.astro';
 import FallbackImage from '@/assets/blog-placeholder-1.png';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { languageSwitcherPaths } from '@/lib/hreflang';
 
 type Alternate = {
   hreflang: string;
@@ -30,7 +31,6 @@ interface Props {
   /** Incluir `es`, `en` y `x-default` (español como predeterminado); ver `buildI18nAlternates`. */
   alternates?: Alternate[];
   jsonLd?: unknown;
-  headerAlternateLink?: string;
   showHeader?: boolean;
   showFooter?: boolean;
 }
@@ -46,10 +46,15 @@ const {
   ogType = 'website',
   alternates = [],
   jsonLd,
-  headerAlternateLink,
   showHeader = true,
   showFooter = true,
 } = Astro.props;
+
+const langSwitcher = languageSwitcherPaths({
+  alternates,
+  pathname: Astro.url.pathname,
+  origin: Astro.url.origin,
+});
 
 const canonicalURL = canonical
   ? new URL(canonical, Astro.site ?? Astro.url.origin)
@@ -137,7 +142,7 @@ const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
   </head>
 
   <body id="slowork-layout-root" class="min-w-0 overflow-x-hidden">
-    {showHeader && <Header language={lang} alternateLink={headerAlternateLink ?? `/${lang === 'es' ? 'en' : 'es'}/`} />}
+    {showHeader && <Header language={lang} langHrefEs={langSwitcher.es} langHrefEn={langSwitcher.en} />}
     <SocialShareBar language={lang} />
     <slot />
     <HomeWaitlistModal lang={lang} />

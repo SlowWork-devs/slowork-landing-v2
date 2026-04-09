@@ -55,7 +55,6 @@ if (!mdEntry && apiPost === null) {
 
 const blogLang: SupportedLang = lang === 'en' ? 'en' : 'es';
 
-const apiAlternateLink = apiPost ? `/${lang === 'es' ? 'en' : 'es'}/blog/${apiPost.slug}/` : '';
 const apiEsPath =
   lang === 'es' ? Astro.url.pathname : apiPost ? `/es/blog/${apiPost.slug}/` : '/es/blog/';
 const apiEnPath =
@@ -101,7 +100,6 @@ const apiCfHero =
       ogType="article"
       keywords={apiPost.keywords ?? []}
       socialImage={apiSocialImage}
-      headerAlternateLink={apiAlternateLink}
       alternates={[
         { hreflang: 'es', href: apiEsHref },
         { hreflang: 'en', href: apiEnHref },
