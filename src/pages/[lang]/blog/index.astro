@@ -21,9 +21,7 @@ if (lang !== 'es' && lang !== 'en') {
   return Astro.redirect('/en/', 302);
 }
 
-const page = Number(Astro.url.searchParams.get('page') ?? '1') || 1;
-const limit = Number(Astro.url.searchParams.get('limit') ?? '12') || 12;
-const { items: posts } = await getBlogs({ page, limit, lang });
+const { items: posts } = await getBlogs({ page: 1, limit: 100, lang });
 
 const buildTime = new Date();
 const publishedPosts = filterPublishedBlogPosts(posts, buildTime);
