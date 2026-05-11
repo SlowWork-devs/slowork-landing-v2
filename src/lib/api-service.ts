@@ -94,6 +94,7 @@ const localizeBlogPost = (post: BlogPost, lang: ApiLang): LocalizedBlogPost => {
     category: post.category,
     creation_date: post.creation_date,
     date_published: post.date_published ?? null,
+    time_published: post.time_published ?? null,
   };
 };
 
@@ -150,6 +151,7 @@ const BLOG_FIELDS = `
   category_id
   creation_date
   date_published
+  time_published
   category {
     id
     name_es

@@ -11,6 +11,10 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import BlogCard from '@/components/BlogCard.astro';
 import { BLOG_IMAGE_CLOUDFRONT_HOST, SITE_TITLE } from '@/consts';
 import { getBlogs } from '@/lib/api-service';
+import {
+  filterPublishedBlogPosts,
+  getBlogPublishInstantIso,
+} from '@/lib/blog-publish';
 
 const lang = Astro.params.lang;
 if (lang !== 'es' && lang !== 'en') {
@@ -21,7 +25,11 @@ const page = Number(Astro.url.searchParams.get('page') ?? '1') || 1;
 const limit = Number(Astro.url.searchParams.get('limit') ?? '12') || 12;
 const { items: posts } = await getBlogs({ page, limit, lang });
 
-const firstPost = posts[0];
+const buildTime = new Date();
+const publishedPosts = filterPublishedBlogPosts(posts, buildTime);
+const publishedIdsAtBuild = new Set(publishedPosts.map((p) => p.id));
+
+const firstPost = publishedPosts[0];
 let blogIndexLcpImageHref: string | null = null;
 if (firstPost?.image_url && /^https?:\/\//i.test(firstPost.image_url)) {
   try {
@@ -82,13 +90,58 @@ const blogMetaDescription =
     </header>
 
     <section class="w-full min-w-0">
-      <ul class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 list-none p-0">
-        {posts.map((post, index) => (
-          <li class="flex h-full min-h-0 min-w-0 w-full flex-col">
-            <BlogCard post={post} lang={lang} imageLcpPriority={index === 0} />
-          </li>
-        ))}
+      <ul class="blog-index-grid grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 list-none p-0">
+        {posts.map((post) => {
+          const publishIso = getBlogPublishInstantIso(post);
+          const visibleAtBuild = publishedIdsAtBuild.has(post.id);
+          const lcpThisCard = firstPost?.id === post.id;
+          return (
+            <li
+              class:list={[
+                'blog-index-card flex h-full min-h-0 min-w-0 w-full flex-col',
+                { 'blog-published': visibleAtBuild },
+              ]}
+              data-blog-publish-at={publishIso}
+              hidden={!visibleAtBuild}
+            >
+              <BlogCard post={post} lang={lang} imageLcpPriority={lcpThisCard} />
+            </li>
+          );
+        })}
       </ul>
     </section>
   </main>
+
+  <style is:global>
+    .blog-index-card[data-blog-publish-at].blog-published {
+      display: flex;
+    }
+    .blog-index-card[data-blog-publish-at]:not(.blog-published) {
+      display: none !important;
+    }
+  </style>
+
+  <script is:inline>
+    let blogIndexPublishIntervalId;
+    document.addEventListener('astro:page-load', () => {
+      if (blogIndexPublishIntervalId !== undefined) {
+        window.clearInterval(blogIndexPublishIntervalId);
+        blogIndexPublishIntervalId = undefined;
+      }
+      const syncBlogPublishVisibility = () => {
+        const now = Date.now();
+        document.querySelectorAll('.blog-index-card[data-blog-publish-at]').forEach((el) => {
+          const raw = el.getAttribute('data-blog-publish-at');
+          const at = raw ? Date.parse(raw) : NaN;
+          const published = !Number.isFinite(at) || at <= now;
+          if (published) {
+            el.classList.add('blog-published');
+            el.removeAttribute('hidden');
+          }
+        });
+      };
+      syncBlogPublishVisibility();
+      blogIndexPublishIntervalId = window.setInterval(syncBlogPublishVisibility, 30_000);
+    });
+  </script>
 </MainLayout>

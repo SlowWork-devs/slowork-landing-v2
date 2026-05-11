@@ -22,6 +22,8 @@ export interface BlogPost {
   creation_date: string;
   /** Fecha editorial; si falta, la UI usa `creation_date`. */
   date_published?: string | null;
+  /** Hora editorial (HH:mm o HH:mm:ss); si falta en listados, se asume 00:00 local. */
+  time_published?: string | null;
 }
 
 export interface BlogResponse {
