@@ -30,6 +30,7 @@ export default defineConfig({
     }),
     partytown({
       config: {
+        // GA4 en MainLayout (type="text/partytown"). Añade p. ej. 'fbq' si integras Meta Pixel.
         forward: ['dataLayer.push', 'gtag'],
       },
     }),

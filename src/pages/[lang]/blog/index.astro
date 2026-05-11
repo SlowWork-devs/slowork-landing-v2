@@ -121,27 +121,9 @@ const blogMetaDescription =
     }
   </style>
 
-  <script is:inline>
-    let blogIndexPublishIntervalId;
-    document.addEventListener('astro:page-load', () => {
-      if (blogIndexPublishIntervalId !== undefined) {
-        window.clearInterval(blogIndexPublishIntervalId);
-        blogIndexPublishIntervalId = undefined;
-      }
-      const syncBlogPublishVisibility = () => {
-        const now = Date.now();
-        document.querySelectorAll('.blog-index-card[data-blog-publish-at]').forEach((el) => {
-          const raw = el.getAttribute('data-blog-publish-at');
-          const at = raw ? Date.parse(raw) : NaN;
-          const published = !Number.isFinite(at) || at <= now;
-          if (published) {
-            el.classList.add('blog-published');
-            el.removeAttribute('hidden');
-          }
-        });
-      };
-      syncBlogPublishVisibility();
-      blogIndexPublishIntervalId = window.setInterval(syncBlogPublishVisibility, 30_000);
-    });
-  </script>
+  {/*
+    Visibilidad programada: script en /public (hilo principal). No inline aquí:
+    Partytown no debe procesar código que toca document/querySelectorAll/setInterval.
+  */}
+  <script is:inline type="text/javascript" defer src="/scripts/blog-index-scheduled-visibility.js"></script>
 </MainLayout>
