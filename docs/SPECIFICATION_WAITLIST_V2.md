@@ -2,7 +2,7 @@
 
 Documento de especificación del producto **landing-waitlist-v2**: unifica la visión del **blog Slowork en Astro** (`slowork-landing-v2`) con la **migración de la landing histórica** (CRA + Express en `sloworkLanding`) hacia una sola propuesta Astro, waitlist incluida. Sirve como referencia para equipos, despliegue y evolución del repositorio.
 
-**Versión del documento:** 1.6 (abril 2026)  
+**Versión del documento:** 1.7 (mayo 2026)  
 **Repositorio de implementación actual:** `slowork-landing-v2`  
 **Nombre de producto / release:** **landing-waitlist-v2**  
 **Memoria de decisiones:** parte del contenido de la §5 proviene de **Engram** (proyecto canónico `slowork-landing-v2`).
@@ -366,7 +366,7 @@ Pendientes acordados para seguimiento entre sesiones:
 4. Verificar flujo de email de bienvenida (welcome + SMTP + logs en Vercel).  
 5. Nuevos artículos de blog según calendario editorial.
 
-### 5.12 Memoria técnica sincronizada (Engram — abril 2026)
+### 5.12 Memoria técnica sincronizada (Engram — mayo 2026)
 
 Decisiones explícitas tomadas en implementación; **replicar en Engram** bajo tópicos tipo `slowork-landing-v2/lighthouse-npm-a11y-blog` (o equivalente de equipo).
 
@@ -380,6 +380,7 @@ Decisiones explícitas tomadas en implementación; **replicar en Engram** bajo t
 | **Pegar en inputs / Lighthouse** | **`intl-tel-input`**: **`strictMode: false`** en **`waitlistPhoneController.ts`**. Con **`strictMode: true`** la librería registra **`paste`** + **`preventDefault()`**, que Lighthouse Best Practices interpreta como bloqueo de pegado. |
 | **A11y: `aria-hidden` y foco** | **Drawer móvil** (`#mobile-drawer`): atributo **`inert`** cuando está cerrado; se quita al abrir; al **cerrar** se aplica **`inert` de inmediato** (antes del fin de la animación) para que ningún descendiente reciba foco. **Waitlist**: panel de éxito con **`inert`** mientras oculto; al mostrar éxito, **`inert`** en el panel del formulario y foco en cerrar; **`HomeStickyWaitlist`**: **`inert`** + **`aria-hidden="true"`** cuando no visible (`data-visible="false"`). |
 | **BlogCard (nombre accesible)** | El **`<a>`** envuelve toda la tarjeta: **`aria-label`** debe coincidir **exactamente** con el texto del **`<h2>`** (variable compartida **`cardTitle`**, sin prefijos tipo “Abrir post”). **`stripH1TagsFromHtml`** en excerpt/contenido embebido de la tarjeta para evitar un segundo **`<h1>`** accesible desde HTML de la API. |
+| **Blog índice: paginación en build** | La página prerenderizada (`prerender: true`) solicita **todos los posts** con `getBlogs({ page: 1, limit: 100 })`. Antes usaba `limit: 12`, lo que truncaba los resultados a la primera página y ocultaba entradas anteriores a septiembre 2025. El `limit: 100` da margen de crecimiento sin necesidad de paginación multi-página. Si el catálogo supera ~80 posts, evaluar paginación estática (`getStaticPaths` multi-página) o carga progresiva client-side. *(mayo 2026)* |
 
 ---
 
