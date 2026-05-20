@@ -372,8 +372,8 @@ Decisiones explícitas tomadas en implementación; **replicar en Engram** bajo t
 
 | Área | Decisión |
 |------|-----------|
-| **Dependencias / Lighthouse Best Practices (npm audit)** | En `package.json` → **`overrides`**: mantener **`vite: ^7.0.0`** y forzar subdependencias parcheadas: **`@hono/node-server`**, **`path-to-regexp`** (≥6.3.0), **`yaml`** (≥2.8.3). Tras cambios, validar con `npm audit` y `npm run build`. |
-| **Preview local con adapter Vercel** | **`astro preview` no está soportado** con **`@astrojs/vercel`**. Local: **`npm run dev`**; emulación Vercel: **`vercel dev`**. Documentado en **`README.md`**. |
+| **Dependencias / Lighthouse Best Practices (audit)** | En `package.json` → **`overrides`**: mantener **`vite: ^7.0.0`** y forzar subdependencias parcheadas: **`@hono/node-server`**, **`path-to-regexp`** (≥6.3.0), **`yaml`** (≥2.8.3). Tras cambios, validar con `npm audit` / `pnpm audit` y el build con tu gestor. |
+| **Preview local con adapter Vercel** | **`astro preview` no está soportado** con **`@astrojs/vercel`**. Local: **`npm run dev`** o **`pnpm dev`**; emulación Vercel: **`vercel dev`**. Documentado en **`README.md`**. |
 | **Core Web Vitals (home)** | Poster del hero: **`HERO_POSTER_GET_IMAGE`** compartido (`index.astro` preload + `HomeHero`), formato **AVIF**; `<video>` con **`fetchpriority="high"`**; tipos JSX: **`src/env.d.ts`** amplía `VideoHTMLAttributes`. Carrusel valor: **`getImage`** AVIF; primera slide **`loading="eager"`** + **`fetchpriority="high"`**; preloads del resto en **`requestIdleCallback`** con **`fetchpriority="low"`**. **`MainLayout`**: preload fuentes Poppins con **`crossorigin="anonymous"`** y **`fetchpriority`** high/low. |
 | **Blog índice `/[lang]/blog/` (LCP)** | Primera tarjeta: prop **`imageLcpPriority`** en **`BlogCard`**; opcional **`link rel="preload" as="image"`** en `<head>` para la imagen del primer post (CloudFront vía **`getImage`** WebP 1280×720 o URL remota). |
 | **Título del listado blog** | Página índice: **`<title>`** del documento **`Blog`**; **`h1`** visible **«Blog»** (sin prefijo de marca en ese título de índice). |

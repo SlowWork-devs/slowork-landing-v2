@@ -74,18 +74,24 @@ Copia **`.env.example`** a `.env` y ajusta valores. Las más relevantes:
 ## Scripts
 
 ```bash
-npm install          # dependencias
-npm run dev          # servidor de desarrollo (Astro) — uso principal en local
-npm run build        # build de producción (salida para Vercel serverless)
+# npm
+npm install
+npm run dev
+npm run build
+
+# pnpm (Corepack: corepack enable)
+pnpm install
+pnpm dev
+pnpm build
 ```
 
-**`npm run preview` (`astro preview`) no está soportado** con **`@astrojs/vercel`**: el adapter genera funciones para Vercel, no un servidor local que Astro pueda levantar con el comando preview.
+**`preview` (`astro preview`) no está soportado** con **`@astrojs/vercel`**: el adapter genera funciones para Vercel, no un servidor local que Astro pueda levantar con el comando preview.
 
 Para previsualizar en local:
 
 | Objetivo | Comando |
 |----------|---------|
-| Desarrollo / SSR como en prod (recomendado) | `npm run dev` |
+| Desarrollo / SSR como en prod (recomendado) | `npm run dev` o `pnpm dev` |
 | Emular Vercel (rutas serverless, env de Vercel) | Tras [Vercel CLI](https://vercel.com/docs/cli): `npx vercel dev` (requiere `vercel link` / proyecto enlazado) |
 | Preview en la nube | Push a rama / PR → URL de preview en el dashboard de Vercel |
 
