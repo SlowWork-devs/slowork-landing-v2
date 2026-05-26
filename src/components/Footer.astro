@@ -11,6 +11,7 @@ const t = homeFooterCopy(lang);
 
 const langPath = (path: string) => `/${lang}${path}`;
 const contactHref = `${langPath('/')}#contact`;
+const creatorsHref = `https://slowork-content-creators.vercel.app/${lang}/creators/`;
 ---
 
 <footer class="bg-primary text-bg-landing/92 py-8 font-body w-full mt-auto">
@@ -39,6 +40,8 @@ const contactHref = `${langPath('/')}#contact`;
 					<a href={langPath(t.routes.legalNotice)} class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm touch-manipulation">{t.legal}</a>
 					<span class="mx-1 hidden sm:inline">|</span>
 					<a href={langPath(t.routes.terms)} class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm touch-manipulation">{t.terms}</a>
+					<span class="mx-1 hidden sm:inline">|</span>
+					<a href={creatorsHref} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center min-h-11 min-w-11 py-2 px-1 hover:text-secondary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm touch-manipulation">{t.creators}</a>
 				</div>
 			</div>
 

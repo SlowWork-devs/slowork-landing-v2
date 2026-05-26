@@ -378,6 +378,8 @@ export type HomeFooterCopy = {
   readonly contact: string;
   readonly cookies: string;
   readonly legal: string;
+  /** Enlace al programa de creadores (externo). */
+  readonly creators: string;
   /** Nombre accesible del grupo de enlaces (sin cambiar clases ni estructura visual). */
   readonly legalLinksAriaLabel: string;
   readonly routes: {
@@ -413,6 +415,7 @@ export function homeFooterCopy(lang: SupportedLang): HomeFooterCopy {
     contact: isEs ? 'Contacto' : 'Contact',
     cookies: isEs ? 'Política de Cookies' : 'Cookies Policy',
     legal: isEs ? 'Aviso Legal' : 'Legal Notice',
+    creators: isEs ? 'Programa de Creadores' : 'Creators Program',
     legalLinksAriaLabel: isEs ? 'Enlaces legales y de contacto' : 'Legal and contact links',
     routes: HOME_FOOTER_LEGAL_ROUTES,
     social: isEs
