@@ -17,7 +17,13 @@ const waitlistCtaHref = `/${lang}/#waitlist-cta`;
 const mainNavItems = [
   { href: blogHref, label: nav.blog },
   { href: aboutHref, label: nav.about },
+] as const;
+
+const creatorsHref = `https://slowork-content-creators.vercel.app/${lang}/creators/`;
+
+const programItems = [
   { href: impactHref, label: nav.impact },
+  { href: creatorsHref, label: nav.creators, external: true },
 ] as const;
 
 // Home: cabecera transparente al inicio
@@ -38,6 +44,43 @@ const initialClasses = isHome
         {mainNavItems.map((item) => (
           <a href={item.href} class="text-sm font-heading font-bold hover:opacity-80 transition-opacity">{item.label}</a>
         ))}
+
+        <div class="relative" id="programs-dropdown">
+          <button
+            type="button"
+            class="text-sm font-heading font-bold hover:opacity-80 transition-opacity inline-flex items-center gap-1"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            {nav.programs}
+            <svg class="h-3.5 w-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <div
+            class="absolute top-full right-0 mt-2 w-52 origin-top-right rounded-xl border border-current/10 bg-white/95 shadow-xl backdrop-blur-lg opacity-0 invisible scale-95 transition-all duration-200 pointer-events-none"
+            role="menu"
+          >
+            <div class="py-2">
+              {programItems.map((item) => (
+                <a
+                  href={item.href}
+                  class="flex items-center gap-2 px-4 py-2.5 text-sm font-heading font-bold text-primary hover:bg-primary/5 transition-colors"
+                  role="menuitem"
+                  {...('external' in item ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {item.label}
+                  {'external' in item ? (
+                    <svg class="h-3.5 w-3.5 opacity-40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm7.25-.182a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 1 1-1.06-1.06l5.22-5.22h-2.19a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                  ) : null}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="hidden md:flex items-center gap-1 text-xs font-bold border-l border-current/20 pl-4">
@@ -122,6 +165,26 @@ const initialClasses = isHome
       {mainNavItems.map((item) => (
         <a href={item.href} class="text-2xl font-heading font-bold text-primary hover:text-primary/70 transition-colors">{item.label}</a>
       ))}
+
+      <div class="flex flex-col gap-3">
+        <span class="text-2xl font-heading font-bold text-primary">{nav.programs}</span>
+        <div class="flex flex-col gap-3 pr-0.5">
+          {programItems.map((item) => (
+            <a
+              href={item.href}
+              class="text-lg font-heading font-semibold text-primary/70 hover:text-primary transition-colors inline-flex items-center justify-end gap-2"
+              {...('external' in item ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {item.label}
+              {'external' in item ? (
+                <svg class="h-3.5 w-3.5 opacity-40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm7.25-.182a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 1 1-1.06-1.06l5.22-5.22h-2.19a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                </svg>
+              ) : null}
+            </a>
+          ))}
+        </div>
+      </div>
     </nav>
 
     <div class="mb-10 w-full">
@@ -271,18 +334,79 @@ const initialClasses = isHome
     return () => window.removeEventListener('scroll', handleScroll);
   };
 
+  const bindProgramsDropdown = () => {
+    const wrapper = document.getElementById('programs-dropdown');
+    if (!wrapper) return () => {};
+
+    const trigger = wrapper.querySelector<HTMLButtonElement>('button');
+    const panel = wrapper.querySelector<HTMLDivElement>('[role="menu"]');
+    if (!trigger || !panel) return () => {};
+
+    let hideTimeout: number | undefined;
+
+    const show = () => {
+      window.clearTimeout(hideTimeout);
+      trigger.setAttribute('aria-expanded', 'true');
+      panel.classList.remove('opacity-0', 'invisible', 'scale-95', 'pointer-events-none');
+      panel.classList.add('opacity-100', 'visible', 'scale-100', 'pointer-events-auto');
+      trigger.querySelector('svg')?.classList.add('rotate-180');
+    };
+
+    const hide = () => {
+      trigger.setAttribute('aria-expanded', 'false');
+      panel.classList.add('opacity-0', 'invisible', 'scale-95', 'pointer-events-none');
+      panel.classList.remove('opacity-100', 'visible', 'scale-100', 'pointer-events-auto');
+      trigger.querySelector('svg')?.classList.remove('rotate-180');
+    };
+
+    const scheduleHide = () => {
+      hideTimeout = window.setTimeout(hide, 150);
+    };
+
+    const onTriggerClick = () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      if (isOpen) hide();
+      else show();
+    };
+
+    const onKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+        hide();
+        trigger.focus();
+      }
+    };
+
+    wrapper.addEventListener('mouseenter', show);
+    wrapper.addEventListener('mouseleave', scheduleHide);
+    trigger.addEventListener('click', onTriggerClick);
+    wrapper.addEventListener('keydown', onKeydown);
+
+    return () => {
+      window.clearTimeout(hideTimeout);
+      wrapper.removeEventListener('mouseenter', show);
+      wrapper.removeEventListener('mouseleave', scheduleHide);
+      trigger.removeEventListener('click', onTriggerClick);
+      wrapper.removeEventListener('keydown', onKeydown);
+      hide();
+    };
+  };
+
   let teardownMobileMenu: (() => void) | undefined;
   let teardownHeaderScroll: (() => void) | undefined;
+  let teardownProgramsDropdown: (() => void) | undefined;
 
   document.addEventListener('astro:after-preparation', () => {
     closeMenuDirectly();
+    teardownProgramsDropdown?.();
   });
 
   document.addEventListener('astro:page-load', () => {
     closeMenuDirectly();
     teardownMobileMenu?.();
     teardownHeaderScroll?.();
+    teardownProgramsDropdown?.();
     teardownMobileMenu = bindMobileMenu();
     teardownHeaderScroll = bindHeaderScroll();
+    teardownProgramsDropdown = bindProgramsDropdown();
   });
 </script>

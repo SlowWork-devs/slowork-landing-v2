@@ -354,6 +354,8 @@ export function homeNavCopy(lang: SupportedLang): HomeNavCopy {
     waitlist: isEs ? 'Lista de espera' : 'Waitlist',
     about: isEs ? 'Sobre nosotros' : 'About',
     impact: isEs ? 'Programa de Impacto' : 'Impact Program',
+    programs: isEs ? 'Programas' : 'Programs',
+    creators: isEs ? 'Creadores' : 'Creators',
     join,
     login: isEs ? 'Iniciar sesión' : 'Log in',
     menu: isEs ? 'Abrir menú' : 'Open menu',
