@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/en/creators/:match*",
+      "destination": "https://slowork-content-creators-c76lo0tfv-slowwork-devs-projects.vercel.app/en/creators/:match*"
+    },
+    {
+      "source": "/es/creators/:match*",
+      "destination": "https://slowork-content-creators-c76lo0tfv-slowwork-devs-projects.vercel.app/es/creators/:match*"
+    },
+    {
+      "source": "/_creators-assets/:match*",
+      "destination": "https://slowork-content-creators-c76lo0tfv-slowwork-devs-projects.vercel.app/_creators-assets/:match*"
+    }
+  ]
+}
