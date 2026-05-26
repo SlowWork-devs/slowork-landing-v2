@@ -46,6 +46,13 @@ const initialClasses = isHome
         <a href={langHrefEn} class="min-w-10 min-h-10 flex items-center justify-center rounded-lg hover:bg-current/5 transition-colors" aria-current={lang === 'en' ? 'page' : undefined}>{nav.langLabelEn}</a>
       </div>
 
+      <a
+        href="https://portal.slowork.app/login"
+        class="btn btn-secondary hidden font-heading text-sm md:flex min-h-12 whitespace-nowrap px-6 py-3"
+      >
+        {nav.login}
+      </a>
+
       <button
         type="button"
         data-open-waitlist
@@ -127,6 +134,13 @@ const initialClasses = isHome
         <span class="opacity-30">|</span>
         <a href={langHrefEn} class={`min-w-12 min-h-12 flex items-center justify-center rounded-lg transition-colors ${lang === 'en' ? 'bg-primary/10' : 'hover:bg-primary/5'}`} aria-current={lang === 'en' ? 'page' : undefined}>{nav.langLabelEn}</a>
       </div>
+
+      <a
+        href="https://portal.slowork.app/login"
+        class="btn btn-secondary w-full min-h-15 px-4 py-4 text-sm font-heading font-bold sm:px-6 sm:text-base"
+      >
+        {nav.login}
+      </a>
 
       <a
         href={waitlistCtaHref}

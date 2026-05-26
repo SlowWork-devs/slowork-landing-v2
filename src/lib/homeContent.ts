@@ -355,6 +355,7 @@ export function homeNavCopy(lang: SupportedLang): HomeNavCopy {
     about: isEs ? 'Sobre nosotros' : 'About',
     impact: isEs ? 'Programa de Impacto' : 'Impact Program',
     join,
+    login: isEs ? 'Iniciar sesión' : 'Log in',
     menu: isEs ? 'Abrir menú' : 'Open menu',
     close: isEs ? 'Cerrar menú' : 'Close menu',
     mobileEarlyAccessWaitlist: join,

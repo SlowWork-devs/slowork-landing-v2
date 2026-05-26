@@ -8,6 +8,8 @@ export type HeaderNavTranslations = {
   readonly impact: string;
   /** CTA compacto (desktop). */
   readonly join: string;
+  /** Enlace al portal de login. */
+  readonly login: string;
   readonly menu: string;
   readonly close: string;
   /** CTA principal del drawer móvil (beneficio + exclusividad). */
