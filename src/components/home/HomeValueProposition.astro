@@ -29,6 +29,9 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
   src: img.src,
   alt: slide.alt[lang],
 }));
+
+/** Fade entre slides (ms): debe coincidir con la clase de transición de la imagen y el fallback JS. */
+const CAROUSEL_FADE_MS = 1200;
 ---
 
 <section
@@ -85,7 +88,10 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
             width={firstSlide.slide.src.width}
             height={firstSlide.slide.src.height}
             sizes="(max-width: 1023px) min(100vw, 24rem), 30vw"
-            class="h-full w-full object-cover opacity-100 scale-100 transition-[opacity,transform] duration-700 ease-in-out will-change-[opacity,transform]"
+            class:list={[
+              'h-full w-full object-cover opacity-100 scale-100 transition-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[opacity,transform]',
+              `duration-[${CAROUSEL_FADE_MS}ms]`,
+            ]}
             loading="eager"
             fetchpriority="high"
             decoding="async"
@@ -125,10 +131,17 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
   </div>
 </section>
 
-<script define:vars={{ carouselSlidesForClient }}>
-  (() => {
+<script define:vars={{ carouselSlidesForClient, carouselFadeMs: CAROUSEL_FADE_MS }}>
+  let valueCarouselCleanup;
+
+  document.addEventListener('astro:page-load', () => {
+    if (typeof valueCarouselCleanup === 'function') valueCarouselCleanup();
+
     const track = document.getElementById('image-carousel');
-    if (!track) return;
+    if (!track) {
+      valueCarouselCleanup = undefined;
+      return;
+    }
 
     const scheduleSecondaryPreloads = () => {
       carouselSlidesForClient.slice(1).forEach((slide) => {
@@ -155,9 +168,10 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
     let fadeOutController = null;
     let fadeSwapTimeoutId = undefined;
 
-    const imagePath = (u) => {
+    /** Astro `/_image/` URLs differ only in the query string — pathname alone is never unique. */
+    const imageKey = (u) => {
       try {
-        return new URL(u, window.location.href).pathname;
+        return new URL(u, window.location.href).href;
       } catch {
         return u;
       }
@@ -182,9 +196,9 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
 
       const nextSrc = slide.src;
       const nextAlt = slide.alt;
-      const curPath = imagePath(carouselImg.currentSrc || carouselImg.src);
-      if (curPath === imagePath(nextSrc)) {
-        carouselImg.classList.remove('opacity-0', 'scale-105');
+      const curKey = imageKey(carouselImg.currentSrc || carouselImg.src);
+      if (curKey === imageKey(nextSrc)) {
+        carouselImg.classList.remove('opacity-0', 'scale-[1.02]');
         carouselImg.classList.add('opacity-100', 'scale-100');
         return;
       }
@@ -200,11 +214,11 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
 
       const showImage = () => {
         if (myGen !== applyGeneration) return;
-        carouselImg.classList.add('scale-105');
+        carouselImg.classList.add('scale-[1.02]');
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             if (myGen !== applyGeneration) return;
-            carouselImg.classList.remove('opacity-0', 'scale-105');
+            carouselImg.classList.remove('opacity-0', 'scale-[1.02]');
             carouselImg.classList.add('opacity-100', 'scale-100');
           });
         });
@@ -235,7 +249,7 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
         }
       };
 
-      carouselImg.classList.remove('opacity-100', 'scale-105');
+      carouselImg.classList.remove('opacity-100', 'scale-[1.02]');
       carouselImg.classList.add('opacity-0', 'scale-100');
 
       let fadeOutDone = false;
@@ -260,14 +274,14 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
       carouselImg.addEventListener('transitionend', onFadeOut, {
         signal: fadeOutController.signal,
       });
-      fadeSwapTimeoutId = window.setTimeout(runSwapAfterFadeOut, 780);
+      fadeSwapTimeoutId = window.setTimeout(runSwapAfterFadeOut, carouselFadeMs + 80);
     };
 
     const startAuto = () => {
       timers.auto = window.setInterval(() => {
         state.idx += 1;
         apply();
-      }, 4500);
+      }, 5500);
     };
 
     const stopAuto = () => {
@@ -275,26 +289,25 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
       timers.auto = undefined;
     };
 
-    document.getElementById('carousel-prev')?.addEventListener('click', () => {
+    const onPrev = () => {
       state.idx -= 1;
       apply();
-    });
-    document.getElementById('carousel-next')?.addEventListener('click', () => {
+    };
+    const onNext = () => {
       state.idx += 1;
       apply();
-    });
-    dots().forEach((d) =>
-      d.addEventListener('click', () => {
-        state.idx = Number(d.getAttribute('data-idx') ?? '0');
-        apply();
-      }),
-    );
-
-    track.addEventListener('mousedown', (e) => {
+    };
+    const onDotClick = (e) => {
+      const btn = e.currentTarget;
+      if (!(btn instanceof HTMLButtonElement)) return;
+      state.idx = Number(btn.getAttribute('data-idx') ?? '0');
+      apply();
+    };
+    const onMouseDown = (e) => {
       state.dragging = true;
       state.startX = e.clientX;
-    });
-    window.addEventListener('mouseup', (e) => {
+    };
+    const onMouseUp = (e) => {
       if (!state.dragging) return;
       state.dragging = false;
       const d = state.startX - e.clientX;
@@ -302,17 +315,42 @@ const carouselSlidesForClient = carouselSlides.map(({ slide, img }) => ({
         state.idx += d > 0 ? 1 : -1;
         apply();
       }
-    });
-
-    startAuto();
-    track.addEventListener('mouseenter', stopAuto);
-    track.addEventListener('mouseleave', () => {
+    };
+    const onMouseLeave = () => {
       stopAuto();
       startAuto();
-    });
+    };
 
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    prevBtn?.addEventListener('click', onPrev);
+    nextBtn?.addEventListener('click', onNext);
+    dots().forEach((d) => d.addEventListener('click', onDotClick));
+    track.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mouseup', onMouseUp);
+    track.addEventListener('mouseenter', stopAuto);
+    track.addEventListener('mouseleave', onMouseLeave);
+
+    startAuto();
     apply();
-  })();
+
+    valueCarouselCleanup = () => {
+      stopAuto();
+      fadeOutController?.abort();
+      fadeOutController = null;
+      if (fadeSwapTimeoutId !== undefined) {
+        window.clearTimeout(fadeSwapTimeoutId);
+        fadeSwapTimeoutId = undefined;
+      }
+      prevBtn?.removeEventListener('click', onPrev);
+      nextBtn?.removeEventListener('click', onNext);
+      dots().forEach((d) => d.removeEventListener('click', onDotClick));
+      track.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mouseup', onMouseUp);
+      track.removeEventListener('mouseenter', stopAuto);
+      track.removeEventListener('mouseleave', onMouseLeave);
+    };
+  });
 </script>
 
 <style>
