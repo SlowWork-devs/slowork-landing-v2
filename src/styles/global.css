@@ -473,6 +473,37 @@
     transform: translate3d(0, 0, 0) scale(1);
   }
 
+  /* About Us tagline: palabras en secuencia (Work. Travel. Connect. Repeat.) */
+  .about-tagline-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translate3d(0, 0.5rem, 0) scale(0.98);
+    filter: blur(3px);
+    will-change: opacity, transform, filter;
+  }
+
+  .home-reveal.is-visible .about-tagline-word {
+    animation: about-tagline-in 2.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: calc(1s + var(--tagline-i, 0) * 0.85s);
+  }
+
+  @keyframes about-tagline-in {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 0.5rem, 0) scale(0.98);
+      filter: blur(3px);
+    }
+    45% {
+      opacity: 0.88;
+      filter: blur(1px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      filter: blur(0);
+    }
+  }
+
   /* ── Slowork buttons (premium UI, easing alineado con reveals) ───────────── */
   .btn {
     @apply inline-flex items-center justify-center gap-1.5 rounded-full font-bold touch-manipulation cursor-pointer outline-none;
@@ -720,6 +751,12 @@
       transform: none !important;
       filter: none !important;
       transition: none !important;
+      animation: none !important;
+    }
+    .about-tagline-word {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
       animation: none !important;
     }
     .features-reveal-frame .feature-card > div {

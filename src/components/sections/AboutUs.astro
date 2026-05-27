@@ -36,9 +36,14 @@ const { content } = Astro.props;
           >
             {content.title}
           </h1>
-          <p class="flex flex-wrap gap-x-2 gap-y-1 font-heading text-2xl font-bold text-primary md:text-3xl lg:text-4xl">
-            {content.taglineWords.map((word) => (
-              <span>{word}</span>
+          <p
+            class="about-tagline flex flex-wrap gap-x-2 gap-y-1 font-heading text-2xl font-bold text-primary md:text-3xl lg:text-4xl"
+            aria-label={content.taglineWords.join(' ')}
+          >
+            {content.taglineWords.map((word, index) => (
+              <span class="about-tagline-word" style={`--tagline-i: ${index}`}>
+                {word}
+              </span>
             ))}
           </p>
           <p class="text-lg italic leading-relaxed text-primary/85 md:text-xl">
