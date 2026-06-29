@@ -1,0 +1,91 @@
+---
+import { termsLinkify } from '@/lib/termsRichText';
+import type { SupportedLang } from '@/lib/seo';
+import type { TermsBlock } from '@/models/legal';
+
+interface Props {
+  blocks: TermsBlock[];
+  lang: SupportedLang;
+}
+
+const { blocks, lang } = Astro.props;
+
+function linkify(text: string): string {
+  return termsLinkify(text, lang);
+}
+---
+
+{
+  blocks.map((block) => {
+    if (block.type === 'paragraph') {
+      return <p class="whitespace-pre-line" set:html={linkify(block.text)} />;
+    }
+    if (block.type === 'list') {
+      return (
+        <ul>
+          {block.items.map((item) => (
+            <li set:html={linkify(item)} />
+          ))}
+        </ul>
+      );
+    }
+    if (block.type === 'definitions') {
+      return (
+        <>
+          {block.items.map((def) => (
+            <p>
+              <strong>{def.term}:</strong> {def.text}
+            </p>
+          ))}
+        </>
+      );
+    }
+    if (block.type === 'flowStates') {
+      return (
+        <ul class="list-none pl-0">
+          {block.states.map((state) => (
+            <li class="font-mono text-sm">{state}</li>
+          ))}
+        </ul>
+      );
+    }
+    if (block.type === 'creditTable') {
+      return (
+        <>
+          {block.platforms.map((platform) => (
+            <div class="legal-doc-table-wrap not-prose my-4 overflow-x-auto">
+              <p class="mb-2 font-semibold text-neutral-900">{platform.name}</p>
+              <table>
+                <tbody>
+                  {platform.rows.map((row) => (
+                    <tr>
+                      <td>{row.format}</td>
+                      <td>{row.credits}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </>
+      );
+    }
+    if (block.type === 'bonusList') {
+      return (
+        <>
+          {block.categories.map((category) => (
+            <>
+              <p set:html={linkify(category.title)} />
+              <ul>
+                {category.items.map((item) => (
+                  <li set:html={linkify(item)} />
+                ))}
+              </ul>
+            </>
+          ))}
+        </>
+      );
+    }
+    return null;
+  })
+}

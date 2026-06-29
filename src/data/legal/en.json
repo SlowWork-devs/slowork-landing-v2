@@ -295,35 +295,884 @@
   "termsAndConditions": {
     "helmet": {
       "title": "Terms and Conditions of Use - Slowork",
-      "description": "Read the terms and conditions of use of Slowork, including information about waitlist registration, intellectual property, acceptable use of the website, and personal data protection."
+      "description": "Terms and conditions of use for Slowork: waitlist, creator program, credits, content license, acceptable use and data protection."
     },
     "title": "Terms and Conditions of Use",
-    "date": "Version 1.0 | Date: July 7, 2025",
-    "generalInfoTitle": "1. General information",
-    "generalInfo": "This document regulates the terms and conditions (hereinafter, the 'T&C') governing access to and use of the website www.slowork.app (hereinafter, the 'Platform'), owned by SLOWORK, S.L., with NIF B75950444, registered office at Calle Rodrigo Caro, 7, 1º Izquierda, 41004 – Sevilla (Spain), in process of registration in the Mercantile Registry according to public deed (hereinafter, 'SLOWORK').\n\nBy accessing and using this Platform, you (the 'User') declare that you have read, understood, and fully accepted these T&C.",
-    "purposeTitle": "2. Purpose and scope",
-    "purpose": "SLOWORK provides the User with a Platform solely for the purpose of allowing registration on a waitlist ('Waitlist') to receive notifications about the future launch of its services. No paid service is currently offered, nor is any contract formalized.",
-    "waitlistTitle": "3. Waitlist registration conditions",
-    "waitlist1": "3.1. Registration on the Waitlist is voluntary by completing a form enabled on the Platform, in which the User must truthfully and completely enter certain personal data, including: full name, email address, nationality, motivation or interests regarding the platform, as well as any other data that SLOWORK may request for exclusively informational and statistical purposes.",
-    "waitlist2": "3.2. The User guarantees that the information provided is truthful, current, and complete, and undertakes to keep it updated while remaining on the Waitlist. False or inaccurate data may result in exclusion from the Waitlist.",
-    "waitlist3": "3.3. The User may request removal from the Waitlist and deletion of their personal data at any time by sending an express request to hola@slowork.app, indicating in the subject 'Unsubscribe Waitlist – SLOWORK'.",
-    "ipTitle": "4. Intellectual and industrial property",
-    "ip": "All content on the website (texts, images, logos, software, structure, design, etc.) is owned by SLOWORK or used under the appropriate license. Total or partial reproduction without express authorization is prohibited. Access to the Platform does not grant the User any ownership rights over the content, elements, or functionalities. SLOWORK grants the User a limited, non-exclusive, revocable, and non-sublicensable license to browse the Platform and use it in accordance with these Terms. Any other use must have express written authorization.",
-    "acceptableUseTitle": "5. Acceptable use of the website",
-    "acceptableUse": "The User undertakes to use the Platform diligently, correctly, and lawfully, in accordance with applicable law, these Terms and Conditions, morality, public order, and generally accepted good customs. In particular, the User shall refrain from:\n- Introducing, storing, or disseminating on or from the Platform any malicious content, software, virus, malicious code, or any other program or file likely to cause damage or alterations to computer systems, networks, files, or content of the Platform or other users.\n- Interfering with, interrupting, or damaging, directly or indirectly, the normal operation of the Platform, including denial-of-service (DDoS) attacks, port scanning, code injection, or any similar technique.\n- Accessing, attempting to access, or using other Users' accounts without their express authorization, as well as breaching, attempting to breach, or circumventing the Platform's security, authentication, or access restriction measures.\n- Using third-party personal data without their express and informed consent, including unauthorized sending of commercial communications, as well as systematic or automated collection of personal data (data scraping).\n- Registering false, inaccurate, incomplete data, or impersonating third parties, as well as pretending to be another natural or legal person.\n- Using the Platform for fraudulent, illegal, defamatory, offensive, discriminatory purposes, contrary to fundamental rights and public freedoms recognized by applicable law, or contrary to good faith.\n- Reproducing, distributing, transforming, publicly communicating, making available, or extracting any content from the Platform without the prior and express authorization of the rights holder or unless legally permitted.\n- Using the Platform to send unsolicited or unauthorized advertising, promotional material, junk mail, spam, chain letters, or any other form of non-consensual solicitation, directly or indirectly.\n\nSLOWORK reserves the right to deny, suspend, or withdraw access to the Platform to any User who violates the above, as well as to take appropriate legal action for acts that may constitute administrative, civil, or criminal offenses.",
-    "dataProtectionTitle": "6. Personal data protection",
-    "dataProtection": "The processing of personal data resulting from registration on the Waitlist is governed by the provisions of the <1>Privacy Policy</1>, in accordance with the General Data Protection Regulation (EU Regulation 2016/679).",
-    "liabilityTitle": "7. Limitation of liability",
-    "liability1": "SLOWORK does not guarantee uninterrupted availability of the website, nor that it is free of errors or harmful elements. Use of the Platform is at the User's sole responsibility. At this stage, there is no contractual relationship with the User beyond registration on the Waitlist.",
-    "liability2": "The Platform may contain links to third-party websites or services not controlled by SLOWORK. We assume no responsibility for the content, policies, or practices of external sites or services. The User accesses them at their own risk.",
-    "modificationsTitle": "8. Modifications to the terms",
-    "modifications": "SLOWORK reserves the right to modify these T&C at any time. Any changes will be duly notified through the Platform itself or to the email provided by the User.",
-    "lawTitle": "9. Applicable law and jurisdiction",
-    "law1": "These Terms and Conditions shall be interpreted and governed in accordance with Spanish law and, where applicable, with the relevant European Union regulations. In particular, the following shall apply, among others:\n- Regulation (EU) 2016/679, of April 27, on the protection of natural persons with regard to the processing of personal data (GDPR),\n- Law 34/2002, of July 11, on information society services and electronic commerce (LSSI-CE),\n- Consolidated Text of the General Law for the Defense of Consumers and Users, approved by Royal Legislative Decree 1/2007, of November 16 (TRLGDCU),\n- Regulation (EU) 524/2013, on online dispute resolution for consumer matters,\n- As well as any other regulations applicable to relationships established through the Platform.",
-    "law2": "In case of conflict or dispute related to the interpretation, validity, execution, or compliance with these Terms and Conditions, the competent courts shall be:\n- For Users who are consumers (natural persons acting for purposes unrelated to their commercial, business, trade, or profession), the courts of the User's domicile, in accordance with articles 3, 29, and 90.2 of the TRLGDCU, with any clause limiting or conditioning this right being excluded.\n- For Users acting as professionals or companies (natural or legal persons acting within the scope of their economic activity), both parties agree to submit, with express waiver of any other jurisdiction, to the Courts and Tribunals of the city of Seville (Spain), the registered office of SLOWORK, S.L.",
-    "law3": "Notwithstanding the foregoing, in compliance with Article 14 of Regulation (EU) 524/2013, consumer Users are informed that they can access the European online dispute resolution platform at the following link: <1>https://ec.europa.eu/consumers/odr/</1>",
-    "law4": "If any clause of these Terms is declared null or unenforceable by a final decision of a competent authority, the remaining provisions shall remain in force and unaffected by such declaration of nullity.",
-    "law5": "In case of discrepancy between translated versions of these Terms and Conditions, the Spanish version shall prevail, unless expressly stated otherwise."
+    "date": "Version 2.0 | Last updated date: March 21, 2026",
+    "sections": [
+      {
+        "title": "1. General information",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "This document governs the terms and conditions of use (hereinafter, the \"T&C\") applicable to access, browsing and use of the website www.slowork.app (hereinafter, the \"Platform\"), owned by SLOWORK, S.L. (hereinafter, \"SLOWORK\"), with Tax ID No. B75950444 and registered office at Calle Rodrigo Caro, 7, 1º Izquierda, 41004 – Seville (Spain)."
+          },
+          {
+            "type": "paragraph",
+            "text": "For the purposes of these T&C, \"User\" means any person who accesses, browses, registers, submits information or participates in any of the Platform's features."
+          },
+          {
+            "type": "paragraph",
+            "text": "Access to, browsing of, registration on or use of the Platform implies that the User has read, understood and expressly accepted these T&C, as well as, where applicable, the <1>Privacy Policy</1> and the Cookie Policy."
+          }
+        ]
+      },
+      {
+        "title": "2. Definitions",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For the purposes of these T&C, the following terms shall mean:"
+          },
+          {
+            "type": "definitions",
+            "items": [
+              {
+                "term": "Platform",
+                "text": "the website, forms, pages, digital spaces, tools, private areas, dashboards, internal portals or any digital functionalities enabled by SLOWORK."
+              },
+              {
+                "term": "Waitlist",
+                "text": "the waiting list to receive information about the launch of SLOWORK, future functionalities, campaigns, early access or project updates."
+              },
+              {
+                "term": "Creator program",
+                "text": "the promotional and community pre-launch dynamic enabled by SLOWORK to encourage the creation of organic content aligned with SLOWORK's brand identity and narrative."
+              },
+              {
+                "term": "Content",
+                "text": "any text, image, video, audio, publication, reel, short, story, carousel, post, link, creative piece or material uploaded, published, submitted or linked by the User to SLOWORK."
+              },
+              {
+                "term": "Credits",
+                "text": "internal, non-monetary promotional units that SLOWORK may assign to certain Users within the creator program according to its internal rules and these T&C."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Purpose and scope",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In the current development phase, SLOWORK makes available to the User a Platform primarily intended to:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) allow registration in the Waitlist or waiting list to receive communications about the future launch of the platform and its services;",
+              "b) enable forms, promotional campaigns and community dynamics;",
+              "c) manage a pre-launch creator program, based on the creation and validation of organic content aligned with SLOWORK's identity, narrative and lifestyle; and",
+              "d) provide general information about the brand, community, vision, product or upcoming services."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Unless SLOWORK publishes additional specific terms, no paid service is currently provided to the User, no booking is formalized, and no accommodation, coworking, coliving or tourist service contract is concluded through the Platform."
+          },
+          {
+            "type": "paragraph",
+            "text": "If in the future SLOWORK enables paid services, bookings, online contracting or transactional functionalities, such operations shall be subject to new specific terms or an update of these T&C."
+          }
+        ]
+      },
+      {
+        "title": "4. Capacity and access conditions",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The User declares that they have sufficient legal capacity to be bound by these T&C."
+          },
+          {
+            "type": "paragraph",
+            "text": "Those who do not have sufficient legal capacity to do so, or who do so in breach of applicable law, may not use the Platform."
+          },
+          {
+            "type": "paragraph",
+            "text": "General access to the Platform is free of charge, without prejudice to the costs of Internet connection, data or devices borne by the User."
+          },
+          {
+            "type": "paragraph",
+            "text": "SLOWORK may deny, limit, suspend or cancel access to the Platform when it deems that use is contrary to law, these T&C, good faith or the purpose of the service."
+          }
+        ]
+      },
+      {
+        "title": "5. Registration in the Waitlist",
+        "subsections": [
+          {
+            "title": "5.1. Nature of the Waitlist",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Registration in the Waitlist is voluntary and allows the User to express their interest in receiving information about the launch of SLOWORK, project updates, early access, calls, campaigns or future functionalities."
+              },
+              {
+                "type": "paragraph",
+                "text": "Registration in the Waitlist:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) does not guarantee definitive access to the platform;",
+                  "b) does not grant an automatic right to a spot, contracting, booking or admission to specific programs;",
+                  "c) does not entail the conclusion of a service provision contract; and",
+                  "d) may be subject to internal validation, segmentation, quota or launch strategy criteria."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "5.2. Data provided",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The User must provide truthful, accurate, complete and up-to-date data. SLOWORK may request, among others, name, email address, nationality, interests, motivation or any other information reasonably linked to the informational, statistical purpose, community validation or launch preparation."
+              },
+              {
+                "type": "paragraph",
+                "text": "Providing false, outdated, incomplete or third-party data without sufficient legal basis may result in exclusion from the Waitlist or suspension of the corresponding participation."
+              }
+            ]
+          },
+          {
+            "title": "5.3. Unsubscription",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The User may request at any time to unsubscribe from the Waitlist and deletion of their data, under the terms provided in the Privacy Policy and through the contact channels enabled by SLOWORK, including the email slowork@slowork.app."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "6. Pre-launch creator program",
+        "subsections": [
+          {
+            "title": "6.1. Program purpose",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may enable a creator program aimed at encouraging the creation of high-quality organic content around SLOWORK's lifestyle, values, community and narrative."
+              },
+              {
+                "type": "paragraph",
+                "text": "This program is promotional, community-based and brand-focused in nature. Unless SLOWORK expressly indicates otherwise in writing, it is not conceived as an employment relationship, a paid professional activity, a classic affiliate network, a commercial agency, a brand representation with power to bind, nor a guaranteed income opportunity."
+              },
+              {
+                "type": "paragraph",
+                "text": "The purpose of the program is to reinforce brand awareness, build community, validate messages and recognize certain contributions through credits or internal promotional rewards, in accordance with the rules published by SLOWORK at any given time."
+              }
+            ]
+          },
+          {
+            "title": "6.2. Participation",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Participation in the program will be voluntary and may require:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) prior registration or sign-up on the Platform;",
+                  "b) express acceptance of these T&C;",
+                  "c) provision of profile data or social networks;",
+                  "d) compliance with brand or campaign instructions; and",
+                  "e) validation by SLOWORK."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may accept, reject, pause or cancel the participation of any User when it reasonably considers it necessary for reasons of quality, reputation, fraud, security, regulatory compliance or brand protection."
+              }
+            ]
+          },
+          {
+            "title": "6.3. Accepted channels",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Unless otherwise communicated by SLOWORK, content published within the creator program may be disseminated, during the pre-launch phase, on channels such as:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) Instagram;",
+                  "b) TikTok;",
+                  "c) YouTube."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may expand, limit or replace these channels at any time."
+              }
+            ]
+          },
+          {
+            "title": "6.4. Publication requirements",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Content may be subject to a pre-validation system prior to its publication on social media. The User may upload to the Platform material in \"draft\" or \"preview\" status for prior review by SLOWORK. SLOWORK may approve the draft, but final approval and credit assignment shall be conditional upon subsequent publication of the content on the accepted channels and effective verification of its proper publication and tagging according to collaboration instructions."
+              },
+              {
+                "type": "paragraph",
+                "text": "Approval of content in draft status does not generate an acquired right to credits until its effective publication and review in accordance with the ordinary procedure."
+              },
+              {
+                "type": "paragraph",
+                "text": "This double validation policy will be duly informed and explained in the user area and in the program's informational materials."
+              },
+              {
+                "type": "paragraph",
+                "text": "In the event of disagreements regarding the validity of the content or its publication, the user will have access to the internal complaints management system, which is set out in section 6.15."
+              }
+            ]
+          },
+          {
+            "title": "6.5. Submission and review flow",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The program may operate in two distinct states: a) Pre-publication: submission and review of a draft; b) Post-publication: verification of effective publication and compliance with instructions."
+              },
+              {
+                "type": "paragraph",
+                "text": "The flow will include the states:"
+              },
+              {
+                "type": "flowStates",
+                "states": [
+                  "DRAFT (draft on platform)",
+                  "SUBMITTED (submitted for review)",
+                  "PENDING_PREVALIDATION (pending prior review)",
+                  "PRE-APPROVED (draft approved, pending publication)",
+                  "PENDING_REVIEW (content published, in final review queue)",
+                  "APPROVED (validated and credits assigned)",
+                  "REJECTED (rejected, with right to appeal under 6.15)"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.6. Validation criteria",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may review each piece according to brand, quality, authenticity and narrative usefulness criteria, including, among others:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) existence of a correct mention of SLOWORK;",
+                  "b) sufficient visual, audio and technical quality;",
+                  "c) alignment with SLOWORK's identity, tone and lifestyle;",
+                  "d) absence of aggressive promotion or misleading messages;",
+                  "e) originality and absence of duplicated, recycled or spam content;",
+                  "f) narrative value, inspiration, connection or authenticity;",
+                  "g) compliance with the law, these T&C and the rules of the social network used."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may use checklists, internal scoring, bonuses, assigned reviewers or any other evaluation system. Such mechanisms are internal management tools and may be modified at any time. The criteria and their application will be available to users and will be explained in the documentation accessible on the Platform."
+              }
+            ]
+          },
+          {
+            "title": "6.7. Invalid content",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Content will not be valid, among other cases, if it:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) lacks sufficient mention of SLOWORK;",
+                  "b) is of low technical quality or manifestly low effort;",
+                  "c) is not aligned with the brand or its narrative;",
+                  "d) has an aggressive, misleading or brand-inappropriate promotional tone;",
+                  "e) consists of spam, unauthorized giveaways, empty or generic content;",
+                  "f) is duplicated, recycled, automated or not original;",
+                  "g) uses artificial metrics, bots, engagement purchases or manipulation;",
+                  "h) uses language presenting the program as a money system, easy income or an economic promise;",
+                  "i) violates third-party rights, social platform rules or applicable law."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "The user may challenge the decision through the system detailed in section 6.9."
+              }
+            ]
+          },
+          {
+            "title": "6.8. Operational limits and anti-fraud measures",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may establish operational limits and anti-fraud controls to protect the integrity of the creator program, the reliability of the credit system, the security of the Platform and the experience of other users, including, among others, the following: (i) maximum submission limits per day and/or per period; (ii) validation of unique links and URL verification; (iii) detection of reposts, duplicates, recycled content or spam; (iv) detection of multiple accounts associated with the same person, device, usage pattern or reasonable linkage indicators; (v) manual or enhanced verification of the permanence of approved content for the minimum required period; and (vi) enhanced review of metrics or anomalous interactions, including indications of manipulation, bots, engagement purchases or non-organic patterns."
+              },
+              {
+                "type": "paragraph",
+                "text": "For these purposes, SLOWORK may apply proportionate technical and organizational measures, which may include: requests for additional information to verify authorship or authenticity of content; requests for screenshots, alternative links or reasonable evidence; temporary limitation of new uploads; placement in an enhanced review queue; preventive blocking of credit accrual until verification is completed; cancellation or reversal of credits improperly obtained; and, in serious or repeated cases, temporary suspension or cancellation of the User's access to the program or to certain Platform functionalities, in accordance with these T&C."
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK will maintain a specific policy against improper uses, under which it may, for a reasonable period and after prior warning when appropriate, suspend or limit access to the Platform or the program for (i) Users who frequently provide manifestly unlawful content, or (ii) Users who frequently submit manifestly unfounded notices or complaints through the enabled mechanisms, when such conduct affects operations, security or system integrity. This policy will be applied diligently and objectively, case by case, taking into account all relevant circumstances."
+              },
+              {
+                "type": "paragraph",
+                "text": "When deciding on the application of measures for improper uses, SLOWORK will assess, at least: (i) absolute numbers of problematic submissions or actions in a period; (ii) relative proportion compared to the User's total submissions; (iii) seriousness and potential impact (including fraud, impersonation, infringement of third-party rights or reputational impact); and (iv) when reasonably determinable, intent. SLOWORK will endeavor, where appropriate, to issue prior warnings before ordering suspensions, except in cases of seriousness, risk, urgency or need to protect the Platform, third parties or the brand."
+              },
+              {
+                "type": "paragraph",
+                "text": "Measures may be graduated, for guidance, among: (i) submission limitation (for example, temporary reduction of the daily maximum); (ii) temporary suspension of the ability to upload content or request review; (iii) temporary suspension of access to the creator program; and (iv) permanent cancellation of access to the program in serious or repeated cases. The duration of suspensions will be reasonable and proportional to the type of breach and its recurrence; as a general rule, depending on severity, it may range between 9 days and 12 months, without prejudice to SLOWORK adopting more restrictive measures when essential due to fraud, impersonation, infringement of third-party rights or significant legal or reputational risk."
+              },
+              {
+                "type": "paragraph",
+                "text": "Application of these measures shall not prevent the User from filing an appeal or complaint through the internal system described in the following provision."
+              }
+            ]
+          },
+          {
+            "title": "6.9. Internal complaint management system for moderation, validation and suspension decisions",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK provides Users with an agile and effective internal complaint management system to appeal decisions adopted within the moderation and management of the program and/or the Platform, including, among others: (i) decisions to remove, disable or block access to content; (ii) rejection of content in pre-validation or final validation; (iii) blocking, reversal or non-assignment of credits for reasons linked to verification, fraud or breach; and (iv) suspension, limitation or cancellation of accounts or access to the creator program."
+              },
+              {
+                "type": "paragraph",
+                "text": "The User must submit their complaint by email to slowork@slowork.app, clearly indicating: (i) their identification and, where applicable, username/handle on the Platform; (ii) the affected piece or decision (including content ID if any, link/URL and approximate date); (iii) the reason for the appeal, with a specific explanation of the facts; and (iv) available supporting documentation, including screenshots, links, relevant metrics and any other reasonable evidence allowing SLOWORK to review the case."
+              },
+              {
+                "type": "paragraph",
+                "text": "Complaints will be processed and resolved by SLOWORK staff through human review, and the final decision will not depend exclusively on automated means. The maximum indicative timeframe to resolve and communicate the decision will be 10 business days from full receipt of the complaint (i.e., from when the User has provided the minimum information necessary for processing). The response will include sufficient reasoning for the outcome and SLOWORK will keep internal records of the complaint and the decision adopted."
+              },
+              {
+                "type": "paragraph",
+                "text": "During processing of the complaint, when the dispute concerns the removal or disabling of access to content uploaded by the User, such content will not remain accessible to the general public on the Platform while the internal procedure is resolved. The foregoing is without prejudice to the User keeping the content on their social networks or external channels, if compatible with the appealed decision and with the program rules."
+              },
+              {
+                "type": "paragraph",
+                "text": "The internal complaint system will be made available to the User in a simple and transparent manner, and SLOWORK will inform in its T&C and/or in the corresponding area of the Platform about the criteria, time limits and available appeal channels, including, where appropriate, the possibility of providing additional information during processing."
+              }
+            ]
+          },
+          {
+            "title": "6.10. Protection of minors and users",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK will progressively implement the following measures to protect minors and the general public in accordance with Spanish and European audiovisual regulations:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "Easy-to-use systems for users to report unlawful or potentially harmful content.",
+                  "Explanation to users of the course of action taken in response to received notifications.",
+                  "Age verification and parental control regarding content that may harm the physical, mental or moral development of minors.",
+                  "Media literacy measures and information on good practices for use of the Platform.",
+                  "Alternative dispute resolution procedure for consumers, in accordance with the provisions of Law 7/2017 and the General Law for the Defense of Consumers and Users. These measures will be detailed in the corresponding area of the Platform and will be informed clearly and accessibly."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.11. Credits and rewards",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "When SLOWORK enables it, the User may receive internal promotional credits for approved content."
+              },
+              {
+                "type": "paragraph",
+                "text": "Credits:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) do not constitute money, salary, cash commission, labor remuneration or a financial instrument;",
+                  "b) are promotional and internal in nature;",
+                  "c) may only be used within the SLOWORK ecosystem, in the manner SLOWORK enables at any time;",
+                  "d) are not refundable, transferable or exchangeable for cash;",
+                  "e) do not generate an indefinite acquired right; and",
+                  "f) may be subject to limits, expiration dates, usage rules and additional validations."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "The internal equivalence of the credit that SLOWORK may use for promotional, operational or system purposes does not alter its non-monetary nature."
+              }
+            ]
+          },
+          {
+            "title": "6.12. Base credit table",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Unless subsequently modified by SLOWORK, the base credit allocation in the current phase may follow the following logic:"
+              },
+              {
+                "type": "creditTable",
+                "platforms": [
+                  {
+                    "name": "Instagram",
+                    "rows": [
+                      {
+                        "format": "Story",
+                        "credits": "1 credit"
+                      },
+                      {
+                        "format": "Carousel or post",
+                        "credits": "2 credits"
+                      },
+                      {
+                        "format": "Reel",
+                        "credits": "5 credits"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "TikTok",
+                    "rows": [
+                      {
+                        "format": "Story",
+                        "credits": "1 credit"
+                      },
+                      {
+                        "format": "Carousel or post",
+                        "credits": "1 credit"
+                      },
+                      {
+                        "format": "Short video",
+                        "credits": "3 credits"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "YouTube",
+                    "rows": [
+                      {
+                        "format": "Short",
+                        "credits": "2 credits"
+                      },
+                      {
+                        "format": "Short video (8–40 min)",
+                        "credits": "3 credits"
+                      },
+                      {
+                        "format": "Long video or podcast (+40 min)",
+                        "credits": "10 credits"
+                      },
+                      {
+                        "format": "Post or carousel",
+                        "credits": "2 credits"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.13. Bonus",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may grant additional bonuses when content reaches certain performance or verifiable impact thresholds."
+              },
+              {
+                "type": "paragraph",
+                "text": "As guidance, bonuses may be contemplated for:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) high engagement or high views;",
+                  "b) relevant volume of qualified interactions;",
+                  "c) especially outstanding narrative or brand impact;",
+                  "d) exceptional quality or strategic affinity with the campaign."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "Bonus assignment will always be discretionary and will require validation by SLOWORK."
+              }
+            ]
+          },
+          {
+            "title": "6.14. Accrual, validity and use of credits",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Credits shall only be deemed accrued when the content has been expressly approved by SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "Unless SLOWORK indicates otherwise:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) credits will be valid for 365 days from assignment;",
+                  "b) their use may be limited to a maximum of 50% of the value of each transaction or enabled redemption;",
+                  "c) they may only be used when SLOWORK activates specific functionalities allowing their application; and",
+                  "d) mere accumulation of credits does not oblige SLOWORK to launch any service, functionality or redemption system on a specific date."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.15. Withdrawal, reversal or loss of credits",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may withdraw, block, cancel or reverse credits already assigned when:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) it detects fraud, manipulation or breach;",
+                  "b) approved content is deleted, hidden or substantially altered before the minimum period required by SLOWORK;",
+                  "c) it is verified that metrics, interactions or publications were not authentic;",
+                  "d) the content infringes these T&C or third-party rights; or",
+                  "e) a material assignment error occurs."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "In particular, if the User removes validated content before 3 months have elapsed since its approval, SLOWORK may withdraw the credits associated with that piece."
+              },
+              {
+                "type": "paragraph",
+                "text": "If the User has already used those credits, SLOWORK may offset them with future credits, temporarily suspend access to the program, or apply the internal regularization that corresponds."
+              }
+            ]
+          },
+          {
+            "title": "6.16. No employment, paid commercial relationship or representation",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Participation in the creator program does not create an employment relationship, paid commercial relationship, agency, representation, mandate, partnership, joint venture or exclusivity link between the User and SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "The User may not act on behalf of SLOWORK or assume commitments, statements, promises or binding declarations on behalf of SLOWORK without prior and express written authorization."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "7. License over content, UGC, image and promotional uses",
+        "subsections": [
+          {
+            "title": "7.1. Rights warranty",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The User warrants that they have all rights, permissions, consents and authorizations necessary over the content they publish, upload, submit, link or associate with SLOWORK within the Platform, the creator program or any campaign linked to the brand."
+              },
+              {
+                "type": "paragraph",
+                "text": "In particular, the User warrants that:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) the content is original or has sufficient rights for its use;",
+                  "b) its publication and reuse by SLOWORK does not infringe intellectual property, industrial property, image rights, honor, privacy, data protection or any other third-party rights;",
+                  "c) any identifiable person appearing in the content has provided, where required, the necessary consent for the capture and use of their image, voice or name;",
+                  "d) music, audios, clips, templates, effects, visual resources, brands, locations or any other elements incorporated into the content allow their promotional and advertising use by SLOWORK under the terms provided herein; and",
+                  "e) the content is not subject to restrictions incompatible with its commercial and advertising use by SLOWORK."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "The User will be liable to SLOWORK and to third parties for any claim arising from a lack of sufficient rights or authorizations over the content provided."
+              }
+            ]
+          },
+          {
+            "title": "7.2. License to use content and UGC",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "By participating in the Waitlist, campaigns, community dynamics or the creator program, the User grants SLOWORK a non-exclusive, free, worldwide, sublicensable license, for all types of media, supports, channels and formats, online and offline, over the content submitted, published or linked to SLOWORK, to:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) reproduce, store, archive and make it available;",
+                  "b) publicly communicate, disseminate, redistribute and republish it;",
+                  "c) transform, adapt, edit, crop, subtitle, translate, reframe, resize, lay out, combine it with other materials or adjust it to different formats and channels;",
+                  "d) incorporate it into creative pieces, landings, newsletters, decks, editorial materials, commercial materials, presentations, internal supports or brand campaigns; and",
+                  "e) use it as UGC (user generated content) in communication, awareness, performance, remarketing, acquisition, social validation, community, press, events, commercial presentations or product promotion actions."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "This license covers both organic uses and promoted or paid uses, including its use in ads and advertising campaigns disseminated by SLOWORK on its own channels or through third-party platforms."
+              }
+            ]
+          },
+          {
+            "title": "7.3. Advertising and paid media use",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The above license expressly includes SLOWORK's ability to use the User's content in digital advertising or paid media campaigns, including, among others, campaigns on Instagram, Facebook, TikTok, YouTube, Google and equivalent paid social, paid video, display, remarketing or performance formats."
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may use the content as a primary or secondary advertising creative, testimonial, social proof, remarketing piece, audiovisual cut, carousel, short-form video, landing asset, email asset or any other promotional format reasonably linked to the brand."
+              }
+            ]
+          },
+          {
+            "title": "7.4. Authorization over image, voice, name and public profile",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The User expressly authorizes SLOWORK, to the extent necessary for the purposes described, to use their name or alias, username or public identifier on social networks, image, voice, profile photo, likeness, appearance and other identifying elements that appear in the content, for the purposes of validation, dissemination, communication, branding, awareness, community and advertising of SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "This authorization includes the possibility of mentioning the User as a creator, collaborator or member of the SLOWORK community, provided that this is not misleading or implies attributing to them functions or legal relationships that do not actually exist."
+              }
+            ]
+          },
+          {
+            "title": "7.5. Duration of the license",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The above license and authorization are granted for the maximum term permitted by law for the corresponding purpose or, failing that, while the content is useful for archival, evidentiary, campaign history, community, communication or reasonable promotional exploitation purposes of SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "However, the User may request removal of the content for future uses not yet executed or committed, without affecting:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) campaigns already active, launched, approved or budgeted;",
+                  "b) materials already produced, edited or distributed;",
+                  "c) publications already made;",
+                  "d) internal evidence, archives, backups, logs or supports necessary for evidentiary, legal, accounting, anti-fraud or compliance purposes."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "7.6. Limits and moral rights",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK may technically adapt the content for its campaigns and channels, but undertakes not to use it in a manifestly demeaning, denigrating or out-of-context manner that illegitimately harms the User's reputation."
+              },
+              {
+                "type": "paragraph",
+                "text": "This clause is without prejudice to the inalienable moral rights of the author under applicable law."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "8. Acceptable use of the Platform",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The User undertakes to use the Platform diligently, properly, lawfully and in accordance with these T&C."
+          },
+          {
+            "type": "paragraph",
+            "text": "The following behaviors are prohibited, among others:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) introducing viruses, malware, malicious code or any element capable of altering systems, networks or data;",
+              "b) interfering with, interrupting or compromising the security or normal operation of the Platform;",
+              "c) accessing without authorization accounts, systems or restricted areas;",
+              "d) registering false information or impersonating third parties;",
+              "e) collecting personal data of third parties without sufficient legal basis;",
+              "f) reproducing, extracting, copying, distributing or reusing Platform content without authorization;",
+              "g) using the Platform for fraud, spam, scraping, misleading campaigns or non-consensual acquisition;",
+              "h) manipulating the credit program, content metrics or validations;",
+              "i) publishing offensive, discriminatory, unlawful, defamatory content or content contrary to fundamental rights."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "SLOWORK may adopt the technical or legal measures it deems necessary in response to any breach."
+          }
+        ]
+      },
+      {
+        "title": "9. SLOWORK's intellectual and industrial property",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "All Platform content, including texts, designs, interfaces, code, images, logos, trademarks, trade name, structure, databases and other elements, is owned by SLOWORK or third-party licensors."
+          },
+          {
+            "type": "paragraph",
+            "text": "Access to the Platform does not imply assignment, broad license or transfer of intellectual or industrial property rights in favor of the User, except for the mere limited right of use to browse and participate in the authorized functionalities."
+          },
+          {
+            "type": "paragraph",
+            "text": "Reproduction, transformation, distribution, public communication, extraction or total or partial reuse of such elements is prohibited without prior and express authorization."
+          }
+        ]
+      },
+      {
+        "title": "10. Social networks and third-party services",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Platform may link to, integrate or interact with third-party services, including social networks, analytics tools, storage systems, video platforms or external technical solutions."
+          },
+          {
+            "type": "paragraph",
+            "text": "SLOWORK does not fully control such third-party services and is not responsible for their availability, policies, operation, outages, content, practices or terms of use."
+          },
+          {
+            "type": "paragraph",
+            "text": "The User will be responsible for complying with the terms of the social network or external service where they publish content linked to SLOWORK."
+          }
+        ]
+      },
+      {
+        "title": "11. Personal data protection",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The processing of personal data carried out by SLOWORK will be governed by the <1>Privacy Policy</1> in force at any given time."
+          },
+          {
+            "type": "paragraph",
+            "text": "The User declares that the data provided is accurate and, if they provide third-party data or content, they warrant that they have sufficient legal basis to do so."
+          },
+          {
+            "type": "paragraph",
+            "text": "Within the framework of the Waitlist and the creator program, SLOWORK may process identification data, contact data, links to public profiles, content metrics, submission history, review statuses, credits, incidents and other data necessary to manage participation, prevent fraud, moderate content and operate the Platform."
+          }
+        ]
+      },
+      {
+        "title": "12. Exclusion and limitation of liability",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "SLOWORK does not guarantee continuous, permanent or uninterrupted availability of the Platform, nor the absence of errors, technical incidents or unauthorized access."
+          },
+          {
+            "type": "paragraph",
+            "text": "The User uses the Platform at their own risk."
+          },
+          {
+            "type": "paragraph",
+            "text": "To the maximum extent permitted by law, SLOWORK will not be liable for:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) interruptions, outages, unavailability or technical errors;",
+              "b) decisions made by the User based on informational content on the Platform;",
+              "c) content, publications or acts of third parties or other users;",
+              "d) loss of opportunity, loss of profit or indirect damages arising from use of the Platform;",
+              "e) expectations of access, benefits or results that have not been expressly guaranteed in writing."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In this pre-launch phase, SLOWORK assumes no obligation to implement future services, transactions, bookings, payments, marketplace or specific redemption mechanisms on a specific date."
+          }
+        ]
+      },
+      {
+        "title": "13. Suspension, cancellation and exclusion",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "SLOWORK may suspend, block, limit or cancel in whole or in part the User's access to the Platform, the Waitlist or the creator program when:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) these T&C are breached;",
+              "b) fraud, impersonation, abuse or reputational risk is detected;",
+              "c) the User's content or conduct harms SLOWORK, its community or third parties;",
+              "d) it is necessary for technical, legal, organizational or security reasons."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Suspension or cancellation will not give rise to any right to compensation, without prejudice to the mandatory rights that may correspond to the User under the law."
+          }
+        ]
+      },
+      {
+        "title": "14. Modification of the T&C",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "SLOWORK may modify these T&C at any time to adapt them to legal, technical, operational, product, brand or strategy changes."
+          },
+          {
+            "type": "paragraph",
+            "text": "The new version will be published on the Platform with its update date and, where appropriate, may be communicated by email or other enabled means."
+          },
+          {
+            "type": "paragraph",
+            "text": "Continued use of the Platform after publication of the new version will imply acceptance."
+          }
+        ]
+      },
+      {
+        "title": "15. Partial invalidity",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "If any clause of these T&C is declared null, invalid or unenforceable, this shall not affect the validity of the rest, which shall remain in force to the fullest extent legally possible."
+          }
+        ]
+      },
+      {
+        "title": "16. Language",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "These T&C may be available in several languages. In case of discrepancy, the Spanish version shall prevail, unless a mandatory rule provides otherwise."
+          }
+        ]
+      },
+      {
+        "title": "17. Applicable law and jurisdiction",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "These T&C shall be governed by Spanish law."
+          },
+          {
+            "type": "paragraph",
+            "text": "When the User has the legal status of consumer or user, the courts and tribunals applicable under mandatory consumer protection regulations shall have jurisdiction."
+          },
+          {
+            "type": "paragraph",
+            "text": "When the User acts within the framework of a professional, business or economic activity, both parties, expressly waiving any other jurisdiction that might correspond to them, submit to the Courts and Tribunals of Seville, Spain."
+          }
+        ]
+      }
+    ]
   },
   "impactProgram": {
     "helmet": {

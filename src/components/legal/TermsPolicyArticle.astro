@@ -1,7 +1,7 @@
 ---
-import { termsLinkify } from '@/lib/termsRichText';
+import TermsBlocks from '@/components/legal/TermsBlocks.astro';
 import type { SupportedLang } from '@/lib/seo';
-import type { TermsAndConditionsContent } from '@/models/legal';
+import type { TermsAndConditionsContent, TermsBlock } from '@/models/legal';
 
 interface Props {
   terms: TermsAndConditionsContent;
@@ -11,9 +11,6 @@ interface Props {
 }
 
 const { terms, lang, showDocumentTitle = true } = Astro.props;
-
-const dataProtectionHtml = termsLinkify(terms.dataProtection, lang);
-const law3Html = termsLinkify(terms.law3, lang);
 ---
 
 <article class="prose legal-doc max-w-none">
@@ -26,37 +23,20 @@ const law3Html = termsLinkify(terms.law3, lang);
     ) : null
   }
 
-  <h2>{terms.generalInfoTitle}</h2>
-  <p class="whitespace-pre-line">{terms.generalInfo}</p>
-
-  <h2>{terms.purposeTitle}</h2>
-  <p>{terms.purpose}</p>
-
-  <h2>{terms.waitlistTitle}</h2>
-  <p>{terms.waitlist1}</p>
-  <p>{terms.waitlist2}</p>
-  <p>{terms.waitlist3}</p>
-
-  <h2>{terms.ipTitle}</h2>
-  <p>{terms.ip}</p>
-
-  <h2>{terms.acceptableUseTitle}</h2>
-  <p class="whitespace-pre-line">{terms.acceptableUse}</p>
-
-  <h2>{terms.dataProtectionTitle}</h2>
-  <p set:html={dataProtectionHtml} />
-
-  <h2>{terms.liabilityTitle}</h2>
-  <p>{terms.liability1}</p>
-  <p>{terms.liability2}</p>
-
-  <h2>{terms.modificationsTitle}</h2>
-  <p>{terms.modifications}</p>
-
-  <h2>{terms.lawTitle}</h2>
-  <p class="whitespace-pre-line">{terms.law1}</p>
-  <p class="whitespace-pre-line">{terms.law2}</p>
-  <p set:html={law3Html} />
-  <p>{terms.law4}</p>
-  <p>{terms.law5}</p>
+  {
+    terms.sections.map((section) => (
+      <>
+        <h2>{section.title}</h2>
+        {section.blocks ? <TermsBlocks blocks={section.blocks as TermsBlock[]} lang={lang} /> : null}
+        {
+          section.subsections?.map((subsection) => (
+            <>
+              <h3>{subsection.title}</h3>
+              <TermsBlocks blocks={subsection.blocks as TermsBlock[]} lang={lang} />
+            </>
+          ))
+        }
+      </>
+    ))
+  }
 </article>

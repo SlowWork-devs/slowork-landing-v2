@@ -294,35 +294,913 @@
   "termsAndConditions": {
     "helmet": {
       "title": "Términos y Condiciones de Uso - Slowork",
-      "description": "Lee los términos y condiciones de uso de Slowork, incluyendo información sobre la inscripción en la lista de espera, propiedad intelectual, uso aceptable de la web y protección de datos personales."
+      "description": "Términos y condiciones de uso de Slowork: waitlist, programa para creadores, créditos, licencia de contenido, uso aceptable y protección de datos."
     },
     "title": "Términos y condiciones de uso",
-    "date": "Versión 1.0 | Fecha: 7 de julio de 2025",
-    "generalInfoTitle": "1. Información general",
-    "generalInfo": "El presente documento regula los términos y condiciones (en adelante, las 'TyC') que rigen el acceso y uso del sitio web www.slowork.app (en adelante, la 'Plataforma'), titularidad de SLOWORK, S.L., con NIF B75950444, domicilio social en Calle Rodrigo Caro, 7, 1º Izquierda, 41004 – Sevilla (España), en proceso de inscripción en el Registro Mercantil según escritura pública (en adelante, 'SLOWORK').\n\nAl acceder y utilizar esta Plataforma, usted (el 'Usuario') declara haber leído, entendido y aceptado íntegramente las presentes TyC.",
-    "purposeTitle": "2. Objeto y ámbito de aplicación",
-    "purpose": "SLOWORK pone a disposición del Usuario una Plataforma únicamente para permitir la inscripción en una lista de espera ('Waitlist') para recibir notificaciones sobre el futuro lanzamiento de sus servicios. Actualmente no se ofrece ningún servicio de pago ni se formaliza contrato alguno.",
-    "waitlistTitle": "3. Condiciones de inscripción en la waitlist",
-    "waitlist1": "3.1. La inscripción en la Waitlist es voluntaria mediante la cumplimentación de un formulario habilitado en la Plataforma, en el que el Usuario deberá consignar de forma veraz y completa determinados datos personales, entre ellos: nombre completo, correo electrónico, nacionalidad, motivación o intereses respecto a la plataforma, así como cualquier otro dato que SLOWORK pueda solicitar con fines exclusivamente informativos y estadísticos.",
-    "waitlist2": "3.2. El Usuario garantiza que la información facilitada es veraz, actual y completa, y se compromete a mantenerla actualizada mientras permanezca en la Waitlist. Los datos falsos o inexactos podrán suponer la exclusión de la Waitlist.",
-    "waitlist3": "3.3. El Usuario podrá solicitar la baja de la Waitlist y la supresión de sus datos personales en cualquier momento, enviando una solicitud expresa a hola@slowork.app, indicando en el asunto 'Baja Waitlist – SLOWORK'.",
-    "ipTitle": "4. Propiedad intelectual e industrial",
-    "ip": "Todos los contenidos del sitio web (textos, imágenes, logotipos, software, estructura, diseño, etc.) son titularidad de SLOWORK o se utilizan bajo la correspondiente licencia. Se prohíbe la reproducción total o parcial sin autorización expresa. El acceso a la Plataforma no otorga al Usuario ningún derecho de propiedad sobre los contenidos, elementos o funcionalidades. SLOWORK concede al Usuario una licencia limitada, no exclusiva, revocable e intransferible para navegar por la Plataforma y utilizarla conforme a las presentes TyC. Cualquier otro uso requerirá autorización expresa y por escrito.",
-    "acceptableUseTitle": "5. Uso aceptable del sitio web",
-    "acceptableUse": "El Usuario se compromete a utilizar la Plataforma de forma diligente, correcta y lícita, conforme a la legislación aplicable, las presentes TyC, la moral, el orden público y las buenas costumbres generalmente aceptadas. En particular, el Usuario se abstendrá de:\n- Introducir, almacenar o difundir en o desde la Plataforma cualquier contenido malicioso, software, virus, código malicioso o cualquier otro programa o archivo susceptible de causar daños o alteraciones en sistemas informáticos, redes, archivos o contenidos de la Plataforma o de otros usuarios.\n- Interferir, interrumpir o dañar, directa o indirectamente, el funcionamiento normal de la Plataforma, incluyendo ataques de denegación de servicio (DDoS), escaneo de puertos, inyección de código o cualquier técnica similar.\n- Acceder, intentar acceder o utilizar cuentas de otros Usuarios sin su autorización expresa, así como vulnerar, intentar vulnerar o eludir las medidas de seguridad, autenticación o restricción de acceso de la Plataforma.\n- Utilizar datos personales de terceros sin su consentimiento expreso e informado, incluyendo el envío no autorizado de comunicaciones comerciales, así como la recogida sistemática o automatizada de datos personales (data scraping).\n- Registrar datos falsos, inexactos, incompletos o suplantar a terceros, así como hacerse pasar por otra persona física o jurídica.\n- Utilizar la Plataforma con fines fraudulentos, ilícitos, difamatorios, ofensivos, discriminatorios, contrarios a derechos fundamentales y libertades públicas reconocidos por la legislación aplicable o contrarios a la buena fe.\n- Reproducir, distribuir, transformar, comunicar públicamente, poner a disposición o extraer cualquier contenido de la Plataforma sin la autorización previa y expresa del titular de los derechos o salvo que legalmente esté permitido.\n- Utilizar la Plataforma para enviar publicidad no solicitada o autorizada, material promocional, correo basura, spam, cartas en cadena o cualquier otra forma de captación no consentida, directa o indirectamente.\n\nSLOWORK se reserva el derecho a denegar, suspender o retirar el acceso a la Plataforma a cualquier Usuario que infrinja lo anterior, así como a ejercer las acciones legales que correspondan por actos que puedan constituir infracción administrativa, civil o penal.",
-    "dataProtectionTitle": "6. Protección de datos personales",
-    "dataProtection": "El tratamiento de los datos personales derivados de la inscripción en la Waitlist se rige por lo dispuesto en la <1>Política de Privacidad</1>, conforme al Reglamento General de Protección de Datos (Reglamento UE 2016/679).",
-    "liabilityTitle": "7. Limitación de responsabilidad",
-    "liability1": "SLOWORK no garantiza la disponibilidad ininterrumpida del sitio web, ni que esté libre de errores o elementos dañinos. El uso de la Plataforma se realiza bajo la exclusiva responsabilidad del Usuario. En esta fase, no existe relación contractual con el Usuario más allá de la inscripción en la Waitlist.",
-    "liability2": "La Plataforma puede contener enlaces a sitios web o servicios de terceros no controlados por SLOWORK. No asumimos responsabilidad alguna por el contenido, políticas o prácticas de sitios o servicios externos. El Usuario accede bajo su propio riesgo.",
-    "modificationsTitle": "8. Modificaciones de las condiciones",
-    "modifications": "SLOWORK se reserva el derecho a modificar las presentes TyC en cualquier momento. Cualquier cambio será debidamente notificado a través de la propia Plataforma o al correo electrónico facilitado por el Usuario.",
-    "lawTitle": "9. Ley aplicable y jurisdicción",
-    "law1": "Las presentes TyC se interpretarán y regirán conforme a la legislación española y, en su caso, a la normativa europea aplicable. En particular, serán de aplicación, entre otras:\n- Reglamento (UE) 2016/679, de 27 de abril, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales (RGPD),\n- Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE),\n- Texto Refundido de la Ley General para la Defensa de los Consumidores y Usuarios, aprobado por Real Decreto Legislativo 1/2007, de 16 de noviembre (TRLGDCU),\n- Reglamento (UE) 524/2013, sobre resolución de litigios en línea en materia de consumo,\n- Así como cualquier otra normativa aplicable a las relaciones establecidas a través de la Plataforma.",
-    "law2": "En caso de conflicto o controversia relativa a la interpretación, validez, ejecución o cumplimiento de las presentes TyC, serán competentes:\n- Para Usuarios que tengan la condición de consumidores (personas físicas que actúan con un propósito ajeno a su actividad comercial, empresarial, oficio o profesión), los juzgados y tribunales del domicilio del Usuario, conforme a los artículos 3, 29 y 90.2 del TRLGDCU, quedando excluida cualquier cláusula que limite o condicione este derecho.\n- Para Usuarios que actúen como profesionales o empresas (personas físicas o jurídicas que actúan en el ámbito de su actividad económica), ambas partes acuerdan someterse, con renuncia expresa a cualquier otro fuero, a los Juzgados y Tribunales de la ciudad de Sevilla (España), domicilio social de SLOWORK, S.L.",
-    "law3": "Sin perjuicio de lo anterior, en cumplimiento del artículo 14 del Reglamento (UE) 524/2013, se informa a los Usuarios consumidores que pueden acceder a la plataforma europea de resolución de litigios en línea en el siguiente enlace: <1>https://ec.europa.eu/consumers/odr/</1>",
-    "law4": "Si alguna cláusula de las presentes TyC fuera declarada nula o inaplicable por resolución firme de autoridad competente, el resto de disposiciones permanecerán en vigor y no se verán afectadas por dicha declaración de nulidad.",
-    "law5": "En caso de discrepancia entre versiones traducidas de las presentes TyC, prevalecerá la versión en español, salvo que expresamente se indique lo contrario."
+    "date": "Versión 2.0 | Fecha de última actualización: 21 de marzo de 2026",
+    "sections": [
+      {
+        "title": "1. Información general",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "El presente documento regula los términos y condiciones de uso (en adelante, los \"TyC\") aplicables al acceso, navegación y utilización del sitio web www.slowork.app (en adelante, la \"Plataforma\"), titularidad de SLOWORK, S.L. (en adelante, \"SLOWORK\"), con NIF B75950444 y domicilio social en Calle Rodrigo Caro, 7, 1º Izquierda, 41004 – Sevilla (España)."
+          },
+          {
+            "type": "paragraph",
+            "text": "A efectos de estas TyC, tendrá la consideración de \"Usuario\" cualquier persona que acceda, navegue, se registre, remita información o participe en cualquiera de las funcionalidades de la Plataforma."
+          },
+          {
+            "type": "paragraph",
+            "text": "El acceso, navegación, registro o uso de la Plataforma implica la lectura, comprensión y aceptación expresa de los presentes TyC, así como, en lo que resulte aplicable, de la <1>Política de Privacidad</1> y de la Política de Cookies."
+          }
+        ]
+      },
+      {
+        "title": "2. Definiciones",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A efectos de estas TyC, se entenderá por:"
+          },
+          {
+            "type": "definitions",
+            "items": [
+              {
+                "term": "Plataforma",
+                "text": "el sitio web, formularios, páginas, espacios digitales, herramientas, áreas privadas, dashboards, portales internos o cualesquiera funcionalidades digitales habilitadas por SLOWORK."
+              },
+              {
+                "term": "Waitlist",
+                "text": "la lista de espera para recibir información sobre el lanzamiento de SLOWORK, futuras funcionalidades, campañas, accesos anticipados o novedades del proyecto."
+              },
+              {
+                "term": "Programa para creadores",
+                "text": "la dinámica promocional y de comunidad de pre-lanzamiento habilitada por SLOWORK para fomentar la creación de contenido orgánico alineado con la identidad y narrativa de marca."
+              },
+              {
+                "term": "Contenido",
+                "text": "cualquier texto, imagen, vídeo, audio, publicación, reel, short, story, carrusel, post, enlace, pieza creativa o material subido, publicado, remitido o vinculado por el Usuario a SLOWORK."
+              },
+              {
+                "term": "Créditos",
+                "text": "unidades promocionales internas, no dinerarias, que SLOWORK puede asignar a determinados Usuarios dentro del programa para creadores conforme a sus reglas internas y a estas TyC."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Objeto y ámbito de aplicación",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "En la fase actual de desarrollo, SLOWORK pone a disposición del Usuario una Plataforma destinada principalmente a:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) permitir la inscripción en la Waitlist o lista de espera para recibir comunicaciones sobre el futuro lanzamiento de la plataforma y sus servicios;",
+              "b) habilitar formularios, campañas promocionales y dinámicas de comunidad;",
+              "c) gestionar un programa para creadores en pre-lanzamiento, basado en la creación y validación de contenido orgánico alineado con la identidad, narrativa y estilo de vida de la marca SLOWORK; y",
+              "d) ofrecer información general sobre la marca, comunidad, visión, producto o próximos servicios."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Salvo que SLOWORK publique condiciones particulares adicionales, actualmente no se presta al Usuario un servicio de pago, no se formaliza reserva alguna ni se perfecciona contrato de alojamiento, coworking, coliving o servicio turístico alguno a través de la Plataforma."
+          },
+          {
+            "type": "paragraph",
+            "text": "Si en el futuro SLOWORK habilitara servicios de pago, reservas, contratación online o funcionalidades transaccionales, dichas operativas quedarán sujetas a nuevas condiciones específicas o a una actualización de las presentes TyC."
+          }
+        ]
+      },
+      {
+        "title": "4. Capacidad y condiciones de acceso",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "El Usuario declara que tiene capacidad jurídica suficiente para vincularse por estas TyC."
+          },
+          {
+            "type": "paragraph",
+            "text": "No podrán usar la Plataforma quienes no tengan capacidad legal suficiente para ello o lo hagan vulnerando la legislación aplicable."
+          },
+          {
+            "type": "paragraph",
+            "text": "El acceso general a la Plataforma es gratuito, sin perjuicio de los costes de conexión a Internet, datos o dispositivos que correspondan al Usuario."
+          },
+          {
+            "type": "paragraph",
+            "text": "SLOWORK podrá denegar, limitar, suspender o cancelar el acceso a la Plataforma cuando aprecie un uso contrario a la ley, a estas TyC, a la buena fe o a la finalidad del servicio."
+          }
+        ]
+      },
+      {
+        "title": "5. Inscripción en la Waitlist",
+        "subsections": [
+          {
+            "title": "5.1. Naturaleza de la Waitlist",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "La inscripción en la Waitlist tiene carácter voluntario y permite al Usuario manifestar su interés en recibir información sobre el lanzamiento de SLOWORK, novedades del proyecto, acceso anticipado, convocatorias, campañas o futuras funcionalidades."
+              },
+              {
+                "type": "paragraph",
+                "text": "La inscripción en la Waitlist:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) no garantiza acceso definitivo a la plataforma;",
+                  "b) no otorga derecho automático a plaza, contratación, reserva o admisión en programas específicos;",
+                  "c) no supone la celebración de un contrato de prestación de servicios; y",
+                  "d) podrá quedar sujeta a criterios internos de validación, segmentación, cupo o estrategia de lanzamiento."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "5.2. Datos facilitados",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "El Usuario deberá facilitar datos veraces, exactos, completos y actualizados. SLOWORK podrá solicitar, entre otros, nombre, correo electrónico, nacionalidad, intereses, motivación o cualquier otra información razonablemente vinculada con la finalidad informativa, estadística, de validación de comunidad o de preparación del lanzamiento."
+              },
+              {
+                "type": "paragraph",
+                "text": "La aportación de datos falsos, desactualizados, incompletos o de terceros sin legitimación suficiente podrá dar lugar a la exclusión de la Waitlist o a la suspensión de la participación correspondiente."
+              }
+            ]
+          },
+          {
+            "title": "5.3. Baja",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "El Usuario podrá solicitar en cualquier momento la baja de la Waitlist y la supresión de sus datos, en los términos previstos en la Política de Privacidad y mediante los canales de contacto habilitados por SLOWORK, incluyendo el correo slowork@slowork.app."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "6. Programa para creadores en pre-lanzamiento",
+        "subsections": [
+          {
+            "title": "6.1. Finalidad del programa",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá habilitar un programa para creadores destinado a fomentar la creación de contenido orgánico de calidad alrededor del estilo de vida, valores, comunidad y narrativa de SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "Este programa tiene naturaleza promocional, comunitaria y de marca. Salvo que SLOWORK indique expresamente lo contrario por escrito, no está concebido como una relación laboral, una actividad profesional retribuida, una red de afiliación clásica, una agencia comercial, una representación de marca con poder de vinculación ni una oportunidad de ingresos garantizados."
+              },
+              {
+                "type": "paragraph",
+                "text": "La finalidad del programa es reforzar el awareness de marca, construir comunidad, validar mensajes y reconocer determinadas contribuciones mediante créditos o recompensas promocionales internas, conforme a las reglas publicadas por SLOWORK en cada momento."
+              }
+            ]
+          },
+          {
+            "title": "6.2. Participación",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "La participación en el programa será voluntaria y podrá requerir:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) registro previo o inscripción en la Plataforma;",
+                  "b) aceptación expresa de estas TyC;",
+                  "c) aportación de datos de perfil o redes sociales;",
+                  "d) cumplimiento de las instrucciones de marca o campaña; y",
+                  "e) validación por parte de SLOWORK."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá aceptar, rechazar, pausar o cancelar la participación de cualquier Usuario cuando lo considere razonablemente necesario por motivos de calidad, reputación, fraude, seguridad, cumplimiento normativo o protección de marca."
+              }
+            ]
+          },
+          {
+            "title": "6.3. Canales admitidos",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Salvo comunicación distinta por parte de SLOWORK, el contenido publicado en el marco del programa para creadores podrá difundirse, durante la fase de pre-lanzamiento, en canales como:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) Instagram;",
+                  "b) TikTok;",
+                  "c) YouTube."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá ampliar, limitar o sustituir estos canales en cualquier momento."
+              }
+            ]
+          },
+          {
+            "title": "6.4. Requisitos de publicación",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "El contenido podrá ser sometido a un sistema de prevalidación previa a su publicación en redes sociales. El Usuario podrá subir a la Plataforma material en estado de \"borrador\" o \"preview\", para su revisión previa por SLOWORK. SLOWORK podrá aprobar el borrador, pero la aprobación final y la asignación de créditos quedarán condicionadas a la posterior publicación del contenido en los canales admitidos, y la verificación efectiva de su adecuada publicación y etiquetado según las instrucciones de colaboración."
+              },
+              {
+                "type": "paragraph",
+                "text": "La aprobación de un contenido en estado borrador no genera derecho adquirido a créditos hasta su efectiva publicación y revisión conforme al procedimiento ordinario."
+              },
+              {
+                "type": "paragraph",
+                "text": "Esta política de doble validación será debidamente informada y explicada en el área de usuario y en los materiales informativos del programa."
+              },
+              {
+                "type": "paragraph",
+                "text": "En caso de desavenencias respecto a la validez del contenido o su publicación, el usuario dispondrá de acceso al sistema interno de gestión de reclamaciones, que se explicita en el apartado 6.15."
+              }
+            ]
+          },
+          {
+            "title": "6.5. Flujo de envío y revisión",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "El programa podrá operar en dos estados diferenciados: a) Pre-publicación: remisión y revisión de borrador; b) Post-publicación: verificación de publicación efectiva y cumplimiento de instrucciones."
+              },
+              {
+                "type": "paragraph",
+                "text": "El flujo incluirá los estados:"
+              },
+              {
+                "type": "flowStates",
+                "states": [
+                  "DRAFT (borrador en plataforma)",
+                  "SUBMITTED (enviado a revisión)",
+                  "PENDING_PREVALIDATION (en espera de revisión previa)",
+                  "PRE-APPROVED (aprobación del borrador, pendiente publicación)",
+                  "PENDING_REVIEW (contenido publicado, en cola de revisión final)",
+                  "APPROVED (validado y créditos asignados)",
+                  "REJECTED (rechazado, con derecho a recurso según 6.15)"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.6. Criterios de validación",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá revisar cada pieza conforme a criterios de marca, calidad, autenticidad y utilidad narrativa, incluyendo, entre otros:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) existencia de mención correcta a SLOWORK;",
+                  "b) calidad visual, sonora y técnica suficiente;",
+                  "c) alineación con la identidad, tono y lifestyle Slowork;",
+                  "d) ausencia de promoción agresiva o mensajes engañosos;",
+                  "e) originalidad y ausencia de contenido duplicado, reciclado o spam;",
+                  "f) valor narrativo, inspiración, conexión o autenticidad;",
+                  "g) cumplimiento de la ley, de estas TyC y de las reglas de la red social utilizada."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá utilizar checklists, scoring interno, bonus, revisores asignados o cualquier otro sistema de evaluación. Dichos mecanismos son herramientas internas de gestión y podrán ser modificados en cualquier momento. Los criterios y su aplicación estarán a disposición de los usuarios, y serán explicados en la documentación accesible en la Plataforma."
+              }
+            ]
+          },
+          {
+            "title": "6.7. Contenido no válido",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "No será válido, entre otros supuestos, el contenido que:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) carezca de mención suficiente a SLOWORK;",
+                  "b) sea de baja calidad técnica o manifiestamente low effort;",
+                  "c) no esté alineado con la marca o su narrativa;",
+                  "d) tenga un tono de promoción agresiva, engañosa o impropio de la marca;",
+                  "e) consista en spam, sorteos no autorizados, contenido vacío o genérico;",
+                  "f) sea duplicado, reciclado, automatizado o no original;",
+                  "g) utilice métricas artificiales, bots, compra de engagement o manipulación;",
+                  "h) utilice lenguaje que presente el programa como un sistema de dinero, ingresos fáciles o promesa económica;",
+                  "i) vulnere derechos de terceros, normas de la plataforma social o legislación aplicable."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "El usuario podrá impugnar la decisión a través del sistema detallado en el punto 6.9."
+              }
+            ]
+          },
+          {
+            "title": "6.8. Límites operativos y medidas antifraude",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá establecer límites operativos y controles antifraude para proteger la integridad del programa para creadores, la fiabilidad del sistema de créditos, la seguridad de la Plataforma y la experiencia del resto de usuarios, incluyendo, entre otros, los siguientes: (i) límites máximos de envíos (\"submissions\") por día y/o por período; (ii) validación de enlaces únicos y verificación de URL; (iii) detección de reposts, duplicidades, contenido reciclado o spam; (iv) detección de múltiples cuentas asociadas a una misma persona, dispositivo, patrón de uso o indicadores razonables de vinculación; (v) verificación manual o reforzada de la permanencia del contenido aprobado durante el período mínimo exigido; y (vi) revisión reforzada de métricas o interacciones anómalas, incluyendo indicios de manipulación, bots, compra de engagement o patrones no orgánicos."
+              },
+              {
+                "type": "paragraph",
+                "text": "A efectos de lo anterior, SLOWORK podrá aplicar medidas técnicas y organizativas proporcionadas, que podrán incluir: requerimientos de información adicional para verificar la autoría o la autenticidad del contenido; solicitud de capturas, enlaces alternativos o evidencias razonables; limitación temporal de nuevas subidas; puesta en cola de revisión reforzada; bloqueo preventivo del devengo de créditos hasta completarse la verificación; anulación o reversión de créditos indebidamente obtenidos; y, en casos graves o reiterados, suspensión temporal o cancelación del acceso del Usuario al programa o a determinadas funcionalidades de la Plataforma, de acuerdo con estos TyC."
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK mantendrá una política específica frente a usos indebidos, en virtud de la cual podrá, durante un período razonable y tras advertencia previa cuando sea apropiado, suspender o limitar el acceso a la Plataforma o al programa para (i) Usuarios que proporcionen con frecuencia contenido manifiestamente ilícito, o (ii) Usuarios que remitan con frecuencia notificaciones o reclamaciones manifiestamente infundadas a través de los mecanismos habilitados, cuando dicha conducta afecte a la operativa, a la seguridad o a la integridad del sistema. Esta política se aplicará de manera diligente y objetiva, caso por caso, teniendo en cuenta todas las circunstancias relevantes."
+              },
+              {
+                "type": "paragraph",
+                "text": "Al decidir sobre la aplicación de medidas por usos indebidos, SLOWORK valorará, al menos: (i) las cifras absolutas de envíos o actuaciones problemáticas en un período; (ii) la proporción relativa respecto del total de envíos del Usuario; (iii) la gravedad y potencial impacto (incluyendo fraude, suplantación, infracción de derechos de terceros o afectación reputacional); y (iv) cuando sea razonablemente determinable, la intencionalidad. SLOWORK procurará, cuando proceda, emitir advertencias previas antes de acordar suspensiones, salvo supuestos de gravedad, riesgo, urgencia o necesidad de proteger la Plataforma, a terceros o a la marca."
+              },
+              {
+                "type": "paragraph",
+                "text": "Las medidas podrán graduarse, con carácter orientativo, entre: (i) limitación de envíos (por ejemplo, reducción temporal del máximo diario); (ii) suspensión temporal de la capacidad de subir contenido o solicitar revisión; (iii) suspensión temporal del acceso al programa para creadores; y (iv) cancelación definitiva del acceso al programa en supuestos graves o reiterados. La duración de las suspensiones será razonable y proporcional al tipo de incumplimiento y su reiteración; con carácter general podrá oscilar, según gravedad, entre 9 días y 12 meses, sin perjuicio de que SLOWORK pueda adoptar medidas más restrictivas cuando resulte imprescindible por fraude, suplantación, infracción de derechos de terceros o riesgo legal o reputacional significativo."
+              },
+              {
+                "type": "paragraph",
+                "text": "La aplicación de estas medidas no impedirá que el Usuario pueda formular recurso o reclamación mediante el sistema interno descrito en la estipulación siguiente."
+              }
+            ]
+          },
+          {
+            "title": "6.9. Sistema interno de gestión de reclamaciones por decisiones de moderación, validación y suspensiones",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK pone a disposición de los Usuarios un sistema interno de gestión de reclamaciones ágil y eficaz para recurrir decisiones adoptadas en el marco de la moderación y gestión del programa y/o de la Plataforma, incluyendo, entre otras: (i) decisiones de retirada, inhabilitación o bloqueo de acceso a contenidos; (ii) rechazo de contenidos en fase de prevalidación o validación final; (iii) bloqueo, reversión o no asignación de créditos por causas vinculadas a verificación, fraude o incumplimiento; y (iv) suspensión, limitación o cancelación de cuentas o del acceso al programa para creadores."
+              },
+              {
+                "type": "paragraph",
+                "text": "El Usuario deberá presentar su reclamación por correo electrónico a la dirección slowork@slowork.app, indicando de forma clara: (i) su identificación y, en su caso, usuario/handle en la Plataforma; (ii) la pieza o decisión afectada (incluyendo ID de contenido si existe, enlace/URL y fecha aproximada); (iii) el motivo del recurso, con una explicación concreta de los hechos; y (iv) la documentación de apoyo disponible, incluyendo capturas de pantalla, enlaces, métricas relevantes y cualquier otra evidencia razonable que permita a SLOWORK revisar el caso."
+              },
+              {
+                "type": "paragraph",
+                "text": "Las reclamaciones serán tramitadas y resueltas por personal de SLOWORK mediante revisión humana, sin que la decisión final dependa exclusivamente de medios automatizados. El plazo máximo orientativo para resolver y comunicar la decisión será de 10 días hábiles desde la recepción completa de la reclamación (esto es, desde que el Usuario haya aportado la información mínima necesaria para su tramitación). La respuesta incluirá una motivación suficiente del resultado y SLOWORK conservará constancia interna de la reclamación y de la decisión adoptada."
+              },
+              {
+                "type": "paragraph",
+                "text": "Durante la tramitación de la reclamación, cuando el conflicto verse sobre la retirada o inhabilitación de acceso a un contenido cargado por el Usuario, dicho contenido no se mantendrá accesible al público general en la Plataforma mientras se resuelva el procedimiento interno. Lo anterior se entiende sin perjuicio de que el Usuario mantenga el contenido en sus redes sociales o canales externos, si ello es compatible con la decisión recurrida y con las reglas del programa."
+              },
+              {
+                "type": "paragraph",
+                "text": "El sistema interno de reclamaciones se pondrá a disposición del Usuario de forma sencilla y transparente, y SLOWORK informará en sus TyC y/o en el área correspondiente de la Plataforma sobre los criterios, plazos y vías de recurso disponibles, incluyendo, cuando proceda, la posibilidad de aportar información adicional durante la tramitación."
+              }
+            ]
+          },
+          {
+            "title": "6.10. Protección de menores y usuarios",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK implementará de forma progresiva las siguientes medidas para proteger a los menores y al público general conforme a la normativa audiovisual española y europea:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "Sistemas de fácil uso para que los usuarios notifiquen contenidos ilícitos o potencialmente perjudiciales.",
+                  "Explicación a los usuarios del curso dado a las notificaciones recibidas.",
+                  "Verificación de edad y control parental respecto a los contenidos que puedan dañar el desarrollo físico, mental o moral de los menores.",
+                  "Medidas de alfabetización mediática y de información sobre buenas prácticas de uso de la Plataforma.",
+                  "Procedimiento alternativo de resolución de conflictos, para consumidores, conforme a lo dispuesto en la Ley 7/2017 y la Ley General para la Defensa de los Consumidores y Usuarios. Estas medidas estarán detalladas en el área correspondiente de la Plataforma y serán informadas de forma clara y accesible."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.11. Créditos y recompensas",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Cuando SLOWORK lo habilite, el Usuario podrá recibir créditos promocionales internos por contenido aprobado."
+              },
+              {
+                "type": "paragraph",
+                "text": "Los créditos:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) no constituyen dinero, salario, comisión dineraria, remuneración laboral ni instrumento financiero;",
+                  "b) tienen carácter promocional e interno;",
+                  "c) solo podrán utilizarse dentro del ecosistema SLOWORK, en la forma que SLOWORK habilite en cada momento;",
+                  "d) no son reembolsables, transferibles ni canjeables por efectivo;",
+                  "e) no generan derecho adquirido indefinido; y",
+                  "f) podrán quedar sujetos a límites, fechas de expiración, reglas de uso y validaciones adicionales."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "La equivalencia interna del crédito que SLOWORK pueda utilizar a efectos promocionales, operativos o de sistema no altera su naturaleza no dineraria."
+              }
+            ]
+          },
+          {
+            "title": "6.12. Tabla base de créditos",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Salvo modificación posterior por SLOWORK, la asignación base de créditos en la fase actual podrá seguir la siguiente lógica:"
+              },
+              {
+                "type": "creditTable",
+                "platforms": [
+                  {
+                    "name": "Instagram",
+                    "rows": [
+                      {
+                        "format": "Story",
+                        "credits": "1 crédito"
+                      },
+                      {
+                        "format": "Carrusel o post",
+                        "credits": "2 créditos"
+                      },
+                      {
+                        "format": "Reel",
+                        "credits": "5 créditos"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "TikTok",
+                    "rows": [
+                      {
+                        "format": "Story",
+                        "credits": "1 crédito"
+                      },
+                      {
+                        "format": "Carrusel o post",
+                        "credits": "1 crédito"
+                      },
+                      {
+                        "format": "Vídeo corto",
+                        "credits": "3 créditos"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "YouTube",
+                    "rows": [
+                      {
+                        "format": "Short",
+                        "credits": "2 créditos"
+                      },
+                      {
+                        "format": "Vídeo corto (8–40 min)",
+                        "credits": "3 créditos"
+                      },
+                      {
+                        "format": "Vídeo largo o podcast (+40 min)",
+                        "credits": "10 créditos"
+                      },
+                      {
+                        "format": "Post o carrusel",
+                        "credits": "2 créditos"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Blog",
+                    "rows": [
+                      {
+                        "format": "Artículo de Blog",
+                        "credits": "8 créditos"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.13. Bonus",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá conceder bonus adicionales cuando el contenido alcance determinados umbrales de rendimiento o impacto verificable."
+              },
+              {
+                "type": "paragraph",
+                "text": "Con carácter orientativo, podrán contemplarse bonus por:"
+              },
+              {
+                "type": "bonusList",
+                "categories": [
+                  {
+                    "title": "a) Visualizaciones elevadas:",
+                    "items": [
+                      "A partir de 10.000 visualizaciones: +1 crédito extra.",
+                      "A partir de 20.000 visualizaciones: +2 créditos extra",
+                      "A partir de 40.000 visualizaciones: +3 créditos extra",
+                      "A partir de 70.000 visualizaciones: +5 créditos extra",
+                      "A partir de 1.000.000 visualizaciones: +10 créditos extra"
+                    ]
+                  },
+                  {
+                    "title": "b) volumen relevante de interacciones cualificadas:",
+                    "items": [
+                      "A partir de 10 compartidos: +1 crédito extra",
+                      "A partir de 40 compartidos: +3 créditos extra",
+                      "A partir de 100 compartidos: +5 créditos extra",
+                      "A partir de 20 guardados: +2 créditos extra",
+                      "A partir de 50 guardados: +4 créditos extra",
+                      "A partir de 100 guardados: +7 créditos extra.",
+                      "A partir de 10 comentarios: +1 crédito extra.",
+                      "A partir de 50 comentarios: +3 créditos extra.",
+                      "A partir de 70 comentarios: +5 créditos extra."
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "La asignación de bonus será siempre discrecional y requerirá validación por SLOWORK."
+              }
+            ]
+          },
+          {
+            "title": "6.14. Devengo, vigencia y uso de créditos",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Los créditos solo se entenderán devengados cuando el contenido haya sido aprobado expresamente por SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "Salvo que SLOWORK indique otra cosa:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) los créditos tendrán una vigencia de 365 días desde su asignación;",
+                  "b) su uso podrá estar limitado a un máximo del 50 % del valor de cada transacción o canje habilitado;",
+                  "c) solo podrán utilizarse cuando SLOWORK active funcionalidades concretas que permitan su aplicación; y",
+                  "d) la mera acumulación de créditos no obliga a SLOWORK a lanzar en una fecha determinada ningún servicio, funcionalidad o sistema de canje."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "6.15. Retirada, reversión o pérdida de créditos",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá retirar, bloquear, cancelar o revertir créditos ya asignados cuando:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) detecte fraude, manipulación o incumplimiento;",
+                  "b) el contenido aprobado sea eliminado, ocultado o alterado sustancialmente antes del plazo mínimo exigido por SLOWORK;",
+                  "c) se compruebe que las métricas, interacciones o publicaciones no eran auténticas;",
+                  "d) el contenido infrinja estas TyC o derechos de terceros; o",
+                  "e) se produzca un error material de asignación."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "En particular, si el Usuario elimina el contenido validado antes de que transcurran 3 meses desde su aprobación, SLOWORK podrá retirar los créditos asociados a esa pieza."
+              },
+              {
+                "type": "paragraph",
+                "text": "Si el Usuario hubiera consumido ya esos créditos, SLOWORK podrá compensarlos con futuros créditos, suspender temporalmente el acceso al programa o aplicar la regularización interna que corresponda."
+              }
+            ]
+          },
+          {
+            "title": "6.16. Ausencia de relación laboral, mercantil retribuida o de representación",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "La participación en el programa para creadores no crea relación laboral, mercantil retribuida, agencia, representación, mandato, sociedad, joint venture ni vínculo de exclusividad entre el Usuario y SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "El Usuario no podrá actuar en nombre de SLOWORK ni asumir compromisos, manifestaciones, promesas o declaraciones vinculantes por cuenta de SLOWORK sin autorización previa y expresa por escrito."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "7. Licencia sobre el contenido, UGC, imagen y usos promocionales",
+        "subsections": [
+          {
+            "title": "7.1. Garantía de derechos",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "El Usuario garantiza que dispone de todos los derechos, permisos, consentimientos y autorizaciones necesarios sobre el contenido que publique, suba, remita, vincule o asocie a SLOWORK dentro de la Plataforma, del programa para creadores o de cualquier campaña vinculada a la marca."
+              },
+              {
+                "type": "paragraph",
+                "text": "En particular, el Usuario garantiza que:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) el contenido es original o cuenta con derechos suficientes para su uso;",
+                  "b) su publicación y reutilización por SLOWORK no infringe derechos de propiedad intelectual, industrial, imagen, honor, intimidad, protección de datos o cualesquiera otros derechos de terceros;",
+                  "c) cualquier persona identificable que aparezca en el contenido ha prestado, cuando resulte exigible, el consentimiento necesario para la captación y uso de su imagen, voz o nombre;",
+                  "d) la música, audios, clips, plantillas, efectos, recursos visuales, marcas, localizaciones o cualesquiera otros elementos incorporados al contenido permiten su uso promocional y publicitario por SLOWORK en los términos aquí previstos; y",
+                  "e) el contenido no está sujeto a restricciones incompatibles con su uso comercial y publicitario por parte de SLOWORK."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "El Usuario será responsable frente a SLOWORK y frente a terceros de cualquier reclamación derivada de la falta de derechos o autorizaciones suficientes sobre el contenido aportado."
+              }
+            ]
+          },
+          {
+            "title": "7.2. Licencia de uso sobre contenido y UGC",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Mediante la participación en la Waitlist, campañas, dinámicas de comunidad o en el programa para creadores, el Usuario concede a SLOWORK una licencia no exclusiva, gratuita, mundial, sublicenciable, para todo tipo de medios, soportes, canales y formatos, online y offline, sobre el contenido remitido, publicado o vinculado a SLOWORK, para:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) reproducirlo, almacenarlo, archivarlo y ponerlo a disposición;",
+                  "b) comunicarlo públicamente, difundirlo, redistribuirlo y republicarlo;",
+                  "c) transformarlo, adaptarlo, editarlo, recortarlo, subtitularlo, traducirlo, reencuadrarlo, redimensionarlo, maquetarlo, combinarlo con otros materiales o ajustarlo a distintos formatos y canales;",
+                  "d) incorporarlo a piezas creativas, landings, newsletters, decks, materiales editoriales, materiales comerciales, presentaciones, soportes internos o campañas de marca; y",
+                  "e) utilizarlo como UGC (user generated content) en acciones de comunicación, notoriedad, performance, remarketing, captación, validación social, comunidad, prensa, eventos, presentaciones comerciales o promoción de producto."
+                ]
+              },
+              {
+                "type": "paragraph",
+                "text": "Esta licencia comprende tanto usos orgánicos como usos promocionados o pagados, incluyendo su utilización en anuncios y campañas publicitarias difundidas por SLOWORK en sus propios canales o a través de plataformas de terceros."
+              }
+            ]
+          },
+          {
+            "title": "7.3. Uso publicitario y paid media",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "La licencia anterior incluye expresamente la facultad de SLOWORK para utilizar el contenido del Usuario en campañas de publicidad digital o paid media, incluyendo, entre otras, campañas en Instagram, Facebook, TikTok, YouTube, Google y formatos equivalentes de paid social, paid video, display, remarketing o performance."
+              },
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá utilizar el contenido como creatividad publicitaria principal o secundaria, testimonial, social proof, pieza de remarketing, recorte audiovisual, carrusel, short-form video, landing asset, email asset o cualquier otro formato promocional razonablemente vinculado a la marca."
+              }
+            ]
+          },
+          {
+            "title": "7.4. Autorización sobre imagen, voz, nombre y perfil público",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "El Usuario autoriza expresamente a SLOWORK, en la medida necesaria para las finalidades descritas, a utilizar su nombre o alias, username o identificador público en redes, imagen, voz, fotografía de perfil, likeness, apariencia y demás elementos identificativos que aparezcan en el contenido, con fines de validación, difusión, comunicación, branding, notoriedad, comunidad y publicidad de SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "Esta autorización comprende la posibilidad de mencionar al Usuario como creador, colaborador o miembro de la comunidad SLOWORK, siempre que ello no resulte engañoso ni implique atribuirle funciones o relaciones jurídicas que no existan realmente."
+              }
+            ]
+          },
+          {
+            "title": "7.5. Duración de la licencia",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "La licencia y autorización anteriores se conceden por el máximo plazo permitido por la ley para la finalidad correspondiente o, en su defecto, mientras el contenido sea útil para fines de archivo, prueba, histórico de campaña, comunidad, comunicación o explotación promocional razonable de SLOWORK."
+              },
+              {
+                "type": "paragraph",
+                "text": "No obstante, el Usuario podrá solicitar la retirada del contenido para usos futuros no ya ejecutados o comprometidos, sin que ello afecte a:"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "a) campañas ya activas, lanzadas, aprobadas o presupuestadas;",
+                  "b) materiales ya producidos, editados o distribuidos;",
+                  "c) publicaciones ya realizadas;",
+                  "d) evidencias internas, archivos, backups, logs o soportes necesarios para fines probatorios, legales, contables, antifraude o de compliance."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "7.6. Límites y derechos morales",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "SLOWORK podrá adaptar técnicamente el contenido para sus campañas y canales, pero se compromete a no utilizarlo de manera manifiestamente vejatoria, denigrante o descontextualizada de forma que lesione ilegítimamente la reputación del Usuario."
+              },
+              {
+                "type": "paragraph",
+                "text": "La presente cláusula se entiende sin perjuicio de los derechos morales irrenunciables que correspondan al autor conforme a la legislación aplicable."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "8. Uso aceptable de la Plataforma",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "El Usuario se compromete a utilizar la Plataforma de forma diligente, correcta, lícita y conforme a estas TyC."
+          },
+          {
+            "type": "paragraph",
+            "text": "Queda prohibido, entre otros comportamientos:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) introducir virus, malware, código malicioso o cualquier elemento susceptible de alterar sistemas, redes o datos;",
+              "b) interferir, interrumpir o comprometer la seguridad o el funcionamiento normal de la Plataforma;",
+              "c) acceder sin autorización a cuentas, sistemas o áreas restringidas;",
+              "d) registrar información falsa o suplantar a terceros;",
+              "e) recopilar datos personales de terceros sin legitimación suficiente;",
+              "f) reproducir, extraer, copiar, distribuir o reutilizar contenidos de la Plataforma sin autorización;",
+              "g) utilizar la Plataforma para fraude, spam, scraping, campañas engañosas o captación no consentida;",
+              "h) manipular el programa de créditos, las métricas de contenido o las validaciones;",
+              "i) publicar contenido ofensivo, discriminatorio, ilícito, difamatorio o contrario a derechos fundamentales."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "SLOWORK podrá adoptar las medidas técnicas o jurídicas que considere necesarias ante cualquier incumplimiento."
+          }
+        ]
+      },
+      {
+        "title": "9. Propiedad intelectual e industrial de SLOWORK",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Todos los contenidos de la Plataforma, incluyendo textos, diseños, interfaces, código, imágenes, logotipos, marcas, nombre comercial, estructura, bases de datos y demás elementos, son titularidad de SLOWORK o de terceros licenciantes."
+          },
+          {
+            "type": "paragraph",
+            "text": "El acceso a la Plataforma no implica cesión, licencia amplia ni transmisión de derechos de propiedad intelectual o industrial a favor del Usuario, salvo el mero derecho limitado de uso para navegar y participar en las funcionalidades autorizadas."
+          },
+          {
+            "type": "paragraph",
+            "text": "Queda prohibida la reproducción, transformación, distribución, comunicación pública, extracción o reutilización total o parcial de dichos elementos sin autorización previa y expresa."
+          }
+        ]
+      },
+      {
+        "title": "10. Redes sociales y servicios de terceros",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "La Plataforma podrá enlazar, integrar o interactuar con servicios de terceros, incluyendo redes sociales, herramientas de analítica, sistemas de almacenamiento, plataformas de vídeo o soluciones técnicas externas."
+          },
+          {
+            "type": "paragraph",
+            "text": "SLOWORK no controla íntegramente dichos servicios de terceros y no responde por su disponibilidad, políticas, funcionamiento, caídas, contenidos, prácticas o términos de uso."
+          },
+          {
+            "type": "paragraph",
+            "text": "El Usuario será responsable de cumplir las condiciones de la red social o servicio externo en el que publique contenido vinculado a SLOWORK."
+          }
+        ]
+      },
+      {
+        "title": "11. Protección de datos personales",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "El tratamiento de datos personales realizado por SLOWORK se regirá por la <1>Política de Privacidad</1> vigente en cada momento."
+          },
+          {
+            "type": "paragraph",
+            "text": "El Usuario declara que los datos facilitados son exactos y, si aporta datos o contenidos de terceros, garantiza que cuenta con legitimación suficiente para ello."
+          },
+          {
+            "type": "paragraph",
+            "text": "En el marco de la Waitlist y del programa para creadores, SLOWORK podrá tratar datos identificativos, datos de contacto, enlaces a perfiles públicos, métricas del contenido, histórico de envíos, estados de revisión, créditos, incidencias y demás datos necesarios para gestionar la participación, prevenir fraude, moderar el contenido y operar la Plataforma."
+          }
+        ]
+      },
+      {
+        "title": "12. Exclusión y limitación de responsabilidad",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "SLOWORK no garantiza la disponibilidad continua, permanente o ininterrumpida de la Plataforma, ni la inexistencia de errores, incidencias técnicas o accesos no autorizados."
+          },
+          {
+            "type": "paragraph",
+            "text": "El Usuario utiliza la Plataforma bajo su propia responsabilidad."
+          },
+          {
+            "type": "paragraph",
+            "text": "En la máxima medida permitida por la ley, SLOWORK no será responsable por:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) interrupciones, caídas, indisponibilidades o errores técnicos;",
+              "b) decisiones adoptadas por el Usuario con base en contenidos informativos de la Plataforma;",
+              "c) contenidos, publicaciones o actos de terceros o de otros usuarios;",
+              "d) pérdidas de oportunidad, lucro cesante o daños indirectos derivados del uso de la Plataforma;",
+              "e) expectativas de acceso, beneficios o resultados que no hayan sido expresamente garantizados por escrito."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "En esta fase de pre-lanzamiento, SLOWORK no asume obligación de poner en marcha en una fecha concreta servicios futuros, transacciones, reservas, pagos, marketplace ni mecanismos de canje concretos."
+          }
+        ]
+      },
+      {
+        "title": "13. Suspensión, cancelación y exclusión",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "SLOWORK podrá suspender, bloquear, limitar o cancelar total o parcialmente el acceso del Usuario a la Plataforma, a la Waitlist o al programa para creadores cuando:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a) se incumplan estas TyC;",
+              "b) se detecte fraude, suplantación, abuso o riesgo reputacional;",
+              "c) el contenido o conducta del Usuario perjudique a SLOWORK, a su comunidad o a terceros;",
+              "d) resulte necesario por razones técnicas, legales, organizativas o de seguridad."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "La suspensión o cancelación no generará derecho a indemnización, sin perjuicio de los derechos imperativos que correspondan al Usuario conforme a la ley."
+          }
+        ]
+      },
+      {
+        "title": "14. Modificación de las TyC",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "SLOWORK podrá modificar en cualquier momento las presentes TyC para adaptarlas a cambios legales, técnicos, operativos, de producto, de marca o de estrategia."
+          },
+          {
+            "type": "paragraph",
+            "text": "La nueva versión será publicada en la Plataforma con su fecha de actualización y, cuando proceda, podrá ser comunicada por correo electrónico o por otros medios habilitados."
+          },
+          {
+            "type": "paragraph",
+            "text": "La continuación en el uso de la Plataforma tras la publicación de la nueva versión implicará su aceptación."
+          }
+        ]
+      },
+      {
+        "title": "15. Nulidad parcial",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Si alguna de las cláusulas de estas TyC fuera declarada nula, inválida o inaplicable, ello no afectará a la validez del resto, que permanecerá en vigor en todo lo que sea legalmente posible."
+          }
+        ]
+      },
+      {
+        "title": "16. Idioma",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Las presentes TyC podrán estar disponibles en varios idiomas. En caso de discrepancia, prevalecerá la versión en español, salvo que una norma imperativa disponga lo contrario."
+          }
+        ]
+      },
+      {
+        "title": "17. Ley aplicable y jurisdicción",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Las presentes TyC se regirán por la legislación española."
+          },
+          {
+            "type": "paragraph",
+            "text": "Cuando el Usuario tenga la condición legal de consumidor o usuario, serán competentes los juzgados y tribunales que resulten aplicables conforme a la normativa imperativa de protección de consumidores."
+          },
+          {
+            "type": "paragraph",
+            "text": "Cuando el Usuario actúe en el marco de una actividad profesional, empresarial o económica, ambas partes, con renuncia expresa a cualquier otro fuero que pudiera corresponderles, se someten a los Juzgados y Tribunales de Sevilla, España."
+          }
+        ]
+      }
+    ]
   },
   "impactProgram": {
     "helmet": {
